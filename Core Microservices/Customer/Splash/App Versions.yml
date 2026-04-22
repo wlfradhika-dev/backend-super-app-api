@@ -35,7 +35,7 @@ http:
 runtime:
   variables:
     - name: customToken
-      value: 20QW9KZ0X5FJx7M8vHhR4B2kYcL1U3D6GmTSAEnpPjCwqfVNiq1WfL6Y4CScUeF23
+      value: 68sVAfdIEtAYjVOpyvsWxnPkNqkaHQCiukeTrEHAurNhzLZEnHvXKnrATMUJMsPkZgMbGE6693a4bfb8cb2de96d06913a24e01502TfyJehwMIcxYPpeRTxmUESMHNRWiWzdCVTFVaSUaRSZbFnocX49
   scripts:
     - type: after-response
       code: |-

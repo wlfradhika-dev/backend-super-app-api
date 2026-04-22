@@ -1,0 +1,40 @@
+info:
+  name: on-demand-banner
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/on-demand-home-page-slider"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Authorization
+      value: Bearer 279|XTkpXh7pcL2jZTOEcwt9w2fyR00w2omVHsOwLuHI20f6d7fc
+      disabled: true
+    - name: Content-Type
+      value: multipart/form-data
+  body:
+    type: multipart-form
+    data:
+      - name: app_version
+        type: text
+        value: 1.0.0
+      - name: current_lat
+        type: text
+        value: "23.0225"
+      - name: current_long
+        type: text
+        value: "72.5714"
+      - name: device_token
+        type: text
+        value: "123456"
+  auth:
+    type: bearer
+    token: 1477|z36V3AocFkq6sLmTHs6M8LSSbcCogaBpAmMpWCBaecb98a7f
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,7 @@
+info:
+  name: home-page-banner
+  type: folder
+  seq: 14
+
+request:
+  auth: inherit
