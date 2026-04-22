@@ -1,0 +1,210 @@
+info:
+  name: Start Request
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/taxi/start-request"
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "2"
+        description: For Service Category Id
+      - name: request_id
+        type: text
+        value: e96b9c62-3c53-41c7-bdcf-a8d0cd99a370
+        description: For Rquest id (Ride Id)
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Start-Request
+    request:
+      url: "{{transport_url}}/api/driver/taxi/start-request"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: driver_id
+            type: text
+            value: "{{driver_id}}"
+          - name: service_category_id
+            type: text
+            value: "2"
+            description: For Service Category Id
+          - name: request_id
+            type: text
+            value: e96b9c62-3c53-41c7-bdcf-a8d0cd99a370
+            description: For Rquest id (Ride Id)
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 10 Feb 2026 13:17:35 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "driver_current_status": 0,
+              "ride_details": {
+                  "ride_id": "e96b9c62-3c53-41c7-bdcf-a8d0cd99a370",
+                  "user_id": "c5c4853b-788c-497d-8699-c21455f98aeb",
+                  "user_fcm_token": null,
+                  "booking_no": "93475493",
+                  "service_category_id": 2,
+                  "user_profile_image": "",
+                  "user_name": "Rahul",
+                  "contact_number": "123",
+                  "address_list": [
+                      {
+                          "address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                          "address_lat": "22.3158003",
+                          "address_long": "70.7650816"
+                      },
+                      {
+                          "address": "7QPF+F2 Rajkot,Gujarat",
+                          "address_lat": "22.2862485",
+                          "address_long": "70.7699514"
+                      }
+                  ],
+                  "flat_no": "",
+                  "landmark": "",
+                  "pickup_datetime": "2026-02-09T13:36:15.000000Z",
+                  "total_amount": 500,
+                  "payment_type": 1,
+                  "ride_status": 1,
+                  "way_point_status": 0
+              }
+          }
+
+docs: |+
+  ## Start Request
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | For Service Category Id |
+  | `request_id` | string | Yes | For Rquest id (Ride Id) |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "driver_current_status": 0,
+      "ride_details": {
+          "ride_id": "e96b9c62-3c53-41c7-bdcf-a8d0cd99a370",
+          "user_id": "c5c4853b-788c-497d-8699-c21455f98aeb",
+          "user_fcm_token": null,
+          "booking_no": "93475493",
+          "service_category_id": 2,
+          "user_profile_image": "",
+          "user_name": "Rahul",
+          "contact_number": "123",
+          "address_list": [
+              {
+                  "address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                  "address_lat": "22.3158003",
+                  "address_long": "70.7650816"
+              },
+              {
+                  "address": "7QPF+F2 Rajkot,Gujarat",
+                  "address_lat": "22.2862485",
+                  "address_long": "70.7699514"
+              }
+          ],
+          "flat_no": "",
+          "landmark": "",
+          "pickup_datetime": "2026-02-09T13:36:15.000000Z",
+          "total_amount": 500,
+          "payment_type": 1,
+          "ride_status": 1,
+          "way_point_status": 0
+      }
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

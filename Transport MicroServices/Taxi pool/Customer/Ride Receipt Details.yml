@@ -1,0 +1,309 @@
+info:
+  name: Ride Receipt Details
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/transport/taxi-pool/ride-receipt-details"
+  headers:
+    - name: Authorization
+      value: Bearer 19|vHuVwP1G8ajvWSrwaHZavY3MUfR91Cayoodki3ZZ474634cb
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b
+      - name: sub_ride_id
+        type: text
+        value: 3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride Receipt Details
+    request:
+      url: "{{transport_url}}/api/customer/transport/taxi-pool/ride-receipt-details"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer 19|vHuVwP1G8ajvWSrwaHZavY3MUfR91Cayoodki3ZZ474634cb
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b
+          - name: sub_ride_id
+            type: text
+            value: 3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 17 Feb 2026 11:24:25 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "text_messages.1",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "status": 1,
+              "ride_id": "dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b",
+              "sub_ride_id": "3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438",
+              "additional_remark": "",
+              "ride_service_category_id": 6,
+              "booking_type": 0,
+              "booking_no": "91127468",
+              "pickup_date_time": "2026-02-17T10:17:46.000000Z",
+              "service_date_time": "2026-02-17 10:18:11",
+              "address_list": [
+                  {
+                      "address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                      "address_lat": "22.3158003",
+                      "address_long": "70.7650816"
+                  },
+                  {
+                      "address": "7QPF+F2 Rajkot,Gujarat",
+                      "address_lat": "22.2862485",
+                      "address_long": "70.7699514"
+                  }
+              ],
+              "way_point_status": 0,
+              "sos_contact_list": [],
+              "ride_status": 6,
+              "cancel_by": "",
+              "cancel_reason": "",
+              "cancel_charge": 0,
+              "service_type": "SUV",
+              "service_type_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+              "waypoint_msg_code": 0,
+              "waypoint_message": "",
+              "user_rating_status": 0,
+              "otp": "",
+              "surcharge_cost": 0,
+              "other_contact_number": null,
+              "other_name": null,
+              "is_toll_charge": 1,
+              "toll_charge": 0,
+              "booked_seats": 1,
+              "ride_chat_number": "91127468-3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438",
+              "driver_id": "ca5bb799-fc1f-4019-84ac-a27120ec3698",
+              "driver_selected_service_cat_id": 2,
+              "driver_selected_service_string": "Taxi Riding",
+              "driver_fcm_token": "123456",
+              "vehicle_manufacture_name": "hundai",
+              "vehicle_plat_no": "2618",
+              "vehicle_model_year": 2013,
+              "vehicle_model_name": "Venue",
+              "vehicle_color": "",
+              "cost_per_km": 10,
+              "base_fare": 10,
+              "cost_per_min": 10,
+              "time_fare_amount": 100,
+              "total_distance": "10",
+              "estimated_time": "0:10",
+              "pickup_to_drop_time": "10",
+              "user_refund_status": 0,
+              "refund_amount": 0,
+              "ride_fare": 100,
+              "refer_discount": 0,
+              "min_adjustment_amount": 0,
+              "promocode_discount": 0,
+              "promocode_name": "",
+              "tax": 0,
+              "tip": 10,
+              "final_confirm_bid_price": 0,
+              "subtotal": 210,
+              "discount": 0,
+              "total_pay": 220,
+              "driver_arrive_time": "2026-02-17T10:38:21.000000Z",
+              "driver_waiting_time": "",
+              "total_waiting_charge": 0,
+              "is_favourite_driver": 0,
+              "total_pause_start_amount": 0,
+              "total_pause_start_time": "",
+              "payment": 1,
+              "payment_status": 0,
+              "driver_name": "Dk",
+              "driver_image": "",
+              "driver_rating": 0,
+              "driver_contact_number": "+1 246810"
+          }
+
+docs: |+
+  ## Ride Receipt Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | Ride id |
+  | `sub_ride_id` | string | Yes | Sub ride id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "text_messages.1",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "status": 1,
+      "ride_id": "dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b",
+      "sub_ride_id": "3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438",
+      "additional_remark": "",
+      "ride_service_category_id": 6,
+      "booking_type": 0,
+      "booking_no": "91127468",
+      "pickup_date_time": "2026-02-17T10:17:46.000000Z",
+      "service_date_time": "2026-02-17 10:18:11",
+      "address_list": [
+          {
+              "address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+              "address_lat": "22.3158003",
+              "address_long": "70.7650816"
+          },
+          {
+              "address": "7QPF+F2 Rajkot,Gujarat",
+              "address_lat": "22.2862485",
+              "address_long": "70.7699514"
+          }
+      ],
+      "way_point_status": 0,
+      "sos_contact_list": [],
+      "ride_status": 6,
+      "cancel_by": "",
+      "cancel_reason": "",
+      "cancel_charge": 0,
+      "service_type": "SUV",
+      "service_type_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+      "waypoint_msg_code": 0,
+      "waypoint_message": "",
+      "user_rating_status": 0,
+      "otp": "",
+      "surcharge_cost": 0,
+      "other_contact_number": null,
+      "other_name": null,
+      "is_toll_charge": 1,
+      "toll_charge": 0,
+      "booked_seats": 1,
+      "ride_chat_number": "91127468-3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438",
+      "driver_id": "ca5bb799-fc1f-4019-84ac-a27120ec3698",
+      "driver_selected_service_cat_id": 2,
+      "driver_selected_service_string": "Taxi Riding",
+      "driver_fcm_token": "123456",
+      "vehicle_manufacture_name": "hundai",
+      "vehicle_plat_no": "2618",
+      "vehicle_model_year": 2013,
+      "vehicle_model_name": "Venue",
+      "vehicle_color": "",
+      "cost_per_km": 10,
+      "base_fare": 10,
+      "cost_per_min": 10,
+      "time_fare_amount": 100,
+      "total_distance": "10",
+      "estimated_time": "0:10",
+      "pickup_to_drop_time": "10",
+      "user_refund_status": 0,
+      "refund_amount": 0,
+      "ride_fare": 100,
+      "refer_discount": 0,
+      "min_adjustment_amount": 0,
+      "promocode_discount": 0,
+      "promocode_name": "",
+      "tax": 0,
+      "tip": 10,
+      "final_confirm_bid_price": 0,
+      "subtotal": 210,
+      "discount": 0,
+      "total_pay": 220,
+      "driver_arrive_time": "2026-02-17T10:38:21.000000Z",
+      "driver_waiting_time": "",
+      "total_waiting_charge": 0,
+      "is_favourite_driver": 0,
+      "total_pause_start_amount": 0,
+      "total_pause_start_time": "",
+      "payment": 1,
+      "payment_status": 0,
+      "driver_name": "Dk",
+      "driver_image": "",
+      "driver_rating": 0,
+      "driver_contact_number": "+1 246810"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,265 @@
+info:
+  name: Order Preview
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/normal-flow/customer/order-preview"
+  headers:
+    - name: Accept
+      value: application/vnd.api+json
+  body:
+    type: json
+    data: |-
+      {
+          "store_id": "a2aff62e-3bf9-4f12-9f0f-fb553d5b5d01",
+          "user_taken_type": 1,
+          "promo_code": null,
+          "address": "0",
+          "product_list": "[{\"product_id\":\"f3e1944d-5f7a-474e-b53c-adb7cf7cd002\",\"product_quantity\":[{\"quantity\":3,\"size\":0}]}]",
+          "tip": 0,
+          "is_loyalty_discount": 0,
+          "redeem_loyalty_points": 0,
+          "loyalty_discount_amount": 0
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Order Preview
+    request:
+      url: "{{delivery_url}}/api/normal-flow/customer/order-preview"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/vnd.api+json
+      body:
+        type: json
+        data: |-
+          {
+              "store_id": "a2aff62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "user_taken_type": 1,
+              "promo_code": null,
+              "address": "0",
+              "product_list": "[{\"product_id\":\"f3e1944d-5f7a-474e-b53c-adb7cf7cd002\",\"product_quantity\":[{\"quantity\":3,\"size\":0}]}]",
+              "tip": 0,
+              "is_loyalty_discount": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 09:14:22 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "store_id": "a2aff62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "store_name": "Normal Store",
+              "store_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "required_prescription": 0,
+              "store_rating": 4.6,
+              "store_banner": "http://localhost/storage/img/store-images/normal-store.jpg",
+              "total_item_cost": 24,
+              "discount_cost": 1.2,
+              "apply_promocode_amount": 24.8,
+              "packaging_cost": 2,
+              "delivery_cost": 0,
+              "tax_cost": 1.24,
+              "refer_discount": 0,
+              "total_pay": 26.04,
+              "order_min_amount": 20,
+              "user_taken_type": 1,
+              "user_taken_status": 2,
+              "promo_code_apply": 0,
+              "promo_code_status": 0,
+              "promo_message_code": 0,
+              "promo_code_message": "",
+              "min_order_amount": 0,
+              "promocode_discount": 0,
+              "promocode_name": "",
+              "tip": 0,
+              "product_list": [
+                  {
+                      "product_id": "f3e1944d-5f7a-474e-b53c-adb7cf7cd002",
+                      "product_name": "Veg Pizza",
+                      "product_total_quantity": 3,
+                      "product_total_amount": 24,
+                      "product_discount": 0,
+                      "product_quantity_list": [
+                          {
+                              "product_quantity": 3,
+                              "price_for_one": 8,
+                              "product_amount": 24,
+                              "product_discount": 0,
+                              "product_add_ons": "",
+                              "product_size": 0
+                          }
+                      ]
+                  }
+              ],
+              "unavailable_products": "",
+              "store_status": 1,
+              "is_loyalty_points_module": 1,
+              "is_loyalty_point_apply": "",
+              "total_loyalty_points": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          }
+
+docs: |+
+  ## Order Preview
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "store_id": "a2aff62e-3bf9-4f12-9f0f-fb553d5b5d01",
+      "user_taken_type": 1,
+      "promo_code": null,
+      "address": "0",
+      "product_list": "[{\"product_id\":\"f3e1944d-5f7a-474e-b53c-adb7cf7cd002\",\"product_quantity\":[{\"quantity\":3,\"size\":0}]}]",
+      "tip": 0,
+      "is_loyalty_discount": 0,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "store_id": "a2aff62e-3bf9-4f12-9f0f-fb553d5b5d01",
+      "store_name": "Normal Store",
+      "store_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "required_prescription": 0,
+      "store_rating": 4.6,
+      "store_banner": "http://localhost/storage/img/store-images/normal-store.jpg",
+      "total_item_cost": 24,
+      "discount_cost": 1.2,
+      "apply_promocode_amount": 24.8,
+      "packaging_cost": 2,
+      "delivery_cost": 0,
+      "tax_cost": 1.24,
+      "refer_discount": 0,
+      "total_pay": 26.04,
+      "order_min_amount": 20,
+      "user_taken_type": 1,
+      "user_taken_status": 2,
+      "promo_code_apply": 0,
+      "promo_code_status": 0,
+      "promo_message_code": 0,
+      "promo_code_message": "",
+      "min_order_amount": 0,
+      "promocode_discount": 0,
+      "promocode_name": "",
+      "tip": 0,
+      "product_list": [
+          {
+              "product_id": "f3e1944d-5f7a-474e-b53c-adb7cf7cd002",
+              "product_name": "Veg Pizza",
+              "product_total_quantity": 3,
+              "product_total_amount": 24,
+              "product_discount": 0,
+              "product_quantity_list": [
+                  {
+                      "product_quantity": 3,
+                      "price_for_one": 8,
+                      "product_amount": 24,
+                      "product_discount": 0,
+                      "product_add_ons": "",
+                      "product_size": 0
+                  }
+              ]
+          }
+      ],
+      "unavailable_products": "",
+      "store_status": 1,
+      "is_loyalty_points_module": 1,
+      "is_loyalty_point_apply": "",
+      "total_loyalty_points": 0,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

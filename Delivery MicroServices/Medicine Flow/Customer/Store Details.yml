@@ -1,0 +1,386 @@
+info:
+  name: Store Details
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/medicine-flow/customer/store-details"
+  headers:
+    - name: Authorization
+      value: Bearer YOUR_TOKEN
+      disabled: true
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: store_id
+        type: text
+        value: a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02
+        description: For Store id
+      - name: lat
+        type: text
+        value: "22.3158003"
+        description: For Current Lat
+      - name: long
+        type: text
+        value: "70.7650816"
+        description: For Current Long
+      - name: filter_key
+        type: text
+        value: ""
+      - name: product_search
+        type: text
+        value: ""
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Store Details
+    request:
+      url: "{{delivery_url}}/api/medicine-flow/customer/store-details"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_TOKEN
+          disabled: true
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: store_id
+            type: text
+            value: a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02
+            description: For Store id
+          - name: lat
+            type: text
+            value: "22.3158003"
+            description: For Current Lat
+          - name: long
+            type: text
+            value: "70.7650816"
+            description: For Current Long
+          - name: filter_key
+            type: text
+            value: ""
+            description: 1=veg,2=non-veg, 0=not required
+          - name: product_search
+            type: text
+            value: ""
+            description: 1=veg,2=non-veg, 0=not required
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 09:47:41 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_subcat_flow": 3,
+              "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+              "store_name": "Medicine Store",
+              "store_banner": "http://localhost/storage/img/store-images/medicine-store.jpg",
+              "store_status": 1,
+              "open_time": "00:00",
+              "close_time": "23:59",
+              "average_rating": "4.6",
+              "product_category": "Tablet | Pain Killers",
+              "description": "Seeded store for store-list API testing.",
+              "delivery_time": 30,
+              "order_min_amount": 20,
+              "offer": "Get 5%  off on orders above $10",
+              "offer_min_amount": 10,
+              "offer_amount": 5,
+              "offer_type": 2,
+              "is_fav_store": 0,
+              "taken_away_type": 2,
+              "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "latitude": "22.31572603394304",
+              "longitude": "70.7674083384962",
+              "packaging_charges": 2,
+              "tax_in_percentage": 0,
+              "delivery_charges": 0,
+              "user_to_store_dist": 0.24,
+              "store_open_close_time": [
+                  {
+                      "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f11",
+                      "day_seq": 1,
+                      "day": "Mon",
+                      "display_day": "Monday",
+                      "store_open_time": "00:00:00",
+                      "store_close_time": "23:59:00"
+                  },
+                  {
+                      "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f12",
+                      "day_seq": 2,
+                      "day": "Tue",
+                      "display_day": "Tuesday",
+                      "store_open_time": "00:00:00",
+                      "store_close_time": "23:59:00"
+                  },
+                  {
+                      "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f13",
+                      "day_seq": 3,
+                      "day": "Wed",
+                      "display_day": "Wednesday",
+                      "store_open_time": "00:00:00",
+                      "store_close_time": "23:59:00"
+                  },
+                  {
+                      "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f10",
+                      "day_seq": 4,
+                      "day": "all",
+                      "display_day": "All Days",
+                      "store_open_time": "00:00:00",
+                      "store_close_time": "23:59:00"
+                  },
+                  {
+                      "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f14",
+                      "day_seq": 4,
+                      "day": "Thu",
+                      "display_day": "Thursday",
+                      "store_open_time": "00:00:00",
+                      "store_close_time": "23:59:00"
+                  },
+                  {
+                      "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f15",
+                      "day_seq": 5,
+                      "day": "Fri",
+                      "display_day": "Friday",
+                      "store_open_time": "00:00:00",
+                      "store_close_time": "23:59:00"
+                  },
+                  {
+                      "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f16",
+                      "day_seq": 6,
+                      "day": "Sat",
+                      "display_day": "Saturday",
+                      "store_open_time": "00:00:00",
+                      "store_close_time": "23:59:00"
+                  }
+              ],
+              "category_wise_product_list": [
+                  {
+                      "category_id": "a2b44f28-c090-5f08-a8fd-f26288f18d11",
+                      "category_name": "Tablet",
+                      "category_icon": "http://localhost/storage/img/store-category-images/table.png",
+                      "product_count": 0
+                  },
+                  {
+                      "category_id": "a2b44f28-c090-5f08-a8fd-f26288f18d12",
+                      "category_name": "Pain Killers",
+                      "category_icon": "http://localhost/storage/img/store-category-images/pain-killer.png",
+                      "product_count": 0
+                  }
+              ],
+              "review_count": 1,
+              "is_search_cat_exist": 0
+          }
+
+docs: |+
+  ## Store Details
+
+  Creates a new record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `store_id` | string | Yes | For Store id |
+  | `lat` | string | Yes | For Current Lat |
+  | `long` | string | Yes | For Current Long |
+  | `filter_key` | string | Yes | 1=veg,2=non-veg, 0=not required |
+  | `product_search` | string | Yes | 1=veg,2=non-veg, 0=not required |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "is_subcat_flow": 3,
+      "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+      "store_name": "Medicine Store",
+      "store_banner": "http://localhost/storage/img/store-images/medicine-store.jpg",
+      "store_status": 1,
+      "open_time": "00:00",
+      "close_time": "23:59",
+      "average_rating": "4.6",
+      "product_category": "Tablet | Pain Killers",
+      "description": "Seeded store for store-list API testing.",
+      "delivery_time": 30,
+      "order_min_amount": 20,
+      "offer": "Get 5%  off on orders above $10",
+      "offer_min_amount": 10,
+      "offer_amount": 5,
+      "offer_type": 2,
+      "is_fav_store": 0,
+      "taken_away_type": 2,
+      "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "latitude": "22.31572603394304",
+      "longitude": "70.7674083384962",
+      "packaging_charges": 2,
+      "tax_in_percentage": 0,
+      "delivery_charges": 0,
+      "user_to_store_dist": 0.24,
+      "store_open_close_time": [
+          {
+              "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f11",
+              "day_seq": 1,
+              "day": "Mon",
+              "display_day": "Monday",
+              "store_open_time": "00:00:00",
+              "store_close_time": "23:59:00"
+          },
+          {
+              "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f12",
+              "day_seq": 2,
+              "day": "Tue",
+              "display_day": "Tuesday",
+              "store_open_time": "00:00:00",
+              "store_close_time": "23:59:00"
+          },
+          {
+              "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f13",
+              "day_seq": 3,
+              "day": "Wed",
+              "display_day": "Wednesday",
+              "store_open_time": "00:00:00",
+              "store_close_time": "23:59:00"
+          },
+          {
+              "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f10",
+              "day_seq": 4,
+              "day": "all",
+              "display_day": "All Days",
+              "store_open_time": "00:00:00",
+              "store_close_time": "23:59:00"
+          },
+          {
+              "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f14",
+              "day_seq": 4,
+              "day": "Thu",
+              "display_day": "Thursday",
+              "store_open_time": "00:00:00",
+              "store_close_time": "23:59:00"
+          },
+          {
+              "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f15",
+              "day_seq": 5,
+              "day": "Fri",
+              "display_day": "Friday",
+              "store_open_time": "00:00:00",
+              "store_close_time": "23:59:00"
+          },
+          {
+              "id": "b7f66ee6-69f0-4a09-bcc7-33d5293b4f16",
+              "day_seq": 6,
+              "day": "Sat",
+              "display_day": "Saturday",
+              "store_open_time": "00:00:00",
+              "store_close_time": "23:59:00"
+          }
+      ],
+      "category_wise_product_list": [
+          {
+              "category_id": "a2b44f28-c090-5f08-a8fd-f26288f18d11",
+              "category_name": "Tablet",
+              "category_icon": "http://localhost/storage/img/store-category-images/table.png",
+              "product_count": 0
+          },
+          {
+              "category_id": "a2b44f28-c090-5f08-a8fd-f26288f18d12",
+              "category_name": "Pain Killers",
+              "category_icon": "http://localhost/storage/img/store-category-images/pain-killer.png",
+              "product_count": 0
+          }
+      ],
+      "review_count": 1,
+      "is_search_cat_exist": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The store id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

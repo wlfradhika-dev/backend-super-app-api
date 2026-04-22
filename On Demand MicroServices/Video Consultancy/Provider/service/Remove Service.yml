@@ -1,0 +1,217 @@
+info:
+  name: Remove Service
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/video-consultancy/service/remove"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "provider_service_id": "{{provider_service_uuid}}"
+      }
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success-response
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/service/remove"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: json
+        data: |-
+          {
+              "provider_service_id": "bdf02423-6af8-40f1-98f9-c66992177f8f"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 03:48:05 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_service_list": []
+          }
+  - name: failed-response
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/service/remove"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: json
+        data: |-
+          {
+              "provider_service_id": "bdf02473-6af8-40f1-98f9-c66992177f8f"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 03:50:09 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": false,
+              "message": "Something Went to Wrong",
+              "message_code": 9,
+              "status_code": 0,
+              "https_status_code": 200,
+              "errors": "Failed"
+          }
+
+docs: |+
+  ## Remove Service
+
+  Permanently deletes the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "provider_service_id": "{{provider_service_uuid}}"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_service_list": []
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

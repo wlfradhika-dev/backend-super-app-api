@@ -1,0 +1,167 @@
+info:
+  name: Upload Image
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/report-issue/upload-image"
+  body:
+    type: multipart-form
+    data:
+      - name: report_id
+        type: text
+        value: 019d85cf-c0c2-716a-b57d-257ba87cdd22
+      - name: image
+        type: file
+        value:
+          - /Users/vishaldamasiya/Desktop/SS/1-1.png
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Upload Image
+    request:
+      url: "{{core_url}}/api/provider/report-issue/upload-image"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: report_id
+            type: text
+            value: df41f460-a973-4db7-931d-55f40ae20b72
+          - name: image
+            type: file
+            value:
+              - /Users/deepkalariya/Downloads/img/32520520251606.png
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 26 Feb 2026 05:02:46 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "image": [
+                  {
+                      "id": "0e09f869-0f9c-45c9-8012-cac4f9233352",
+                      "image": "http://localhost/storage/img/report-issue/oGHZhAa11cHMvMAx.jpg"
+                  },
+                  {
+                      "id": "fa31a3be-55b1-4a48-abe3-9b747a12596e",
+                      "image": "http://localhost/storage/img/report-issue/DoxVn3qMVgN1aMCa.jpg"
+                  }
+              ],
+              "is_image_valid": 1
+          }
+
+docs: |+
+  ## Upload Image
+
+  Handles document upload and management for the user's verification requirements.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `report_id` | string | Yes | Report id |
+  | `image` | string | Yes | Image |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "image": [
+          {
+              "id": "0e09f869-0f9c-45c9-8012-cac4f9233352",
+              "image": "http://localhost/storage/img/report-issue/oGHZhAa11cHMvMAx.jpg"
+          },
+          {
+              "id": "fa31a3be-55b1-4a48-abe3-9b747a12596e",
+              "image": "http://localhost/storage/img/report-issue/DoxVn3qMVgN1aMCa.jpg"
+          }
+      ],
+      "is_image_valid": 1
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The report id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,181 @@
+info:
+  name: Ride History
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/taxi-pool/ride-history"
+  body:
+    type: multipart-form
+    data:
+      - name: timezone
+        type: text
+        value: Asia/Kolkata
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride History
+    request:
+      url: "{{transport_url}}/api/driver/taxi-pool/ride-history"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: timezone
+            type: text
+            value: Asia/Kolkata
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 07:46:26 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 1,
+              "total_revenues": 0,
+              "completed_ride": 0,
+              "total_ride": 1,
+              "cancelled_ride": 0,
+              "ride_history": [
+                  {
+                      "ride_id": "dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b",
+                      "driver_pay_settle_status": 0,
+                      "service_category_id": 6,
+                      "service_category_name": "Taxi Pool",
+                      "service_category_icon": "http://localhost/storage/img/service-category/11360920242806.png",
+                      "vehicle_type_name": "SUV",
+                      "vehicle_type_icon_name": null,
+                      "ride_status": 5,
+                      "ride_date_time": "2026-02-16 12:11:25",
+                      "ride_amount": "667.00",
+                      "ride_type": 0,
+                      "ride_date": "16 Feb, 2026",
+                      "ride_time": "12:11",
+                      "service_date_time": "2026-02-16 12:11:25",
+                      "schedule_service_date_time": "2026-02-16 12:11:25",
+                      "total_distance": "10",
+                      "rating": 0,
+                      "ride_no": "65403229"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride History
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `timezone` | string | Yes | Timezone |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 1,
+      "total_revenues": 0,
+      "completed_ride": 0,
+      "total_ride": 1,
+      "cancelled_ride": 0,
+      "ride_history": [
+          {
+              "ride_id": "dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b",
+              "driver_pay_settle_status": 0,
+              "service_category_id": 6,
+              "service_category_name": "Taxi Pool",
+              "service_category_icon": "http://localhost/storage/img/service-category/11360920242806.png",
+              "vehicle_type_name": "SUV",
+              "vehicle_type_icon_name": null,
+              "ride_status": 5,
+              "ride_date_time": "2026-02-16 12:11:25",
+              "ride_amount": "667.00",
+              "ride_type": 0,
+              "ride_date": "16 Feb, 2026",
+              "ride_time": "12:11",
+              "service_date_time": "2026-02-16 12:11:25",
+              "schedule_service_date_time": "2026-02-16 12:11:25",
+              "total_distance": "10",
+              "rating": 0,
+              "ride_no": "65403229"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The timezone field is required."
+  }
+  ```
+

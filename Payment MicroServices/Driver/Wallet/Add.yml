@@ -1,0 +1,158 @@
+info:
+  name: Add
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/driver/wallet/add"
+  body:
+    type: multipart-form
+    data:
+      - name: amount
+        type: text
+        value: "100"
+      - name: card_id
+        type: text
+        value: 019d7655-2f1d-7117-b00c-ddb06563c56f
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Add
+    request:
+      url: "{{payment_url}}/api/driver/wallet/add"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: amount
+            type: text
+            value: "100"
+          - name: card_id
+            type: text
+            value: ""
+            description: card logic pending
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 07:36:11 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "wallet_balance": 100,
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": "",
+              "error_url": ""
+          }
+
+docs: |+
+  ## Add
+
+  Creates a new record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `amount` | string | Yes | Amount |
+  | `card_id` | string | Yes | card logic pending |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "wallet_balance": 100,
+      "redirect_url": "",
+      "success_url": "",
+      "failed_url": "",
+      "error_url": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The amount field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

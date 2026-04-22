@@ -1,0 +1,152 @@
+info:
+  name: List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/panic-call/list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: List
+    request:
+      url: "{{core_url}}/api/provider/panic-call/list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Mon, 13 Apr 2026 05:50:16 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "236"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=uh2HB%2Bp8SWFJ3ZE5DPZ6i9s5u9Wsrf0rP%2BQEWQWfx417Hf87CRx1g6buMdvTa5%2F1jpLZX6E6CeB%2F2gbrkM1E4%2Fhdy9LtSDSoh39zmPTK9D8OuDNGSI4K6IrQp7AvW1mEAvgjF%2BgE03DFtf8HogTO5dWHRvoVZNM%2Bi7A%3D"}]}'
+        - name: cf-ray
+          value: 9eb8313908503fc0-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "panic_call_list": [
+                  {
+                      "id": "019d7089-ea82-72f0-ad9e-b80c8c1942ff",
+                      "name": "Police",
+                      "country_code": "+1",
+                      "contact_number": 1000
+                  },
+                  {
+                      "id": "019d7089-ea82-72f0-ad9e-b80c8c4b67c7",
+                      "name": "Ambulance",
+                      "country_code": "+1",
+                      "contact_number": 108
+                  },
+                  {
+                      "id": "019d7089-ea82-72f0-ad9e-b80c8c9e3eec",
+                      "name": "Fire",
+                      "country_code": "+1",
+                      "contact_number": 102
+                  },
+                  {
+                      "id": "019d7089-ea82-72f0-ad9e-b80c8d900395",
+                      "name": "hospital",
+                      "country_code": "+1",
+                      "contact_number": 1811
+                  }
+              ]
+          }
+
+docs: |+
+  ## List
+
+  Returns the list of emergency/panic contact numbers available in the system.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "panic_call_list": [
+          {
+              "id": "8a78cb09-219f-420b-8e4f-993e848830c2",
+              "name": "estt",
+              "country_code": "+1",
+              "contact_number": 100
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

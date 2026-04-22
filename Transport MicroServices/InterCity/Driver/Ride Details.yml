@@ -1,0 +1,255 @@
+info:
+  name: Ride Details
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/intercity/ride-details"
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "3"
+        description: "service category id "
+      - name: ride_id
+        type: text
+        value: c43acd61-4d87-4f5a-9604-16ed22ecb308
+        description: Enter ride booking id
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride Details
+    request:
+      url: "{{transport_url}}/api/driver/intercity/ride-details"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "3"
+            description: "service category id "
+          - name: ride_id
+            type: text
+            value: d8e8dfce-8e4e-48e9-b5f0-739091587e21
+            description: Enter ride booking id
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Feb 2026 04:02:13 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_details": {
+                  "ride_id": "d8e8dfce-8e4e-48e9-b5f0-739091587e21",
+                  "user_id": "464d3a33-f393-489b-9dd2-cccedaa60070",
+                  "additional_remark": "",
+                  "user_fcm_token": "123456",
+                  "booking_no": "55517230",
+                  "service_category_id": 3,
+                  "user_profile_image": "",
+                  "user_name": "Rahul",
+                  "ride_type": 0,
+                  "rating": 0,
+                  "contact_number": "+1123",
+                  "address_list": [
+                      {
+                          "address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                          "address_lat": "22.3158003",
+                          "address_long": "70.7650816"
+                      },
+                      {
+                          "address": "7QPF+F2 Rajkot,Gujarat",
+                          "address_lat": "22.2862485",
+                          "address_long": "70.7699514"
+                      }
+                  ],
+                  "sos_contact_list": [],
+                  "ride_pause_start_id": 1,
+                  "driver_start_time": null,
+                  "driver_pause_time": null,
+                  "total_pause_start_time": "",
+                  "total_pause_start_amount": 0,
+                  "admin_ride_pause_start_charge": 60,
+                  "flat_no": "",
+                  "landmark": "",
+                  "pickup_datetime": "2026-02-13T12:58:47.000000Z",
+                  "cancel_by": "user",
+                  "service_date_time": "2026-02-13 12:58:47",
+                  "total_amount": 540,
+                  "payment_type": 1,
+                  "ride_status": 1,
+                  "promocode_discount": 0,
+                  "promocode_name": "",
+                  "way_point_status": 0,
+                  "surcharge_cost": 0,
+                  "toll_charge": 0,
+                  "otp": "",
+                  "waiting_charge": 60,
+                  "driver_arrive_time": "",
+                  "driver_waiting_minutes": 0,
+                  "driver_waiting_time": "",
+                  "other_contact_number": null,
+                  "other_name": "",
+                  "ride_chat_number": "55517230-d8e8dfce-8e4e-48e9-b5f0-739091587e21"
+              },
+              "is_toll_charge": 1
+          }
+
+docs: |+
+  ## Ride Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | service category id  |
+  | `ride_id` | string | Yes | Enter ride booking id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_details": {
+          "ride_id": "d8e8dfce-8e4e-48e9-b5f0-739091587e21",
+          "user_id": "464d3a33-f393-489b-9dd2-cccedaa60070",
+          "additional_remark": "",
+          "user_fcm_token": "123456",
+          "booking_no": "55517230",
+          "service_category_id": 3,
+          "user_profile_image": "",
+          "user_name": "Rahul",
+          "ride_type": 0,
+          "rating": 0,
+          "contact_number": "+1123",
+          "address_list": [
+              {
+                  "address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                  "address_lat": "22.3158003",
+                  "address_long": "70.7650816"
+              },
+              {
+                  "address": "7QPF+F2 Rajkot,Gujarat",
+                  "address_lat": "22.2862485",
+                  "address_long": "70.7699514"
+              }
+          ],
+          "sos_contact_list": [],
+          "ride_pause_start_id": 1,
+          "driver_start_time": null,
+          "driver_pause_time": null,
+          "total_pause_start_time": "",
+          "total_pause_start_amount": 0,
+          "admin_ride_pause_start_charge": 60,
+          "flat_no": "",
+          "landmark": "",
+          "pickup_datetime": "2026-02-13T12:58:47.000000Z",
+          "cancel_by": "user",
+          "service_date_time": "2026-02-13 12:58:47",
+          "total_amount": 540,
+          "payment_type": 1,
+          "ride_status": 1,
+          "promocode_discount": 0,
+          "promocode_name": "",
+          "way_point_status": 0,
+          "surcharge_cost": 0,
+          "toll_charge": 0,
+          "otp": "",
+          "waiting_charge": 60,
+          "driver_arrive_time": "",
+          "driver_waiting_minutes": 0,
+          "driver_waiting_time": "",
+          "other_contact_number": null,
+          "other_name": "",
+          "ride_chat_number": "55517230-d8e8dfce-8e4e-48e9-b5f0-739091587e21"
+      },
+      "is_toll_charge": 1
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

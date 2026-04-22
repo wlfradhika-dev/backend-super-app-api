@@ -1,0 +1,257 @@
+info:
+  name: Update Ride Status
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/taxi-bidding/update-ride-status"
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "5"
+      - name: ride_id
+        type: text
+        value: c8d28c49-7d5b-4401-bccb-80b9df603dfa
+      - name: ride_status
+        type: text
+        value: "9"
+      - name: way_point_status
+        type: text
+        value: "0"
+      - name: hail_ride_status
+        type: text
+        value: "0"
+      - name: reason
+        type: text
+        value: ""
+        disabled: true
+      - name: otp
+        type: text
+        value: "115419"
+      - name: destination_address
+        type: text
+        value: ""
+        disabled: true
+      - name: destination_lat
+        type: text
+        value: ""
+        disabled: true
+      - name: destination_long
+        type: text
+        value: ""
+        disabled: true
+      - name: estimated_time
+        type: text
+        value: ""
+        disabled: true
+      - name: total_distance
+        type: text
+        value: ""
+        disabled: true
+      - name: toll_charge
+        type: text
+        value: "10"
+      - name: route_lat_long_list
+        type: text
+        value: "[]"
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Update Ride Status
+    request:
+      url: "{{transport_url}}/api/driver/taxibidding/update-ride-status"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "5"
+          - name: ride_id
+            type: text
+            value: 64b87d99-3b97-4b17-b4d0-3c7c4d60efb8
+          - name: ride_status
+            type: text
+            value: "3"
+          - name: way_point_status
+            type: text
+            value: "0"
+          - name: hail_ride_status
+            type: text
+            value: "0"
+          - name: reason
+            type: text
+            value: ""
+            disabled: true
+          - name: otp
+            type: text
+            value: "471239"
+          - name: destination_address
+            type: text
+            value: ""
+            disabled: true
+          - name: destination_lat
+            type: text
+            value: ""
+            disabled: true
+          - name: destination_long
+            type: text
+            value: ""
+            disabled: true
+          - name: estimated_time
+            type: text
+            value: ""
+            disabled: true
+          - name: total_distance
+            type: text
+            value: ""
+            disabled: true
+          - name: toll_charge
+            type: text
+            value: "10"
+          - name: route_lat_long_list
+            type: text
+            value: "[]"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 05:01:43 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "service_category_id": 5,
+              "ride_id": "64b87d99-3b97-4b17-b4d0-3c7c4d60efb8",
+              "otp": 841300,
+              "ride_status": 3,
+              "way_point_status": 0,
+              "ride_completed_status": 0,
+              "ride_cancelled_status": 0,
+              "driver_current_status": 0,
+              "cancel_by": ""
+          }
+
+docs: |+
+  ## Update Ride Status
+
+  Updates an existing record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | Service category id |
+  | `ride_id` | string | Yes | Ride id |
+  | `ride_status` | string | Yes | Ride status |
+  | `way_point_status` | string | Yes | Way point status |
+  | `hail_ride_status` | string | Yes | Hail ride status |
+  | `reason` | string | Yes | Reason |
+  | `otp` | string | Yes | Otp |
+  | `destination_address` | string | Yes | Destination address |
+  | `destination_lat` | string | Yes | Destination lat |
+  | `destination_long` | string | Yes | Destination long |
+  | `estimated_time` | string | Yes | Estimated time |
+  | `total_distance` | string | Yes | Total distance |
+  | `toll_charge` | string | Yes | Toll charge |
+  | `route_lat_long_list` | string | Yes | Route lat long list |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "service_category_id": 5,
+      "ride_id": "64b87d99-3b97-4b17-b4d0-3c7c4d60efb8",
+      "otp": 841300,
+      "ride_status": 3,
+      "way_point_status": 0,
+      "ride_completed_status": 0,
+      "ride_cancelled_status": 0,
+      "driver_current_status": 0,
+      "cancel_by": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

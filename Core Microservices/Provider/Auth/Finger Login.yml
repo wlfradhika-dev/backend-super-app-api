@@ -1,0 +1,241 @@
+info:
+  name: Finger Login
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/finger-login"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: select-time-zone
+      value: Asia/Kolkata
+    - name: select-ip-address
+      value: 103.138.233.214
+  body:
+    type: multipart-form
+    data:
+      - name: login_type
+        type: text
+        value: fingerprint
+      - name: device_token
+        type: text
+        value: "123456"
+      - name: select_language
+        type: text
+        value: en
+      - name: select_currency
+        type: text
+        value: $
+      - name: select_country_code
+        type: text
+        value: "+1"
+      - name: login_device
+        type: text
+        value: "1"
+        description: 1:Flutter-Android, 2:Flutter-Ios
+      - name: login_id
+        type: text
+        value: 50029379-b361-47da-9fa6-a9016af922d1
+      - name: unique_id
+        type: text
+        value: aeed692f-db96-4a2c-b5a2-e729f791f10c
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("provider_token", response.token);
+        //     pm.collectionVariables.set("provider_id", response.provider_id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Finger Login
+    request:
+      url: "{{core_url}}/api/provider/finger-login"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: select-time-zone
+          value: Asia/Kolkata
+        - name: select-ip-address
+          value: 103.138.233.214
+      body:
+        type: multipart-form
+        data:
+          - name: login_type
+            type: text
+            value: fingerprint
+          - name: device_token
+            type: text
+            value: "123456"
+          - name: select_language
+            type: text
+            value: en
+          - name: select_currency
+            type: text
+            value: $
+          - name: select_country_code
+            type: text
+            value: "+1"
+          - name: login_device
+            type: text
+            value: "1"
+            description: 1:Flutter-Android, 2:Flutter-Ios
+          - name: login_id
+            type: text
+            value: 50029379-b361-47da-9fa6-a9016af922d1
+          - name: unique_id
+            type: text
+            value: aeed692f-db96-4a2c-b5a2-e729f791f10c
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 05 Feb 2026 10:46:00 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "provider_id": "50029379-b361-47da-9fa6-a9016af922d1",
+              "contact_number": "123",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "select_language": "en",
+              "unique_id": "aeed692f-db96-4a2c-b5a2-e729f791f10c",
+              "token": "7|pnpGNZEkrfIVPgI545rIWETTMF1dX0nj6NWrBPhu3136fa52",
+              "server_time_zone": "UTC",
+              "provider_name": "Rahul",
+              "provider_last_name": "",
+              "email": "rahul@gmail.comm",
+              "profile_image": null,
+              "provider_current_status": 0,
+              "completed_step": 0,
+              "service_radius": 0,
+              "address": "",
+              "landmark": "",
+              "lat_long": "",
+              "min_order": 0,
+              "is_allowed_provider_location": 0
+          }
+
+docs: |+
+  ## Finger Login
+
+  Authenticates the user using fingerprint or face unlock biometric credentials stored on the device.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `login_type` | string | Yes | Login type |
+  | `device_token` | string | Yes | Device token |
+  | `select_language` | string | Yes | Select language |
+  | `select_currency` | string | Yes | Select currency |
+  | `select_country_code` | string | Yes | Select country code |
+  | `login_device` | string | Yes | 1:Flutter-Android, 2:Flutter-Ios |
+  | `login_id` | string | Yes | Login id |
+  | `unique_id` | string | Yes | Unique id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "is_register": 1,
+      "provider_id": "50029379-b361-47da-9fa6-a9016af922d1",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "select_language": "en",
+      "unique_id": "aeed692f-db96-4a2c-b5a2-e729f791f10c",
+      "token": "7|pnpGNZEkrfIVPgI545rIWETTMF1dX0nj6NWrBPhu3136fa52",
+      "server_time_zone": "UTC",
+      "provider_name": "Rahul",
+      "provider_last_name": "",
+      "email": "rahul@gmail.comm",
+      "profile_image": null,
+      "provider_current_status": 0,
+      "completed_step": 0,
+      "service_radius": 0,
+      "address": "",
+      "landmark": "",
+      "lat_long": "",
+      "min_order": 0,
+      "is_allowed_provider_location": 0
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The login type field is required."
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

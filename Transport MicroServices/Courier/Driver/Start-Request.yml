@@ -1,0 +1,238 @@
+info:
+  name: Start-Request
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/courier/start-request"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_category_id": 4,
+        "request_id": "01fee6cb-f846-46db-96e4-e5579a65cb9b"
+      }
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Start-Request
+    request:
+      url: "{{transport_url}}/api/driver/courier/start-request"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "service_category_id": 4,
+            "request_id": "{{REQUEST_ID}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 04:57:43 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "driver_current_status": 0,
+              "ride_details": {
+                  "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+                  "user_id": "0c7f4dfd-ea4e-4cc9-8c79-0313aa15ccfc",
+                  "user_fcm_token": "",
+                  "booking_no": "27382197",
+                  "service_category_id": 4,
+                  "user_profile_image": "http://localhost:8002/storage/img/profile-images/customer/12332.jpg",
+                  "user_name": "Rahul",
+                  "contact_number": "9999999999",
+                  "address_list": [
+                      {
+                          "address": "123 Sender Street, City",
+                          "address_lat": "23.0225",
+                          "address_long": "72.5714"
+                      },
+                      {
+                          "address": "456 Recipient Road, City",
+                          "address_lat": "23.03",
+                          "address_long": "72.58"
+                      }
+                  ],
+                  "flat_no": "",
+                  "landmark": "",
+                  "pickup_datetime": "2026-03-10T11:18:28.000000Z",
+                  "total_amount": 4205,
+                  "payment_type": 1,
+                  "ride_status": 2,
+                  "way_point_status": false,
+                  "courier_details": {
+                      "category_name": "Courier Service",
+                      "sender_name": "John Sender",
+                      "sender_contact_number": "9876543210",
+                      "sender_landmark": "Near Main Gate",
+                      "recipient_name": "Jane Recipient",
+                      "recipient_contact_number": "9876543211",
+                      "recipient_landmark": "Opposite Park",
+                      "delivery_instruction": "Handle with care",
+                      "receiver_otp": ""
+                  }
+              }
+          }
+
+docs: |+
+  ## Start-Request
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "service_category_id": 4,
+    "request_id": "{{REQUEST_ID}}"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "driver_current_status": 0,
+      "ride_details": {
+          "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+          "user_id": "0c7f4dfd-ea4e-4cc9-8c79-0313aa15ccfc",
+          "user_fcm_token": "",
+          "booking_no": "27382197",
+          "service_category_id": 4,
+          "user_profile_image": "http://localhost:8002/storage/img/profile-images/customer/12332.jpg",
+          "user_name": "Rahul",
+          "contact_number": "9999999999",
+          "address_list": [
+              {
+                  "address": "123 Sender Street, City",
+                  "address_lat": "23.0225",
+                  "address_long": "72.5714"
+              },
+              {
+                  "address": "456 Recipient Road, City",
+                  "address_lat": "23.03",
+                  "address_long": "72.58"
+              }
+          ],
+          "flat_no": "",
+          "landmark": "",
+          "pickup_datetime": "2026-03-10T11:18:28.000000Z",
+          "total_amount": 4205,
+          "payment_type": 1,
+          "ride_status": 2,
+          "way_point_status": false,
+          "courier_details": {
+              "category_name": "Courier Service",
+              "sender_name": "John Sender",
+              "sender_contact_number": "9876543210",
+              "sender_landmark": "Near Main Gate",
+              "recipient_name": "Jane Recipient",
+              "recipient_contact_number": "9876543211",
+              "recipient_landmark": "Opposite Park",
+              "delivery_instruction": "Handle with care",
+              "receiver_otp": ""
+          }
+      }
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

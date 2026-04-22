@@ -1,0 +1,175 @@
+info:
+  name: End Video Call
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/video-consultancy/end-video-call"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: "{{order_id}}"
+      - name: used_minutes
+        type: text
+        value: "40"
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success-response
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/end-video-call"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: "{{order_id}}"
+          - name: used_minutes
+            type: text
+            value: "10"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 07:09:06 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_admin_video_call_time_limit": 60,
+              "order_used_video_call_time_limit": 30,
+              "admin_daily_user_video_call_time_limit": 120,
+              "daily_user_video_call_time_limit": 20,
+              "over_all_call_limit": 30
+          }
+
+docs: |+
+  ## End Video Call
+
+  Initiates or manages an audio/video call session using the 100ms platform.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+  | `used_minutes` | string | Yes | Used minutes |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_admin_video_call_time_limit": 60,
+      "order_used_video_call_time_limit": 30,
+      "admin_daily_user_video_call_time_limit": 120,
+      "daily_user_video_call_time_limit": 20,
+      "over_all_call_limit": 30
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,280 @@
+info:
+  name: Track Order
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/normal-flow/customer/track-order"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: 019d7721-bfb7-702a-a536-e88f71ca4cb2
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Track Order - error
+    request:
+      url: "{{delivery_url}}/api/normal-flow/customer/track-order"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: 6cc904e3-067d-4250-9e4e-e4a4fa7a237e
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 19 Feb 2026 12:43:36 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Please Try Again",
+              "message_code": 9,
+              "status_code": 0,
+              "http_status_code": 400,
+              "errors": "Failed"
+          }
+  - name: Track Order
+    request:
+      url: "{{delivery_url}}/api/normal-flow/customer/track-order"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: 7efce026-8352-41ad-96aa-864ffd1e2aff
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 09:15:28 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "7efce026-8352-41ad-96aa-864ffd1e2aff",
+              "order_no": "54607256",
+              "otp": "419480",
+              "cancel_charge": 0,
+              "cancel_by": "",
+              "cancel_reason": "",
+              "order_time": "Tue 24 Feb, 09:11AM",
+              "total_items": 1,
+              "total_pay": 36.04,
+              "service_category_id": 10,
+              "store_id": "66125e03-05a1-4cf8-84a5-8689ab5ba68e",
+              "store_image": "",
+              "store_banner": "http://localhost/storage/img/store-images/normal-store.jpg",
+              "store_ratting": 4.6,
+              "store_contact_number": "+17299",
+              "store_name": "Normal Store",
+              "pickup_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "pickup_lat_long": "22.31572603394304,70.7674083384962",
+              "destination_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "destination_lat_long": "22.31572603394304,70.7674083384962",
+              "service_date_time": "2026-02-24 09:11:49",
+              "schedule_order_date_time": "2026-02-24 09:11:49",
+              "delivery_people_name": "",
+              "driver_contact_number": "",
+              "driver_selected_service_string": "",
+              "driver_id": 0,
+              "driver_fcm_token": "",
+              "driver_image": "",
+              "driver_rating": 0,
+              "order_current_status": 1,
+              "user_taken_type": 1,
+              "order_cancel_reject_title": "",
+              "order_status_list": [
+                  {
+                      "order_status": 1,
+                      "update_status_time": "09:11 AM",
+                      "update_status_date_time": "2026-02-24 09:11:49"
+                  }
+              ],
+              "review_count": 1,
+              "driver_review_count": 0,
+              "order_chat_number": "54607256-7efce026-8352-41ad-96aa-864ffd1e2aff"
+          }
+
+docs: |+
+  ## Track Order
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "7efce026-8352-41ad-96aa-864ffd1e2aff",
+      "order_no": "54607256",
+      "otp": "419480",
+      "cancel_charge": 0,
+      "cancel_by": "",
+      "cancel_reason": "",
+      "order_time": "Tue 24 Feb, 09:11AM",
+      "total_items": 1,
+      "total_pay": 36.04,
+      "service_category_id": 10,
+      "store_id": "66125e03-05a1-4cf8-84a5-8689ab5ba68e",
+      "store_image": "",
+      "store_banner": "http://localhost/storage/img/store-images/normal-store.jpg",
+      "store_ratting": 4.6,
+      "store_contact_number": "+17299",
+      "store_name": "Normal Store",
+      "pickup_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "pickup_lat_long": "22.31572603394304,70.7674083384962",
+      "destination_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "destination_lat_long": "22.31572603394304,70.7674083384962",
+      "service_date_time": "2026-02-24 09:11:49",
+      "schedule_order_date_time": "2026-02-24 09:11:49",
+      "delivery_people_name": "",
+      "driver_contact_number": "",
+      "driver_selected_service_string": "",
+      "driver_id": 0,
+      "driver_fcm_token": "",
+      "driver_image": "",
+      "driver_rating": 0,
+      "order_current_status": 1,
+      "user_taken_type": 1,
+      "order_cancel_reject_title": "",
+      "order_status_list": [
+          {
+              "order_status": 1,
+              "update_status_time": "09:11 AM",
+              "update_status_date_time": "2026-02-24 09:11:49"
+          }
+      ],
+      "review_count": 1,
+      "driver_review_count": 0,
+      "order_chat_number": "54607256-7efce026-8352-41ad-96aa-864ffd1e2aff"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

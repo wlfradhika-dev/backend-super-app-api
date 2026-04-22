@@ -1,0 +1,222 @@
+info:
+  name: Register
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/register"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: contact_number
+        type: text
+        value: "1234"
+      - name: select_country_code
+        type: text
+        value: "+1"
+      - name: full_name
+        type: text
+        value: rahul
+      - name: email
+        type: text
+        value: rahul@gmail.comm
+      - name: refer_code
+        type: text
+        value: ""
+        description: "nullable "
+      - name: gender
+        type: text
+        value: "1"
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("driver_token", response.token);
+        //     pm.collectionVariables.set("driver_id", response.driver_id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Register
+    request:
+      url: "{{core_url}}/api/driver/register"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: contact_number
+            type: text
+            value: "1234"
+          - name: select_country_code
+            type: text
+            value: "+1"
+          - name: full_name
+            type: text
+            value: rahul
+          - name: email
+            type: text
+            value: rahul@gmail.comm
+          - name: refer_code
+            type: text
+            value: ""
+            description: "nullable "
+          - name: gender
+            type: text
+            value: "1"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 02 Feb 2026 09:22:12 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "status": 1,
+              "is_register": 1,
+              "driver_id": "fe94ab9a-8739-4567-937d-d906b22ff716",
+              "contact_number": "123",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "currency_code": "USD",
+              "select_language": "en",
+              "unique_id": "f1e44993-3398-441b-bb78-50937cc62d37",
+              "gender": "1",
+              "driver_name": "Rahul",
+              "email": "rahul@gmail.comm",
+              "profile_image": null,
+              "server_time_zone": "UTC",
+              "token": "30|dpAfH4r60gBIKkODKCdRRFzNADVR4D2tuj5PYWmA69eebc91",
+              "driver_service_id": 0,
+              "service_status": 4,
+              "service_category_id": 0,
+              "driver_current_status": 0,
+              "driver_service": "",
+              "vehicle_type_icon": "",
+              "vehicle_type_name": "",
+              "vehicle_company": "",
+              "plat_no": "",
+              "model_year": "",
+              "model_name": "",
+              "vehicle_color": "",
+              "service_type_id": 0,
+              "is_ride_service": 0
+          }
+
+docs: |+
+  ## Register
+
+  Creates a new user account with the provided details and sends an OTP for contact verification.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `contact_number` | string | Yes | Contact number |
+  | `select_country_code` | string | Yes | Select country code |
+  | `full_name` | string | Yes | Full name |
+  | `email` | string | Yes | Email |
+  | `refer_code` | string | No | nullable  |
+  | `gender` | string | Yes | Gender |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "status": 1,
+      "is_register": 1,
+      "driver_id": "fe94ab9a-8739-4567-937d-d906b22ff716",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "currency_code": "USD",
+      "select_language": "en",
+      "unique_id": "f1e44993-3398-441b-bb78-50937cc62d37",
+      "gender": "1",
+      "driver_name": "Rahul",
+      "email": "rahul@gmail.comm",
+      "profile_image": null,
+      "server_time_zone": "UTC",
+      "token": "30|dpAfH4r60gBIKkODKCdRRFzNADVR4D2tuj5PYWmA69eebc91",
+      "driver_service_id": 0,
+      "service_status": 4,
+      "service_category_id": 0,
+      "driver_current_status": 0,
+      "driver_service": "",
+      "vehicle_type_icon": "",
+      "vehicle_type_name": "",
+      "vehicle_company": "",
+      "plat_no": "",
+      "model_year": "",
+      "model_name": "",
+      "vehicle_color": "",
+      "service_type_id": 0,
+      "is_ride_service": 0
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The contact number field is required."
+  }
+  ```
+

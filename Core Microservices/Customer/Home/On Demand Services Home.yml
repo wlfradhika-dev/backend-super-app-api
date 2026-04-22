@@ -1,0 +1,202 @@
+info:
+  name: On Demand Services Home
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/on-demand-services-home"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: app_version
+        type: text
+        value: 1.0.0
+      - name: current_lat
+        type: text
+        value: "23.0225"
+      - name: current_long
+        type: text
+        value: "72.5714"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: On Demand Services Home
+    request:
+      url: "{{core_url}}/api/customer/on-demand-services-home"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: app_version
+            type: text
+            value: 1.0.0
+          - name: current_lat
+            type: text
+            value: "23.0225"
+          - name: current_long
+            type: text
+            value: "72.5714"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Thu, 09 Apr 2026 09:27:39 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "301"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=IaSrJhUzAQd3BtrkgCANhpUZ1cQ8XKOX9T7VyarC9HCiLAwWEdqAWlin9C%2B8KERxdcqUFWOt4YSvWYYh5b7nWzoHf%2BaBPbmVVYd51G2oyJjhJKk5Pv3cqWGJf%2Fgz0RYzEaYub%2FSoRaWOF3omXpKcSi87TpgPCQmMtDw%3D"}]}'
+        - name: cf-ray
+          value: 9e987a284968ff64-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "services": [
+                  {
+                      "service_category_id": 13,
+                      "category_type": 4,
+                      "is_sub_cat_flow": 0,
+                      "service_category_name": "Dog walking",
+                      "ride_flow_type": 0,
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/10060120251301.png"
+                  },
+                  {
+                      "service_category_id": 14,
+                      "category_type": 6,
+                      "is_sub_cat_flow": 0,
+                      "service_category_name": "Astrology",
+                      "ride_flow_type": 0,
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/10112520251301.png"
+                  }
+              ],
+              "total_ongoing_order": 0,
+              "total_unread_message": 0
+          }
+
+docs: |+
+  ## On Demand Services Home
+
+  Returns the homepage data including available services, banners, and promotional content.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `app_version` | string | Yes | App version |
+  | `current_lat` | string | Yes | Current lat |
+  | `current_long` | string | Yes | Current long |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "services": [
+          {
+              "service_category_id": 14,
+              "category_type": 6,
+              "is_sub_cat_flow": 0,
+              "service_category_name": "Astrology",
+              "ride_flow_type": 1,
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/default.png"
+          }
+      ],
+      "total_ongoing_order": 0,
+      "total_unread_message": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The app version field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,135 @@
+info:
+  name: Receiver Resend Otp
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/courier/receiver-resend-otp"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_category_id": 4,
+        "ride_id": "01fee6cb-f846-46db-96e4-e5579a65cb9b"
+      }
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Receiver Resend Otp
+    request:
+      url: "{{transport_url}}/api/driver/courier/receiver-resend-otp"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "service_category_id": 4,
+            "ride_id": "{{RIDE_ID}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 05:33:59 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "receiver_otp": "909820"
+          }
+
+docs: |+
+  ## Receiver Resend Otp
+
+  Resends the OTP verification code to the user's registered contact number.
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "service_category_id": 4,
+    "ride_id": "{{RIDE_ID}}"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "receiver_otp": "909820"
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

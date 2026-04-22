@@ -1,0 +1,166 @@
+info:
+  name: General History
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{core_url}}/api/store/report-issue/general-history"
+  body:
+    type: multipart-form
+    data:
+      - name: timezone
+        type: text
+        value: Asia/Kolkata
+      - name: filter_type
+        type: text
+        value: ""
+      - name: status
+        type: text
+        value: ""
+      - name: service_category
+        type: text
+        value: ""
+      - name: per_page
+        type: text
+        value: "10"
+      - name: page
+        type: text
+        value: "1"
+  auth:
+    type: bearer
+    token: "{{store_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: General History
+    request:
+      url: "{{core_url}}/api/store/report-issue/general-history"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: timezone
+            type: text
+            value: Asia/Kolkata
+          - name: filter_type
+            type: text
+            value: ""
+          - name: status
+            type: text
+            value: ""
+          - name: service_category
+            type: text
+            value: ""
+          - name: per_page
+            type: text
+            value: "10"
+          - name: page
+            type: text
+            value: "1"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 25 Feb 2026 09:28:02 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 0,
+              "report_issue_history": []
+          }
+
+docs: |+
+  ## General History
+
+  Handles report issues and frequently asked questions for user support.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `timezone` | string | Yes | Timezone |
+  | `filter_type` | string | Yes | Filter type |
+  | `status` | string | Yes | Status |
+  | `service_category` | string | Yes | Service category |
+  | `per_page` | string | Yes | Per page |
+  | `page` | string | Yes | Page |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 0,
+      "report_issue_history": []
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The timezone field is required."
+  }
+  ```
+

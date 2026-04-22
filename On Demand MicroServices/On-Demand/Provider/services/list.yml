@@ -1,0 +1,654 @@
+info:
+  name: list
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8004/api/provider/on-demand/service/list
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: list
+    request:
+      url: http://localhost:8004/api/provider/on-demand/service/list
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "service_category_list": [
+                  {
+                      "service_cat_id": 11,
+                      "service_cat_name": "Dog Walking",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 12,
+                      "service_cat_name": "Baby Care",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 14,
+                      "service_cat_name": "Workout Trainer",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 15,
+                      "service_cat_name": "Security Service",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 16,
+                      "service_cat_name": "Tutors",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 17,
+                      "service_cat_name": "Beauty Service",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 18,
+                      "service_cat_name": "Massage Service",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 19,
+                      "service_cat_name": "Home Cleaning",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 20,
+                      "service_cat_name": "Gardening",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 22,
+                      "service_cat_name": "Snow Blowers",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 23,
+                      "service_cat_name": "Laundry Service",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 24,
+                      "service_cat_name": "Maid  Service",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 25,
+                      "service_cat_name": "Pest Control",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 26,
+                      "service_cat_name": "AC Repair",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 27,
+                      "service_cat_name": "Electricians",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 28,
+                      "service_cat_name": "Car Wash",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 29,
+                      "service_cat_name": "Car repair",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 30,
+                      "service_cat_name": "Tow Truck",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 33,
+                      "service_cat_name": "Plumbers",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 51,
+                      "service_cat_name": "Carpenter",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 52,
+                      "service_cat_name": "Tour Guide",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 53,
+                      "service_cat_name": "Carpet Cleaner",
+                      "category_type": 4,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 54,
+                      "service_cat_name": "Sofa Repair",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 55,
+                      "service_cat_name": "Catering",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 56,
+                      "service_cat_name": "Real Estate Agent",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 57,
+                      "service_cat_name": "Computer repair",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 58,
+                      "service_cat_name": "Physiotherapy",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 60,
+                      "service_cat_name": "Dj Guide",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 61,
+                      "service_cat_name": "Photography",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 62,
+                      "service_cat_name": "Fire Fighter",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 63,
+                      "service_cat_name": "Mobile Technician",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 64,
+                      "service_cat_name": "Mechanic",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 66,
+                      "service_cat_name": "Home Painting",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 67,
+                      "service_cat_name": "Locksmith",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 68,
+                      "service_cat_name": "Insurance Agent",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 69,
+                      "service_cat_name": "Lawyer Service",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 70,
+                      "service_cat_name": "Interior Design",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 71,
+                      "service_cat_name": "Language Translator",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 72,
+                      "service_cat_name": "TV Repair",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 82,
+                      "service_cat_name": "Electrician service1",
+                      "category_type": 3,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 94,
+                      "service_cat_name": "Astrology",
+                      "category_type": 6,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 95,
+                      "service_cat_name": "Doctor Consultancy",
+                      "category_type": 6,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 96,
+                      "service_cat_name": "Fitness Trainer",
+                      "category_type": 6,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 97,
+                      "service_cat_name": "Law Consultant",
+                      "category_type": 6,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 98,
+                      "service_cat_name": "Tutor",
+                      "category_type": 6,
+                      "icon_image": ""
+                  },
+                  {
+                      "service_cat_id": 99,
+                      "service_cat_name": "Yoga Mentor",
+                      "category_type": 6,
+                      "icon_image": ""
+                  }
+              ]
+          }
+
+docs: |+
+  ## list
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "service_category_list": [
+          {
+              "service_cat_id": 11,
+              "service_cat_name": "Dog Walking",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 12,
+              "service_cat_name": "Baby Care",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 14,
+              "service_cat_name": "Workout Trainer",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 15,
+              "service_cat_name": "Security Service",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 16,
+              "service_cat_name": "Tutors",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 17,
+              "service_cat_name": "Beauty Service",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 18,
+              "service_cat_name": "Massage Service",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 19,
+              "service_cat_name": "Home Cleaning",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 20,
+              "service_cat_name": "Gardening",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 22,
+              "service_cat_name": "Snow Blowers",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 23,
+              "service_cat_name": "Laundry Service",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 24,
+              "service_cat_name": "Maid  Service",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 25,
+              "service_cat_name": "Pest Control",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 26,
+              "service_cat_name": "AC Repair",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 27,
+              "service_cat_name": "Electricians",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 28,
+              "service_cat_name": "Car Wash",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 29,
+              "service_cat_name": "Car repair",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 30,
+              "service_cat_name": "Tow Truck",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 33,
+              "service_cat_name": "Plumbers",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 51,
+              "service_cat_name": "Carpenter",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 52,
+              "service_cat_name": "Tour Guide",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 53,
+              "service_cat_name": "Carpet Cleaner",
+              "category_type": 4,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 54,
+              "service_cat_name": "Sofa Repair",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 55,
+              "service_cat_name": "Catering",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 56,
+              "service_cat_name": "Real Estate Agent",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 57,
+              "service_cat_name": "Computer repair",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 58,
+              "service_cat_name": "Physiotherapy",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 60,
+              "service_cat_name": "Dj Guide",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 61,
+              "service_cat_name": "Photography",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 62,
+              "service_cat_name": "Fire Fighter",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 63,
+              "service_cat_name": "Mobile Technician",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 64,
+              "service_cat_name": "Mechanic",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 66,
+              "service_cat_name": "Home Painting",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 67,
+              "service_cat_name": "Locksmith",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 68,
+              "service_cat_name": "Insurance Agent",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 69,
+              "service_cat_name": "Lawyer Service",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 70,
+              "service_cat_name": "Interior Design",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 71,
+              "service_cat_name": "Language Translator",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 72,
+              "service_cat_name": "TV Repair",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 82,
+              "service_cat_name": "Electrician service1",
+              "category_type": 3,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 94,
+              "service_cat_name": "Astrology",
+              "category_type": 6,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 95,
+              "service_cat_name": "Doctor Consultancy",
+              "category_type": 6,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 96,
+              "service_cat_name": "Fitness Trainer",
+              "category_type": 6,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 97,
+              "service_cat_name": "Law Consultant",
+              "category_type": 6,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 98,
+              "service_cat_name": "Tutor",
+              "category_type": 6,
+              "icon_image": ""
+          },
+          {
+              "service_cat_id": 99,
+              "service_cat_name": "Yoga Mentor",
+              "category_type": 6,
+              "icon_image": ""
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

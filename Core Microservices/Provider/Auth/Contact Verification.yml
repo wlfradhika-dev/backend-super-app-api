@@ -1,0 +1,187 @@
+info:
+  name: Contact Verification
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/contact-verification"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: otp
+        type: text
+        value: "123456"
+      - name: device_token
+        type: text
+        value: "123456"
+      - name: select_country_code
+        type: text
+        value: ""
+        description: nullable - only need when change from edit profile
+        disabled: true
+      - name: contact_number
+        type: text
+        value: ""
+        description: nullable - only need when change from edit profile
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("provider_token", response.token);
+        //     pm.collectionVariables.set("provider_id", response.provider_id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Contact Verification
+    request:
+      url: "{{core_url}}/api/provider/contact-verification"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: otp
+            type: text
+            value: "123456"
+          - name: device_token
+            type: text
+            value: "123456"
+          - name: select_country_code
+            type: text
+            value: ""
+            description: nullable - only need when change from edit profile
+            disabled: true
+          - name: contact_number
+            type: text
+            value: ""
+            description: nullable - only need when change from edit profile
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 05 Feb 2026 10:41:28 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 0,
+              "provider_id": "50029379-b361-47da-9fa6-a9016af922d1",
+              "contact_number": "123",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "select_language": "en",
+              "unique_id": "aeed692f-db96-4a2c-b5a2-e729f791f10c",
+              "token": "4|SQNF5mu8SmXDtsRsJxwlTXzyCgrADQfiiH3al9d26edea85b",
+              "server_time_zone": "UTC"
+          }
+
+docs: |+
+  ## Contact Verification
+
+  Verifies the OTP sent to the user's contact number and issues a bearer token on success.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `otp` | string | Yes | Otp |
+  | `device_token` | string | Yes | Device token |
+  | `select_country_code` | string | No | nullable - only need when change from edit profile |
+  | `contact_number` | string | No | nullable - only need when change from edit profile |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "is_register": 0,
+      "provider_id": "50029379-b361-47da-9fa6-a9016af922d1",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "select_language": "en",
+      "unique_id": "aeed692f-db96-4a2c-b5a2-e729f791f10c",
+      "token": "4|SQNF5mu8SmXDtsRsJxwlTXzyCgrADQfiiH3al9d26edea85b",
+      "server_time_zone": "UTC"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The otp field is required."
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

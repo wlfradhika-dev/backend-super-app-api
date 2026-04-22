@@ -1,0 +1,190 @@
+info:
+  name: Register
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/register"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: contact_number
+        type: text
+        value: "5199"
+      - name: select_country_code
+        type: text
+        value: "+1"
+      - name: full_name
+        type: text
+        value: video provider
+      - name: email
+        type: text
+        value: videoprovider@gmail.com
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("provider_token", response.token);
+        //     pm.collectionVariables.set("provider_id", response.provider_id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Register
+    request:
+      url: "{{core_url}}/api/provider/register"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: contact_number
+            type: text
+            value: "1234"
+          - name: select_country_code
+            type: text
+            value: "+1"
+          - name: full_name
+            type: text
+            value: rahul
+          - name: email
+            type: text
+            value: rahul@gmail.comm
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 05 Feb 2026 10:42:05 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "provider_id": "50029379-b361-47da-9fa6-a9016af922d1",
+              "contact_number": "123",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "select_language": "en",
+              "unique_id": "aeed692f-db96-4a2c-b5a2-e729f791f10c",
+              "token": "5|7gXMnfaXZbe5lnYEYyPEreqIrmlSVoL5hLPgzDeO39c28043",
+              "server_time_zone": "UTC",
+              "provider_name": "Rahul",
+              "provider_last_name": "",
+              "email": "rahul@gmail.comm",
+              "profile_image": null,
+              "provider_current_status": 0,
+              "completed_step": 0,
+              "service_radius": 0,
+              "address": "",
+              "landmark": "",
+              "lat_long": "",
+              "min_order": 0,
+              "is_allowed_provider_location": 0
+          }
+
+docs: |+
+  ## Register
+
+  Creates a new user account with the provided details and sends an OTP for contact verification.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `contact_number` | string | Yes | Contact number |
+  | `select_country_code` | string | Yes | Select country code |
+  | `full_name` | string | Yes | Full name |
+  | `email` | string | Yes | Email |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "is_register": 1,
+      "provider_id": "50029379-b361-47da-9fa6-a9016af922d1",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "select_language": "en",
+      "unique_id": "aeed692f-db96-4a2c-b5a2-e729f791f10c",
+      "token": "5|7gXMnfaXZbe5lnYEYyPEreqIrmlSVoL5hLPgzDeO39c28043",
+      "server_time_zone": "UTC",
+      "provider_name": "Rahul",
+      "provider_last_name": "",
+      "email": "rahul@gmail.comm",
+      "profile_image": null,
+      "provider_current_status": 0,
+      "completed_step": 0,
+      "service_radius": 0,
+      "address": "",
+      "landmark": "",
+      "lat_long": "",
+      "min_order": 0,
+      "is_allowed_provider_location": 0
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The contact number field is required."
+  }
+  ```
+

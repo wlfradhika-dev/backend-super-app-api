@@ -1,0 +1,94 @@
+info:
+  name: App Boostrap
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/app-bootstrap"
+  headers:
+    - name: Accept
+      value: application/json
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: console.log(bru);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: App Boostrap
+    request:
+      url: "{{core_url}}/api/customer/app-bootstrap"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Thu, 09 Apr 2026 05:33:23 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "156"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=1t7m%2FgC6xN40TUrNAVoF%2FXkKfpJLRzxvo2cq7ofVECY%2BU3obxIbWFEpjqlMCRBj%2B%2Fe%2BIV0EbqcVh%2Bmsh0WtQ8PAPLL9anVYblcNPoD9SkAoEC7Y0k6ur07Wrgs%2BtGj0zcbywePfz%2B9M11WrxM6QXbqi042VBL%2BAKBkg%3D"}]}'
+        - name: cf-ray
+          value: 9e9722f6fda2ff69-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "token": "30a9F3mQ1KZ8X7HcWvR2YB6eU0NnM5P4DJSsLTxrC8p9hAqf0wVj7k2E1GZy6iH9"
+          }
+
+docs: |+
+  ## App Boostrap
+
+  Returns initial configuration data required at app launch including settings, feature flags, and environment info.
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "token": "79Z9K1H7E8Xn0mS3r2P4GvWf5UqLJY6TCAwBNDihA1qv6nKf9yU8QGxWmNwF5TE61"
+  }
+  ```
+

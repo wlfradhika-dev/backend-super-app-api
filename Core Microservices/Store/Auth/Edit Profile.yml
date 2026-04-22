@@ -1,0 +1,193 @@
+info:
+  name: Edit Profile
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{core_url}}/api/store/edit-profile"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: full_name
+        type: text
+        value: Normal Store
+        description: 1  for update 0 register
+      - name: email
+        type: text
+        value: normal@example.com
+      - name: contact_number
+        type: text
+        value: "7299"
+      - name: select_country_code
+        type: text
+        value: "+1"
+      - name: gender
+        type: text
+        value: "1"
+      - name: profile_image
+        type: file
+        value:
+          - /Users/deepkalariya/Downloads/img/avatar.png
+  auth:
+    type: bearer
+    token: "{{store_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Edit Profile
+    request:
+      url: "{{core_url}}/api/store/edit-profile"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: full_name
+            type: text
+            value: Food Store
+            description: 1  for update 0 register
+          - name: email
+            type: text
+            value: food@example.com
+          - name: contact_number
+            type: text
+            value: "7099"
+          - name: select_country_code
+            type: text
+            value: "+1"
+          - name: gender
+            type: text
+            value: "1"
+          - name: profile_image
+            type: file
+            value:
+              - /Users/vishaldamasiya/Desktop/Screenshot 2026-02-25 at 3.15.51 PM.png
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 25 Feb 2026 10:41:35 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "store_provider_name": "Food Store",
+              "provider_profile_image": "http://127.0.0.1:8000/storage/img/profile-images/store/TNmkaRSiSdh5Op02.jpg",
+              "gender": 1,
+              "contact_number": "7099",
+              "select_country_code": "+1",
+              "email": "food@example.com"
+          }
+
+docs: |+
+  ## Edit Profile
+
+  Updates the profile information of the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `full_name` | string | Yes | 1  for update 0 register |
+  | `email` | string | Yes | Email |
+  | `contact_number` | string | Yes | Contact number |
+  | `select_country_code` | string | Yes | Select country code |
+  | `gender` | string | Yes | Gender |
+  | `profile_image` | string | Yes | Profile image |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "store_provider_name": "Food Store",
+      "provider_profile_image": "http://127.0.0.1:8000/storage/img/profile-images/store/TNmkaRSiSdh5Op02.jpg",
+      "gender": 1,
+      "contact_number": "7099",
+      "select_country_code": "+1",
+      "email": "food@example.com"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The full name field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

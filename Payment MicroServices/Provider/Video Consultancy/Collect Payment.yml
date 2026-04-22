@@ -1,0 +1,555 @@
+info:
+  name: Collect Payment
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/provider/video-consultancy-orders/collect-payment"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: '{"order_id":"{{ORDER_UUID}}"}'
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Collect Payment Succes response
+    request:
+      url: "{{payment_url}}/api/provider/video-consultancy-orders/collect-payment"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: '{"order_id":"{{ORDER_UUID}}"}'
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 13 Mar 2026 12:41:08 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_name": "Yash",
+              "provider_status": 1,
+              "provider_profile_image": "",
+              "provider_service_radius": "",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "provider_services_list": "Video Consultation, Online Tutoring, Legal Consultation",
+              "current_status": 1,
+              "pending_orders": [],
+              "accepted_orders": [
+                  {
+                      "order_id": "e8d91855-e313-49bc-927b-252e446c9f83",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "20000001",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 0,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+                      "order_type": 0,
+                      "service_date_time": "2026-03-13T08:37:32.000000Z",
+                      "schedule_order_date": "2026-03-13",
+                      "total_pay": 110,
+                      "lat_long": null,
+                      "order_status": 7,
+                      "admin_video_call_time_limit": 60,
+                      "order_used_video_call_time_limit": 70,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "08:37:32 - 09:37:32"
+                  }
+              ],
+              "processing_order": [
+                  {
+                      "order_id": "52183874-9ff2-410f-aaa5-392e2226f3fd",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "20000006",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 0,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+                      "order_type": 0,
+                      "service_date_time": "2026-03-12T04:38:42.000000Z",
+                      "schedule_order_date": "2026-03-12",
+                      "total_pay": 165,
+                      "lat_long": null,
+                      "order_status": 8,
+                      "admin_video_call_time_limit": 0,
+                      "order_used_video_call_time_limit": 0,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "04:38:42 - 05:38:42"
+                  },
+                  {
+                      "order_id": "3e759c59-1080-4ca9-a409-580d31cd524a",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "20000004",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 0,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+                      "order_type": 0,
+                      "service_date_time": "2026-03-12T06:37:32.000000Z",
+                      "schedule_order_date": "2026-03-12",
+                      "total_pay": 110,
+                      "lat_long": null,
+                      "order_status": 8,
+                      "admin_video_call_time_limit": 0,
+                      "order_used_video_call_time_limit": 0,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "06:37:32 - 07:37:32"
+                  }
+              ],
+              "completed_order": [
+                  {
+                      "order_id": "30d3eb79-dcee-488e-8331-5396ff40a09f",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "20000005",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 0,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+                      "order_type": 0,
+                      "service_date_time": "2026-03-12T05:38:42.000000Z",
+                      "schedule_order_date": "2026-03-12",
+                      "total_pay": 110,
+                      "lat_long": null,
+                      "order_status": 9,
+                      "admin_video_call_time_limit": 0,
+                      "order_used_video_call_time_limit": 0,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "05:38:42 - 06:38:42"
+                  },
+                  {
+                      "order_id": "2237f5b6-0f3f-4985-b73a-00fa8df303bf",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "10000001",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 1,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+                      "order_type": 1,
+                      "service_date_time": "2026-03-13T05:34:14.000000Z",
+                      "schedule_order_date": "2026-03-13",
+                      "total_pay": 55,
+                      "lat_long": null,
+                      "order_status": 9,
+                      "admin_video_call_time_limit": 30,
+                      "order_used_video_call_time_limit": 10,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "10:00:00 - 11:00:00"
+                  },
+                  {
+                      "order_id": "e9baf275-c32d-499d-9497-a316d7ff927a",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "10000003",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 0,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+                      "order_type": 0,
+                      "service_date_time": "2026-03-12T05:34:14.000000Z",
+                      "schedule_order_date": "2026-03-12",
+                      "total_pay": 110,
+                      "lat_long": null,
+                      "order_status": 9,
+                      "admin_video_call_time_limit": 30,
+                      "order_used_video_call_time_limit": 10,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "12:00:00 - 13:00:00"
+                  },
+                  {
+                      "order_id": "cf918c3d-0de2-4585-8ec8-5d116286844c",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "10000002",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 0,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+                      "order_type": 1,
+                      "service_date_time": "2026-03-12T06:35:24.000000Z",
+                      "schedule_order_date": "2026-03-12",
+                      "total_pay": 55,
+                      "lat_long": null,
+                      "order_status": 9,
+                      "admin_video_call_time_limit": 30,
+                      "order_used_video_call_time_limit": 0,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "06:35:24 - 07:35:24"
+                  },
+                  {
+                      "order_id": "e742f171-722b-426f-8a80-0b94dc1530ff",
+                      "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+                      "order_no": "10000004",
+                      "service_cat_id": 14,
+                      "order_payment_type": 1,
+                      "order_payment_status": 1,
+                      "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+                      "order_type": 0,
+                      "service_date_time": "2026-03-11T05:34:14.000000Z",
+                      "schedule_order_date": "2026-03-11",
+                      "total_pay": 55,
+                      "lat_long": null,
+                      "order_status": 9,
+                      "admin_video_call_time_limit": 30,
+                      "order_used_video_call_time_limit": 25,
+                      "user_name": "Yash",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Video Consultation",
+                      "service_category_image": "video-consultation.png",
+                      "service_category_type": 6,
+                      "schedule_order_time": "10:00:00 - 11:00:00"
+                  }
+              ],
+              "is_subscription": 1,
+              "cash_out_status": 1,
+              "is_document_expired": null,
+              "is_document_pending": null,
+              "document_message": null
+          }
+
+docs: |+
+  ## Collect Payment
+
+  Processes the payment for the specified order or service.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {"order_id":"{{ORDER_UUID}}"}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_name": "Yash",
+      "provider_status": 1,
+      "provider_profile_image": "",
+      "provider_service_radius": "",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "provider_services_list": "Video Consultation, Online Tutoring, Legal Consultation",
+      "current_status": 1,
+      "pending_orders": [],
+      "accepted_orders": [
+          {
+              "order_id": "e8d91855-e313-49bc-927b-252e446c9f83",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "20000001",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+              "order_type": 0,
+              "service_date_time": "2026-03-13T08:37:32.000000Z",
+              "schedule_order_date": "2026-03-13",
+              "total_pay": 110,
+              "lat_long": null,
+              "order_status": 7,
+              "admin_video_call_time_limit": 60,
+              "order_used_video_call_time_limit": 70,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "08:37:32 - 09:37:32"
+          }
+      ],
+      "processing_order": [
+          {
+              "order_id": "52183874-9ff2-410f-aaa5-392e2226f3fd",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "20000006",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+              "order_type": 0,
+              "service_date_time": "2026-03-12T04:38:42.000000Z",
+              "schedule_order_date": "2026-03-12",
+              "total_pay": 165,
+              "lat_long": null,
+              "order_status": 8,
+              "admin_video_call_time_limit": 0,
+              "order_used_video_call_time_limit": 0,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "04:38:42 - 05:38:42"
+          },
+          {
+              "order_id": "3e759c59-1080-4ca9-a409-580d31cd524a",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "20000004",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+              "order_type": 0,
+              "service_date_time": "2026-03-12T06:37:32.000000Z",
+              "schedule_order_date": "2026-03-12",
+              "total_pay": 110,
+              "lat_long": null,
+              "order_status": 8,
+              "admin_video_call_time_limit": 0,
+              "order_used_video_call_time_limit": 0,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "06:37:32 - 07:37:32"
+          }
+      ],
+      "completed_order": [
+          {
+              "order_id": "30d3eb79-dcee-488e-8331-5396ff40a09f",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "20000005",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General\",\"num_of_items\":1,\"price_for_one\":100}]",
+              "order_type": 0,
+              "service_date_time": "2026-03-12T05:38:42.000000Z",
+              "schedule_order_date": "2026-03-12",
+              "total_pay": 110,
+              "lat_long": null,
+              "order_status": 9,
+              "admin_video_call_time_limit": 0,
+              "order_used_video_call_time_limit": 0,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "05:38:42 - 06:38:42"
+          },
+          {
+              "order_id": "2237f5b6-0f3f-4985-b73a-00fa8df303bf",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "10000001",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 1,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+              "order_type": 1,
+              "service_date_time": "2026-03-13T05:34:14.000000Z",
+              "schedule_order_date": "2026-03-13",
+              "total_pay": 55,
+              "lat_long": null,
+              "order_status": 9,
+              "admin_video_call_time_limit": 30,
+              "order_used_video_call_time_limit": 10,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "10:00:00 - 11:00:00"
+          },
+          {
+              "order_id": "e9baf275-c32d-499d-9497-a316d7ff927a",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "10000003",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+              "order_type": 0,
+              "service_date_time": "2026-03-12T05:34:14.000000Z",
+              "schedule_order_date": "2026-03-12",
+              "total_pay": 110,
+              "lat_long": null,
+              "order_status": 9,
+              "admin_video_call_time_limit": 30,
+              "order_used_video_call_time_limit": 10,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "12:00:00 - 13:00:00"
+          },
+          {
+              "order_id": "cf918c3d-0de2-4585-8ec8-5d116286844c",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "10000002",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+              "order_type": 1,
+              "service_date_time": "2026-03-12T06:35:24.000000Z",
+              "schedule_order_date": "2026-03-12",
+              "total_pay": 55,
+              "lat_long": null,
+              "order_status": 9,
+              "admin_video_call_time_limit": 30,
+              "order_used_video_call_time_limit": 0,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "06:35:24 - 07:35:24"
+          },
+          {
+              "order_id": "e742f171-722b-426f-8a80-0b94dc1530ff",
+              "user_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "order_no": "10000004",
+              "service_cat_id": 14,
+              "order_payment_type": 1,
+              "order_payment_status": 1,
+              "order_package_list": "[{\"package_name\":\"Basic Consultation\",\"sub_category_name\":\"General Consultation\",\"num_of_items\":1,\"price_for_one\":50}]",
+              "order_type": 0,
+              "service_date_time": "2026-03-11T05:34:14.000000Z",
+              "schedule_order_date": "2026-03-11",
+              "total_pay": 55,
+              "lat_long": null,
+              "order_status": 9,
+              "admin_video_call_time_limit": 30,
+              "order_used_video_call_time_limit": 25,
+              "user_name": "Yash",
+              "customer_profile_image": "",
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "video-consultation.png",
+              "service_category_type": 6,
+              "schedule_order_time": "10:00:00 - 11:00:00"
+          }
+      ],
+      "is_subscription": 1,
+      "cash_out_status": 1,
+      "is_document_expired": null,
+      "is_document_pending": null,
+      "document_message": null
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

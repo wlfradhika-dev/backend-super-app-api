@@ -1,0 +1,163 @@
+info:
+  name: Subscription using Wallet
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/provider/subscription/purchase"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+    - name: Authorization
+      value: Bearer {{PROVIDER_BEARER_TOKEN}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+          "subscription_id": "{{SUBSCRIPTION_PLAN_UUID}}",
+          "payment_type": 3
+      }
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Subscription using Wallet
+    request:
+      url: "{{payment_url}}/api/provider/subscription/purchase"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{PROVIDER_BEARER_TOKEN}}
+          disabled: true
+      body:
+        type: json
+        data: |-
+          {
+              "subscription_id": "{{SUBSCRIPTION_PLAN_UUID}}",
+              "payment_type": 2,
+              "card_id": "{{PROVIDER_CARD_UUID}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 13 Mar 2026 08:11:36 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200
+          }
+
+docs: |+
+  ## Subscription using Wallet
+
+  Manages subscription plans including listing, history, and cancellation for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "subscription_id": "{{SUBSCRIPTION_PLAN_UUID}}",
+      "payment_type": 3
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

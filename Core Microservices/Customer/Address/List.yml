@@ -1,0 +1,158 @@
+info:
+  name: List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/address/list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: List
+    request:
+      url: "{{core_url}}/api/customer/address/list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Thu, 09 Apr 2026 05:51:46 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "344"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=A3YEIiN11zTx9JRNaJ0YvC1IKTf1FJzbsPNZZEmh2y25OFBwmiAt7Mv46InDLR8A%2Be%2FQf6uCx%2BtG%2Fzl%2BIMIb7e4QZS2p2xIz2oGiduXog5j%2FT5DA5Y0GG%2BiFzUt1HdQ47DWPJVkxYVbG0jXu8EHU1oJb8Ek3wXZW2i4%3D"}]}'
+        - name: cf-ray
+          value: 9e973deda9f93c4c-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "type_list": [
+                  {
+                      "type": 1,
+                      "address_list": [
+                          {
+                              "address_id": "019d70cb-6ba5-7074-aac6-6b428a023fed",
+                              "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                              "flat_no": "2b",
+                              "landmark": "rajkot",
+                              "lat": 22.31572603394304,
+                              "long": 70.7674083384962
+                          },
+                          {
+                              "address_id": "019d70cb-c258-718a-998e-a6b69a6e02bb",
+                              "address": "Shital parks",
+                              "flat_no": "2d",
+                              "landmark": "rajkots",
+                              "lat": 22.31572603394304,
+                              "long": 70.7674083384962
+                          }
+                      ]
+                  }
+              ],
+              "max_address_limit": 5
+          }
+
+docs: |+
+  ## List
+
+  Manages the user's saved addresses for service bookings.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "type_list": [
+          {
+              "type": 1,
+              "address_list": [
+                  {
+                      "address_id": "27b5b882-d7db-47ae-8c86-a109e1247b25",
+                      "address": "Shital park",
+                      "flat_no": "2b",
+                      "landmark": "rajkot",
+                      "lat": 123455,
+                      "long": 123445
+                  }
+              ]
+          }
+      ],
+      "max_address_limit": 5
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

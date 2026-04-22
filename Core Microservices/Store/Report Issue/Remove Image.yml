@@ -1,0 +1,148 @@
+info:
+  name: Remove Image
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{core_url}}/api/store/report-issue/remove-image"
+  body:
+    type: multipart-form
+    data:
+      - name: image_id
+        type: text
+        value: 019d858d-830a-7105-b8a8-65183ee230a3
+  auth:
+    type: bearer
+    token: "{{store_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Remove Image
+    request:
+      url: "{{core_url}}/api/store/report-issue/remove-image"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: image_id
+            type: text
+            value: 6e7f05d9-30d3-4c26-92fb-807c1e279ea9
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 25 Feb 2026 08:59:36 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "image": [
+                  {
+                      "id": "3220ef2a-1ce3-4506-a725-2d9315110552",
+                      "image": "http://localhost/storage/img/report-issue/CvfE2tcIgtDSdGcB.jpg"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Remove Image
+
+  Handles report issues and frequently asked questions for user support.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `image_id` | string | Yes | Image id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "image": [
+          {
+              "id": "3220ef2a-1ce3-4506-a725-2d9315110552",
+              "image": "http://localhost/storage/img/report-issue/CvfE2tcIgtDSdGcB.jpg"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The image id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,94 @@
+info:
+  name: Resend Otp Verification
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{core_url}}/api/delivery-driver/resend-otp-verification"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Resend Otp Verification
+    request:
+      url: "{{core_url}}/api/delivery-driver/resend-otp-verification"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 09:13:26 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200
+          }
+
+docs: |+
+  ## Resend Otp Verification
+
+  Resends the OTP verification code to the user's registered contact number.
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

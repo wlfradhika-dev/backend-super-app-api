@@ -1,0 +1,238 @@
+info:
+  name: Place Order
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/grocery-flow/customer/place-order"
+  headers:
+    - name: Authorization
+      value: Bearer YOUR_TOKEN
+      disabled: true
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: store_id
+        type: text
+        value: f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01
+      - name: address
+        type: text
+        value: 384ec48f-38a7-4026-b3e8-c7699a18e7c8
+      - name: payment_type
+        type: text
+        value: "1"
+      - name: user_taken_type
+        type: text
+        value: "1"
+      - name: tip
+        type: text
+        value: "10"
+      - name: additional_info
+        type: text
+        value: Less spicy
+      - name: promo_code
+        type: text
+        value: ""
+      - name: redeem_loyalty_points
+        type: text
+        value: "0"
+      - name: loyalty_discount_amount
+        type: text
+        value: "0"
+      - name: schedule_date_time
+        type: text
+        value: ""
+      - name: product_list
+        type: text
+        value: '[{"product_id":"f3e1944d-5f7a-474e-b53c-ad87cf7cd001","product_quantity":[{"quantity":3,"size":[]}]}]'
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Place Order
+    request:
+      url: "{{delivery_url}}/api/grocery-flow/customer/place-order"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_TOKEN
+          disabled: true
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: store_id
+            type: text
+            value: f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01
+          - name: address
+            type: text
+            value: 384ec48f-38a7-4026-b3e8-c7699a18e7c8
+          - name: payment_type
+            type: text
+            value: "1"
+          - name: user_taken_type
+            type: text
+            value: "1"
+          - name: tip
+            type: text
+            value: "10"
+          - name: additional_info
+            type: text
+            value: Less spicy
+          - name: promo_code
+            type: text
+            value: ""
+          - name: redeem_loyalty_points
+            type: text
+            value: "0"
+          - name: loyalty_discount_amount
+            type: text
+            value: "0"
+          - name: schedule_date_time
+            type: text
+            value: ""
+          - name: product_list
+            type: text
+            value: '[{"product_id":"f3e1944d-5f7a-474e-b53c-ad87cf7cd001","product_quantity":[{"quantity":3,"size":[]}]}]'
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 12:53:13 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "3af38c94-810c-4ee4-b948-e970c8ee72ce",
+              "order_no": "31943874",
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": "",
+              "unavailable_products": ""
+          }
+
+docs: |+
+  ## Place Order
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `store_id` | string | Yes | Store id |
+  | `address` | string | Yes | Address |
+  | `payment_type` | string | Yes | Payment type |
+  | `user_taken_type` | string | Yes | User taken type |
+  | `tip` | string | Yes | Tip |
+  | `additional_info` | string | Yes | Additional info |
+  | `promo_code` | string | Yes | Promo code |
+  | `redeem_loyalty_points` | string | Yes | Redeem loyalty points |
+  | `loyalty_discount_amount` | string | Yes | Loyalty discount amount |
+  | `schedule_date_time` | string | Yes | Schedule date time |
+  | `product_list` | string | Yes | Product list |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "3af38c94-810c-4ee4-b948-e970c8ee72ce",
+      "order_no": "31943874",
+      "redirect_url": "",
+      "success_url": "",
+      "failed_url": "",
+      "unavailable_products": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The store id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

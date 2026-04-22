@@ -1,0 +1,259 @@
+info:
+  name: Transport Driver Vehicle Services
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/transport-driver-vehicle-services"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: is_new_driver
+        type: text
+        value: "0"
+        description: 1 for new driver
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Transport Driver Vehicle Services
+    request:
+      url: "{{transport_url}}/api/driver/transport-driver-vehicle-services"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: is_new_driver
+            type: text
+            value: "1"
+            description: 1 for new driver
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Sat, 11 Apr 2026 09:12:59 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "433"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=mqUkiTxyi67ZayE%2Fh863P%2FSWuI%2FkG9Od0hPfx5KerhuvBaLBZ2spL%2Fmi6e6Kl9hc2I1DtUF8G%2BYq%2B303Tu4I%2BeLd%2B0g3tz6kf1yfiiGcgIOFd8BRp6FcHFB5iZq7KZ11K6dh1VBerAv2qs9eZmDsfC9Xub1J8tNLAuYYx2zu9Q%3D%3D"}]}'
+        - name: cf-ray
+          value: 9ea8df6afc21a7b7-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "get_active_service_category": [
+                  {
+                      "service_cat_id": 2,
+                      "service_cat_name": "Taxi Ride",
+                      "service_name": "Car",
+                      "is_active": 1,
+                      "service_category_icon": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11350720242806.png"
+                  },
+                  {
+                      "service_cat_id": 1,
+                      "service_cat_name": "Bike Ride",
+                      "service_name": "Bike",
+                      "is_active": 1,
+                      "service_category_icon": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11345620242806.png"
+                  }
+              ],
+              "get_active_taxi_service": [
+                  {
+                      "service_cat_id": 1,
+                      "service_cat_name": "Bike Ride",
+                      "icon_name": "11345620242806.png",
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11345620242806.png"
+                  },
+                  {
+                      "service_cat_id": 2,
+                      "service_cat_name": "Taxi Ride",
+                      "icon_name": "11350720242806.png",
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11350720242806.png"
+                  },
+                  {
+                      "service_cat_id": 3,
+                      "service_cat_name": "Intercity",
+                      "icon_name": "11353120242806.png",
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11353120242806.png"
+                  },
+                  {
+                      "service_cat_id": 5,
+                      "service_cat_name": "Taxi Bidding",
+                      "icon_name": "11354920242806.png",
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11354920242806.png"
+                  },
+                  {
+                      "service_cat_id": 6,
+                      "service_cat_name": "Taxi Pool",
+                      "icon_name": "11360920242806.png",
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11360920242806.png"
+                  },
+                  {
+                      "service_cat_id": 7,
+                      "service_cat_name": "Bike Rental",
+                      "icon_name": "11362120242806.png",
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11362120242806.png"
+                  },
+                  {
+                      "service_cat_id": 8,
+                      "service_cat_name": "Car Rental",
+                      "icon_name": "11362120242806.png",
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/11362120242806.png"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Transport Driver Vehicle Services
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `is_new_driver` | string | Yes | 1 for new driver |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "get_active_service_category": [
+          {
+              "service_cat_id": 2,
+              "service_cat_name": "Taxi Ride",
+              "service_name": "CAR",
+              "is_active": 0,
+              "service_category_icon": "http://127.0.0.1:8001/storage/img/service-category/11350720242806.png"
+          },
+          {
+              "service_cat_id": 1,
+              "service_cat_name": "Bike Ride",
+              "service_name": "BIKE",
+              "is_active": 1,
+              "service_category_icon": "http://127.0.0.1:8001/storage/img/service-category/11345620242806.png"
+          }
+      ],
+      "get_active_taxi_service": [
+          {
+              "service_cat_id": 5,
+              "service_cat_name": "Taxi Bidding",
+              "icon_image": null
+          },
+          {
+              "service_cat_id": 6,
+              "service_cat_name": "Taxi Pool",
+              "icon_image": null
+          },
+          {
+              "service_cat_id": 7,
+              "service_cat_name": "Car Rental",
+              "icon_image": null
+          },
+          {
+              "service_cat_id": 2,
+              "service_cat_name": "Taxi Ride",
+              "icon_image": null
+          },
+          {
+              "service_cat_id": 3,
+              "service_cat_name": "Intercity",
+              "icon_image": null
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The is new driver field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,272 @@
+info:
+  name: Edit Profile
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/edit-profile"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: is_update
+        type: text
+        value: "1"
+        description: 1  for update 0 register
+      - name: full_name
+        type: text
+        value: Provider Testing
+      - name: email
+        type: text
+        value: provider@example.com
+      - name: contact_number
+        type: text
+        value: "5099"
+      - name: select_country_code
+        type: text
+        value: "+1"
+      - name: address
+        type: text
+        value: 221B Baker Street
+      - name: lat
+        type: text
+        value: "23.0225"
+      - name: long
+        type: text
+        value: "72.5714"
+      - name: landmark
+        type: text
+        value: Near City Mall
+      - name: service_radius
+        type: text
+        value: "10"
+      - name: min_order
+        type: text
+        value: "100"
+      - name: profile_image
+        type: file
+        value:
+          - /Users/vishaldamasiya/Desktop/Screenshot 2026-02-24 at 5.43.11 PM.png
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Edit Profile
+    request:
+      url: "{{core_url}}/api/provider/edit-profile"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: is_update
+            type: text
+            value: "1"
+          - name: full_name
+            type: text
+            value: Provider Testing
+          - name: email
+            type: text
+            value: provider@example.com
+          - name: contact_number
+            type: text
+            value: "5099"
+          - name: select_country_code
+            type: text
+            value: "+1"
+          - name: address
+            type: text
+            value: 221B Baker Street
+          - name: lat
+            type: text
+            value: "23.0225"
+          - name: long
+            type: text
+            value: "72.5714"
+          - name: landmark
+            type: text
+            value: Near City Mall
+          - name: service_radius
+            type: text
+            value: "10"
+          - name: min_order
+            type: text
+            value: "100"
+          - name: profile_image
+            type: file
+            value:
+              - /Users/vishaldamasiya/Desktop/Screenshot 2026-02-24 at 5.43.11 PM.png
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 25 Feb 2026 08:46:59 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "provider_id": "b9ecb463-a114-416c-a898-b55058ebff12",
+              "contact_number": "5099",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "select_language": "en",
+              "unique_id": "d1c4629d-d567-4b06-ab8a-1b588e016b04",
+              "token": null,
+              "server_time_zone": "UTC",
+              "provider_name": "Provider Testing",
+              "provider_last_name": "",
+              "email": "provider@example.com",
+              "profile_image": "http://127.0.0.1:8000/storage/img/profile-images/provider/6g11ioH0A3TKqmrp.jpg",
+              "provider_current_status": 1,
+              "completed_step": 4,
+              "service_radius": 10,
+              "address": "221B Baker Street",
+              "landmark": "Near City Mall",
+              "lat_long": "23.0225,72.5714",
+              "min_order": 100,
+              "is_allowed_provider_location": 0
+          }
+
+docs: |+
+  ## Edit Profile
+
+  Updates the profile information of the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `is_update` | string | Yes | 1  for update 0 register |
+  | `full_name` | string | Yes | Full name |
+  | `email` | string | Yes | Email |
+  | `contact_number` | string | Yes | Contact number |
+  | `select_country_code` | string | Yes | Select country code |
+  | `address` | string | Yes | Address |
+  | `lat` | string | Yes | Lat |
+  | `long` | string | Yes | Long |
+  | `landmark` | string | Yes | Landmark |
+  | `service_radius` | string | Yes | Service radius |
+  | `min_order` | string | Yes | Min order |
+  | `profile_image` | string | Yes | Profile image |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "is_register": 1,
+      "provider_id": "b9ecb463-a114-416c-a898-b55058ebff12",
+      "contact_number": "5099",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "select_language": "en",
+      "unique_id": "d1c4629d-d567-4b06-ab8a-1b588e016b04",
+      "token": null,
+      "server_time_zone": "UTC",
+      "provider_name": "Provider Testing",
+      "provider_last_name": "",
+      "email": "provider@example.com",
+      "profile_image": "http://127.0.0.1:8000/storage/img/profile-images/provider/6g11ioH0A3TKqmrp.jpg",
+      "provider_current_status": 1,
+      "completed_step": 4,
+      "service_radius": 10,
+      "address": "221B Baker Street",
+      "landmark": "Near City Mall",
+      "lat_long": "23.0225,72.5714",
+      "min_order": 100,
+      "is_allowed_provider_location": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The is update field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

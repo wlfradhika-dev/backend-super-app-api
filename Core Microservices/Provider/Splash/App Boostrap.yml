@@ -1,0 +1,77 @@
+info:
+  name: App Boostrap
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/app-bootstrap"
+  headers:
+    - name: Accept
+      value: application/json
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: App Boostrap
+    request:
+      url: "{{core_url}}/api/driver/app-bootstrap"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 02 Feb 2026 09:04:51 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "token": "57G7R8P0Z6fJk4D9U2E5Y3HnC1XLaU0S9B4N6f7E8J3R1LZ2DqXwA5kCPYVGHmT91"
+          }
+
+docs: |+
+  ## App Boostrap
+
+  Returns initial configuration data required at app launch including settings, feature flags, and environment info.
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "token": "57G7R8P0Z6fJk4D9U2E5Y3HnC1XLaU0S9B4N6f7E8J3R1LZ2DqXwA5kCPYVGHmT91"
+  }
+  ```
+

@@ -1,0 +1,273 @@
+info:
+  name: Add Tip
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/customer/on-demand/add-tip"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "order_id": "{{order_uuid}}",
+        "tip": 5.00
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Add Tip
+    request:
+      url: "{{on_deman_url}}/api/customer/on-demand/add-tip"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_TOKEN
+          disabled: true
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "order_id": "{{order_uuid}}",
+            "tip": 5.00
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 10:37:58 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "f64f674a-e671-4688-acd3-140f7d587c40",
+              "order_no": "63969217",
+              "service_cat_id": 13,
+              "category_type": 4,
+              "additional_remark": "Test booking",
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "category_name": "Dog walking",
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "schedule_order_date": "2026-03-15",
+              "schedule_order_time": "17:00:00 - 18:00:00",
+              "provider_id": "ed64fa6f-9084-48ab-b061-86c70a084828",
+              "provider_name": "Ellen Ripley",
+              "provider_contact": "+112322",
+              "distance": "0 km away",
+              "flat_no": "101",
+              "landmark": "Rajkot",
+              "provider_profile_image": "",
+              "provider_rating": 0,
+              "user_rating_status": 0,
+              "tax": 0,
+              "tip": 5,
+              "extra_amount": 0,
+              "description": "",
+              "item_total": 199,
+              "sub_total": 179.1,
+              "discount": 0,
+              "refer_discount": 0,
+              "total_pay": 184.1,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0,
+              "delivery_address": "Rajkot City Center, Rajkot, Gujarat",
+              "cancel_by": "",
+              "cancel_reason": "",
+              "cancel_charge": 0,
+              "order_status": 3,
+              "promocode_name": "PROMO20",
+              "promo_code_discount": 19.9,
+              "package_list": [
+                  {
+                      "sub_category_name": "Dog Walking",
+                      "item_list": [
+                          {
+                              "num_of_items": 1,
+                              "package_name": "Standard Dog Walk",
+                              "sub_category_name": "Dog Walking",
+                              "package_id": "65a288d7-cad1-4d03-b22c-60318e2a3197",
+                              "price_for_one": 199,
+                              "total_single_package_price": "199.00"
+                          }
+                      ]
+                  }
+              ],
+              "unavailable_packages": "",
+              "select_provider_location": 0,
+              "total_completed_order": 0,
+              "no_of_ratings": 1,
+              "address_type": 3,
+              "invoice_download_link": ""
+          }
+
+docs: |+
+  ## Add Tip
+
+  Creates a new record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "order_id": "{{order_uuid}}",
+    "tip": 5.00
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "f64f674a-e671-4688-acd3-140f7d587c40",
+      "order_no": "63969217",
+      "service_cat_id": 13,
+      "category_type": 4,
+      "additional_remark": "Test booking",
+      "order_payment_type": 1,
+      "order_payment_status": 0,
+      "category_name": "Dog walking",
+      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+      "schedule_order_date": "2026-03-15",
+      "schedule_order_time": "17:00:00 - 18:00:00",
+      "provider_id": "ed64fa6f-9084-48ab-b061-86c70a084828",
+      "provider_name": "Ellen Ripley",
+      "provider_contact": "+112322",
+      "distance": "0 km away",
+      "flat_no": "101",
+      "landmark": "Rajkot",
+      "provider_profile_image": "",
+      "provider_rating": 0,
+      "user_rating_status": 0,
+      "tax": 0,
+      "tip": 5,
+      "extra_amount": 0,
+      "description": "",
+      "item_total": 199,
+      "sub_total": 179.1,
+      "discount": 0,
+      "refer_discount": 0,
+      "total_pay": 184.1,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0,
+      "delivery_address": "Rajkot City Center, Rajkot, Gujarat",
+      "cancel_by": "",
+      "cancel_reason": "",
+      "cancel_charge": 0,
+      "order_status": 3,
+      "promocode_name": "PROMO20",
+      "promo_code_discount": 19.9,
+      "package_list": [
+          {
+              "sub_category_name": "Dog Walking",
+              "item_list": [
+                  {
+                      "num_of_items": 1,
+                      "package_name": "Standard Dog Walk",
+                      "sub_category_name": "Dog Walking",
+                      "package_id": "65a288d7-cad1-4d03-b22c-60318e2a3197",
+                      "price_for_one": 199,
+                      "total_single_package_price": "199.00"
+                  }
+              ]
+          }
+      ],
+      "unavailable_packages": "",
+      "select_provider_location": 0,
+      "total_completed_order": 0,
+      "no_of_ratings": 1,
+      "address_type": 3,
+      "invoice_download_link": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

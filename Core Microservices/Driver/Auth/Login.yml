@@ -1,0 +1,295 @@
+info:
+  name: Login
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/login"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: select-time-zone
+      value: Asia/Kolkata
+    - name: select-ip-address
+      value: 103.138.233.214
+      disabled: true
+  body:
+    type: multipart-form
+    data:
+      - name: login_type
+        type: text
+        value: email
+        description: "'facebook', 'google', 'email', 'apple'"
+      - name: device_token
+        type: text
+        value: "123456"
+      - name: select_language
+        type: text
+        value: en
+      - name: select_currency
+        type: text
+        value: $
+      - name: login_device
+        type: text
+        value: "1"
+        description: 1:Flutter-Android, 2:Flutter-Ios
+      - name: contact_number
+        type: text
+        value: "8088"
+        description: required if email login
+      - name: select_country_code
+        type: text
+        value: "+1"
+        description: required if email login
+      - name: login_id
+        type: text
+        value: '""'
+        description: required if google, apple, facebook login
+      - name: full_name
+        type: text
+        value: '""'
+        description: required if google, apple, facebook login
+      - name: profile_image
+        type: text
+        value: ""
+        description: nullable
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("driver_token", response.token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Login
+    request:
+      url: "{{core_url}}/api/driver/login"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: select-time-zone
+          value: Asia/Kolkata
+        - name: select-ip-address
+          value: 103.138.233.214
+          disabled: true
+      body:
+        type: multipart-form
+        data:
+          - name: login_type
+            type: text
+            value: email
+            description: "'facebook', 'google', 'email', 'apple'"
+          - name: device_token
+            type: text
+            value: "123456"
+          - name: select_language
+            type: text
+            value: en
+          - name: select_currency
+            type: text
+            value: $
+          - name: login_device
+            type: text
+            value: "1"
+            description: 1:Flutter-Android, 2:Flutter-Ios
+          - name: contact_number
+            type: text
+            value: "1620"
+            description: required if email login
+          - name: select_country_code
+            type: text
+            value: "+1"
+            description: required if email login
+          - name: login_id
+            type: text
+            value: '""'
+            description: required if google, apple, facebook login
+          - name: full_name
+            type: text
+            value: '""'
+            description: required if google, apple, facebook login
+          - name: profile_image
+            type: text
+            value: ""
+            description: nullable
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Fri, 10 Apr 2026 06:57:19 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "699"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=JSwet2XDgwsPEuyY10U9TPjzhHEgnKwDJXvgrU22sPuHw7h6vFfhE6DQvgW6D3UZqPzSppbjdXFfX9HcrOEWO634%2FlGYlXs%2FSnoiSO8c1Lk9Iw26P2iiNZAqk6BRBkURSo612%2FwatljCilt1DIKN07J0nHuHwsk8Cv4%3D"}]}'
+        - name: cf-ray
+          value: 9e9fdb4e2b3eff7b-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "driver_id": "019d7228-843a-7252-8f54-0efb07555262",
+              "contact_number": "1620",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "currency_code": "USD",
+              "select_language": "en",
+              "unique_id": "019d7228-843a-7252-8f54-0efb07b3fcbf",
+              "gender": "1",
+              "driver_name": "Dhaval",
+              "email": "dhaval@gmail.comm",
+              "profile_image": null,
+              "server_time_zone": "UTC",
+              "token": "360|l90CAcIWy00gIejRPOlV4p7lLGcxi4mJdGhMjwPh71dcec68",
+              "driver_service_id": "019d75aa-e90d-72fb-822b-d546bbdb1b6e",
+              "service_status": 5,
+              "service_category_id": 2,
+              "driver_current_status": 1,
+              "driver_service": "Intercity,Taxi Bidding,Taxi Pool,Bike Rental,Store Delivery",
+              "vehicle_type_icon": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/transport/img/service-category/transport-service-type/233100820250801.png",
+              "vehicle_type_name": "SUV",
+              "vehicle_company": "hundai",
+              "plat_no": "2618",
+              "model_year": 2013,
+              "model_name": "verna",
+              "vehicle_color": null,
+              "rating": 0,
+              "service_type_id": "019d7092-d2d0-7011-ac9c-8306bb6fce8a"
+          }
+
+docs: |+
+  ## Login
+
+  Authenticates the user with the provided credentials and returns a bearer token for subsequent requests.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `login_type` | string | Yes | 'facebook', 'google', 'email', 'apple' |
+  | `device_token` | string | Yes | Device token |
+  | `select_language` | string | Yes | Select language |
+  | `select_currency` | string | Yes | Select currency |
+  | `login_device` | string | Yes | 1:Flutter-Android, 2:Flutter-Ios |
+  | `contact_number` | string | Yes | required if email login |
+  | `select_country_code` | string | Yes | required if email login |
+  | `login_id` | string | Yes | required if google, apple, facebook login |
+  | `full_name` | string | Yes | required if google, apple, facebook login |
+  | `profile_image` | string | No | nullable |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "status": 1,
+      "is_register": 0,
+      "driver_id": "fe94ab9a-8739-4567-937d-d906b22ff716",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "currency_code": "USD",
+      "select_language": "en",
+      "unique_id": "f1e44993-3398-441b-bb78-50937cc62d37",
+      "gender": "",
+      "driver_name": "",
+      "email": "",
+      "profile_image": null,
+      "server_time_zone": "UTC",
+      "token": "22|i0LGgcHCKd3HtCWB9YGIoPpWeHv6Vg28QUpRjtHX981ac1b4",
+      "driver_service_id": 0,
+      "service_status": 4,
+      "service_category_id": 0,
+      "driver_current_status": 0,
+      "driver_service": "",
+      "vehicle_type_icon": "",
+      "vehicle_type_name": "",
+      "vehicle_company": "",
+      "plat_no": "",
+      "model_year": "",
+      "model_name": "",
+      "vehicle_color": "",
+      "service_type_id": 0,
+      "is_ride_service": 0
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The login type field is required."
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

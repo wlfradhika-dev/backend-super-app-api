@@ -1,0 +1,218 @@
+info:
+  name: Start Request
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: http://localhost:8002/api/driver/bike-rental/start-request
+  headers:
+    - name: Authorization
+      value: Bearer 44|qPFG8aVuhV637wxPfDV7S9VVvVRRYuU79dMF9oYze3cdb0f1
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+            "service_category_id": 7,
+            "request_id": "6ad46ae1-ebd9-487f-8ee2-3382b81653c0"
+        }
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Start Request
+    request:
+      url: http://localhost:8002/api/driver/bike-rental/start-request
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer 44|qPFG8aVuhV637wxPfDV7S9VVvVRRYuU79dMF9oYze3cdb0f1
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+                "service_category_id": 7,
+                "request_id": "6ad46ae1-ebd9-487f-8ee2-3382b81653c0"
+            }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 05:55:26 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "driver_current_status": 0,
+              "ride_details": {
+                  "ride_id": "6ad46ae1-ebd9-487f-8ee2-3382b81653c0",
+                  "user_id": "62ab01b5-e364-4048-b89b-ec867bcf69e7",
+                  "user_fcm_token": null,
+                  "booking_no": "82908528",
+                  "service_category_id": 7,
+                  "user_profile_image": "",
+                  "user_name": "Demo User",
+                  "contact_number": "9999999999",
+                  "address_list": [
+                      {
+                          "address": "Rajkot Railway Station, Rajkot, Gujarat",
+                          "address_lat": "22.3039",
+                          "address_long": "70.8022"
+                      },
+                      {
+                          "address": "Rajkot Airport, Rajkot, Gujarat",
+                          "address_lat": "22.3092",
+                          "address_long": "70.7793"
+                      }
+                  ],
+                  "flat_no": "",
+                  "landmark": "",
+                  "pickup_date_time": "2026-03-11T04:30:00.000000Z",
+                  "total_amount": 528,
+                  "payment_type": 1,
+                  "ride_status": 1
+              }
+          }
+
+docs: |+
+  ## Start Request
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+        "service_category_id": 7,
+        "request_id": "6ad46ae1-ebd9-487f-8ee2-3382b81653c0"
+    }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "driver_current_status": 0,
+      "ride_details": {
+          "ride_id": "6ad46ae1-ebd9-487f-8ee2-3382b81653c0",
+          "user_id": "62ab01b5-e364-4048-b89b-ec867bcf69e7",
+          "user_fcm_token": null,
+          "booking_no": "82908528",
+          "service_category_id": 7,
+          "user_profile_image": "",
+          "user_name": "Demo User",
+          "contact_number": "9999999999",
+          "address_list": [
+              {
+                  "address": "Rajkot Railway Station, Rajkot, Gujarat",
+                  "address_lat": "22.3039",
+                  "address_long": "70.8022"
+              },
+              {
+                  "address": "Rajkot Airport, Rajkot, Gujarat",
+                  "address_lat": "22.3092",
+                  "address_long": "70.7793"
+              }
+          ],
+          "flat_no": "",
+          "landmark": "",
+          "pickup_date_time": "2026-03-11T04:30:00.000000Z",
+          "total_amount": 528,
+          "payment_type": 1,
+          "ride_status": 1
+      }
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

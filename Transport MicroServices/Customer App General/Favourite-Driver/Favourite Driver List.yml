@@ -1,0 +1,125 @@
+info:
+  name: Favourite Driver List
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/favourite-driver-list"
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Favourite Driver List
+    request:
+      url: "{{transport_url}}/api/customer/favourite-driver-list"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: user_id
+            type: text
+            value: "{{user_id}}"
+            description: For User Id
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Feb 2026 05:46:55 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "favourite_driver_list": [
+                  {
+                      "driver_id": "9aac2ad1-5fef-4a36-b3af-b02a72fcf43b",
+                      "service_cat_id": 2,
+                      "rating": 4.5,
+                      "driver_name": "Vishal",
+                      "category_name": "Taxi Ride",
+                      "driver_image": "",
+                      "avatar_url": null
+                  }
+              ]
+          }
+
+docs: |+
+  ## Favourite Driver List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "favourite_driver_list": [
+          {
+              "driver_id": "9aac2ad1-5fef-4a36-b3af-b02a72fcf43b",
+              "service_cat_id": 2,
+              "rating": 4.5,
+              "driver_name": "Vishal",
+              "category_name": "Taxi Ride",
+              "driver_image": "",
+              "avatar_url": null
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

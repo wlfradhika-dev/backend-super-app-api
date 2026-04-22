@@ -1,0 +1,7 @@
+info:
+  name: Customer App General
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

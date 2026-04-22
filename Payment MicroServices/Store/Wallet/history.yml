@@ -1,0 +1,309 @@
+info:
+  name: history
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/store/wallet/history"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_by
+        type: text
+        value: "0"
+      - name: service_category
+        type: text
+        value: ""
+      - name: date_filter
+        type: text
+        value: "0"
+      - name: page
+        type: text
+        value: "1"
+      - name: per_page
+        type: text
+        value: "10"
+  auth:
+    type: bearer
+    token: "{{store_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: history
+    request:
+      url: "{{payment_url}}/api/store/wallet/history"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_by
+            type: text
+            value: "0"
+          - name: service_category
+            type: text
+            value: ""
+          - name: date_filter
+            type: text
+            value: "0"
+          - name: page
+            type: text
+            value: "1"
+          - name: per_page
+            type: text
+            value: "10"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Mar 2026 04:47:47 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "wallet_transaction_list": [
+                  {
+                      "id": "3e9efb40-fe1c-4e7c-9081-d2c11bf46961",
+                      "amount": 150,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 455,
+                      "date_time": "2026-03-14 04:47:44"
+                  },
+                  {
+                      "id": "4d0567b6-d3b5-410e-909f-b1695cf24ee8",
+                      "amount": 50,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 305,
+                      "date_time": "2026-03-14 04:36:11"
+                  },
+                  {
+                      "id": "b27e91fc-cc70-4668-a05d-991aefdd8ab0",
+                      "amount": 50,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 255,
+                      "date_time": "2026-03-14 04:35:57"
+                  },
+                  {
+                      "id": "903b9b22-b58c-47e5-8192-b5220f90126d",
+                      "amount": 102,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 205,
+                      "date_time": "2026-03-14 04:35:49"
+                  },
+                  {
+                      "id": "b59d1cb3-b04d-43fb-8fc8-68760e0ea634",
+                      "amount": 1,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 103,
+                      "date_time": "2026-03-14 04:32:57"
+                  },
+                  {
+                      "id": "ae839f21-a368-43bf-ba40-5dbe1efc7a72",
+                      "amount": 1,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 102,
+                      "date_time": "2026-03-14 04:26:23"
+                  },
+                  {
+                      "id": "35dd7665-d3a9-406c-8df9-663e5cc0e52c",
+                      "amount": 1,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 101,
+                      "date_time": "2026-03-14 04:11:28"
+                  },
+                  {
+                      "id": "68e7a015-20e7-46fd-a0ad-5a388c85959f",
+                      "amount": 100,
+                      "transaction_type": 1,
+                      "title": "Credit by Store Testing",
+                      "remaining_balance": 100,
+                      "date_time": "2026-03-14 04:11:04"
+                  }
+              ],
+              "current_page": 1,
+              "last_page": 1,
+              "total_rec": 8
+          }
+
+docs: |+
+  ## history
+
+  Creates a new record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_by` | string | Yes | Order by |
+  | `service_category` | string | Yes | Service category |
+  | `date_filter` | string | Yes | Date filter |
+  | `page` | string | Yes | Page |
+  | `per_page` | string | Yes | Per page |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "wallet_transaction_list": [
+          {
+              "id": "3e9efb40-fe1c-4e7c-9081-d2c11bf46961",
+              "amount": 150,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 455,
+              "date_time": "2026-03-14 04:47:44"
+          },
+          {
+              "id": "4d0567b6-d3b5-410e-909f-b1695cf24ee8",
+              "amount": 50,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 305,
+              "date_time": "2026-03-14 04:36:11"
+          },
+          {
+              "id": "b27e91fc-cc70-4668-a05d-991aefdd8ab0",
+              "amount": 50,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 255,
+              "date_time": "2026-03-14 04:35:57"
+          },
+          {
+              "id": "903b9b22-b58c-47e5-8192-b5220f90126d",
+              "amount": 102,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 205,
+              "date_time": "2026-03-14 04:35:49"
+          },
+          {
+              "id": "b59d1cb3-b04d-43fb-8fc8-68760e0ea634",
+              "amount": 1,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 103,
+              "date_time": "2026-03-14 04:32:57"
+          },
+          {
+              "id": "ae839f21-a368-43bf-ba40-5dbe1efc7a72",
+              "amount": 1,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 102,
+              "date_time": "2026-03-14 04:26:23"
+          },
+          {
+              "id": "35dd7665-d3a9-406c-8df9-663e5cc0e52c",
+              "amount": 1,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 101,
+              "date_time": "2026-03-14 04:11:28"
+          },
+          {
+              "id": "68e7a015-20e7-46fd-a0ad-5a388c85959f",
+              "amount": 100,
+              "transaction_type": 1,
+              "title": "Credit by Store Testing",
+              "remaining_balance": 100,
+              "date_time": "2026-03-14 04:11:04"
+          }
+      ],
+      "current_page": 1,
+      "last_page": 1,
+      "total_rec": 8
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order by field is required."
+  }
+  ```
+

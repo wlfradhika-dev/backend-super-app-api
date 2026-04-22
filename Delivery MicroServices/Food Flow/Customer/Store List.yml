@@ -1,0 +1,252 @@
+info:
+  name: Store List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/food-flow/customer/store-list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: lat
+        type: text
+        value: "22.3158003"
+        description: customer lat
+      - name: long
+        type: text
+        value: "70.7650816"
+        description: customer long
+      - name: service_category_id
+        type: text
+        value: "9"
+        description: food delivery = 9
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Store List
+    request:
+      url: "{{delivery_url}}/api/food-flow/customer/store-list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_TOKEN
+          disabled: true
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: lat
+            type: text
+            value: "22.3158003"
+          - name: long
+            type: text
+            value: "70.7650816"
+          - name: service_category_id
+            type: text
+            value: "8"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 11:33:50 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "display_title_name": "Near By Store ",
+              "no_of_store": 1,
+              "store_list": [
+                  {
+                      "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+                      "store_name": "Store Testing",
+                      "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+                      "store_products": "Banana Wafers,Fast Food",
+                      "service_category_id": 8,
+                      "service_category_name": "Food Delivery",
+                      "service_category_icon": "http://localhost/storage/img/service-category/food-delivery.png",
+                      "average_ratings": 4.6,
+                      "offer": "Get 5%  off on orders above $10",
+                      "order_delivery_time": 30,
+                      "order_min_amount": 20,
+                      "store_status": 1,
+                      "offer_type": 2,
+                      "offer_min_amount": 10,
+                      "offer_amount": 5,
+                      "no_of_ratings": 1,
+                      "distance": "0.2394870618187738",
+                      "is_fav_store": 1,
+                      "is_subcat_flow": 0
+                  }
+              ],
+              "service_slider_data": [
+                  {
+                      "id": "8ba11360-8a86-48cd-ad7d-6848f4c81201",
+                      "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+                      "service_category_id": 8,
+                      "store_name": "Store Testing",
+                      "banner_image": "http://localhost/storage/img/service-slider-banner/922aad62-9460-4b34-be03-7e131fa81aaa"
+                  },
+                  {
+                      "id": "8ba11360-8a86-48cd-ad7d-6848f4c81201",
+                      "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+                      "service_category_id": 8,
+                      "store_name": "Store Testing",
+                      "banner_image": "http://localhost/storage/img/service-slider-banner/922aad62-9460-4b34-be03-7e131fa81aaa"
+                  },
+                  {
+                      "id": "8ba11360-8a86-48cd-ad7d-6848f4c81201",
+                      "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+                      "service_category_id": 8,
+                      "store_name": "Store Testing",
+                      "banner_image": "http://localhost/storage/img/service-slider-banner/922aad62-9460-4b34-be03-7e131fa81aaa"
+                  }
+              ]
+          }
+
+docs: |-
+  ## Store List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+
+   ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  | --- | --- | --- | --- |
+  | `lat` | string | Yes | Lat |
+  | `long` | string | Yes | Long |
+  | `service_category_id` | string | Yes | Service category id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ``` json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "display_title_name": "Near By Store ",
+      "no_of_store": 1,
+      "store_list": [
+          {
+              "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "store_name": "Store Testing",
+              "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+              "store_products": "Banana Wafers,Fast Food",
+              "service_category_id": 8,
+              "service_category_name": "Food Delivery",
+              "service_category_icon": "http://localhost/storage/img/service-category/food-delivery.png",
+              "average_ratings": 4.6,
+              "offer": "Get 5%  off on orders above $10",
+              "order_delivery_time": 30,
+              "order_min_amount": 20,
+              "store_status": 1,
+              "offer_type": 2,
+              "offer_min_amount": 10,
+              "offer_amount": 5,
+              "no_of_ratings": 1,
+              "distance": "0.2394870618187738",
+              "is_fav_store": 1,
+              "is_subcat_flow": 0
+          }
+      ],
+      "service_slider_data": [
+          {
+              "id": "8ba11360-8a86-48cd-ad7d-6848f4c81201",
+              "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "service_category_id": 8,
+              "store_name": "Store Testing",
+              "banner_image": "http://localhost/storage/img/service-slider-banner/922aad62-9460-4b34-be03-7e131fa81aaa"
+          },
+          {
+              "id": "8ba11360-8a86-48cd-ad7d-6848f4c81201",
+              "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "service_category_id": 8,
+              "store_name": "Store Testing",
+              "banner_image": "http://localhost/storage/img/service-slider-banner/922aad62-9460-4b34-be03-7e131fa81aaa"
+          },
+          {
+              "id": "8ba11360-8a86-48cd-ad7d-6848f4c81201",
+              "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "service_category_id": 8,
+              "store_name": "Store Testing",
+              "banner_image": "http://localhost/storage/img/service-slider-banner/922aad62-9460-4b34-be03-7e131fa81aaa"
+          }
+      ]
+  }
+
+   ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ``` json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+
+   ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ``` json
+  {
+      "status": 0,
+      "message": "The lat field is required."
+  }
+
+   ```

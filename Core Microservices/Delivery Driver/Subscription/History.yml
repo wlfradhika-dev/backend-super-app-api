@@ -1,0 +1,128 @@
+info:
+  name: History
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/subscription-plan/history"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: History
+    request:
+      url: "{{core_url}}/api/driver/subscription-plan/history"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 09:01:58 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "subscription_plans": [
+                  {
+                      "id": "1f99c9ff-b6be-96ee-83eb-2575c2c4e35f",
+                      "name": "Monthly",
+                      "description": "Monthly Description",
+                      "no_of_plan_days": 30,
+                      "price_of_plan": 100,
+                      "purchase_date_time": "2026-02-23",
+                      "expiry_date_time": "2026-03-23",
+                      "is_purchased": 1
+                  }
+              ]
+          }
+
+docs: |+
+  ## History
+
+  Manages subscription plans including listing, history, and cancellation for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "subscription_plans": [
+          {
+              "id": "1f99c9ff-b6be-96ee-83eb-2575c2c4e35f",
+              "name": "Monthly",
+              "description": "Monthly Description",
+              "no_of_plan_days": 30,
+              "price_of_plan": 100,
+              "purchase_date_time": "2026-02-23",
+              "expiry_date_time": "2026-03-23",
+              "is_purchased": 1
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

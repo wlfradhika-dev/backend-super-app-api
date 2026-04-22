@@ -1,0 +1,7 @@
+info:
+  name: Rental Payment
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit

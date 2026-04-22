@@ -1,0 +1,167 @@
+info:
+  name: Provider Service list
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/on-demand/service/provider-service-list"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "service_category_id": 13,
+          "sub_category_id": "651f0652-57d1-4379-b273-4740e480c267",
+          "lat": "23.0225",
+          "long": "72.5714"
+      }
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Provider Service list
+    request:
+      url: "{{on_deman_url}}/api/provider/on-demand/service/provider-service-list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 08:51:32 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_service_list": [
+                  {
+                      "provider_service_id": "701f0652-57d1-4379-b273-4740e480c267",
+                      "provider_service_name": "Dog walking",
+                      "provider_service_status": 1,
+                      "provider_service_current_status": 1,
+                      "service_category_id": 13,
+                      "category_type": 4,
+                      "provider_doc_status": 1,
+                      "provider_service_gallery": []
+                  }
+              ]
+          }
+
+docs: |+
+  ## Provider Service list
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "service_category_id": 13,
+      "sub_category_id": "651f0652-57d1-4379-b273-4740e480c267",
+      "lat": "23.0225",
+      "long": "72.5714"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_service_list": [
+          {
+              "provider_service_id": "701f0652-57d1-4379-b273-4740e480c267",
+              "provider_service_name": "Dog walking",
+              "provider_service_status": 1,
+              "provider_service_current_status": 1,
+              "service_category_id": 13,
+              "category_type": 4,
+              "provider_doc_status": 1,
+              "provider_service_gallery": []
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,128 @@
+info:
+  name: History
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/get-refer-info"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: History
+    request:
+      url: "{{core_url}}/api/customer/get-refer-info"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 10:00:24 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "refer_info": [
+                  {
+                      "name": "Rahul",
+                      "refer_discount_type": 2,
+                      "refer_discount": 20,
+                      "refer_status": 0
+                  }
+              ],
+              "used_info": {
+                  "name": "Rahul",
+                  "user_discount_type": 2,
+                  "user_discount": 10,
+                  "user_status": 0
+              }
+          }
+
+docs: |+
+  ## History
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "refer_info": [
+          {
+              "name": "Rahul",
+              "refer_discount_type": 2,
+              "refer_discount": 20,
+              "refer_status": 0
+          }
+      ],
+      "used_info": {
+          "name": "Rahul",
+          "user_discount_type": 2,
+          "user_discount": 10,
+          "user_status": 0
+      }
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

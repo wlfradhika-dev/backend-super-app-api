@@ -1,0 +1,163 @@
+info:
+  name: Recipients List
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/delivery-driver/wallet/recipients-list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: search
+        type: text
+        value: er
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: recipients-list
+    request:
+      url: "{{payment_url}}/api/delivery-driver/wallet/recipients-list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: search
+            type: text
+            value: er
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Mar 2026 05:10:11 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "transfer_user_list": [
+                  {
+                      "transfer_id": "c8cba12a-1775-44f2-8f97-24c7e79faaf2",
+                      "name": "Yash",
+                      "email": "yash@gajera.vqn",
+                      "profile_image": "",
+                      "country_code": "+1",
+                      "contact_number": "4098"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Recipients List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `search` | string | Yes | Search |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "transfer_user_list": [
+          {
+              "transfer_id": "c8cba12a-1775-44f2-8f97-24c7e79faaf2",
+              "name": "Yash",
+              "email": "yash@gajera.vqn",
+              "profile_image": "",
+              "country_code": "+1",
+              "contact_number": "4098"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The search field is required."
+  }
+  ```
+

@@ -1,0 +1,238 @@
+info:
+  name: Contact Verification
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/contact-verification"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: otp
+        type: text
+        value: "123456"
+      - name: device_token
+        type: text
+        value: "123456"
+      - name: select_country_code
+        type: text
+        value: ""
+        description: nullable - only need when change from edit profile
+        disabled: true
+      - name: contact_number
+        type: text
+        value: ""
+        description: nullable - only need when change from edit profile
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("driver_token", response.token);
+        //     pm.collectionVariables.set("driver_id", response.driver_id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Contact Verification
+    request:
+      url: "{{core_url}}/api/driver/contact-verification"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: otp
+            type: text
+            value: "123456"
+          - name: device_token
+            type: text
+            value: "123456"
+          - name: select_country_code
+            type: text
+            value: ""
+            description: nullable - only need when change from edit profile
+            disabled: true
+          - name: contact_number
+            type: text
+            value: ""
+            description: nullable - only need when change from edit profile
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Sat, 11 Apr 2026 09:28:08 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "701"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qarUGaVhL9UZyNqp2dVV7a7%2BivB82poiI0tjPNAiK4vncpJzigeN%2BA3MUtpVMxtSZ6iFfjWfdZjvjaE1Vn%2B3x2rPDyDsmQhU3NqrIMMtzUiMJ%2FSXlZL4MP%2Fmw2%2FAfOCTR7ycqX75RgX8dfTa9yPcA7VVoZ8qt3SS2a4%3D"}]}'
+        - name: cf-ray
+          value: 9ea8f59b98ce1eed-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "driver_id": "019d7228-843a-7252-8f54-0efb07555262",
+              "contact_number": "1620",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "currency_code": "USD",
+              "select_language": "en",
+              "unique_id": "019d7228-843a-7252-8f54-0efb07b3fcbf",
+              "gender": "1",
+              "driver_name": "Dhaval",
+              "email": "dhaval@gmail.comm",
+              "profile_image": null,
+              "server_time_zone": "UTC",
+              "token": "547|zyCWMtoiAyDcaeykjiLEWZF1h0YSOwriHFj0ckrM9f1cf1d0",
+              "driver_service_id": "019d75aa-e90d-72fb-822b-d546bbdb1b6e",
+              "service_status": 5,
+              "service_category_id": 2,
+              "driver_current_status": 1,
+              "driver_service": "Intercity,Taxi Bidding,Taxi Pool,Bike Rental,Store Delivery",
+              "vehicle_type_icon": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/transport/img/service-category/transport-service-type/233100820250801.png",
+              "vehicle_type_name": "SUV",
+              "vehicle_company": "hundai",
+              "plat_no": "2618",
+              "model_year": 2013,
+              "model_name": "verna",
+              "vehicle_color": null,
+              "rating": 0,
+              "service_type_id": "019d7092-d2d0-7011-ac9c-8306bb6fce8a"
+          }
+
+docs: |+
+  ## Contact Verification
+
+  Verifies the OTP sent to the user's contact number and issues a bearer token on success.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `otp` | string | Yes | Otp |
+  | `device_token` | string | Yes | Device token |
+  | `select_country_code` | string | No | nullable - only need when change from edit profile |
+  | `contact_number` | string | No | nullable - only need when change from edit profile |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "status": 1,
+      "is_register": 0,
+      "driver_id": "fe94ab9a-8739-4567-937d-d906b22ff716",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "currency_code": "USD",
+      "select_language": "en",
+      "unique_id": "f1e44993-3398-441b-bb78-50937cc62d37",
+      "gender": "0",
+      "driver_name": "",
+      "email": "",
+      "profile_image": null,
+      "server_time_zone": "UTC",
+      "token": "26|y7ybOBNuaLTC72C6mRVYsmRPjIE3pBBrdu4JjMOib49e0680",
+      "driver_service_id": 0,
+      "service_status": 4,
+      "service_category_id": 0,
+      "driver_current_status": 0,
+      "driver_service": "",
+      "vehicle_type_icon": "",
+      "vehicle_type_name": "",
+      "vehicle_company": "",
+      "plat_no": "",
+      "model_year": "",
+      "model_name": "",
+      "vehicle_color": "",
+      "service_type_id": 0,
+      "is_ride_service": 0
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The otp field is required."
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

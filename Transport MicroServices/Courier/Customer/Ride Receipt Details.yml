@@ -1,0 +1,345 @@
+info:
+  name: Ride Receipt Details
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/transport/courier/ride-receipt-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "ride_id": "c457835d-3bbe-4637-ac70-a4139ebda57a"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: ide-receipt-details
+    request:
+      url: http://127.0.0.1:8002/api/customer/transport/courier/ride-receipt-details
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer 18|sHeRAoWjJrNJtjfscgR71QU1Y3pofeBKrTDSr0P269a60e17
+      body:
+        type: json
+        data: |-
+          {
+            "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 06:58:25 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "status": 1,
+              "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+              "sub_ride_id": 0,
+              "additional_remark": "",
+              "ride_service_category_id": 4,
+              "booking_type": 0,
+              "booking_no": "27382197",
+              "pickup_date_time": "2026-03-10T11:18:28.000000Z",
+              "service_date_time": "2026-03-10 11:18:28",
+              "address_list": [
+                  {
+                      "address": "123 Sender Street, City",
+                      "address_lat": "23.0225",
+                      "address_long": "72.5714"
+                  },
+                  {
+                      "address": "456 Recipient Road, City",
+                      "address_lat": "23.03",
+                      "address_long": "72.58"
+                  }
+              ],
+              "way_point_status": false,
+              "sos_contact_list": [],
+              "ride_status": 4,
+              "cancel_by": "user",
+              "cancel_reason": "Changed my mind",
+              "cancel_charge": 0,
+              "service_type": "",
+              "service_type_icon": "",
+              "waypoint_msg_code": 0,
+              "waypoint_message": "",
+              "user_rating_status": 0,
+              "otp": "",
+              "surcharge_cost": 0,
+              "other_contact_number": null,
+              "is_toll_charge": 1,
+              "toll_charge": 0,
+              "redeem_loyalty_points": 0,
+              "ride_chat_number": "27382197-0629d870-1041-446a-a1f2-85d6a3ffd598",
+              "category_id": 4,
+              "category_name": "Courier Service",
+              "weight_id": "660f9501-f30c-42e5-b827-557766551111",
+              "weight_start_limit": 0,
+              "weight_close_limit": 0,
+              "estimate_price": 150,
+              "receiver_otp": "",
+              "sender_name": "John Sender",
+              "sender_contact_number": "9876543210",
+              "recipient_name": "Jane Recipient",
+              "recipient_contact_number": "9876543211",
+              "delivery_instruction": "Handle with care",
+              "house_name": "Villa 12",
+              "driver_id": null,
+              "driver_selected_service_cat_id": 0,
+              "driver_selected_service_string": "Courier Delivery",
+              "driver_fcm_token": "",
+              "vehicle_manufacture_name": "hundai",
+              "vehicle_plat_no": "2618",
+              "vehicle_model_year": 2013,
+              "vehicle_model_name": "verna",
+              "vehicle_color": "",
+              "cost_per_km": 10,
+              "base_fare": 100,
+              "cost_per_min": 120,
+              "time_fare_amount": 3600,
+              "total_distance": "10.5",
+              "estimated_time": "0:30",
+              "pickup_to_drop_time": "30",
+              "user_refund_status": 0,
+              "refund_amount": 0,
+              "ride_fare": 105,
+              "refer_discount": 0,
+              "min_adjustment_amount": 0,
+              "promocode_discount": 0,
+              "promocode_name": "",
+              "tax": 0,
+              "tip": 400,
+              "subtotal": 3805,
+              "discount": 0,
+              "total_pay": 4205,
+              "admin_waiting_charge": 60,
+              "driver_arrive_time": "",
+              "admin_free_waiting_minutes": 0,
+              "driver_waiting_time": "",
+              "total_waiting_charge": 0,
+              "is_favourite_driver": 0,
+              "admin_transport_pause_start_charge_per_minute": 60,
+              "total_pause_start_amount": 0,
+              "total_pause_start_time": "",
+              "payment": 1,
+              "payment_status": 0,
+              "driver_name": "",
+              "driver_image": "",
+              "driver_rating": 0,
+              "driver_contact_number": ""
+          }
+
+docs: |+
+  ## Ride Receipt Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "status": 1,
+      "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+      "sub_ride_id": 0,
+      "additional_remark": "",
+      "ride_service_category_id": 4,
+      "booking_type": 0,
+      "booking_no": "27382197",
+      "pickup_date_time": "2026-03-10T11:18:28.000000Z",
+      "service_date_time": "2026-03-10 11:18:28",
+      "address_list": [
+          {
+              "address": "123 Sender Street, City",
+              "address_lat": "23.0225",
+              "address_long": "72.5714"
+          },
+          {
+              "address": "456 Recipient Road, City",
+              "address_lat": "23.03",
+              "address_long": "72.58"
+          }
+      ],
+      "way_point_status": false,
+      "sos_contact_list": [],
+      "ride_status": 4,
+      "cancel_by": "user",
+      "cancel_reason": "Changed my mind",
+      "cancel_charge": 0,
+      "service_type": "",
+      "service_type_icon": "",
+      "waypoint_msg_code": 0,
+      "waypoint_message": "",
+      "user_rating_status": 0,
+      "otp": "",
+      "surcharge_cost": 0,
+      "other_contact_number": null,
+      "is_toll_charge": 1,
+      "toll_charge": 0,
+      "redeem_loyalty_points": 0,
+      "ride_chat_number": "27382197-0629d870-1041-446a-a1f2-85d6a3ffd598",
+      "category_id": 4,
+      "category_name": "Courier Service",
+      "weight_id": "660f9501-f30c-42e5-b827-557766551111",
+      "weight_start_limit": 0,
+      "weight_close_limit": 0,
+      "estimate_price": 150,
+      "receiver_otp": "",
+      "sender_name": "John Sender",
+      "sender_contact_number": "9876543210",
+      "recipient_name": "Jane Recipient",
+      "recipient_contact_number": "9876543211",
+      "delivery_instruction": "Handle with care",
+      "house_name": "Villa 12",
+      "driver_id": null,
+      "driver_selected_service_cat_id": 0,
+      "driver_selected_service_string": "Courier Delivery",
+      "driver_fcm_token": "",
+      "vehicle_manufacture_name": "hundai",
+      "vehicle_plat_no": "2618",
+      "vehicle_model_year": 2013,
+      "vehicle_model_name": "verna",
+      "vehicle_color": "",
+      "cost_per_km": 10,
+      "base_fare": 100,
+      "cost_per_min": 120,
+      "time_fare_amount": 3600,
+      "total_distance": "10.5",
+      "estimated_time": "0:30",
+      "pickup_to_drop_time": "30",
+      "user_refund_status": 0,
+      "refund_amount": 0,
+      "ride_fare": 105,
+      "refer_discount": 0,
+      "min_adjustment_amount": 0,
+      "promocode_discount": 0,
+      "promocode_name": "",
+      "tax": 0,
+      "tip": 400,
+      "subtotal": 3805,
+      "discount": 0,
+      "total_pay": 4205,
+      "admin_waiting_charge": 60,
+      "driver_arrive_time": "",
+      "admin_free_waiting_minutes": 0,
+      "driver_waiting_time": "",
+      "total_waiting_charge": 0,
+      "is_favourite_driver": 0,
+      "admin_transport_pause_start_charge_per_minute": 60,
+      "total_pause_start_amount": 0,
+      "total_pause_start_time": "",
+      "payment": 1,
+      "payment_status": 0,
+      "driver_name": "",
+      "driver_image": "",
+      "driver_rating": 0,
+      "driver_contact_number": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

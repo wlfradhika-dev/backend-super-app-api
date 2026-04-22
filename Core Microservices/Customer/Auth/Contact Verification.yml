@@ -1,0 +1,209 @@
+info:
+  name: Contact Verification
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/contact-verification"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: otp
+        type: text
+        value: "123456"
+      - name: device_token
+        type: text
+        value: "123456"
+      - name: select_country_code
+        type: text
+        value: ""
+        description: nullable - only need when change from edit profile
+        disabled: true
+      - name: contact_number
+        type: text
+        value: ""
+        description: nullable - only need when change from edit profile
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("token", response.token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Contact Verification
+    request:
+      url: "{{core_url}}/api/customer/contact-verification"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: otp
+            type: text
+            value: "123456"
+          - name: device_token
+            type: text
+            value: "123456"
+          - name: select_country_code
+            type: text
+            value: ""
+            description: nullable - only need when change from edit profile
+            disabled: true
+          - name: contact_number
+            type: text
+            value: ""
+            description: nullable - only need when change from edit profile
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Thu, 09 Apr 2026 06:16:00 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "420"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=y1d0Cel9LR931QMhmhn13%2FRUnPzuBn05ihSWoFdtVBpRuLCk%2BWPhul908YsgjUclpPsvdBK8nRzHbTuqkWZV5uivkT8t0bKWRM7kGbGnNbCB8NElDMnPTRf2AcKUWukg4ecOZJn1TF1YywBsIyRJdsWJG1lvqrDabrE%3D"}]}'
+        - name: cf-ray
+          value: 9e97616c79e5bdd5-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "user_id": "019d70a5-ce8f-73be-8307-8120db6f99d2",
+              "contact_number": "5555",
+              "select_country_code": "+91",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "currency_code": "USD",
+              "select_language": "en",
+              "unique_id": "019d70a5-ce90-71fd-838e-3cfd94d1afc7",
+              "token": "53|qefqDYpXswvkVEiZr0mTVBa1ypLgl5TJyNo2QmBdaa6ad1b4",
+              "user_name": "Vishal",
+              "email": "vishal@gmail.com",
+              "referral_code": "FF9BRWY",
+              "gender": "0",
+              "profile_image": null,
+              "emergency_contact": "",
+              "emergency_country_code": "",
+              "server_time_zone": "UTC"
+          }
+
+docs: |+
+  ## Contact Verification
+
+  Verifies the OTP sent to the user's contact number and issues a bearer token on success.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `otp` | string | Yes | Otp |
+  | `device_token` | string | Yes | Device token |
+  | `select_country_code` | string | No | nullable - only need when change from edit profile |
+  | `contact_number` | string | No | nullable - only need when change from edit profile |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "status": 1,
+      "is_register": 0,
+      "user_id": "d0c7e7d8-cd62-46c8-8c90-e394b84b58ef",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "currency_code": "USD",
+      "select_language": "en",
+      "unique_id": "d52e3fd7-2e35-43bd-8001-d378794f8ce7",
+      "token": "10|5VC7nAUnbkHqMFd4P56vRGOxxEQOMIVBoa5jmgXz53ff12df"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The otp field is required."
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

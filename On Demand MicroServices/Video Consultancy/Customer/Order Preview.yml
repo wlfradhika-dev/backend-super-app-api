@@ -1,0 +1,277 @@
+info:
+  name: Order Preview
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/customer/video-consultancy/preview"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "service_category_id": 13,
+          "provider_id": "{{provider_uuid}}",
+          "package_id_list": "{{package_uuid}}",
+          "package_quantity_list": "1",
+          "payment_type": 1,
+          "promo_code": "",
+          "is_loyalty_discount": 0,
+          "redeem_loyalty_points": 0,
+          "loyalty_discount_amount": 0
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Order Preview
+    request:
+      url: "{{on_deman_url}}/api/customer/video-consultancy/preview"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{user_token}}
+      body:
+        type: json
+        data: |-
+          {
+              "service_category_id": 13,
+              "provider_id": "{{provider_uuid}}",
+              "package_id_list": "{{package_uuid}}",
+              "package_quantity_list": "1",
+              "payment_type": 1,
+              "promo_code": "",
+              "is_loyalty_discount": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 10:14:24 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "status": 1,
+              "message": "Success",
+              "message_code": 1,
+              "order_id": 0,
+              "order_no": "0",
+              "category_name": "Dog Walking",
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "service_date_time": "2026-03-12 10:14:24",
+              "provider_name": "Provider",
+              "distance": "",
+              "provider_profile_image": "http://localhost:8004/storage/img/profile-images/provider/jila.png",
+              "provider_rating": 0,
+              "tax": 0,
+              "item_total": 100,
+              "sub_total": 100,
+              "discount": 0,
+              "promocode_id": 0,
+              "promo_code_apply": 0,
+              "promo_code_status": 0,
+              "promo_message_code": 0,
+              "promo_code_message": "",
+              "refer_discount": 0,
+              "min_order_amount": 0,
+              "promocode_discount": 0,
+              "promocode_name": "",
+              "total_pay": 100,
+              "delivery_address": "",
+              "cancel_by": "",
+              "cancel_reason": "",
+              "order_status": 0,
+              "package_list": [
+                  {
+                      "sub_category_name": "Dog dancing",
+                      "item_list": [
+                          {
+                              "id": "123f0652-57d1-4379-b273-4740e480c267",
+                              "package_name": "Dog fish dance",
+                              "sub_category_name": "Dog dancing",
+                              "num_of_items": 1,
+                              "price_for_one": 100
+                          }
+                      ]
+                  }
+              ],
+              "select_provider_location": 0,
+              "unavailable_packages": "",
+              "provider_address": "new nana mava",
+              "total_completed_order": 0,
+              "no_of_ratings": 1,
+              "is_loyalty_points_module": 0,
+              "is_loyalty_point_apply": "",
+              "total_loyalty_points": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          }
+
+docs: |+
+  ## Order Preview
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "service_category_id": 13,
+      "provider_id": "{{provider_uuid}}",
+      "package_id_list": "{{package_uuid}}",
+      "package_quantity_list": "1",
+      "payment_type": 1,
+      "promo_code": "",
+      "is_loyalty_discount": 0,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "status": 1,
+      "message": "Success",
+      "message_code": 1,
+      "order_id": 0,
+      "order_no": "0",
+      "category_name": "Dog Walking",
+      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+      "service_date_time": "2026-03-12 10:14:24",
+      "provider_name": "Provider",
+      "distance": "",
+      "provider_profile_image": "http://localhost:8004/storage/img/profile-images/provider/jila.png",
+      "provider_rating": 0,
+      "tax": 0,
+      "item_total": 100,
+      "sub_total": 100,
+      "discount": 0,
+      "promocode_id": 0,
+      "promo_code_apply": 0,
+      "promo_code_status": 0,
+      "promo_message_code": 0,
+      "promo_code_message": "",
+      "refer_discount": 0,
+      "min_order_amount": 0,
+      "promocode_discount": 0,
+      "promocode_name": "",
+      "total_pay": 100,
+      "delivery_address": "",
+      "cancel_by": "",
+      "cancel_reason": "",
+      "order_status": 0,
+      "package_list": [
+          {
+              "sub_category_name": "Dog dancing",
+              "item_list": [
+                  {
+                      "id": "123f0652-57d1-4379-b273-4740e480c267",
+                      "package_name": "Dog fish dance",
+                      "sub_category_name": "Dog dancing",
+                      "num_of_items": 1,
+                      "price_for_one": 100
+                  }
+              ]
+          }
+      ],
+      "select_provider_location": 0,
+      "unavailable_packages": "",
+      "provider_address": "new nana mava",
+      "total_completed_order": 0,
+      "no_of_ratings": 1,
+      "is_loyalty_points_module": 0,
+      "is_loyalty_point_apply": "",
+      "total_loyalty_points": 0,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

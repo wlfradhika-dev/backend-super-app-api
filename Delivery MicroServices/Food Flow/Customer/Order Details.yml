@@ -1,0 +1,272 @@
+info:
+  name: Order Details
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/food-flow/customer/order-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: 1f1f8b96-31ce-408a-b9a6-dabef6e68a4a
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Order Details
+    request:
+      url: "{{delivery_url}}/api/food-flow/customer/order-details"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: 6cc904e3-067d-4250-9e4e-e4a4fa7a237e
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 19 Feb 2026 11:56:44 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "6cc904e3-067d-4250-9e4e-e4a4fa7a237e",
+              "order_no": "78481043",
+              "otp": "418503",
+              "additional_remark": "Less spicy",
+              "allow_reorder": 1,
+              "service_category_id": 8,
+              "category_name": "Food Delivery",
+              "category_icon": "",
+              "cancel_by": "",
+              "cancel_reason": "",
+              "cancel_charge": 0,
+              "store_id": "922aad62-9460-4b34-be03-7e131fa81aaa",
+              "store_contact_no": "+17099",
+              "store_name": "Store Testing",
+              "store_image": "http://localhost/storage/img/store-images/store-test.jpg",
+              "store_average_ratings": 4.6,
+              "store_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "delivery_address": "Shital park",
+              "flat_no": "2b",
+              "landmark": "rajkot",
+              "service_date_time": "2026-02-19 09:28:10",
+              "schedule_order_date_time": "2026-02-19 09:28:10",
+              "delivery_people_name": "",
+              "total_item_cost": 24,
+              "discount_cost": 1.2,
+              "tax_cost": 0,
+              "tip": 10,
+              "refer_discount": 0,
+              "delivery_cost": 0,
+              "packaging_cost": 2,
+              "total_pay": 34.8,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0,
+              "payment_type": 1,
+              "order_status": 1,
+              "refund_amount": 0,
+              "user_refund_status": 0,
+              "user_rating_status": 0,
+              "user_taken_type": 1,
+              "prescription": "",
+              "promo_code_discount": 0,
+              "used_promo_code_name": "",
+              "delivery_person_image": "",
+              "delivery_person_contact_no": "",
+              "driver_selected_service_string": "",
+              "driver_fcm_token": "",
+              "driver_id": 0,
+              "delivery_person_rating": 0,
+              "delivery_person_name": "",
+              "product_list": [
+                  {
+                      "product_name": "Cheese Burger",
+                      "food_type": 1,
+                      "product_quantity": 2,
+                      "product_price": 12,
+                      "product_price_for_one": 24,
+                      "add_ons": ""
+                  }
+              ],
+              "order_chat_number": "78481043-6cc904e3-067d-4250-9e4e-e4a4fa7a237e",
+              "invoice_download_link": ""
+          }
+
+docs: |+
+  ## Order Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "6cc904e3-067d-4250-9e4e-e4a4fa7a237e",
+      "order_no": "78481043",
+      "otp": "418503",
+      "additional_remark": "Less spicy",
+      "allow_reorder": 1,
+      "service_category_id": 8,
+      "category_name": "Food Delivery",
+      "category_icon": "",
+      "cancel_by": "",
+      "cancel_reason": "",
+      "cancel_charge": 0,
+      "store_id": "922aad62-9460-4b34-be03-7e131fa81aaa",
+      "store_contact_no": "+17099",
+      "store_name": "Store Testing",
+      "store_image": "http://localhost/storage/img/store-images/store-test.jpg",
+      "store_average_ratings": 4.6,
+      "store_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "delivery_address": "Shital park",
+      "flat_no": "2b",
+      "landmark": "rajkot",
+      "service_date_time": "2026-02-19 09:28:10",
+      "schedule_order_date_time": "2026-02-19 09:28:10",
+      "delivery_people_name": "",
+      "total_item_cost": 24,
+      "discount_cost": 1.2,
+      "tax_cost": 0,
+      "tip": 10,
+      "refer_discount": 0,
+      "delivery_cost": 0,
+      "packaging_cost": 2,
+      "total_pay": 34.8,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0,
+      "payment_type": 1,
+      "order_status": 1,
+      "refund_amount": 0,
+      "user_refund_status": 0,
+      "user_rating_status": 0,
+      "user_taken_type": 1,
+      "prescription": "",
+      "promo_code_discount": 0,
+      "used_promo_code_name": "",
+      "delivery_person_image": "",
+      "delivery_person_contact_no": "",
+      "driver_selected_service_string": "",
+      "driver_fcm_token": "",
+      "driver_id": 0,
+      "delivery_person_rating": 0,
+      "delivery_person_name": "",
+      "product_list": [
+          {
+              "product_name": "Cheese Burger",
+              "food_type": 1,
+              "product_quantity": 2,
+              "product_price": 12,
+              "product_price_for_one": 24,
+              "add_ons": ""
+          }
+      ],
+      "order_chat_number": "78481043-6cc904e3-067d-4250-9e4e-e4a4fa7a237e",
+      "invoice_download_link": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

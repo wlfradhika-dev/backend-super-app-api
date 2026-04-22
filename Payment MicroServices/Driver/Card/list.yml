@@ -1,0 +1,128 @@
+info:
+  name: list
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/driver/card/list"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: list
+    request:
+      url: "{{payment_url}}/api/driver/card/list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Fri, 10 Apr 2026 07:40:04 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "168"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=vV4pWQous5UxQLHQbF%2BngAHuPWeTsOQ9qgsdYnnX1DxUsRmujUF7tyHYWdgwAblVaVhqV4o8SX4Kc%2BvNGMHbU77kS1M%2FGtRHYqZ8d5v7T5VYfwKR7oFAtgSk0eH0PWdHWRq3YxHk2FkOTOAq%2BdwS%2BvvRqlUJMoiCiSD6a8I%3D"}]}'
+        - name: cf-ray
+          value: 9ea019ee09395539-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "card_list": [
+                  {
+                      "card_id": "019d7655-2f1d-7117-b00c-ddb06563c56f",
+                      "holder_name": "Courier",
+                      "card_number": "4111111111111111"
+                  }
+              ]
+          }
+
+docs: |+
+  ## list
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "card_list": [
+          {
+              "card_id": "19915eaf-5ba5-4bdc-98e7-6380495a6464",
+              "holder_name": "John Doe",
+              "card_number": "4111111111111111"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,275 @@
+info:
+  name: Update Vehicle Details
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/delivery-driver/update-vehicle-details"
+  headers:
+    - name: Authorization
+      value: Bearer <SANCTUM_TOKEN>
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: driver_vehicle_id
+        type: text
+        value: 2fac4a2e-fe39-4c6f-bed6-92cc56f0036e
+      - name: vehicle_type_id
+        type: text
+        value: c8473e7a-5e17-47d9-92eb-5a8f8a6dcd8b
+      - name: manufacture_name
+        type: text
+        value: Honda
+      - name: model_name
+        type: text
+        value: Activa
+      - name: model_year
+        type: text
+        value: "2022"
+      - name: vehicle_plat_no
+        type: text
+        value: GJ01AB1234
+      - name: vehicle_color
+        type: text
+        value: Black
+      - name: is_default
+        type: text
+        value: "1"
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success
+    request:
+      url: "{{delivery_url}}/api/delivery-driver/update-vehicle-details"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer <SANCTUM_TOKEN>
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: driver_vehicle_id
+            type: text
+            value: 2fac4a2e-fe39-4c6f-bed6-92cc56f0036e
+          - name: vehicle_type_id
+            type: text
+            value: c8473e7a-5e17-47d9-92eb-5a8f8a6dcd8b
+          - name: manufacture_name
+            type: text
+            value: Honda
+          - name: model_name
+            type: text
+            value: Activa
+          - name: model_year
+            type: text
+            value: "2022"
+          - name: vehicle_plat_no
+            type: text
+            value: GJ01AB1234
+          - name: vehicle_color
+            type: text
+            value: Black
+          - name: is_default
+            type: text
+            value: "1"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 12:50:01 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "custom_message": "",
+              "vehicle_type_id": "c8473e7a-5e17-47d9-92eb-5a8f8a6dcd8b",
+              "manufacture_name": "Honda",
+              "model_name": "Activa",
+              "model_year": 2022,
+              "vehicle_plat_no": "GJ01AB1234",
+              "no_of_seat": 1,
+              "is_rental": 0,
+              "vehicle_color": "Black",
+              "handicap_accessibility": 0,
+              "child_seat_accessibility": 0,
+              "vehicle_type_name": "Scooter",
+              "vehicle_type_icon": "http://localhost/storage/img/service-category/transport-service-type/135330520242707.png",
+              "is_default": null,
+              "driver_service": "Store Delivery",
+              "is_ride_service": 0,
+              "vehicle_type_list": [
+                  {
+                      "vehicle_type_id": "75741b43-c00d-45d5-9845-24430139c63a",
+                      "vehicle_type_name": "Hatchback",
+                      "vehicle_type_icon": null
+                  },
+                  {
+                      "vehicle_type_id": "07c61d06-ef4d-49b4-a7b4-1599dfb08e1d",
+                      "vehicle_type_name": "SUV",
+                      "vehicle_type_icon": null
+                  },
+                  {
+                      "vehicle_type_id": "be950436-9036-499e-a974-9195f1032e1e",
+                      "vehicle_type_name": "Luxury",
+                      "vehicle_type_icon": null
+                  },
+                  {
+                      "vehicle_type_id": "380a6369-fa5e-4072-a84d-47686f627372",
+                      "vehicle_type_name": "Sedan",
+                      "vehicle_type_icon": null
+                  }
+              ]
+          }
+
+docs: |+
+  ## Update Vehicle Details
+
+  Updates an existing record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `driver_vehicle_id` | string | Yes | Driver vehicle id |
+  | `vehicle_type_id` | string | Yes | Vehicle type id |
+  | `manufacture_name` | string | Yes | Manufacture name |
+  | `model_name` | string | Yes | Model name |
+  | `model_year` | string | Yes | Model year |
+  | `vehicle_plat_no` | string | Yes | Vehicle plat no |
+  | `vehicle_color` | string | Yes | Vehicle color |
+  | `is_default` | string | Yes | Is default |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "custom_message": "",
+      "vehicle_type_id": "c8473e7a-5e17-47d9-92eb-5a8f8a6dcd8b",
+      "manufacture_name": "Honda",
+      "model_name": "Activa",
+      "model_year": 2022,
+      "vehicle_plat_no": "GJ01AB1234",
+      "no_of_seat": 1,
+      "is_rental": 0,
+      "vehicle_color": "Black",
+      "handicap_accessibility": 0,
+      "child_seat_accessibility": 0,
+      "vehicle_type_name": "Scooter",
+      "vehicle_type_icon": "http://localhost/storage/img/service-category/transport-service-type/135330520242707.png",
+      "is_default": null,
+      "driver_service": "Store Delivery",
+      "is_ride_service": 0,
+      "vehicle_type_list": [
+          {
+              "vehicle_type_id": "75741b43-c00d-45d5-9845-24430139c63a",
+              "vehicle_type_name": "Hatchback",
+              "vehicle_type_icon": null
+          },
+          {
+              "vehicle_type_id": "07c61d06-ef4d-49b4-a7b4-1599dfb08e1d",
+              "vehicle_type_name": "SUV",
+              "vehicle_type_icon": null
+          },
+          {
+              "vehicle_type_id": "be950436-9036-499e-a974-9195f1032e1e",
+              "vehicle_type_name": "Luxury",
+              "vehicle_type_icon": null
+          },
+          {
+              "vehicle_type_id": "380a6369-fa5e-4072-a84d-47686f627372",
+              "vehicle_type_name": "Sedan",
+              "vehicle_type_icon": null
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The driver vehicle id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

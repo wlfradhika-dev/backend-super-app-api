@@ -1,0 +1,290 @@
+info:
+  name: Ride Booking
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/taxi-bidding/transport/ride-booking"
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "5"
+        description: For Service Category Id
+      - name: payment_type
+        type: text
+        value: "1"
+        description: 1=cash , 2=card, 3=wallet
+      - name: estimated_time
+        type: text
+        value: "20"
+        description: For Estimate Time
+      - name: total_distance
+        type: text
+        value: "10"
+        description: For Total Distance
+      - name: vehicle_type_id
+        type: text
+        value: 3ea09284-9e5c-4728-a209-8d0bc8d935bf
+        description: service_type_id is replace to transport vehicle type id
+      - name: gender
+        type: text
+        value: "0"
+        description: 0=both, 1=male, 2=female
+      - name: pickup_date_time
+        type: text
+        value: ""
+        description: For Pickup Date Time
+      - name: promo_code
+        type: text
+        value: ""
+        description: Optional
+      - name: city_name
+        type: text
+        value: ""
+        description: Optional
+      - name: address_list
+        type: text
+        value: '[{"address":"8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat","place_id":null,"address_lat":22.3158003,"address_long":70.7650816,"locality_name":null,"country_name":null},{"address":"7QPF+F2 Rajkot,Gujarat","place_id":null,"address_lat":22.2862485,"address_long":70.7699514,"locality_name":null,"country_name":null}]'
+        description: For Address List
+      - name: additional_remarks
+        type: text
+        value: ""
+        description: Optional
+      - name: handicap
+        type: text
+        value: "0"
+        description: Optional
+      - name: child_seat
+        type: text
+        value: "0"
+        description: Optional
+      - name: bidding_offer
+        type: text
+        value: "600"
+        description: require if service_category_id == 5
+      - name: ride_id
+        type: text
+        value: ""
+      - name: redeem_loyalty_points
+        type: text
+        value: ""
+      - name: loyalty_discount_amount
+        type: text
+        value: ""
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride Booking
+    request:
+      url: "{{transport_url}}/api/customer/taxibidding/transport/ride-booking"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "5"
+            description: For Service Category Id
+          - name: payment_type
+            type: text
+            value: "1"
+            description: 1=cash , 2=card, 3=wallet
+          - name: estimated_time
+            type: text
+            value: "20"
+            description: For Estimate Time
+          - name: total_distance
+            type: text
+            value: "10"
+            description: For Total Distance
+          - name: vehicle_type_id
+            type: text
+            value: 38cf6187-6320-4018-a357-4c3cb045730e
+            description: service_type_id is replace to transport vehicle type id
+          - name: gender
+            type: text
+            value: "0"
+            description: 0=both, 1=male, 2=female
+          - name: pickup_date_time
+            type: text
+            value: ""
+            description: For Pickup Date Time
+          - name: promo_code
+            type: text
+            value: ""
+            description: Optional
+          - name: city_name
+            type: text
+            value: ""
+            description: Optional
+          - name: address_list
+            type: text
+            value: '[{"address":"8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat","place_id":null,"address_lat":22.3158003,"address_long":70.7650816,"locality_name":null,"country_name":null},{"address":"7QPF+F2 Rajkot,Gujarat","place_id":null,"address_lat":22.2862485,"address_long":70.7699514,"locality_name":null,"country_name":null}]'
+            description: For Address List
+          - name: additional_remarks
+            type: text
+            value: ""
+            description: Optional
+          - name: handicap
+            type: text
+            value: "0"
+            description: Optional
+          - name: child_seat
+            type: text
+            value: "0"
+            description: Optional
+          - name: bidding_offer
+            type: text
+            value: "600"
+            description: require if service_category_id == 5
+          - name: ride_id
+            type: text
+            value: ""
+          - name: redeem_loyalty_points
+            type: text
+            value: ""
+          - name: loyalty_discount_amount
+            type: text
+            value: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 17 Feb 2026 12:51:26 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "64b87d99-3b97-4b17-b4d0-3c7c4d60efb8",
+              "booking_no": "33528534",
+              "pickup_date_time": "17 Feb, 2026",
+              "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+              "destination_address": "7QPF+F2 Rajkot,Gujarat",
+              "ride_status": 0,
+              "accept_time_out": 20
+          }
+
+docs: |+
+  ## Ride Booking
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | For Service Category Id |
+  | `payment_type` | string | Yes | 1=cash , 2=card, 3=wallet |
+  | `estimated_time` | string | Yes | For Estimate Time |
+  | `total_distance` | string | Yes | For Total Distance |
+  | `vehicle_type_id` | string | Yes | service_type_id is replace to transport vehicle type id |
+  | `gender` | string | Yes | 0=both, 1=male, 2=female |
+  | `pickup_date_time` | string | Yes | For Pickup Date Time |
+  | `promo_code` | string | No | Optional |
+  | `city_name` | string | No | Optional |
+  | `address_list` | string | Yes | For Address List |
+  | `additional_remarks` | string | No | Optional |
+  | `handicap` | string | No | Optional |
+  | `child_seat` | string | No | Optional |
+  | `bidding_offer` | string | Yes | require if service_category_id == 5 |
+  | `ride_id` | string | Yes | Ride id |
+  | `redeem_loyalty_points` | string | Yes | Redeem loyalty points |
+  | `loyalty_discount_amount` | string | Yes | Loyalty discount amount |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_id": "64b87d99-3b97-4b17-b4d0-3c7c4d60efb8",
+      "booking_no": "33528534",
+      "pickup_date_time": "17 Feb, 2026",
+      "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+      "destination_address": "7QPF+F2 Rajkot,Gujarat",
+      "ride_status": 0,
+      "accept_time_out": 20
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

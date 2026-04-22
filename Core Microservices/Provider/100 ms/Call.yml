@@ -1,0 +1,154 @@
+info:
+  name: Call
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/ms-make-video-call"
+  body:
+    type: multipart-form
+    data:
+      - name: receiver_id
+        type: text
+        value: 019d70a5-ce8f-73be-8307-8120db6f99d2
+      - name: service_category_id
+        type: text
+        value: "14"
+      - name: call_type
+        type: text
+        value: "1"
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Call
+    request:
+      url: "{{core_url}}/api/provider/ms-make-video-call"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: receiver_id
+            type: text
+            value: ba055fb9-bc3e-400c-ba40-37bd5d0a302a
+          - name: service_category_id
+            type: text
+            value: "13"
+          - name: call_type
+            type: text
+            value: "1"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 25 Feb 2026 05:29:48 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzE5OTczODgsIm5iZiI6MTc3MTk5NzM4OCwiZXhwIjoxNzcyMDAwOTg4LCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6IjkyM2Y2NTM5LTg5OTQtNDZlNS1hYThiLWU1ZDBjNmY5ODBjZSIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoiNjk5ZTg4Y2NkN2ZmN2RlYmU0MjIwZjE1IiwidXNlcl9pZCI6InByb3ZpZGVyLTVjYTY0OTYyLTMwZmYtNGJhYy1hODVkLTg1MDZhMTQyODY2ZCJ9.9njL1OuTUqBFHiBWPTJ5_cRTLzXoEahe3TJvSuQn3ec",
+              "room_id": "699e88ccd7ff7debe4220f15"
+          }
+
+docs: |+
+  ## Call
+
+  Initiates or manages an audio/video call session using the 100ms platform.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `receiver_id` | string | Yes | Receiver id |
+  | `service_category_id` | string | Yes | Service category id |
+  | `call_type` | string | Yes | Call type |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzE5OTczODgsIm5iZiI6MTc3MTk5NzM4OCwiZXhwIjoxNzcyMDAwOTg4LCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6IjkyM2Y2NTM5LTg5OTQtNDZlNS1hYThiLWU1ZDBjNmY5ODBjZSIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoiNjk5ZTg4Y2NkN2ZmN2RlYmU0MjIwZjE1IiwidXNlcl9pZCI6InByb3ZpZGVyLTVjYTY0OTYyLTMwZmYtNGJhYy1hODVkLTg1MDZhMTQyODY2ZCJ9.9njL1OuTUqBFHiBWPTJ5_cRTLzXoEahe3TJvSuQn3ec",
+      "room_id": "699e88ccd7ff7debe4220f15"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The receiver id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

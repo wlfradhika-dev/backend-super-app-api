@@ -1,0 +1,295 @@
+info:
+  name: intercity Invoice
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/driver/intercity/invoice"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: d4e5f6a7-b8c9-0123-defa-444444444444
+        description: (For Intercity Id)
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: intercity Invoice
+    request:
+      url: http://localhost:8006/api/driver/intercity/invoice
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer 66|VE3LcctZBkk1uAvDYWtMeHI4OJPpWGaqfHD2U9oA856003a2
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: d4e5f6a7-b8c9-0123-defa-444444444444
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 13 Mar 2026 13:12:23 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "d4e5f6a7-b8c9-0123-defa-444444444444",
+              "ride_no": "10000004",
+              "additional_remark": null,
+              "user_id": "fd7af929-fe2c-4e6a-a24e-79860d9be465",
+              "service_category_id": 3,
+              "service_name": "Intercity",
+              "ride_date": "Fri, 13 Mar 2026",
+              "address_list": [
+                  {
+                      "address": "Ahmedabad Railway Station",
+                      "address_lat": "23.0258",
+                      "address_long": "72.6006"
+                  },
+                  {
+                      "address": "Rajkot Bus Stand",
+                      "address_lat": "22.3039",
+                      "address_long": "70.8022"
+                  }
+              ],
+              "total_distance": "220 km",
+              "eta_time": "240 min",
+              "payment_type": 1,
+              "payment_status": 1,
+              "cost_per_km": 15,
+              "cost_per_min": 2.5,
+              "time_fare_amount": 600,
+              "tip": 20,
+              "refer_discount": 0,
+              "base_fare": 100,
+              "tax": 200,
+              "sub_total": 4000,
+              "ride_fare": 3300,
+              "min_adjustment_amount": 0,
+              "promocode_name": "",
+              "discount": 0,
+              "surcharge_cost": 0,
+              "toll_charge": 50,
+              "is_toll_charge": 1,
+              "total_pay": 4220,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0,
+              "ride_status": 4,
+              "driver_pay_settle_status": 0,
+              "cancel_by": "",
+              "cancel_reason": "",
+              "user_profile_image": "",
+              "user_contact_number": "+919876543210",
+              "user_name": "Dhaval",
+              "user_rating": 0,
+              "other_contact_number": "",
+              "service_type_name": "Intercity",
+              "category_icon": "http://localhost:8006/storage/img/service-category/11353120242806.png",
+              "service_date_time": "2026-03-13 08:00:00",
+              "pickup_date_time": "2026-03-13T08:00:00.000000Z",
+              "schedule_order_date_time": "2026-03-13T08:00:00.000000Z",
+              "admin_waiting_charge": 60,
+              "waiting_charge": 60,
+              "driver_arrive_time": "",
+              "driver_waiting_minutes": 0,
+              "driver_waiting_time": "",
+              "total_waiting_charge": 0,
+              "ride_pause_start_id": 1,
+              "driver_start_time": null,
+              "driver_pause_time": null,
+              "total_pause_start_time": "",
+              "total_pause_start_amount": 0,
+              "admin_ride_pause_start_charge": 60,
+              "invoice_download_link": "http://localhost:8006/driver-ride-invoice-download/d4e5f6a7-b8c9-0123-defa-444444444444/driver/ced80434-edda-446d-80db-eb98b38e9310/3"
+          }
+
+docs: |+
+  ## intercity Invoice
+
+  Processes the payment for the specified order or service.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | (For Intercity Id) |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_id": "d4e5f6a7-b8c9-0123-defa-444444444444",
+      "ride_no": "10000004",
+      "additional_remark": null,
+      "user_id": "fd7af929-fe2c-4e6a-a24e-79860d9be465",
+      "service_category_id": 3,
+      "service_name": "Intercity",
+      "ride_date": "Fri, 13 Mar 2026",
+      "address_list": [
+          {
+              "address": "Ahmedabad Railway Station",
+              "address_lat": "23.0258",
+              "address_long": "72.6006"
+          },
+          {
+              "address": "Rajkot Bus Stand",
+              "address_lat": "22.3039",
+              "address_long": "70.8022"
+          }
+      ],
+      "total_distance": "220 km",
+      "eta_time": "240 min",
+      "payment_type": 1,
+      "payment_status": 1,
+      "cost_per_km": 15,
+      "cost_per_min": 2.5,
+      "time_fare_amount": 600,
+      "tip": 20,
+      "refer_discount": 0,
+      "base_fare": 100,
+      "tax": 200,
+      "sub_total": 4000,
+      "ride_fare": 3300,
+      "min_adjustment_amount": 0,
+      "promocode_name": "",
+      "discount": 0,
+      "surcharge_cost": 0,
+      "toll_charge": 50,
+      "is_toll_charge": 1,
+      "total_pay": 4220,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0,
+      "ride_status": 4,
+      "driver_pay_settle_status": 0,
+      "cancel_by": "",
+      "cancel_reason": "",
+      "user_profile_image": "",
+      "user_contact_number": "+919876543210",
+      "user_name": "Dhaval",
+      "user_rating": 0,
+      "other_contact_number": "",
+      "service_type_name": "Intercity",
+      "category_icon": "http://localhost:8006/storage/img/service-category/11353120242806.png",
+      "service_date_time": "2026-03-13 08:00:00",
+      "pickup_date_time": "2026-03-13T08:00:00.000000Z",
+      "schedule_order_date_time": "2026-03-13T08:00:00.000000Z",
+      "admin_waiting_charge": 60,
+      "waiting_charge": 60,
+      "driver_arrive_time": "",
+      "driver_waiting_minutes": 0,
+      "driver_waiting_time": "",
+      "total_waiting_charge": 0,
+      "ride_pause_start_id": 1,
+      "driver_start_time": null,
+      "driver_pause_time": null,
+      "total_pause_start_time": "",
+      "total_pause_start_amount": 0,
+      "admin_ride_pause_start_charge": 60,
+      "invoice_download_link": "http://localhost:8006/driver-ride-invoice-download/d4e5f6a7-b8c9-0123-defa-444444444444/driver/ced80434-edda-446d-80db-eb98b38e9310/3"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

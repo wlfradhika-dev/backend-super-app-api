@@ -1,0 +1,148 @@
+info:
+  name: Accept-Bid
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/taxi-bidding/transport/accept-bid"
+  body:
+    type: multipart-form
+    data:
+      - name: driver_id
+        type: text
+        value: 8893e23a-f84d-4c84-ad6e-b82e0731d277
+        description: For Driver Id
+      - name: ride_id
+        type: text
+        value: 65bfef86-71ac-42b1-862a-8a834bb16298
+        description: For Ride Id
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Accept-Bid
+    request:
+      url: "{{transport_url}}/api/customer/taxibidding/transport/accept-bid"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: driver_id
+            type: text
+            value: fed0db9a-d0e4-4b64-9de3-69b5eecb5370
+            description: For Driver Id
+          - name: ride_id
+            type: text
+            value: 64b87d99-3b97-4b17-b4d0-3c7c4d60efb8
+            description: For Ride Id
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 04:01:30 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": false,
+              "message": "Sorry, You have already accepted bid of another driver",
+              "message_code": 21,
+              "status_code": 0,
+              "https_status_code": 400,
+              "errors": "Failed"
+          }
+
+docs: |+
+  ## Accept-Bid
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `driver_id` | string | Yes | For Driver Id |
+  | `ride_id` | string | Yes | For Ride Id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The driver id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

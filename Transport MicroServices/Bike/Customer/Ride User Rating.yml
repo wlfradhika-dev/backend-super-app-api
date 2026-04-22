@@ -1,0 +1,169 @@
+info:
+  name: Ride User Rating
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/bike/transport/ride-user-rating"
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: 0ecc3bb0-6855-4318-aa7c-f381395051f2
+        description: For Ride Id
+      - name: driver_id
+        type: text
+        value: 897dae71-2b64-4451-9fbe-1ff3ac72910d
+        description: For Driver Id
+      - name: rating
+        type: text
+        value: "4.5"
+        description: enter float value
+      - name: comment
+        type: text
+        value: test comments
+        description: enter text
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride User Rating
+    request:
+      url: "{{transport_url}}/api/customer/bike/transport/ride-user-rating"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: user_id
+            type: text
+            value: "{{user_id}}"
+            description: For User Id
+          - name: ride_id
+            type: text
+            value: 0ecc3bb0-6855-4318-aa7c-f381395051f2
+            description: For Ride Id
+          - name: driver_id
+            type: text
+            value: 897dae71-2b64-4451-9fbe-1ff3ac72910d
+            description: For Driver Id
+          - name: rating
+            type: text
+            value: "4.5"
+            description: enter float value
+          - name: comment
+            type: text
+            value: test comments
+            description: enter text
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Feb 2026 04:37:28 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200
+          }
+
+docs: |+
+  ## Ride User Rating
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | For Ride Id |
+  | `driver_id` | string | Yes | For Driver Id |
+  | `rating` | string | Yes | enter float value |
+  | `comment` | string | Yes | enter text |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

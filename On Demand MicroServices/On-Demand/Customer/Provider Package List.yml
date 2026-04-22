@@ -1,0 +1,175 @@
+info:
+  name: Provider Package List
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/customer/on-demand/provider-package-list"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "provider_id": "80e42040-a9df-4d89-af4e-ec0f49a15180",
+          "service_category_id": 13
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Provider Package List
+    request:
+      url: "{{on_deman_url}}/api/customer/on-demand/provider-package-list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer <USER_ACCESS_TOKEN>
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "provider_id": "ed64fa6f-9084-48ab-b061-86c70a084828",
+              "service_category_id": 13
+            }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 10:52:03 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "package_list": [
+                  {
+                      "category_id": "68f67a8d-cba8-4d81-9b56-ef8fbdcf43bc",
+                      "category_name": "Dog Walking",
+                      "category_package_list": [
+                          {
+                              "id": "65a288d7-cad1-4d03-b22c-60318e2a3197",
+                              "name": "Standard Dog Walk",
+                              "description": "30 minute dog walking service",
+                              "price": 199,
+                              "max_book_quantity": 1,
+                              "category_id": "68f67a8d-cba8-4d81-9b56-ef8fbdcf43bc",
+                              "category_name": "Dog Walking"
+                          }
+                      ]
+                  }
+              ]
+          }
+
+docs: |+
+  ## Provider Package List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "provider_id": "80e42040-a9df-4d89-af4e-ec0f49a15180",
+      "service_category_id": 13
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "package_list": [
+          {
+              "category_id": "68f67a8d-cba8-4d81-9b56-ef8fbdcf43bc",
+              "category_name": "Dog Walking",
+              "category_package_list": [
+                  {
+                      "id": "65a288d7-cad1-4d03-b22c-60318e2a3197",
+                      "name": "Standard Dog Walk",
+                      "description": "30 minute dog walking service",
+                      "price": 199,
+                      "max_book_quantity": 1,
+                      "category_id": "68f67a8d-cba8-4d81-9b56-ef8fbdcf43bc",
+                      "category_name": "Dog Walking"
+                  }
+              ]
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

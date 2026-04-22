@@ -1,0 +1,2514 @@
+info:
+  name: Route Details
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/google-route-detail"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: session-id
+      value: "123"
+  body:
+    type: multipart-form
+    data:
+      - name: pickup_latitude
+        type: text
+        value: "28.6139"
+      - name: pickup_longitude
+        type: text
+        value: "77.2090"
+      - name: drop_latitude
+        type: text
+        value: "28.5355"
+      - name: drop_longitude
+        type: text
+        value: "77.3910"
+      - name: waypoint
+        type: text
+        value: '[{"latitude":28.5700,"longitude":77.3200}]'
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Route Details
+    request:
+      url: "{{core_url}}/api/customer/google-route-detail"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: session-id
+          value: "123"
+      body:
+        type: multipart-form
+        data:
+          - name: pickup_latitude
+            type: text
+            value: "28.6139"
+          - name: pickup_longitude
+            type: text
+            value: "77.2090"
+          - name: drop_latitude
+            type: text
+            value: "28.5355"
+          - name: drop_longitude
+            type: text
+            value: "77.3910"
+          - name: waypoint
+            type: text
+            value: '[{"latitude":28.5700,"longitude":77.3200}]'
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 09:20:31 GMT
+        - name: Content-Type
+          value: application/json
+        - name: X-RateLimit-Limit
+          value: "150"
+        - name: X-RateLimit-Remaining
+          value: "149"
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "routes": [
+                  {
+                      "legs": [
+                          {
+                              "distanceMeters": 29664,
+                              "duration": "3674s",
+                              "staticDuration": "3097s",
+                              "polyline": {
+                                  "encodedPolyline": "_tsmDg{fvM?e@V?J?X?R@`@@`@@`@@X?H?d@@j@?J?J?HBF@l@iAxBqEFQxAyC@MNq@CECICIAI?K?IBODK@CDIDEFGFCHC@?DAH?H?B@B?Vc@NIjBwD?A~CuG~@cBJWNa@Ta@Rc@DILWRc@Ta@Rc@Ra@NY@C@KBSDg@KW?AGSEWCYCS@_@Bg@Fe@BODKDKX]TKHATCN?TBXD@@NFv@a@P[z@uB@AnAiCpAgCFOf@{@d@aA|A{CnAkCLW@S@G@I?I@KAMKSEKCKAICI@G@K@CBMDQBABADAB?B?B?fBzARPZVz@n@vByCnAeB[WeA}@WWECECCC_@SQKSKSMQKMIkCwAn@aBJW`@cA^cAJWp@eBpAmC\\aAAC?C?C@CFU\\_AZ_A@AB]DOBU@Q?Gc@y@m@eAa@{@m@kAEGEKPMPKHEJEJENEl@OD?FAH?JAn@C^@~D@T?|CA|FB`@?tD?~C?LAh@?rEDNA@?B?@?@AB?@ADC@ABA@ADClAcAhAgADC@AVSpB{ABCBCVQTQDEDCVSt@g@`@YH[HQDKBKF]MsBMwBOsBIoAGm@GcAGwAC_@Cm@C_AAs@GeAKmAIk@Ei@V?nBDD?f@?rCFN@P?JGHCDABAHAJC`@GJEJELEJGLIFEJITSfAkAfAcATUbDgDpBuBl@o@RSLUHMFMDODQBSDUDu@B]@QBUBQBEBEHK?GT_ANo@Jc@Nk@Ny@FYD]B]@[@S?E?e@Cc@C[Ei@CSEWKg@Ie@AGGYMk@Ko@Ge@Ga@CSCk@A]?U@k@Dq@Hk@F[F[Lc@FQ^s@JSZe@j@s@p@u@JMdAoAdAsAnAiBDEBCTa@n@_Af@}@b@k@d@m@z@cAj@w@lAoBd@{@Xi@Na@JWRi@H_@J]Lk@Fa@BYBWBYBa@@WD{A?_ACgAB]@G?KAiAA]?C?g@?E?_@A[Ca@AWCUAQAACSCO?EIa@CIOw@CKIa@ACAAKk@AAAEGUMe@CEUo@GQM[]y@ISQc@AA[{@Wk@KYIQGQSk@Yw@CEOa@ACQa@y@oBQg@KUMWO[IUIUGYCUCSAM?K?M?E?IBODUDQFOFMLSVSLKLG@ARGREJ?JAP?J@F@F@HB@@B@XNNFFDJL\\VTP\\\\HJZ`@HJBDd@t@@@Pd@`@`ABDDFNN@@B@NFD@D@F?F?L?DAFAFAPIXYT[Tc@VWL[H]DWF_@AmA@a@?I?W?Q?]?IAQM}@Gg@Gg@Ig@S}ASgBE]Ga@COCUEc@C_@Ck@Ci@Cm@Bm@?KBK@AJS@WJuA@IDYBUP}@H_@J[Na@J[`@{@Xg@Xe@Ze@HI\\e@jCcDjBwBx@_AdAoAX]jAuArAcBv@kATc@Ta@Rc@Tg@Tg@Tk@\\uA^}A^sBJ_AFu@FaABi@BaA@s@@{@Ak@Ak@Ek@Eg@Iu@Ky@Gc@Ia@I_@GYEQQo@Qk@Qk@o@oByBwGu@_Ck@kBUw@c@uAu@}BcBgFEQSo@Mc@uA_E_A}CQm@Om@AGGYKe@Kg@Ik@Gk@E_@E]Eq@ASCo@?KA]AiA@{@Bq@Dm@JeAN{@TqA^{Al@mBjAcCNU`@q@b@m@nAsArDgD~@s@`@]LKTSb@]b@]BCHGd@_@RM~A_AnAm@`Ae@j@Y`Ae@d@Y~AsA~AqBNYVc@HMFORc@Ne@FQFSFUBKH[@ELs@@OD[B]BY@[?W?W?YAO?OCa@A]Ec@G]Kg@EMGMAEACAE?CAGCKAEI]I[MSIOEGIGIGICEASE[AK?I@OFMHKFIJILELENCJ?HAL?J@L@LFRLTFHFFBBDBHFF@B@HBNBL?J?HAFAPGhAu@VMDCNCd@]nA{@xAw@x@k@dBqADEn@c@zAcAzAcAXQ`KyGv@g@lI}Fh@u@DMBIDK@M?IEkAg@qFC]YsCUyBE[Iy@AMCK]uD@c@@O[uDOgAM_AAMAEGSCGAEa@w@oAwB}BnBw@t@CBEDGDGFCBEBCBCBEBGDA@C@A@C@CBCBCBCBC@CBCDC@A@CBC@A@GDGHgC~B{@v@wFbFGDEBE?E?E@C?CACCEGsBaCQQo@q@aBiBSUKMIGeBoB_BoBQIECE?E?G@C?E@G@G@GBC?C@C@W@gAdBs@|@qA|AOTcAnAA?CD_@b@}@jAc@l@c@j@q@z@_@h@OPy@bALNHJRZjAhBbA|AT^|BpD@B@B@FHv@Zb@Z`@HJ`B~B`@j@nAlBXx@`AjD`@jBFXn@d@BL@@LZPZVVLJJHNBXDl@Df@@N@@?@@NB@@B@RRPXNTJJ@@@@NH@?@@J@@?@?R?RA@?@?VGFCB?d@ODEn@c@zAcAzAcAXQ`KyGv@g@lI}FxAiAnCoB^UFCj@[bN{IzBmBp@o@POHKJOZg@d@{@b@aAFMv@mBLWJYBG@CP]@CPc@JUXo@hAcCbAwBXg@T[\\c@X]|A{BzAwBRWtAiBp@{@|AgBbA}@z@eAdAeBpAqBhAaBpBmCz@mA~ByCdAmAbDmDrB}BhAqAfCqCxCaDfCsCbAeA~CmDrBeCdAsA|@oA`BcCPY~AgCb@u@@ARa@R[j@gA|AuCtB_Ev@}AhAyBlBoDfAkBd@_ApAeCpBwDx@wAvAqCbCoEfCuEjCmFxAmCrA}BhBcDlAyBt@oAf@w@b@u@HKHOdBsClDaGdB{CLWHK\\m@r@gAjGmJr@gAp@eAj@_A~AeDLUHMfAqBlA_Cl@oAbA_C`B{DhBmE~@yBZu@t@wAb@s@hAeBLiA`DoE~@mA{AsASQiBoAuBaBuAgAcAy@aCcBYW_BmA]WoDmCaBqA[Wy@o@y@o@kJiHGEOOQMLU~BgEJSvAiCHODIx@wAzCsFNWh@aAjBeD|BeETa@dBaDTa@kA}@cCkBOMi@a@EEgBuAAAGGSOw@m@g@_@uBaBoAcAUQy@q@eBqAgCoBgBuAKKsB}AEEIIEMIWMa@wA{EEQo@sBQq@ZQNt@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.613924,
+                                      "longitude": 77.209001
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.535518999999997,
+                                      "longitude": 77.3910063
+                                  }
+                              },
+                              "steps": [
+                                  {
+                                      "distanceMeters": 210,
+                                      "staticDuration": "40s",
+                                      "polyline": {
+                                          "encodedPolyline": "_tsmDg{fvM?e@V?J?X?R@`@@`@@`@@X?H?d@@j@?J?J?HBF@"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.613924,
+                                              "longitude": 77.209001
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6121983,
+                                              "longitude": 77.2091074
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "DEPART",
+                                          "instructions": "Head east on Rashtrapati Bhavan Rd toward Rashtrapati Bhavan Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 300,
+                                      "staticDuration": "55s",
+                                      "polyline": {
+                                          "encodedPolyline": "gismD}{fvMl@iAxBqEFQxAyC@MNq@"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6121983,
+                                              "longitude": 77.2091074
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.610780799999997,
+                                              "longitude": 77.2117083
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Motilal Nehru Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.3 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 688,
+                                      "staticDuration": "78s",
+                                      "polyline": {
+                                          "encodedPolyline": "k`smDelgvMCECICIAI?K?IBODK@CDIDEFGFCHC@?DAH?H?B@B?@@Te@@?LIjBwD?A~CuG~@cBJWNa@Ta@Rc@DILWRc@Ta@Rc@Ra@NY@C@KBSDg@"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.610780799999997,
+                                              "longitude": 77.2117083
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6075476,
+                                              "longitude": 77.217394
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "ROUNDABOUT_LEFT",
+                                          "instructions": "At the roundabout, take the 3rd exit and stay on Motilal Nehru Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.7 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 825,
+                                      "staticDuration": "93s",
+                                      "polyline": {
+                                          "encodedPolyline": "elrmDuohvMKW?AGSEW?ACWCS@_@Bg@Fe@BODKDKX]TKHATCN?TBXDPHv@a@P[z@uB@AnAiCpAgCFOf@{@d@aA|A{CnAkCLW@S@G@I?I@KAM"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6075476,
+                                              "longitude": 77.217394
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6038657,
+                                              "longitude": 77.2238153
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "ROUNDABOUT_LEFT",
+                                          "instructions": "At the roundabout, take the 3rd exit and stay on Motilal Nehru Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.8 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "2 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 227,
+                                      "staticDuration": "33s",
+                                      "polyline": {
+                                          "encodedPolyline": "euqmD{wivMKSEKCKAICI@G@K@CBMDQBABADAB?B?B?fBzARPZVz@n@"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6038657,
+                                              "longitude": 77.2238153
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6027354,
+                                              "longitude": 77.2235427
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "ROUNDABOUT_LEFT",
+                                          "instructions": "At the roundabout, take the 3rd exit onto Prithviraj Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 167,
+                                      "staticDuration": "28s",
+                                      "polyline": {
+                                          "encodedPolyline": "cnqmDcvivMvByCnAeB"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6027354,
+                                              "longitude": 77.2235427
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6017366,
+                                              "longitude": 77.224823
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Prithviraj Ln"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 265,
+                                      "staticDuration": "52s",
+                                      "polyline": {
+                                          "encodedPolyline": "{gqmDc~ivM[WeA}@WWECECCC_@SQKSKSMQKMIkCwA"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6017366,
+                                              "longitude": 77.224823
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6037427,
+                                              "longitude": 77.22627159999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left at the 1st cross street onto Amrita Shergill Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.3 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 425,
+                                      "staticDuration": "68s",
+                                      "polyline": {
+                                          "encodedPolyline": "ktqmDegjvMn@aBJW`@cA^cAJYp@cBpAmC\\aAAC?A?A?C@CFU\\_A\\aA"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6037427,
+                                              "longitude": 77.22627159999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.601904599999997,
+                                              "longitude": 77.2300691
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_RIGHT",
+                                          "instructions": "Turn right onto Humayun Rd\nPass by Raghubir Singh Jr Modern School (on the left)"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.4 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 210,
+                                      "staticDuration": "36s",
+                                      "polyline": {
+                                          "encodedPolyline": "{hqmD}~jvMB]DOBU@Q?Gc@y@m@eAa@{@m@kAEG"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.601904599999997,
+                                              "longitude": 77.2300691
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6026563,
+                                              "longitude": 77.23190079999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Subramania Bharti Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 1218,
+                                      "staticDuration": "149s",
+                                      "polyline": {
+                                          "encodedPolyline": "smqmDkjkvMEKPMPKHEJEJENEl@OD?FAH?JAn@C^@~D@T?|CA|FB`@?tD?~C?LAh@?rEDNA@?@?@?@?@A@?@??A@?DC@ABA@ADClAcAhAgADC@AVSpB{ABCBCVQTQDEDCVSt@g@`@Y"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.6026563,
+                                              "longitude": 77.23190079999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.592458999999998,
+                                              "longitude": 77.2343681
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_RIGHT",
+                                          "instructions": "Turn right onto Archbishop Makarios Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "1.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "2 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 535,
+                                      "staticDuration": "84s",
+                                      "polyline": {
+                                          "encodedPolyline": "{momDyykvMH[HQDKBKF]MsBMwBOsBIoAGm@GcAGwAC_@Cm@C_AAs@GeAKmA"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.592458999999998,
+                                              "longitude": 77.2343681
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.592831,
+                                              "longitude": 77.23975449999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Lodhi Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.5 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 245,
+                                      "staticDuration": "53s",
+                                      "polyline": {
+                                          "encodedPolyline": "epomDm{lvMIk@Ei@V?nBDD?f@?rCFN@P?"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.592831,
+                                              "longitude": 77.23975449999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5910921,
+                                              "longitude": 77.2400992
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_RIGHT",
+                                          "instructions": "Turn right"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 2295,
+                                      "staticDuration": "173s",
+                                      "polyline": {
+                                          "encodedPolyline": "ieomDs}lvMJGHCDABAHAJC`@GJEJELEJGLIFEJITSfAkAfAcATUbDgDpBuBl@o@RSLUHMFMDODQBSDUDu@B]@QBUBQBEBEHK?GT_ANo@Jc@Nk@Ny@FYD]B]@[@S?E?e@Cc@C[Ei@CSEWKg@Ie@AGGYMk@Ko@Ge@Ga@CSCk@A]?U@k@Dq@Hk@F[F[Lc@FQ^s@JSZe@j@s@p@u@JMdAoAdAsAnAiBDEBCTa@n@_Af@}@b@k@d@m@z@cAj@w@lAoBd@{@Xi@Na@JWRi@H_@J]Lk@Fa@BYBWBYBa@@WD{A?_ACgA"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5910921,
+                                              "longitude": 77.2400992
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.582103399999998,
+                                              "longitude": 77.25930129999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Keep left and merge onto Baba Banda Singh Bahadur Setu"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "2.3 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "3 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 1425,
+                                      "staticDuration": "113s",
+                                      "polyline": {
+                                          "encodedPolyline": "cmmmDsupvMB]@G?KAiAA]?C?g@?E?_@A[Ca@AWCUAQAACSCO?A?CIa@CIOw@CKIa@ACAAKk@AAAEGUMe@CEUo@GQM[]y@ISQc@AA[{@Wk@KYA?GQGQSk@Yw@CEOa@ACQa@y@oBQg@KUMWO[IUIUGYCUCSAM?K?M?A?C?IBODUDQFOFMLSVSLKLG@ARGREJ?JAN?L@F@F@HB@@B@XNNFFDJL\\VTP\\\\HJZ`@HJBDd@t@@@?@Pb@`@`ABDDFNN@@B@NFD@D@F?F?L?DAFAFAPIXYT[Tc@VW"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.582103399999998,
+                                              "longitude": 77.25930129999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5811066,
+                                              "longitude": 77.26689499999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "STRAIGHT",
+                                          "instructions": "Take the exit toward नौएडा/Noida"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "1.4 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "2 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 59,
+                                      "staticDuration": "8s",
+                                      "polyline": {
+                                          "encodedPolyline": "}fmmDaervML[H]DWF_@"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5811066,
+                                              "longitude": 77.26689499999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.580923,
+                                              "longitude": 77.26745790000001
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "MERGE",
+                                          "instructions": "Merge onto NH 44\nPass by JP NURSERY (on the left)"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "59 m"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 497,
+                                      "staticDuration": "52s",
+                                      "polyline": {
+                                          "encodedPolyline": "wemmDshrvMAmA@a@?I?W?Q?]?IAQM}@Gg@Gg@Ig@S}ASgBE]Ga@COCUEc@C_@Ck@Ci@Cm@Bm@?KBK@AJS"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.580923,
+                                              "longitude": 77.26745790000001
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.581441899999998,
+                                              "longitude": 77.27243690000002
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "RAMP_LEFT",
+                                          "instructions": "Slight left at Furniture onto the Ring Rd ramp"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.5 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 3956,
+                                      "staticDuration": "272s",
+                                      "polyline": {
+                                          "encodedPolyline": "_immDwgsvM@WJuA@IDYBUP}@H_@J[Na@J[`@{@Xg@Xe@Ze@HI\\e@jCcDjBwBx@_AdAoAX]jAuArAcBv@kATc@Ta@Rc@Tg@Tg@Tk@\\uA^}A^sBJ_AFu@FaABi@BaA@s@@{@Ak@Ak@Ek@Eg@Iu@Ky@Gc@Ia@I_@GYEQQo@Qk@Qk@o@oByBwGu@_Ck@kBUw@c@uAu@}BcBgFEQSo@Mc@uA_E_A}CQm@Om@AGGYKe@Kg@Ik@Gk@E_@E]Eq@ASCo@?KA]AiA@{@Bq@Dm@JeAN{@TqA^{Al@mBjAcCNU`@q@b@m@nAsArDgD~@s@`@]LKTSb@]b@]BCHGd@_@RM~A_AnAm@`Ae@j@Y`Ae@d@Y~AsA~AqB"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.581441899999998,
+                                              "longitude": 77.27243690000002
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5732701,
+                                              "longitude": 77.30594099999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "MERGE",
+                                          "instructions": "Merge onto Delhi Noida Direct Flyway\nToll road"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "4.0 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "5 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 387,
+                                      "staticDuration": "33s",
+                                      "polyline": {
+                                          "encodedPolyline": "}ukmDcyyvMNYVc@HMFORc@Ne@FQFSFUBKH[Ny@@OD[B]BY@[?W?W?YAO?OCa@A]Ec@G]Kg@EM"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5732701,
+                                              "longitude": 77.30594099999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5726387,
+                                              "longitude": 77.30964569999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_RIGHT",
+                                          "instructions": "Keep right to stay on Delhi Noida Direct Flyway"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.4 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 1368,
+                                      "staticDuration": "143s",
+                                      "polyline": {
+                                          "encodedPolyline": "_rkmDipzvMGMAEACAE?CAGCKKc@I[MSIOEGIGIGICEASE[AK?I@OFMHKFIJILELENCJ?HAL?J@L@LFRLTFHFFBBDBHFF@B@HBNBL?J?HAFAPGhAu@VMDCNCd@]nA{@xAw@x@k@dBqADEn@c@zAcAzAcAXQ`KyGv@g@lI}F"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5726387,
+                                              "longitude": 77.30964569999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5654802,
+                                              "longitude": 77.31502870000001
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "RAMP_LEFT",
+                                          "instructions": "Take the ramp onto Dadri Main Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "1.4 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "2 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 104,
+                                      "staticDuration": "11s",
+                                      "polyline": {
+                                          "encodedPolyline": "gejmD}q{vMh@u@DMBIDK@M?IEkA"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5654802,
+                                              "longitude": 77.31502870000001
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5652142,
+                                              "longitude": 77.3159762
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "RAMP_LEFT",
+                                          "instructions": "Take the exit toward Maharaja Agrasen Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.1 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 735,
+                                      "staticDuration": "90s",
+                                      "polyline": {
+                                          "encodedPolyline": "qcjmD{w{vMg@qFC]YsCUyBE[Iy@AMCK]uD@c@@O[uDOgAM_AAMAEGSCGAEa@w@oAwB"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5652142,
+                                              "longitude": 77.3159762
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.566857,
+                                              "longitude": 77.3231575
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "NAME_CHANGE",
+                                          "instructions": "Continue onto Maharaja Agrasen Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.7 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "2 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 802,
+                                      "staticDuration": "184s",
+                                      "polyline": {
+                                          "encodedPolyline": "{mjmDwd}vM}BnBw@t@CBEDGDGFCBEBCBCBEBGDA@A?A@A@C@CBCBCBCBC@CBCDC@A@CBC@A@GDGHgC~B{@v@wFbFGDEBE?E?E@C?CACCEGsBaCQQo@q@aBiBSU"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.566857,
+                                              "longitude": 77.3231575
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.572394499999998,
+                                              "longitude": 77.3213403
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Road No. 18"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.8 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "3 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 171,
+                                      "staticDuration": "27s",
+                                      "polyline": {
+                                          "encodedPolyline": "mpkmDky|vMKMIGeBoB_BoB"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.572394499999998,
+                                              "longitude": 77.3213403
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5734908,
+                                              "longitude": 77.3225665
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "NAME_CHANGE",
+                                          "instructions": "Continue onto Tulsi Marg"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 570,
+                                      "staticDuration": "86s",
+                                      "polyline": {
+                                          "encodedPolyline": "iwkmDaa}vMQIECE?E?G@C?E@G@G@GBC?C@C@W@gAdBs@|@qA|AOTcAnAA??@CB_@b@}@jAc@l@c@j@q@z@_@h@OPy@bA"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5734908,
+                                              "longitude": 77.3225665
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5771509,
+                                              "longitude": 77.3187745
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Captain Vijyant Thapar Marg\nPass by Bhel Colony (on the left)"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.6 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 760,
+                                      "staticDuration": "87s",
+                                      "polyline": {
+                                          "encodedPolyline": "enlmDii|vMLNHJRZjAhBbA|AT^|BpD@B@B@FHv@Zb@Z`@HJ`B~B`@j@nAlBXx@`AjD`@jBFX"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5771509,
+                                              "longitude": 77.3187745
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5733255,
+                                              "longitude": 77.31244319999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "RAMP_LEFT",
+                                          "instructions": "Turn left onto the ramp to Noida-Greater Noida Expy"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.8 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 7868,
+                                      "staticDuration": "586s",
+                                      "polyline": {
+                                          "encodedPolyline": "ivkmDwa{vMn@d@DNLZPZVVLJJHNBXDl@Df@@N@@?@@NB@@B@RRPXNTJJ@@@@NH@?@@J@@?@?R?RA@?@?VGFCh@ODEn@c@zAcAzAcAXQ`KyGv@g@lI}FxAiAnCoB^UFCj@[bN{IzBmBp@o@POHKJOZg@d@{@b@aAFMv@mBLWJYBG@CP]@CPc@JUXo@hAcCbAwBXg@T[\\c@X]|A{BzAwBRWtAiBp@{@|AgBbA}@z@eAdAeBpAqBhAaBpBmCz@mA~ByCdAmAbDmDrB}BhAqAfCqCxCaDfCsCbAeA~CmDrBeCdAsA|@oA`BcCPY~AgCb@u@@ARa@R[j@gA|AuCtB_Ev@}AhAyBlBoDfAkBd@_ApAeCpBwDx@wAvAqCbCoEfCuEjCmFxAmCrA}BhBcDlAyBt@oAf@w@b@u@HKHOdBsClDaGdB{CLWHK\\m@r@gAjGmJr@gAp@eAj@_A~AeDLUHMfAqBlA_Cl@oAbA_C`B{DhBmE~@yBZu@t@wAb@s@hAeB"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5733255,
+                                              "longitude": 77.31244319999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.526232300000004,
+                                              "longitude": 77.3680794
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "RAMP_LEFT",
+                                          "instructions": "Slight left to merge onto Noida-Greater Noida Expy"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "7.9 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "10 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 224,
+                                      "staticDuration": "30s",
+                                      "polyline": {
+                                          "encodedPolyline": "}obmDo}ewMLiA`DoE~@mA"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.526232300000004,
+                                              "longitude": 77.3680794
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.525031199999997,
+                                              "longitude": 77.3698778
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "RAMP_LEFT",
+                                          "instructions": "Take the exit toward Fortune School Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.2 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 1083,
+                                      "staticDuration": "125s",
+                                      "polyline": {
+                                          "encodedPolyline": "mhbmDwhfwM{AsASQiBoAuBaBuAgAcAy@aCcBYW_BmA]WoDmCaBqA[Wy@o@y@o@kJiHGEOO"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.525031199999997,
+                                              "longitude": 77.3698778
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5329233,
+                                              "longitude": 77.37637529999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Fortune School Rd\nPass by Indraprastha Gas Limited CNG Station (on the left)"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "1.1 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "2 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 872,
+                                      "staticDuration": "114s",
+                                      "polyline": {
+                                          "encodedPolyline": "wycmDkqgwMQMLU~BgEJSvAiCHODIx@wAzCsFNWh@aAjBeD|BeETa@dBaDTa@"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5329233,
+                                              "longitude": 77.37637529999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5284606,
+                                              "longitude": 77.38355899999999
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_RIGHT",
+                                          "instructions": "Turn right onto Fortune School Rd/Janpath Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.9 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "2 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 143,
+                                      "staticDuration": "19s",
+                                      "polyline": {
+                                          "encodedPolyline": "{}bmDg~hwMkA}@cCkB"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.5284606,
+                                              "longitude": 77.38355899999999
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.529502299999997,
+                                              "longitude": 77.3844119
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "TURN_LEFT",
+                                          "instructions": "Turn left onto Gejha Rd/Vishwakarma Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "0.1 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "1 min"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  },
+                                  {
+                                      "distanceMeters": 1030,
+                                      "staticDuration": "175s",
+                                      "polyline": {
+                                          "encodedPolyline": "kdcmDqciwMOMi@a@EEgBuAAAGGSOw@m@g@_@uBaBoAcAUQy@q@eBqAgCoBgBuAKKsB}AEEIIEMIWMa@wA{EEQo@sBQq@ZQNt@"
+                                      },
+                                      "startLocation": {
+                                          "latLng": {
+                                              "latitude": 28.529502299999997,
+                                              "longitude": 77.3844119
+                                          }
+                                      },
+                                      "endLocation": {
+                                          "latLng": {
+                                              "latitude": 28.535518999999997,
+                                              "longitude": 77.3910063
+                                          }
+                                      },
+                                      "navigationInstruction": {
+                                          "maneuver": "STRAIGHT",
+                                          "instructions": "Continue straight onto Vishwakarma Rd"
+                                      },
+                                      "localizedValues": {
+                                          "distance": {
+                                              "text": "1.0 km"
+                                          },
+                                          "staticDuration": {
+                                              "text": "3 mins"
+                                          }
+                                      },
+                                      "travelMode": "DRIVE"
+                                  }
+                              ],
+                              "travelAdvisory": {
+                                  "tollInfo": [],
+                                  "speedReadingIntervals": [
+                                      {
+                                          "startPolylinePointIndex": 0,
+                                          "endPolylinePointIndex": 60,
+                                          "speed": "NORMAL"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 60,
+                                          "endPolylinePointIndex": 83,
+                                          "speed": "TRAFFIC_JAM"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 83,
+                                          "endPolylinePointIndex": 142,
+                                          "speed": "NORMAL"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 142,
+                                          "endPolylinePointIndex": 152,
+                                          "speed": "SLOW"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 152,
+                                          "endPolylinePointIndex": 629,
+                                          "speed": "NORMAL"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 629,
+                                          "endPolylinePointIndex": 654,
+                                          "speed": "SLOW"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 654,
+                                          "endPolylinePointIndex": 844,
+                                          "speed": "NORMAL"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 844,
+                                          "endPolylinePointIndex": 879,
+                                          "speed": "TRAFFIC_JAM"
+                                      },
+                                      {
+                                          "startPolylinePointIndex": 879,
+                                          "endPolylinePointIndex": 1069,
+                                          "speed": "NORMAL"
+                                      }
+                                  ]
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "29.7 km"
+                                  },
+                                  "duration": {
+                                      "text": "1 hour 1 min"
+                                  },
+                                  "staticDuration": {
+                                      "text": "52 mins"
+                                  }
+                              }
+                          }
+                      ],
+                      "distanceMeters": 29664,
+                      "duration": "3674s",
+                      "staticDuration": "3095s",
+                      "polyline": {
+                          "encodedPolyline": "_tsmDg{fvM?e@V?J?X?R@`@@`@@`@@X?H?d@@j@?J?J?HBF@l@iAxBqEFQxAyC@MNq@CECICIAI?K?IBODK@CDIDEFGFCHC@?DAH?H?B@B?Vc@NIjBwD?A~CuG~@cBJWNa@Ta@Rc@DILWRc@Ta@Rc@Ra@NY@C@KBSDg@KW?AGSEWCYCS@_@Bg@Fe@BODKDKX]TKHATCN?TBXD@@NFv@a@P[z@uB@AnAiCpAgCFOf@{@d@aA|A{CnAkCLW@S@G@I?I@KAMKSEKCKAICI@G@K@CBMDQBABADAB?B?B?fBzARPZVz@n@vByCnAeB[WeA}@WWECECCC_@SQKSKSMQKMIkCwAn@aBJW`@cA^cAJWp@eBpAmC\\aAAC?C?C@CFU\\_AZ_A@AB]DOBU@Q?Gc@y@m@eAa@{@m@kAEGEKPMPKHEJEJENEl@OD?FAH?JAn@C^@~D@T?|CA|FB`@?tD?~C?LAh@?rEDNA@?B?@?@AB?@ADC@ABA@ADClAcAhAgADC@AVSpB{ABCBCVQTQDEDCVSt@g@`@YH[HQDKBKF]MsBMwBOsBIoAGm@GcAGwAC_@Cm@C_AAs@GeAKmAIk@Ei@V?nBDD?f@?rCFN@P?JGHCDABAHAJC`@GJEJELEJGLIFEJITSfAkAfAcATUbDgDpBuBl@o@RSLUHMFMDODQBSDUDu@B]@QBUBQBEBEHK?GT_ANo@Jc@Nk@Ny@FYD]B]@[@S?E?e@Cc@C[Ei@CSEWKg@Ie@AGGYMk@Ko@Ge@Ga@CSCk@A]?U@k@Dq@Hk@F[F[Lc@FQ^s@JSZe@j@s@p@u@JMdAoAdAsAnAiBDEBCTa@n@_Af@}@b@k@d@m@z@cAj@w@lAoBd@{@Xi@Na@JWRi@H_@J]Lk@Fa@BYBWBYBa@@WD{A?_ACgAB]@G?KAiAA]?C?g@?E?_@A[Ca@AWCUAQAACSCO?EIa@CIOw@CKIa@ACAAKk@AAAEGUMe@CEUo@GQM[]y@ISQc@AA[{@Wk@KYIQGQSk@Yw@CEOa@ACQa@y@oBQg@KUMWO[IUIUGYCUCSAM?K?M?E?IBODUDQFOFMLSVSLKLG@ARGREJ?JAP?J@F@F@HB@@B@XNNFFDJL\\VTP\\\\HJZ`@HJBDd@t@@@Pd@`@`ABDDFNN@@B@NFD@D@F?F?L?DAFAFAPIXYT[Tc@VWL[H]DWF_@AmA@a@?I?W?Q?]?IAQM}@Gg@Gg@Ig@S}ASgBE]Ga@COCUEc@C_@Ck@Ci@Cm@Bm@?KBK@AJS@WJuA@IDYBUP}@H_@J[Na@J[`@{@Xg@Xe@Ze@HI\\e@jCcDjBwBx@_AdAoAX]jAuArAcBv@kATc@Ta@Rc@Tg@Tg@Tk@\\uA^}A^sBJ_AFu@FaABi@BaA@s@@{@Ak@Ak@Ek@Eg@Iu@Ky@Gc@Ia@I_@GYEQQo@Qk@Qk@o@oByBwGu@_Ck@kBUw@c@uAu@}BcBgFEQSo@Mc@uA_E_A}CQm@Om@AGGYKe@Kg@Ik@Gk@E_@E]Eq@ASCo@?KA]AiA@{@Bq@Dm@JeAN{@TqA^{Al@mBjAcCNU`@q@b@m@nAsArDgD~@s@`@]LKTSb@]b@]BCHGd@_@RM~A_AnAm@`Ae@j@Y`Ae@d@Y~AsA~AqBNYVc@HMFORc@Ne@FQFSFUBKH[@ELs@@OD[B]BY@[?W?W?YAO?OCa@A]Ec@G]Kg@EMGMAEACAE?CAGCKAEI]I[MSIOEGIGIGICEASE[AK?I@OFMHKFIJILELENCJ?HAL?J@L@LFRLTFHFFBBDBHFF@B@HBNBL?J?HAFAPGhAu@VMDCNCd@]nA{@xAw@x@k@dBqADEn@c@zAcAzAcAXQ`KyGv@g@lI}Fh@u@DMBIDK@M?IEkAg@qFC]YsCUyBE[Iy@AMCK]uD@c@@O[uDOgAM_AAMAEGSCGAEa@w@oAwB}BnBw@t@CBEDGDGFCBEBCBCBEBGDA@C@A@C@CBCBCBCBC@CBCDC@A@CBC@A@GDGHgC~B{@v@wFbFGDEBE?E?E@C?CACCEGsBaCQQo@q@aBiBSUKMIGeBoB_BoBQIECE?E?G@C?E@G@G@GBC?C@C@W@gAdBs@|@qA|AOTcAnAA?CD_@b@}@jAc@l@c@j@q@z@_@h@OPy@bALNHJRZjAhBbA|AT^|BpD@B@B@FHv@Zb@Z`@HJ`B~B`@j@nAlBXx@`AjD`@jBFXn@d@BL@@LZPZVVLJJHNBXDl@Df@@N@@?@@NB@@B@RRPXNTJJ@@@@NH@?@@J@@?@?R?RA@?@?VGFCB?d@ODEn@c@zAcAzAcAXQ`KyGv@g@lI}FxAiAnCoB^UFCj@[bN{IzBmBp@o@POHKJOZg@d@{@b@aAFMv@mBLWJYBG@CP]@CPc@JUXo@hAcCbAwBXg@T[\\c@X]|A{BzAwBRWtAiBp@{@|AgBbA}@z@eAdAeBpAqBhAaBpBmCz@mA~ByCdAmAbDmDrB}BhAqAfCqCxCaDfCsCbAeA~CmDrBeCdAsA|@oA`BcCPY~AgCb@u@@ARa@R[j@gA|AuCtB_Ev@}AhAyBlBoDfAkBd@_ApAeCpBwDx@wAvAqCbCoEfCuEjCmFxAmCrA}BhBcDlAyBt@oAf@w@b@u@HKHOdBsClDaGdB{CLWHK\\m@r@gAjGmJr@gAp@eAj@_A~AeDLUHMfAqBlA_Cl@oAbA_C`B{DhBmE~@yBZu@t@wAb@s@hAeBLiA`DoE~@mA{AsASQiBoAuBaBuAgAcAy@aCcBYW_BmA]WoDmCaBqA[Wy@o@y@o@kJiHGEOOQMLU~BgEJSvAiCHODIx@wAzCsFNWh@aAjBeD|BeETa@dBaDTa@kA}@cCkBOMi@a@EEgBuAAAGGSOw@m@g@_@uBaBoAcAUQy@q@eBqAgCoBgBuAKKsB}AEEIIEMIWMa@wA{EEQo@sBQq@ZQNt@"
+                      },
+                      "description": "Noida-Greater Noida Expy",
+                      "warnings": [
+                          "This route has tolls.",
+                          "This route includes a highway."
+                      ],
+                      "viewport": {
+                          "low": {
+                              "latitude": 28.5250312,
+                              "longitude": 77.209001
+                          },
+                          "high": {
+                              "latitude": 28.613924,
+                              "longitude": 77.3912769
+                          }
+                      },
+                      "travelAdvisory": {
+                          "tollInfo": [],
+                          "speedReadingIntervals": [
+                              {
+                                  "startPolylinePointIndex": 0,
+                                  "endPolylinePointIndex": 60,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 60,
+                                  "endPolylinePointIndex": 83,
+                                  "speed": "TRAFFIC_JAM"
+                              },
+                              {
+                                  "startPolylinePointIndex": 83,
+                                  "endPolylinePointIndex": 142,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 142,
+                                  "endPolylinePointIndex": 152,
+                                  "speed": "SLOW"
+                              },
+                              {
+                                  "startPolylinePointIndex": 152,
+                                  "endPolylinePointIndex": 629,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 629,
+                                  "endPolylinePointIndex": 654,
+                                  "speed": "SLOW"
+                              },
+                              {
+                                  "startPolylinePointIndex": 654,
+                                  "endPolylinePointIndex": 844,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 844,
+                                  "endPolylinePointIndex": 879,
+                                  "speed": "TRAFFIC_JAM"
+                              },
+                              {
+                                  "startPolylinePointIndex": 879,
+                                  "endPolylinePointIndex": 1069,
+                                  "speed": "NORMAL"
+                              }
+                          ]
+                      },
+                      "localizedValues": {
+                          "distance": {
+                              "text": "29.7 km"
+                          },
+                          "duration": {
+                              "text": "1 hour 1 min"
+                          },
+                          "staticDuration": {
+                              "text": "52 mins"
+                          }
+                      },
+                      "routeToken": "CgAaGAoKDWgjDhEVmigFLhIKDXgiDhEVkCgFLg",
+                      "routeLabels": [
+                          "DEFAULT_ROUTE"
+                      ],
+                      "polylineDetails": []
+                  }
+              ]
+          }
+
+docs: |+
+  ## Route Details
+
+  Returns distance, duration, and route polyline between two coordinates using Google Maps.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `pickup_latitude` | string | Yes | Pickup latitude |
+  | `pickup_longitude` | string | Yes | Pickup longitude |
+  | `drop_latitude` | string | Yes | Drop latitude |
+  | `drop_longitude` | string | Yes | Drop longitude |
+  | `waypoint` | string | Yes | Waypoint |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "routes": [
+          {
+              "legs": [
+                  {
+                      "distanceMeters": 29664,
+                      "duration": "3674s",
+                      "staticDuration": "3097s",
+                      "polyline": {
+                          "encodedPolyline": "_tsmDg{fvM?e@V?J?X?R@`@@`@@`@@X?H?d@@j@?J?J?HBF@l@iAxBqEFQxAyC@MNq@CECICIAI?K?IBODK@CDIDEFGFCHC@?DAH?H?B@B?Vc@NIjBwD?A~CuG~@cBJWNa@Ta@Rc@DILWRc@Ta@Rc@Ra@NY@C@KBSDg@KW?AGSEWCYCS@_@Bg@Fe@BODKDKX]TKHATCN?TBXD@@NFv@a@P[z@uB@AnAiCpAgCFOf@{@d@aA|A{CnAkCLW@S@G@I?I@KAMKSEKCKAICI@G@K@CBMDQBABADAB?B?B?fBzARPZVz@n@vByCnAeB[WeA}@WWECECCC_@SQKSKSMQKMIkCwAn@aBJW`@cA^cAJWp@eBpAmC\\aAAC?C?C@CFU\\_AZ_A@AB]DOBU@Q?Gc@y@m@eAa@{@m@kAEGEKPMPKHEJEJENEl@OD?FAH?JAn@C^@~D@T?|CA|FB`@?tD?~C?LAh@?rEDNA@?B?@?@AB?@ADC@ABA@ADClAcAhAgADC@AVSpB{ABCBCVQTQDEDCVSt@g@`@YH[HQDKBKF]MsBMwBOsBIoAGm@GcAGwAC_@Cm@C_AAs@GeAKmAIk@Ei@V?nBDD?f@?rCFN@P?JGHCDABAHAJC`@GJEJELEJGLIFEJITSfAkAfAcATUbDgDpBuBl@o@RSLUHMFMDODQBSDUDu@B]@QBUBQBEBEHK?GT_ANo@Jc@Nk@Ny@FYD]B]@[@S?E?e@Cc@C[Ei@CSEWKg@Ie@AGGYMk@Ko@Ge@Ga@CSCk@A]?U@k@Dq@Hk@F[F[Lc@FQ^s@JSZe@j@s@p@u@JMdAoAdAsAnAiBDEBCTa@n@_Af@}@b@k@d@m@z@cAj@w@lAoBd@{@Xi@Na@JWRi@H_@J]Lk@Fa@BYBWBYBa@@WD{A?_ACgAB]@G?KAiAA]?C?g@?E?_@A[Ca@AWCUAQAACSCO?EIa@CIOw@CKIa@ACAAKk@AAAEGUMe@CEUo@GQM[]y@ISQc@AA[{@Wk@KYIQGQSk@Yw@CEOa@ACQa@y@oBQg@KUMWO[IUIUGYCUCSAM?K?M?E?IBODUDQFOFMLSVSLKLG@ARGREJ?JAP?J@F@F@HB@@B@XNNFFDJL\\VTP\\\\HJZ`@HJBDd@t@@@Pd@`@`ABDDFNN@@B@NFD@D@F?F?L?DAFAFAPIXYT[Tc@VWL[H]DWF_@AmA@a@?I?W?Q?]?IAQM}@Gg@Gg@Ig@S}ASgBE]Ga@COCUEc@C_@Ck@Ci@Cm@Bm@?KBK@AJS@WJuA@IDYBUP}@H_@J[Na@J[`@{@Xg@Xe@Ze@HI\\e@jCcDjBwBx@_AdAoAX]jAuArAcBv@kATc@Ta@Rc@Tg@Tg@Tk@\\uA^}A^sBJ_AFu@FaABi@BaA@s@@{@Ak@Ak@Ek@Eg@Iu@Ky@Gc@Ia@I_@GYEQQo@Qk@Qk@o@oByBwGu@_Ck@kBUw@c@uAu@}BcBgFEQSo@Mc@uA_E_A}CQm@Om@AGGYKe@Kg@Ik@Gk@E_@E]Eq@ASCo@?KA]AiA@{@Bq@Dm@JeAN{@TqA^{Al@mBjAcCNU`@q@b@m@nAsArDgD~@s@`@]LKTSb@]b@]BCHGd@_@RM~A_AnAm@`Ae@j@Y`Ae@d@Y~AsA~AqBNYVc@HMFORc@Ne@FQFSFUBKH[@ELs@@OD[B]BY@[?W?W?YAO?OCa@A]Ec@G]Kg@EMGMAEACAE?CAGCKAEI]I[MSIOEGIGIGICEASE[AK?I@OFMHKFIJILELENCJ?HAL?J@L@LFRLTFHFFBBDBHFF@B@HBNBL?J?HAFAPGhAu@VMDCNCd@]nA{@xAw@x@k@dBqADEn@c@zAcAzAcAXQ`KyGv@g@lI}Fh@u@DMBIDK@M?IEkAg@qFC]YsCUyBE[Iy@AMCK]uD@c@@O[uDOgAM_AAMAEGSCGAEa@w@oAwB}BnBw@t@CBEDGDGFCBEBCBCBEBGDA@C@A@C@CBCBCBCBC@CBCDC@A@CBC@A@GDGHgC~B{@v@wFbFGDEBE?E?E@C?CACCEGsBaCQQo@q@aBiBSUKMIGeBoB_BoBQIECE?E?G@C?E@G@G@GBC?C@C@W@gAdBs@|@qA|AOTcAnAA?CD_@b@}@jAc@l@c@j@q@z@_@h@OPy@bALNHJRZjAhBbA|AT^|BpD@B@B@FHv@Zb@Z`@HJ`B~B`@j@nAlBXx@`AjD`@jBFXn@d@BL@@LZPZVVLJJHNBXDl@Df@@N@@?@@NB@@B@RRPXNTJJ@@@@NH@?@@J@@?@?R?RA@?@?VGFCB?d@ODEn@c@zAcAzAcAXQ`KyGv@g@lI}FxAiAnCoB^UFCj@[bN{IzBmBp@o@POHKJOZg@d@{@b@aAFMv@mBLWJYBG@CP]@CPc@JUXo@hAcCbAwBXg@T[\\c@X]|A{BzAwBRWtAiBp@{@|AgBbA}@z@eAdAeBpAqBhAaBpBmCz@mA~ByCdAmAbDmDrB}BhAqAfCqCxCaDfCsCbAeA~CmDrBeCdAsA|@oA`BcCPY~AgCb@u@@ARa@R[j@gA|AuCtB_Ev@}AhAyBlBoDfAkBd@_ApAeCpBwDx@wAvAqCbCoEfCuEjCmFxAmCrA}BhBcDlAyBt@oAf@w@b@u@HKHOdBsClDaGdB{CLWHK\\m@r@gAjGmJr@gAp@eAj@_A~AeDLUHMfAqBlA_Cl@oAbA_C`B{DhBmE~@yBZu@t@wAb@s@hAeBLiA`DoE~@mA{AsASQiBoAuBaBuAgAcAy@aCcBYW_BmA]WoDmCaBqA[Wy@o@y@o@kJiHGEOOQMLU~BgEJSvAiCHODIx@wAzCsFNWh@aAjBeD|BeETa@dBaDTa@kA}@cCkBOMi@a@EEgBuAAAGGSOw@m@g@_@uBaBoAcAUQy@q@eBqAgCoBgBuAKKsB}AEEIIEMIWMa@wA{EEQo@sBQq@ZQNt@"
+                      },
+                      "startLocation": {
+                          "latLng": {
+                              "latitude": 28.613924,
+                              "longitude": 77.209001
+                          }
+                      },
+                      "endLocation": {
+                          "latLng": {
+                              "latitude": 28.535518999999997,
+                              "longitude": 77.3910063
+                          }
+                      },
+                      "steps": [
+                          {
+                              "distanceMeters": 210,
+                              "staticDuration": "40s",
+                              "polyline": {
+                                  "encodedPolyline": "_tsmDg{fvM?e@V?J?X?R@`@@`@@`@@X?H?d@@j@?J?J?HBF@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.613924,
+                                      "longitude": 77.209001
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6121983,
+                                      "longitude": 77.2091074
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "DEPART",
+                                  "instructions": "Head east on Rashtrapati Bhavan Rd toward Rashtrapati Bhavan Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 300,
+                              "staticDuration": "55s",
+                              "polyline": {
+                                  "encodedPolyline": "gismD}{fvMl@iAxBqEFQxAyC@MNq@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6121983,
+                                      "longitude": 77.2091074
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.610780799999997,
+                                      "longitude": 77.2117083
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Motilal Nehru Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.3 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 688,
+                              "staticDuration": "78s",
+                              "polyline": {
+                                  "encodedPolyline": "k`smDelgvMCECICIAI?K?IBODK@CDIDEFGFCHC@?DAH?H?B@B?@@Te@@?LIjBwD?A~CuG~@cBJWNa@Ta@Rc@DILWRc@Ta@Rc@Ra@NY@C@KBSDg@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.610780799999997,
+                                      "longitude": 77.2117083
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6075476,
+                                      "longitude": 77.217394
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "ROUNDABOUT_LEFT",
+                                  "instructions": "At the roundabout, take the 3rd exit and stay on Motilal Nehru Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.7 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 825,
+                              "staticDuration": "93s",
+                              "polyline": {
+                                  "encodedPolyline": "elrmDuohvMKW?AGSEW?ACWCS@_@Bg@Fe@BODKDKX]TKHATCN?TBXDPHv@a@P[z@uB@AnAiCpAgCFOf@{@d@aA|A{CnAkCLW@S@G@I?I@KAM"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6075476,
+                                      "longitude": 77.217394
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6038657,
+                                      "longitude": 77.2238153
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "ROUNDABOUT_LEFT",
+                                  "instructions": "At the roundabout, take the 3rd exit and stay on Motilal Nehru Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.8 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "2 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 227,
+                              "staticDuration": "33s",
+                              "polyline": {
+                                  "encodedPolyline": "euqmD{wivMKSEKCKAICI@G@K@CBMDQBABADAB?B?B?fBzARPZVz@n@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6038657,
+                                      "longitude": 77.2238153
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6027354,
+                                      "longitude": 77.2235427
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "ROUNDABOUT_LEFT",
+                                  "instructions": "At the roundabout, take the 3rd exit onto Prithviraj Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 167,
+                              "staticDuration": "28s",
+                              "polyline": {
+                                  "encodedPolyline": "cnqmDcvivMvByCnAeB"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6027354,
+                                      "longitude": 77.2235427
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6017366,
+                                      "longitude": 77.224823
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Prithviraj Ln"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 265,
+                              "staticDuration": "52s",
+                              "polyline": {
+                                  "encodedPolyline": "{gqmDc~ivM[WeA}@WWECECCC_@SQKSKSMQKMIkCwA"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6017366,
+                                      "longitude": 77.224823
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6037427,
+                                      "longitude": 77.22627159999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left at the 1st cross street onto Amrita Shergill Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.3 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 425,
+                              "staticDuration": "68s",
+                              "polyline": {
+                                  "encodedPolyline": "ktqmDegjvMn@aBJW`@cA^cAJYp@cBpAmC\\aAAC?A?A?C@CFU\\_A\\aA"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6037427,
+                                      "longitude": 77.22627159999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.601904599999997,
+                                      "longitude": 77.2300691
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_RIGHT",
+                                  "instructions": "Turn right onto Humayun Rd\nPass by Raghubir Singh Jr Modern School (on the left)"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.4 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 210,
+                              "staticDuration": "36s",
+                              "polyline": {
+                                  "encodedPolyline": "{hqmD}~jvMB]DOBU@Q?Gc@y@m@eAa@{@m@kAEG"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.601904599999997,
+                                      "longitude": 77.2300691
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6026563,
+                                      "longitude": 77.23190079999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Subramania Bharti Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 1218,
+                              "staticDuration": "149s",
+                              "polyline": {
+                                  "encodedPolyline": "smqmDkjkvMEKPMPKHEJEJENEl@OD?FAH?JAn@C^@~D@T?|CA|FB`@?tD?~C?LAh@?rEDNA@?@?@?@?@A@?@??A@?DC@ABA@ADClAcAhAgADC@AVSpB{ABCBCVQTQDEDCVSt@g@`@Y"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.6026563,
+                                      "longitude": 77.23190079999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.592458999999998,
+                                      "longitude": 77.2343681
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_RIGHT",
+                                  "instructions": "Turn right onto Archbishop Makarios Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "1.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "2 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 535,
+                              "staticDuration": "84s",
+                              "polyline": {
+                                  "encodedPolyline": "{momDyykvMH[HQDKBKF]MsBMwBOsBIoAGm@GcAGwAC_@Cm@C_AAs@GeAKmA"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.592458999999998,
+                                      "longitude": 77.2343681
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.592831,
+                                      "longitude": 77.23975449999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Lodhi Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.5 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 245,
+                              "staticDuration": "53s",
+                              "polyline": {
+                                  "encodedPolyline": "epomDm{lvMIk@Ei@V?nBDD?f@?rCFN@P?"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.592831,
+                                      "longitude": 77.23975449999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5910921,
+                                      "longitude": 77.2400992
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_RIGHT",
+                                  "instructions": "Turn right"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 2295,
+                              "staticDuration": "173s",
+                              "polyline": {
+                                  "encodedPolyline": "ieomDs}lvMJGHCDABAHAJC`@GJEJELEJGLIFEJITSfAkAfAcATUbDgDpBuBl@o@RSLUHMFMDODQBSDUDu@B]@QBUBQBEBEHK?GT_ANo@Jc@Nk@Ny@FYD]B]@[@S?E?e@Cc@C[Ei@CSEWKg@Ie@AGGYMk@Ko@Ge@Ga@CSCk@A]?U@k@Dq@Hk@F[F[Lc@FQ^s@JSZe@j@s@p@u@JMdAoAdAsAnAiBDEBCTa@n@_Af@}@b@k@d@m@z@cAj@w@lAoBd@{@Xi@Na@JWRi@H_@J]Lk@Fa@BYBWBYBa@@WD{A?_ACgA"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5910921,
+                                      "longitude": 77.2400992
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.582103399999998,
+                                      "longitude": 77.25930129999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Keep left and merge onto Baba Banda Singh Bahadur Setu"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "2.3 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "3 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 1425,
+                              "staticDuration": "113s",
+                              "polyline": {
+                                  "encodedPolyline": "cmmmDsupvMB]@G?KAiAA]?C?g@?E?_@A[Ca@AWCUAQAACSCO?A?CIa@CIOw@CKIa@ACAAKk@AAAEGUMe@CEUo@GQM[]y@ISQc@AA[{@Wk@KYA?GQGQSk@Yw@CEOa@ACQa@y@oBQg@KUMWO[IUIUGYCUCSAM?K?M?A?C?IBODUDQFOFMLSVSLKLG@ARGREJ?JAN?L@F@F@HB@@B@XNNFFDJL\\VTP\\\\HJZ`@HJBDd@t@@@?@Pb@`@`ABDDFNN@@B@NFD@D@F?F?L?DAFAFAPIXYT[Tc@VW"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.582103399999998,
+                                      "longitude": 77.25930129999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5811066,
+                                      "longitude": 77.26689499999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "STRAIGHT",
+                                  "instructions": "Take the exit toward नौएडा/Noida"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "1.4 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "2 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 59,
+                              "staticDuration": "8s",
+                              "polyline": {
+                                  "encodedPolyline": "}fmmDaervML[H]DWF_@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5811066,
+                                      "longitude": 77.26689499999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.580923,
+                                      "longitude": 77.26745790000001
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "MERGE",
+                                  "instructions": "Merge onto NH 44\nPass by JP NURSERY (on the left)"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "59 m"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 497,
+                              "staticDuration": "52s",
+                              "polyline": {
+                                  "encodedPolyline": "wemmDshrvMAmA@a@?I?W?Q?]?IAQM}@Gg@Gg@Ig@S}ASgBE]Ga@COCUEc@C_@Ck@Ci@Cm@Bm@?KBK@AJS"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.580923,
+                                      "longitude": 77.26745790000001
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.581441899999998,
+                                      "longitude": 77.27243690000002
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "RAMP_LEFT",
+                                  "instructions": "Slight left at Furniture onto the Ring Rd ramp"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.5 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 3956,
+                              "staticDuration": "272s",
+                              "polyline": {
+                                  "encodedPolyline": "_immDwgsvM@WJuA@IDYBUP}@H_@J[Na@J[`@{@Xg@Xe@Ze@HI\\e@jCcDjBwBx@_AdAoAX]jAuArAcBv@kATc@Ta@Rc@Tg@Tg@Tk@\\uA^}A^sBJ_AFu@FaABi@BaA@s@@{@Ak@Ak@Ek@Eg@Iu@Ky@Gc@Ia@I_@GYEQQo@Qk@Qk@o@oByBwGu@_Ck@kBUw@c@uAu@}BcBgFEQSo@Mc@uA_E_A}CQm@Om@AGGYKe@Kg@Ik@Gk@E_@E]Eq@ASCo@?KA]AiA@{@Bq@Dm@JeAN{@TqA^{Al@mBjAcCNU`@q@b@m@nAsArDgD~@s@`@]LKTSb@]b@]BCHGd@_@RM~A_AnAm@`Ae@j@Y`Ae@d@Y~AsA~AqB"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.581441899999998,
+                                      "longitude": 77.27243690000002
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5732701,
+                                      "longitude": 77.30594099999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "MERGE",
+                                  "instructions": "Merge onto Delhi Noida Direct Flyway\nToll road"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "4.0 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "5 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 387,
+                              "staticDuration": "33s",
+                              "polyline": {
+                                  "encodedPolyline": "}ukmDcyyvMNYVc@HMFORc@Ne@FQFSFUBKH[Ny@@OD[B]BY@[?W?W?YAO?OCa@A]Ec@G]Kg@EM"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5732701,
+                                      "longitude": 77.30594099999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5726387,
+                                      "longitude": 77.30964569999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_RIGHT",
+                                  "instructions": "Keep right to stay on Delhi Noida Direct Flyway"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.4 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 1368,
+                              "staticDuration": "143s",
+                              "polyline": {
+                                  "encodedPolyline": "_rkmDipzvMGMAEACAE?CAGCKKc@I[MSIOEGIGIGICEASE[AK?I@OFMHKFIJILELENCJ?HAL?J@L@LFRLTFHFFBBDBHFF@B@HBNBL?J?HAFAPGhAu@VMDCNCd@]nA{@xAw@x@k@dBqADEn@c@zAcAzAcAXQ`KyGv@g@lI}F"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5726387,
+                                      "longitude": 77.30964569999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5654802,
+                                      "longitude": 77.31502870000001
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "RAMP_LEFT",
+                                  "instructions": "Take the ramp onto Dadri Main Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "1.4 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "2 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 104,
+                              "staticDuration": "11s",
+                              "polyline": {
+                                  "encodedPolyline": "gejmD}q{vMh@u@DMBIDK@M?IEkA"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5654802,
+                                      "longitude": 77.31502870000001
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5652142,
+                                      "longitude": 77.3159762
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "RAMP_LEFT",
+                                  "instructions": "Take the exit toward Maharaja Agrasen Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.1 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 735,
+                              "staticDuration": "90s",
+                              "polyline": {
+                                  "encodedPolyline": "qcjmD{w{vMg@qFC]YsCUyBE[Iy@AMCK]uD@c@@O[uDOgAM_AAMAEGSCGAEa@w@oAwB"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5652142,
+                                      "longitude": 77.3159762
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.566857,
+                                      "longitude": 77.3231575
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "NAME_CHANGE",
+                                  "instructions": "Continue onto Maharaja Agrasen Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.7 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "2 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 802,
+                              "staticDuration": "184s",
+                              "polyline": {
+                                  "encodedPolyline": "{mjmDwd}vM}BnBw@t@CBEDGDGFCBEBCBCBEBGDA@A?A@A@C@CBCBCBCBC@CBCDC@A@CBC@A@GDGHgC~B{@v@wFbFGDEBE?E?E@C?CACCEGsBaCQQo@q@aBiBSU"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.566857,
+                                      "longitude": 77.3231575
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.572394499999998,
+                                      "longitude": 77.3213403
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Road No. 18"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.8 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "3 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 171,
+                              "staticDuration": "27s",
+                              "polyline": {
+                                  "encodedPolyline": "mpkmDky|vMKMIGeBoB_BoB"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.572394499999998,
+                                      "longitude": 77.3213403
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5734908,
+                                      "longitude": 77.3225665
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "NAME_CHANGE",
+                                  "instructions": "Continue onto Tulsi Marg"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 570,
+                              "staticDuration": "86s",
+                              "polyline": {
+                                  "encodedPolyline": "iwkmDaa}vMQIECE?E?G@C?E@G@G@GBC?C@C@W@gAdBs@|@qA|AOTcAnAA??@CB_@b@}@jAc@l@c@j@q@z@_@h@OPy@bA"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5734908,
+                                      "longitude": 77.3225665
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5771509,
+                                      "longitude": 77.3187745
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Captain Vijyant Thapar Marg\nPass by Bhel Colony (on the left)"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.6 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 760,
+                              "staticDuration": "87s",
+                              "polyline": {
+                                  "encodedPolyline": "enlmDii|vMLNHJRZjAhBbA|AT^|BpD@B@B@FHv@Zb@Z`@HJ`B~B`@j@nAlBXx@`AjD`@jBFX"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5771509,
+                                      "longitude": 77.3187745
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5733255,
+                                      "longitude": 77.31244319999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "RAMP_LEFT",
+                                  "instructions": "Turn left onto the ramp to Noida-Greater Noida Expy"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.8 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 7868,
+                              "staticDuration": "586s",
+                              "polyline": {
+                                  "encodedPolyline": "ivkmDwa{vMn@d@DNLZPZVVLJJHNBXDl@Df@@N@@?@@NB@@B@RRPXNTJJ@@@@NH@?@@J@@?@?R?RA@?@?VGFCh@ODEn@c@zAcAzAcAXQ`KyGv@g@lI}FxAiAnCoB^UFCj@[bN{IzBmBp@o@POHKJOZg@d@{@b@aAFMv@mBLWJYBG@CP]@CPc@JUXo@hAcCbAwBXg@T[\\c@X]|A{BzAwBRWtAiBp@{@|AgBbA}@z@eAdAeBpAqBhAaBpBmCz@mA~ByCdAmAbDmDrB}BhAqAfCqCxCaDfCsCbAeA~CmDrBeCdAsA|@oA`BcCPY~AgCb@u@@ARa@R[j@gA|AuCtB_Ev@}AhAyBlBoDfAkBd@_ApAeCpBwDx@wAvAqCbCoEfCuEjCmFxAmCrA}BhBcDlAyBt@oAf@w@b@u@HKHOdBsClDaGdB{CLWHK\\m@r@gAjGmJr@gAp@eAj@_A~AeDLUHMfAqBlA_Cl@oAbA_C`B{DhBmE~@yBZu@t@wAb@s@hAeB"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5733255,
+                                      "longitude": 77.31244319999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.526232300000004,
+                                      "longitude": 77.3680794
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "RAMP_LEFT",
+                                  "instructions": "Slight left to merge onto Noida-Greater Noida Expy"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "7.9 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "10 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 224,
+                              "staticDuration": "30s",
+                              "polyline": {
+                                  "encodedPolyline": "}obmDo}ewMLiA`DoE~@mA"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.526232300000004,
+                                      "longitude": 77.3680794
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.525031199999997,
+                                      "longitude": 77.3698778
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "RAMP_LEFT",
+                                  "instructions": "Take the exit toward Fortune School Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.2 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 1083,
+                              "staticDuration": "125s",
+                              "polyline": {
+                                  "encodedPolyline": "mhbmDwhfwM{AsASQiBoAuBaBuAgAcAy@aCcBYW_BmA]WoDmCaBqA[Wy@o@y@o@kJiHGEOO"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.525031199999997,
+                                      "longitude": 77.3698778
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5329233,
+                                      "longitude": 77.37637529999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Fortune School Rd\nPass by Indraprastha Gas Limited CNG Station (on the left)"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "1.1 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "2 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 872,
+                              "staticDuration": "114s",
+                              "polyline": {
+                                  "encodedPolyline": "wycmDkqgwMQMLU~BgEJSvAiCHODIx@wAzCsFNWh@aAjBeD|BeETa@dBaDTa@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5329233,
+                                      "longitude": 77.37637529999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5284606,
+                                      "longitude": 77.38355899999999
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_RIGHT",
+                                  "instructions": "Turn right onto Fortune School Rd/Janpath Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.9 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "2 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 143,
+                              "staticDuration": "19s",
+                              "polyline": {
+                                  "encodedPolyline": "{}bmDg~hwMkA}@cCkB"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.5284606,
+                                      "longitude": 77.38355899999999
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.529502299999997,
+                                      "longitude": 77.3844119
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "TURN_LEFT",
+                                  "instructions": "Turn left onto Gejha Rd/Vishwakarma Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "0.1 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "1 min"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          },
+                          {
+                              "distanceMeters": 1030,
+                              "staticDuration": "175s",
+                              "polyline": {
+                                  "encodedPolyline": "kdcmDqciwMOMi@a@EEgBuAAAGGSOw@m@g@_@uBaBoAcAUQy@q@eBqAgCoBgBuAKKsB}AEEIIEMIWMa@wA{EEQo@sBQq@ZQNt@"
+                              },
+                              "startLocation": {
+                                  "latLng": {
+                                      "latitude": 28.529502299999997,
+                                      "longitude": 77.3844119
+                                  }
+                              },
+                              "endLocation": {
+                                  "latLng": {
+                                      "latitude": 28.535518999999997,
+                                      "longitude": 77.3910063
+                                  }
+                              },
+                              "navigationInstruction": {
+                                  "maneuver": "STRAIGHT",
+                                  "instructions": "Continue straight onto Vishwakarma Rd"
+                              },
+                              "localizedValues": {
+                                  "distance": {
+                                      "text": "1.0 km"
+                                  },
+                                  "staticDuration": {
+                                      "text": "3 mins"
+                                  }
+                              },
+                              "travelMode": "DRIVE"
+                          }
+                      ],
+                      "travelAdvisory": {
+                          "tollInfo": [],
+                          "speedReadingIntervals": [
+                              {
+                                  "startPolylinePointIndex": 0,
+                                  "endPolylinePointIndex": 60,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 60,
+                                  "endPolylinePointIndex": 83,
+                                  "speed": "TRAFFIC_JAM"
+                              },
+                              {
+                                  "startPolylinePointIndex": 83,
+                                  "endPolylinePointIndex": 142,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 142,
+                                  "endPolylinePointIndex": 152,
+                                  "speed": "SLOW"
+                              },
+                              {
+                                  "startPolylinePointIndex": 152,
+                                  "endPolylinePointIndex": 629,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 629,
+                                  "endPolylinePointIndex": 654,
+                                  "speed": "SLOW"
+                              },
+                              {
+                                  "startPolylinePointIndex": 654,
+                                  "endPolylinePointIndex": 844,
+                                  "speed": "NORMAL"
+                              },
+                              {
+                                  "startPolylinePointIndex": 844,
+                                  "endPolylinePointIndex": 879,
+                                  "speed": "TRAFFIC_JAM"
+                              },
+                              {
+                                  "startPolylinePointIndex": 879,
+                                  "endPolylinePointIndex": 1069,
+                                  "speed": "NORMAL"
+                              }
+                          ]
+                      },
+                      "localizedValues": {
+                          "distance": {
+                              "text": "29.7 km"
+                          },
+                          "duration": {
+                              "text": "1 hour 1 min"
+                          },
+                          "staticDuration": {
+                              "text": "52 mins"
+                          }
+                      }
+                  }
+              ],
+              "distanceMeters": 29664,
+              "duration": "3674s",
+              "staticDuration": "3095s",
+              "polyline": {
+                  "encodedPolyline": "_tsmDg{fvM?e@V?J?X?R@`@@`@@`@@X?H?d@@j@?J?J?HBF@l@iAxBqEFQxAyC@MNq@CECICIAI?K?IBODK@CDIDEFGFCHC@?DAH?H?B@B?Vc@NIjBwD?A~CuG~@cBJWNa@Ta@Rc@DILWRc@Ta@Rc@Ra@NY@C@KBSDg@KW?AGSEWCYCS@_@Bg@Fe@BODKDKX]TKHATCN?TBXD@@NFv@a@P[z@uB@AnAiCpAgCFOf@{@d@aA|A{CnAkCLW@S@G@I?I@KAMKSEKCKAICI@G@K@CBMDQBABADAB?B?B?fBzARPZVz@n@vByCnAeB[WeA}@WWECECCC_@SQKSKSMQKMIkCwAn@aBJW`@cA^cAJWp@eBpAmC\\aAAC?C?C@CFU\\_AZ_A@AB]DOBU@Q?Gc@y@m@eAa@{@m@kAEGEKPMPKHEJEJENEl@OD?FAH?JAn@C^@~D@T?|CA|FB`@?tD?~C?LAh@?rEDNA@?B?@?@AB?@ADC@ABA@ADClAcAhAgADC@AVSpB{ABCBCVQTQDEDCVSt@g@`@YH[HQDKBKF]MsBMwBOsBIoAGm@GcAGwAC_@Cm@C_AAs@GeAKmAIk@Ei@V?nBDD?f@?rCFN@P?JGHCDABAHAJC`@GJEJELEJGLIFEJITSfAkAfAcATUbDgDpBuBl@o@RSLUHMFMDODQBSDUDu@B]@QBUBQBEBEHK?GT_ANo@Jc@Nk@Ny@FYD]B]@[@S?E?e@Cc@C[Ei@CSEWKg@Ie@AGGYMk@Ko@Ge@Ga@CSCk@A]?U@k@Dq@Hk@F[F[Lc@FQ^s@JSZe@j@s@p@u@JMdAoAdAsAnAiBDEBCTa@n@_Af@}@b@k@d@m@z@cAj@w@lAoBd@{@Xi@Na@JWRi@H_@J]Lk@Fa@BYBWBYBa@@WD{A?_ACgAB]@G?KAiAA]?C?g@?E?_@A[Ca@AWCUAQAACSCO?EIa@CIOw@CKIa@ACAAKk@AAAEGUMe@CEUo@GQM[]y@ISQc@AA[{@Wk@KYIQGQSk@Yw@CEOa@ACQa@y@oBQg@KUMWO[IUIUGYCUCSAM?K?M?E?IBODUDQFOFMLSVSLKLG@ARGREJ?JAP?J@F@F@HB@@B@XNNFFDJL\\VTP\\\\HJZ`@HJBDd@t@@@Pd@`@`ABDDFNN@@B@NFD@D@F?F?L?DAFAFAPIXYT[Tc@VWL[H]DWF_@AmA@a@?I?W?Q?]?IAQM}@Gg@Gg@Ig@S}ASgBE]Ga@COCUEc@C_@Ck@Ci@Cm@Bm@?KBK@AJS@WJuA@IDYBUP}@H_@J[Na@J[`@{@Xg@Xe@Ze@HI\\e@jCcDjBwBx@_AdAoAX]jAuArAcBv@kATc@Ta@Rc@Tg@Tg@Tk@\\uA^}A^sBJ_AFu@FaABi@BaA@s@@{@Ak@Ak@Ek@Eg@Iu@Ky@Gc@Ia@I_@GYEQQo@Qk@Qk@o@oByBwGu@_Ck@kBUw@c@uAu@}BcBgFEQSo@Mc@uA_E_A}CQm@Om@AGGYKe@Kg@Ik@Gk@E_@E]Eq@ASCo@?KA]AiA@{@Bq@Dm@JeAN{@TqA^{Al@mBjAcCNU`@q@b@m@nAsArDgD~@s@`@]LKTSb@]b@]BCHGd@_@RM~A_AnAm@`Ae@j@Y`Ae@d@Y~AsA~AqBNYVc@HMFORc@Ne@FQFSFUBKH[@ELs@@OD[B]BY@[?W?W?YAO?OCa@A]Ec@G]Kg@EMGMAEACAE?CAGCKAEI]I[MSIOEGIGIGICEASE[AK?I@OFMHKFIJILELENCJ?HAL?J@L@LFRLTFHFFBBDBHFF@B@HBNBL?J?HAFAPGhAu@VMDCNCd@]nA{@xAw@x@k@dBqADEn@c@zAcAzAcAXQ`KyGv@g@lI}Fh@u@DMBIDK@M?IEkAg@qFC]YsCUyBE[Iy@AMCK]uD@c@@O[uDOgAM_AAMAEGSCGAEa@w@oAwB}BnBw@t@CBEDGDGFCBEBCBCBEBGDA@C@A@C@CBCBCBCBC@CBCDC@A@CBC@A@GDGHgC~B{@v@wFbFGDEBE?E?E@C?CACCEGsBaCQQo@q@aBiBSUKMIGeBoB_BoBQIECE?E?G@C?E@G@G@GBC?C@C@W@gAdBs@|@qA|AOTcAnAA?CD_@b@}@jAc@l@c@j@q@z@_@h@OPy@bALNHJRZjAhBbA|AT^|BpD@B@B@FHv@Zb@Z`@HJ`B~B`@j@nAlBXx@`AjD`@jBFXn@d@BL@@LZPZVVLJJHNBXDl@Df@@N@@?@@NB@@B@RRPXNTJJ@@@@NH@?@@J@@?@?R?RA@?@?VGFCB?d@ODEn@c@zAcAzAcAXQ`KyGv@g@lI}FxAiAnCoB^UFCj@[bN{IzBmBp@o@POHKJOZg@d@{@b@aAFMv@mBLWJYBG@CP]@CPc@JUXo@hAcCbAwBXg@T[\\c@X]|A{BzAwBRWtAiBp@{@|AgBbA}@z@eAdAeBpAqBhAaBpBmCz@mA~ByCdAmAbDmDrB}BhAqAfCqCxCaDfCsCbAeA~CmDrBeCdAsA|@oA`BcCPY~AgCb@u@@ARa@R[j@gA|AuCtB_Ev@}AhAyBlBoDfAkBd@_ApAeCpBwDx@wAvAqCbCoEfCuEjCmFxAmCrA}BhBcDlAyBt@oAf@w@b@u@HKHOdBsClDaGdB{CLWHK\\m@r@gAjGmJr@gAp@eAj@_A~AeDLUHMfAqBlA_Cl@oAbA_C`B{DhBmE~@yBZu@t@wAb@s@hAeBLiA`DoE~@mA{AsASQiBoAuBaBuAgAcAy@aCcBYW_BmA]WoDmCaBqA[Wy@o@y@o@kJiHGEOOQMLU~BgEJSvAiCHODIx@wAzCsFNWh@aAjBeD|BeETa@dBaDTa@kA}@cCkBOMi@a@EEgBuAAAGGSOw@m@g@_@uBaBoAcAUQy@q@eBqAgCoBgBuAKKsB}AEEIIEMIWMa@wA{EEQo@sBQq@ZQNt@"
+              },
+              "description": "Noida-Greater Noida Expy",
+              "warnings": [
+                  "This route has tolls.",
+                  "This route includes a highway."
+              ],
+              "viewport": {
+                  "low": {
+                      "latitude": 28.5250312,
+                      "longitude": 77.209001
+                  },
+                  "high": {
+                      "latitude": 28.613924,
+                      "longitude": 77.3912769
+                  }
+              },
+              "travelAdvisory": {
+                  "tollInfo": [],
+                  "speedReadingIntervals": [
+                      {
+                          "startPolylinePointIndex": 0,
+                          "endPolylinePointIndex": 60,
+                          "speed": "NORMAL"
+                      },
+                      {
+                          "startPolylinePointIndex": 60,
+                          "endPolylinePointIndex": 83,
+                          "speed": "TRAFFIC_JAM"
+                      },
+                      {
+                          "startPolylinePointIndex": 83,
+                          "endPolylinePointIndex": 142,
+                          "speed": "NORMAL"
+                      },
+                      {
+                          "startPolylinePointIndex": 142,
+                          "endPolylinePointIndex": 152,
+                          "speed": "SLOW"
+                      },
+                      {
+                          "startPolylinePointIndex": 152,
+                          "endPolylinePointIndex": 629,
+                          "speed": "NORMAL"
+                      },
+                      {
+                          "startPolylinePointIndex": 629,
+                          "endPolylinePointIndex": 654,
+                          "speed": "SLOW"
+                      },
+                      {
+                          "startPolylinePointIndex": 654,
+                          "endPolylinePointIndex": 844,
+                          "speed": "NORMAL"
+                      },
+                      {
+                          "startPolylinePointIndex": 844,
+                          "endPolylinePointIndex": 879,
+                          "speed": "TRAFFIC_JAM"
+                      },
+                      {
+                          "startPolylinePointIndex": 879,
+                          "endPolylinePointIndex": 1069,
+                          "speed": "NORMAL"
+                      }
+                  ]
+              },
+              "localizedValues": {
+                  "distance": {
+                      "text": "29.7 km"
+                  },
+                  "duration": {
+                      "text": "1 hour 1 min"
+                  },
+                  "staticDuration": {
+                      "text": "52 mins"
+                  }
+              },
+              "routeToken": "CgAaGAoKDWgjDhEVmigFLhIKDXgiDhEVkCgFLg",
+              "routeLabels": [
+                  "DEFAULT_ROUTE"
+              ],
+              "polylineDetails": []
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The pickup latitude field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

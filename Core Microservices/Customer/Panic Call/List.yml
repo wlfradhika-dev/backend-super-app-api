@@ -1,0 +1,120 @@
+info:
+  name: List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/panic-call/list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: List
+    request:
+      url: "{{core_url}}/api/customer/panic-call/list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 03 Feb 2026 09:32:33 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "panic_call_list": [
+                  {
+                      "id": "33663bc7-568a-479a-9567-b71d5892db76",
+                      "name": "test",
+                      "country_code": "+91",
+                      "contact_number": 1234
+                  }
+              ]
+          }
+
+docs: |+
+  ## List
+
+  Returns the list of emergency/panic contact numbers available in the system.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "panic_call_list": [
+          {
+              "id": "33663bc7-568a-479a-9567-b71d5892db76",
+              "name": "test",
+              "country_code": "+91",
+              "contact_number": 1234
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

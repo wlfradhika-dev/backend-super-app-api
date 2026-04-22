@@ -1,0 +1,254 @@
+info:
+  name: Ride Booking
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/transport/courier/ride-booking"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_category_id": 4,
+        "vehicle_type_id": "3ea09284-9e5c-4728-a209-8d0bc8d935bf",
+        "payment_type": 1,
+        "estimated_time": "30",
+        "total_distance": "10.5",
+        "gender": 0,
+        "category_name": "Business Document",
+        "weight_id": "16a85005-8ebf-4f30-bd54-3b3e9c1e9286",
+        "estimate_price": 150.00,
+        "sender_landmark": "Entrance",
+        "recipient_landmark": "Exit",
+        "pickup_date_time": "2026-03-25 14:00:00",
+        "address_list": [
+          {
+            "address": "Scheduled Pickup",
+            "address_lat": 23.0225,
+            "address_long": 72.5714,
+            "name": "Sender",
+            "contact_number": "1234567890",
+            "country_code": "+91"
+          },
+          {
+            "address": "Scheduled Drop",
+            "address_lat": 23.0300,
+            "address_long": 72.5800,
+            "name": "Receiver",
+            "contact_number": "0987654321",
+            "country_code": "+91"
+          }
+        ]
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride Booking
+    request:
+      url: "{{transport_url}}/api/customer/transport/courier/ride-booking"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "service_category_id": 4,
+            "vehicle_type_id": "{{VEHICLE_TYPE_ID}}",
+            "payment_type": 1,
+            "estimated_time": "30",
+            "total_distance": "10.5",
+            "gender": 0,
+            "category_id": "{{CATEGORY_ID}}",
+            "weight_id": "{{WEIGHT_ID}}",
+            "estimate_price": 150.00,
+            "sender_landmark": "Entrance",
+            "recipient_landmark": "Exit",
+            "pickup_date_time": "2026-03-15 14:00:00",
+            "address_list": [
+              {
+                "address": "Scheduled Pickup",
+                "address_lat": 23.0225,
+                "address_long": 72.5714,
+                "name": "Sender",
+                "contact_number": "1234567890",
+                "country_code": "+91"
+              },
+              {
+                "address": "Scheduled Drop",
+                "address_lat": 23.0300,
+                "address_long": 72.5800,
+                "name": "Receiver",
+                "contact_number": "0987654321",
+                "country_code": "+91"
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 10 Mar 2026 11:46:06 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "1607e91a-57d1-4d82-8aa4-347ba8a4bad9",
+              "booking_no": "62106778",
+              "pickup_date_time": "15 Mar, 2026",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_status": 0,
+              "accept_time_out": 20
+          }
+
+docs: |+
+  ## Ride Booking
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "service_category_id": 4,
+    "vehicle_type_id": "{{VEHICLE_TYPE_ID}}",
+    "payment_type": 1,
+    "estimated_time": "30",
+    "total_distance": "10.5",
+    "gender": 0,
+    "category_id": "{{CATEGORY_ID}}",
+    "weight_id": "{{WEIGHT_ID}}",
+    "estimate_price": 150.00,
+    "sender_landmark": "Entrance",
+    "recipient_landmark": "Exit",
+    "pickup_date_time": "2026-03-15 14:00:00",
+    "address_list": [
+      {
+        "address": "Scheduled Pickup",
+        "address_lat": 23.0225,
+        "address_long": 72.5714,
+        "name": "Sender",
+        "contact_number": "1234567890",
+        "country_code": "+91"
+      },
+      {
+        "address": "Scheduled Drop",
+        "address_lat": 23.0300,
+        "address_long": 72.5800,
+        "name": "Receiver",
+        "contact_number": "0987654321",
+        "country_code": "+91"
+      }
+    ]
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_id": "1607e91a-57d1-4d82-8aa4-347ba8a4bad9",
+      "booking_no": "62106778",
+      "pickup_date_time": "15 Mar, 2026",
+      "pickup_address": "Scheduled Pickup",
+      "destination_address": "Scheduled Drop",
+      "ride_status": 0,
+      "accept_time_out": 20
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

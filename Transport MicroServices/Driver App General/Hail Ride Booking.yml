@@ -1,0 +1,205 @@
+info:
+  name: Hail Ride Booking
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/hail-ride-booking"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "2"
+      - name: estimated_time
+        type: text
+        value: "15"
+      - name: total_distance
+        type: text
+        value: "6.8"
+      - name: service_type_id
+        type: text
+        value: 3ea09284-9e5c-4728-a209-8d0bc8d935bf
+      - name: user_name
+        type: text
+        value: Test User
+        description: optional
+      - name: user_contact_number
+        type: text
+        value: "9999999999"
+        description: optional
+      - name: address_list
+        type: text
+        value: '[{"address":"Pickup Address","address_lat":"23.0225","address_long":"72.5714"},{"address":"Drop Address","address_lat":"23.0350","address_long":"72.5500"}]'
+      - name: booking_status
+        type: text
+        value: "1"
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Hail Ride Booking
+    request:
+      url: "{{transport_url}}/api/driver/hail-ride-booking"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "1"
+          - name: estimated_time
+            type: text
+            value: "15"
+          - name: total_distance
+            type: text
+            value: "6.8"
+          - name: service_type_id
+            type: text
+            value: 2239b831-c26e-4fbd-8514-20196c7574ed
+          - name: user_name
+            type: text
+            value: Test User
+            description: optional
+          - name: user_contact_number
+            type: text
+            value: "9999999999"
+            description: optional
+          - name: address_list
+            type: text
+            value: '[{"address":"Pickup Address","address_lat":"23.0225","address_long":"72.5714"},{"address":"Drop Address","address_lat":"23.0350","address_long":"72.5500"}]'
+          - name: booking_status
+            type: text
+            value: "1"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 26 Feb 2026 12:03:29 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "status": 1,
+              "message": "driver_messages.1",
+              "message_code": 1,
+              "ride_id": "0a3bbb76-2bc3-412d-b02d-c27e92912d5d",
+              "booking_no": 26968218,
+              "pickup_date_time": "26 Feb, 2026",
+              "pickup_address": "Pickup Address",
+              "destination_address": "Drop Address",
+              "ride_status": 5,
+              "hail_ride_status": 1
+          }
+
+docs: |+
+  ## Hail Ride Booking
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | Service category id |
+  | `estimated_time` | string | Yes | Estimated time |
+  | `total_distance` | string | Yes | Total distance |
+  | `service_type_id` | string | Yes | Service type id |
+  | `user_name` | string | No | optional |
+  | `user_contact_number` | string | No | optional |
+  | `address_list` | string | Yes | Address list |
+  | `booking_status` | string | Yes | Booking status |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "status": 1,
+      "message": "driver_messages.1",
+      "message_code": 1,
+      "ride_id": "0a3bbb76-2bc3-412d-b02d-c27e92912d5d",
+      "booking_no": 26968218,
+      "pickup_date_time": "26 Feb, 2026",
+      "pickup_address": "Pickup Address",
+      "destination_address": "Drop Address",
+      "ride_status": 5,
+      "hail_ride_status": 1
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

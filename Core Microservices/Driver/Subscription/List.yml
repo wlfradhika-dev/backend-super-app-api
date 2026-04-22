@@ -1,0 +1,164 @@
+info:
+  name: List
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/subscription-plan/list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: List
+    request:
+      url: "{{core_url}}/api/driver/subscription-plan/list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Fri, 10 Apr 2026 09:39:46 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "313"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=KsD0Ph%2Fma1zROpf%2BVEpVfE0tW9qTTAnSH1iakm5aCmNqkUSmiVDy33OYUylcKiIgV8dK5S7Z49%2BwZ7I6Qk7ljD91xBhUnttQW9Zv0dJsL8mz9AqqcqHG%2BBJwBONQVj5QhsGTCQydoOl23nwNwZacZEiwtOljCtW6pRE%3D"}]}'
+        - name: cf-ray
+          value: 9ea0c945fc8e3df7-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "subscription_plans": [
+                  {
+                      "id": "019d7089-eaa2-708b-a4b9-036f2bc0d8cd",
+                      "name": "Starter Plan",
+                      "description": "Starter subscription plan for new providers.",
+                      "no_of_plan_days": 30,
+                      "price_of_plan": 199,
+                      "is_purchased": 1
+                  },
+                  {
+                      "id": "019d7089-eaa4-73ca-8e8e-fafdbd9bcce5",
+                      "name": "Pro Plan",
+                      "description": "Long-duration plan for active providers.",
+                      "no_of_plan_days": 90,
+                      "price_of_plan": 499,
+                      "is_purchased": 0
+                  }
+              ],
+              "active_plan": {
+                  "id": "019d7089-eaa2-708b-a4b9-036f2bc0d8cd",
+                  "name": "Starter Plan",
+                  "description": "Starter subscription plan for new providers.",
+                  "no_of_plan_days": 30,
+                  "price_of_plan": 199,
+                  "is_purchased": 1,
+                  "expiry_date_time": "2026-05-10"
+              }
+          }
+
+docs: |+
+  ## List
+
+  Manages subscription plans including listing, history, and cancellation for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "subscription_plans": [
+          {
+              "id": "1f99c9ff-b6be-56ee-93eb-2575c2c4e35f",
+              "name": "Monthly",
+              "description": "Monthly Description",
+              "no_of_plan_days": 30,
+              "price_of_plan": 100,
+              "is_purchased": 1
+          }
+      ],
+      "active_plan": {
+          "id": "1f99c9ff-b6be-56ee-93eb-2575c2c4e35f",
+          "name": "Monthly",
+          "description": "Monthly Description",
+          "no_of_plan_days": 30,
+          "price_of_plan": 100,
+          "is_purchased": 1,
+          "expiry_date_time": "2026-03-23"
+      }
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

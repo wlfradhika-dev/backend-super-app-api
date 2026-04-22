@@ -1,0 +1,56 @@
+opencollection: 1.0.0
+
+info:
+  name: Backend Super App
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  variables:
+    - name: token
+      value: 378|ARldzxWyWvgKDCsWvn87bMQOmOCTOubPhoKNeCY4ad2b46f9
+    - name: user_id
+      value: 019d70c4-a03d-7241-aca9-09f0b09ca3e3
+    - name: driver_token
+      value: 293|vhB9FejojdpKx3Dcn08hpoe2xevnW9PJdHAUgbpz90e8fe8d
+    - name: driver_id
+      value: ""
+    - name: store_token
+      value: 388|vT3P5GPqBNVfmRhLwIJnK6CnBJLbdwuIHriEXSPw710124c3
+    - name: store_id
+      value: a08fc68a-7786-412c-b021-c56434279cb3
+    - name: core_url
+      value: https://staging-fox-jek-core.startuptrinity.com
+    - name: transport_url
+      value: http://localhost:8002
+    - name: delivery_url
+      value: http://localhost:8003
+    - name: on_deman_url
+      value: http://localhost:8004
+    - name: notification_url
+      value: http://localhost:8005
+    - name: payment_url
+      value: http://localhost:8006
+    - name: core_url
+      value: https://staging-fox-jek-core.startuptrinity.com
+    - name: provider_token
+      value: ""
+    - name: provider_id
+      value: ""
+    - name: core_url
+      value: ""
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

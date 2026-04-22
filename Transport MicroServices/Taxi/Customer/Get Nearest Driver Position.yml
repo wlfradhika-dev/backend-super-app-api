@@ -1,0 +1,270 @@
+info:
+  name: Get Nearest Driver Position
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/taxi/transport/get-nearest-driver-position"
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "2"
+        description: For Service Category Id
+      - name: current_lat
+        type: text
+        value: "22.3158003"
+        description: For Current Lat
+      - name: current_long
+        type: text
+        value: "70.7650816"
+        description: For Current Long
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Get Nearest Driver Position
+    request:
+      url: "{{transport_url}}/api/customer/taxi/transport/get-nearest-driver-position"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "2"
+            description: For Service Category Id
+          - name: current_lat
+            type: text
+            value: "22.3158003"
+            description: For Current Lat
+          - name: current_long
+            type: text
+            value: "70.7650816"
+            description: For Current Long
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Sat, 11 Apr 2026 10:11:25 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "548"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=0NSMBu9zdR54hk1IoRhKHsgEaj4X%2FoaohOb4hjTZWXFevHFzuyhvaL3lijU%2B2okblkULrtFCsYX4VPoOQfsVH%2Bu%2F%2F1RrXTD6gbXjY%2Feuc4USvOfEKu79m0JudmdREYxhv6cLiejn14Ijge8bT3vetw8C4H%2FtK0mzRD6UPhNWyg%3D%3D"}]}'
+        - name: cf-ray
+          value: 9ea935068b282da3-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "active_driver_lat_long": [
+                  {
+                      "driver_id": "019d75be-ca72-705d-a8b2-e20c50ef1f0b",
+                      "current_lat": "22.319033",
+                      "current_long": "70.767158",
+                      "service_cat_id": 7,
+                      "name": "Wlf Driver",
+                      "distance": 0.41812950913401953,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d71da-3048-7383-8520-e895accb1fec",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 1,
+                      "name": "Dhaval",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d7160-cba5-72d0-8de3-1e8da999c199",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 1,
+                      "name": "Dhaval",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d75ee-323c-716b-bbbf-7e1adc05dd5e",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 2,
+                      "name": "Ross Geller",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d724a-b851-7020-a81a-637cb818f4d3",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 2,
+                      "name": "Kkdriver",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d75a8-bdd9-72d0-9684-4d850a64dcc8",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 2,
+                      "name": "Vimal Rao",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d75af-a177-7147-b164-3fb7fdb10aca",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 1,
+                      "name": "Suv",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d7b64-c651-729f-b2b4-f576a5fa1b91",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 2,
+                      "name": "Karan Bharvadiya",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d772b-8902-7284-929a-942dcd69cb6d",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 1,
+                      "name": "Dk",
+                      "distance": 0,
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "019d7228-843a-7252-8f54-0efb07555262",
+                      "current_lat": "22.3158003",
+                      "current_long": "70.7650816",
+                      "service_cat_id": 2,
+                      "name": "Dhaval",
+                      "distance": 0,
+                      "avatar_url": null
+                  }
+              ]
+          }
+
+docs: |+
+  ## Get Nearest Driver Position
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | For Service Category Id |
+  | `current_lat` | string | Yes | For Current Lat |
+  | `current_long` | string | Yes | For Current Long |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "active_driver_lat_long": [
+          {
+              "driver_id": "9cfc9e32-c1b0-459a-8d1f-8cc56226e576",
+              "current_lat": "22.319033",
+              "current_long": "70.7671578",
+              "service_cat_id": 2,
+              "name": "Rahul",
+              "distance": 0.41811900102198163
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

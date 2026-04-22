@@ -1,0 +1,171 @@
+info:
+  name: Wallet to wallet transfer
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/provider/wallet/transfer"
+  headers:
+    - name: Authorization
+      value: Bearer YOUR_TOKEN
+      disabled: true
+    - name: Content-Type
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: transfer_id
+        type: text
+        value: 019d763c-581a-7128-857e-87281191185b
+      - name: amount
+        type: text
+        value: "10"
+        description: Nullable
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Wallet to wallet transfer
+    request:
+      url: "{{payment_url}}/api/provider/wallet/transfer"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_TOKEN
+          disabled: true
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: transfer_id
+            type: text
+            value: dc477e3d-c8c7-40e2-8c7e-a4d00b453457
+          - name: amount
+            type: text
+            value: "10"
+            description: Nullable
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 13 Mar 2026 07:31:35 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200
+          }
+
+docs: |+
+  ## Wallet to wallet transfer
+
+  Processes the payment for the specified order or service.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `transfer_id` | string | Yes | Transfer id |
+  | `amount` | string | No | Nullable |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The transfer id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

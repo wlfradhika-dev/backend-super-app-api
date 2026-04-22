@@ -1,0 +1,214 @@
+info:
+  name: Delivery RIde Invoice
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/food-flow/delivery-driver/delivery-ride-invoice"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Authorization
+      value: Bearer 42|GWKH1o07O5KLRRCtZPbVaMcVN6EQFETGboiWTcJM4211e53a
+      disabled: true
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: 1f1f8b96-31ce-408a-b9a6-dabef6e68a4a
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success
+    request:
+      url: "{{delivery_url}}/api/food-flow/delivery-driver/delivery-ride-invoice"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer 42|GWKH1o07O5KLRRCtZPbVaMcVN6EQFETGboiWTcJM4211e53a
+          disabled: true
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: 6c249613-6393-4628-aae8-2da34c86ea91
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 06:10:22 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "6c249613-6393-4628-aae8-2da34c86ea91",
+              "ride_no": "64538295",
+              "tip": 10,
+              "driver_pay_settle_status": 0,
+              "ride_date": "Fri, 20 Feb 2026",
+              "service_date_time": "2026-02-20 07:08:30",
+              "schedule_order_date_time": "2026-02-20T07:08:30.000000Z",
+              "address_list": [
+                  {
+                      "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "address_lat": "22.31572603394304",
+                      "address_long": "70.7674083384962"
+                  },
+                  {
+                      "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "address_lat": "22.31572603394304",
+                      "address_long": "70.7674083384962"
+                  }
+              ],
+              "flat_no": "2b",
+              "cancel_by": "",
+              "cancel_reason": "",
+              "landmark": "rajkot",
+              "delivery_cost": 0,
+              "payment_type": 1,
+              "total_pay": 34.8,
+              "service_type_name": "Food Delivery",
+              "category_icon": "http://localhost/storage/img/service-category/food-delivery.png",
+              "order_status": 1,
+              "invoice_download_link": "",
+              "order_chat_number": "64538295-6c249613-6393-4628-aae8-2da34c86ea91"
+          }
+
+docs: |+
+  ## Delivery RIde Invoice
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | Ride id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_id": "6c249613-6393-4628-aae8-2da34c86ea91",
+      "ride_no": "64538295",
+      "tip": 10,
+      "driver_pay_settle_status": 0,
+      "ride_date": "Fri, 20 Feb 2026",
+      "service_date_time": "2026-02-20 07:08:30",
+      "schedule_order_date_time": "2026-02-20T07:08:30.000000Z",
+      "address_list": [
+          {
+              "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "address_lat": "22.31572603394304",
+              "address_long": "70.7674083384962"
+          },
+          {
+              "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "address_lat": "22.31572603394304",
+              "address_long": "70.7674083384962"
+          }
+      ],
+      "flat_no": "2b",
+      "cancel_by": "",
+      "cancel_reason": "",
+      "landmark": "rajkot",
+      "delivery_cost": 0,
+      "payment_type": 1,
+      "total_pay": 34.8,
+      "service_type_name": "Food Delivery",
+      "category_icon": "http://localhost/storage/img/service-category/food-delivery.png",
+      "order_status": 1,
+      "invoice_download_link": "",
+      "order_chat_number": "64538295-6c249613-6393-4628-aae8-2da34c86ea91"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

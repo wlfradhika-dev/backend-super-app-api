@@ -1,0 +1,183 @@
+info:
+  name: Ride FeedBack
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/bike-rental/ride-feedback"
+  headers:
+    - name: Authorization
+      value: Bearer 32|72eab77bcc4cdaa72a5a8f0c0f30381790abef06
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: "{}"
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride FeedBack
+    request:
+      url: http://localhost:8002/api/driver/bike-rental/ride-feedback
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer 32|72eab77bcc4cdaa72a5a8f0c0f30381790abef06
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 10 Mar 2026 13:24:39 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 1,
+              "feedback_list": [
+                  {
+                      "rating_id": "b14b6a70-74a8-4f73-b4fc-e6644a9a3ae3",
+                      "service_cat_id": 7,
+                      "ride_id": "99f11463-8fef-4e1e-a934-d565e7039596",
+                      "user_name": "Demo",
+                      "user_profile_image": "",
+                      "rating": 5,
+                      "comment": "Great ride",
+                      "service_category_name": "Car Rental",
+                      "datetime": "2026-03-10 11:57:55",
+                      "dt": "2026-03-10 11:57:55"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride FeedBack
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 1,
+      "feedback_list": [
+          {
+              "rating_id": "b14b6a70-74a8-4f73-b4fc-e6644a9a3ae3",
+              "service_cat_id": 7,
+              "ride_id": "99f11463-8fef-4e1e-a934-d565e7039596",
+              "user_name": "Demo",
+              "user_profile_image": "",
+              "rating": 5,
+              "comment": "Great ride",
+              "service_category_name": "Car Rental",
+              "datetime": "2026-03-10 11:57:55",
+              "dt": "2026-03-10 11:57:55"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

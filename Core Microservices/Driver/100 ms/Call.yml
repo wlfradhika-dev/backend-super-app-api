@@ -1,0 +1,148 @@
+info:
+  name: Call
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/ms-make-video-call"
+  body:
+    type: multipart-form
+    data:
+      - name: receiver_id
+        type: text
+        value: 019d70c4-a03d-7241-aca9-09f0b09ca3e3
+      - name: receiver_type
+        type: text
+        value: "0"
+        description: 0 user, 1 store
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Call
+    request:
+      url: "{{core_url}}/api/driver/ms-make-video-call"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: receiver_id
+            type: text
+            value: ba055fb9-bc3e-400c-ba40-37bd5d0a302a
+          - name: receiver_type
+            type: text
+            value: "0"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 13:41:26 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzE5NDA0ODYsIm5iZiI6MTc3MTk0MDQ4NiwiZXhwIjoxNzcxOTQ0MDg2LCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6IjFjMTFkOWVhLWM2MDItNGVkNC1iNjVhLWU4OTE5ZmQ5ODJhZCIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoiNjk5ZGFhODZkN2ZmN2RlYmU0MjFjZjYxIiwidXNlcl9pZCI6ImRyaXZlci1jYTViYjc5OS1mYzFmLTQwMTktODRhYy1hMjcxMjBlYzM2OTgifQ.8sG6B0WKhiIeM0dayrMhw9NYWrWsit95BXRB5ZS7wA8",
+              "room_id": "699daa86d7ff7debe421cf61"
+          }
+
+docs: |+
+  ## Call
+
+  Initiates or manages an audio/video call session using the 100ms platform.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `receiver_id` | string | Yes | Receiver id |
+  | `receiver_type` | string | Yes | Receiver type |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzE5NDA0ODYsIm5iZiI6MTc3MTk0MDQ4NiwiZXhwIjoxNzcxOTQ0MDg2LCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6IjFjMTFkOWVhLWM2MDItNGVkNC1iNjVhLWU4OTE5ZmQ5ODJhZCIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoiNjk5ZGFhODZkN2ZmN2RlYmU0MjFjZjYxIiwidXNlcl9pZCI6ImRyaXZlci1jYTViYjc5OS1mYzFmLTQwMTktODRhYy1hMjcxMjBlYzM2OTgifQ.8sG6B0WKhiIeM0dayrMhw9NYWrWsit95BXRB5ZS7wA8",
+      "room_id": "699daa86d7ff7debe421cf61"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The receiver id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

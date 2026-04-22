@@ -1,0 +1,183 @@
+info:
+  name: Upload Portfolio Image
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/video-consultancy/portfolio/update-photo"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "14"
+      - name: portfolio_image
+        type: file
+        value:
+          - /home/mitesh-dave/Pictures/220100820250801.png
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success Response
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/portfolio/update-photo"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "14"
+          - name: portfolio_image
+            type: file
+            value:
+              - /home/mitesh-dave/Pictures/203100820250801.png
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 04:22:26 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_service_gallery": [
+                  {
+                      "id": "68c89eab-4e1e-40ba-aaa1-b2ec7d0d26cc",
+                      "service_category_id": 14,
+                      "provider_id": "c8cba12a-1775-44f2-8f97-24c7e79faaf2",
+                      "portfolio_image": "http://localhost:8004/storage/img/provider-portfolio-images/GjgoPLp7nhxyI1te.jpg"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Upload Portfolio Image
+
+  Handles document upload and management for the user's verification requirements.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | Service category id |
+  | `portfolio_image` | string | Yes | Portfolio image |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_service_gallery": [
+          {
+              "id": "68c89eab-4e1e-40ba-aaa1-b2ec7d0d26cc",
+              "service_category_id": 14,
+              "provider_id": "c8cba12a-1775-44f2-8f97-24c7e79faaf2",
+              "portfolio_image": "http://localhost:8004/storage/img/provider-portfolio-images/GjgoPLp7nhxyI1te.jpg"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

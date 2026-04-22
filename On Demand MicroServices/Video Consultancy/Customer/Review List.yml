@@ -1,0 +1,175 @@
+info:
+  name: Review List
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/customer/video-consultancy/review-list"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "provider_id": "{{provider_uuid}}",
+          "service_category_id": 13,
+          "page": 1,
+          "per_page": 10
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Review List
+    request:
+      url: "{{on_deman_url}}/api/customer/video-consultancy/review-list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "provider_id": "{{provider_uuid}}",
+              "service_category_id": 13,
+              "page": 1,
+              "per_page": 10
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 09:21:40 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_review_list": [
+                  {
+                      "user_id": "0c7f4dfd-ea4e-4cc9-8c79-0313aa15ccfc",
+                      "user_name": "Rahul",
+                      "user_profile_image": "http://localhost:8004/storage/img/profile-images/customer/12332.jpg",
+                      "rating": 3.5,
+                      "comment": "dance is super hit",
+                      "ratting_date": "2026-03-12 09:21:40"
+                  }
+              ],
+              "total_page": 1,
+              "per_page": 10,
+              "current_page": 1
+          }
+
+docs: |+
+  ## Review List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "provider_id": "{{provider_uuid}}",
+      "service_category_id": 13,
+      "page": 1,
+      "per_page": 10
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_review_list": [
+          {
+              "user_id": "0c7f4dfd-ea4e-4cc9-8c79-0313aa15ccfc",
+              "user_name": "Rahul",
+              "user_profile_image": "http://localhost:8004/storage/img/profile-images/customer/12332.jpg",
+              "rating": 3.5,
+              "comment": "dance is super hit",
+              "ratting_date": "2026-03-12 09:21:40"
+          }
+      ],
+      "total_page": 1,
+      "per_page": 10,
+      "current_page": 1
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

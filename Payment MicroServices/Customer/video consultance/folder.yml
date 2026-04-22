@@ -1,0 +1,7 @@
+info:
+  name: video consultance
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit

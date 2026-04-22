@@ -1,0 +1,298 @@
+info:
+  name: Courier Vehicle Type
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://127.0.0.1:8002/api/customer/transport/courier/courier-vehicle-type
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+    - name: Authorization
+      value: Bearer 30|nYgsXGhv9sCycOucFLoEdNrcIz9Be0vDGxyUVFTBc0a84006
+  body:
+    type: json
+    data: |-
+      {
+        "estimated_time": 30,
+        "total_distance": 10.5,
+        "current_lat": 22.3158003,
+        "current_long": 70.7650816
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: courier-vehicle-type
+    request:
+      url: http://127.0.0.1:8002/api/customer/transport/courier/courier-vehicle-type
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer 30|nYgsXGhv9sCycOucFLoEdNrcIz9Be0vDGxyUVFTBc0a84006
+      body:
+        type: json
+        data: |-
+          {
+            "estimated_time": 30,
+            "total_distance": 10.5
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 10 Mar 2026 04:15:39 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "vehicle_type": [
+                  {
+                      "id": "e5128eb2-9a80-4300-b0ec-e4d4e116f733",
+                      "name": "Scooter",
+                      "description": "",
+                      "weight_start_limit": 0,
+                      "weight_close_limit": 0,
+                      "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/135330520242707.png",
+                      "close_limit": "Above 0 kg",
+                      "total_pay": 185.85,
+                      "weight_id": ""
+                  },
+                  {
+                      "id": "2f2aef72-eecb-40aa-860f-a5b51edd0521",
+                      "name": "Bike Courier",
+                      "description": "",
+                      "weight_start_limit": 0,
+                      "weight_close_limit": 0,
+                      "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/110340520242707.png",
+                      "close_limit": "Above 0 kg",
+                      "total_pay": 233.63,
+                      "weight_id": ""
+                  },
+                  {
+                      "id": "6ce2ce83-7064-471f-95c2-3efbd5055cc8",
+                      "name": "Street",
+                      "description": "",
+                      "weight_start_limit": 0,
+                      "weight_close_limit": 0,
+                      "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/110340520242707.png",
+                      "close_limit": "Above 0 kg",
+                      "total_pay": 233.63,
+                      "weight_id": ""
+                  },
+                  {
+                      "id": "1e47f97b-0215-48de-8609-c04fcf4969e0",
+                      "name": "Car Courier",
+                      "description": "",
+                      "weight_start_limit": 0,
+                      "weight_close_limit": 0,
+                      "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/245200720241007.png",
+                      "close_limit": "Above 0 kg",
+                      "total_pay": 371.7,
+                      "weight_id": ""
+                  },
+                  {
+                      "id": "cedd870b-1847-4264-9e20-db57d77bd3ee",
+                      "name": "Hatchback",
+                      "description": "",
+                      "weight_start_limit": 0,
+                      "weight_close_limit": 0,
+                      "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/245200720241007.png",
+                      "close_limit": "Above 0 kg",
+                      "total_pay": 371.7,
+                      "weight_id": ""
+                  },
+                  {
+                      "id": "4fb41f67-1e3c-4c21-bd2a-76defe37e00d",
+                      "name": "SUV",
+                      "description": "",
+                      "weight_start_limit": 0,
+                      "weight_close_limit": 0,
+                      "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/258200720241007.png",
+                      "close_limit": "Above 0 kg",
+                      "total_pay": 499.8,
+                      "weight_id": ""
+                  }
+              ]
+          }
+
+docs: |+
+  ## Courier Vehicle Type
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "estimated_time": 30,
+    "total_distance": 10.5
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "vehicle_type": [
+          {
+              "id": "e5128eb2-9a80-4300-b0ec-e4d4e116f733",
+              "name": "Scooter",
+              "description": "",
+              "weight_start_limit": 0,
+              "weight_close_limit": 0,
+              "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/135330520242707.png",
+              "close_limit": "Above 0 kg",
+              "total_pay": 185.85,
+              "weight_id": ""
+          },
+          {
+              "id": "2f2aef72-eecb-40aa-860f-a5b51edd0521",
+              "name": "Bike Courier",
+              "description": "",
+              "weight_start_limit": 0,
+              "weight_close_limit": 0,
+              "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/110340520242707.png",
+              "close_limit": "Above 0 kg",
+              "total_pay": 233.63,
+              "weight_id": ""
+          },
+          {
+              "id": "6ce2ce83-7064-471f-95c2-3efbd5055cc8",
+              "name": "Street",
+              "description": "",
+              "weight_start_limit": 0,
+              "weight_close_limit": 0,
+              "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/110340520242707.png",
+              "close_limit": "Above 0 kg",
+              "total_pay": 233.63,
+              "weight_id": ""
+          },
+          {
+              "id": "1e47f97b-0215-48de-8609-c04fcf4969e0",
+              "name": "Car Courier",
+              "description": "",
+              "weight_start_limit": 0,
+              "weight_close_limit": 0,
+              "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/245200720241007.png",
+              "close_limit": "Above 0 kg",
+              "total_pay": 371.7,
+              "weight_id": ""
+          },
+          {
+              "id": "cedd870b-1847-4264-9e20-db57d77bd3ee",
+              "name": "Hatchback",
+              "description": "",
+              "weight_start_limit": 0,
+              "weight_close_limit": 0,
+              "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/245200720241007.png",
+              "close_limit": "Above 0 kg",
+              "total_pay": 371.7,
+              "weight_id": ""
+          },
+          {
+              "id": "4fb41f67-1e3c-4c21-bd2a-76defe37e00d",
+              "name": "SUV",
+              "description": "",
+              "weight_start_limit": 0,
+              "weight_close_limit": 0,
+              "vehicle_type_icon": "http://localhost:8002/storage/img/service-category/transport-service-type/258200720241007.png",
+              "close_limit": "Above 0 kg",
+              "total_pay": 499.8,
+              "weight_id": ""
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

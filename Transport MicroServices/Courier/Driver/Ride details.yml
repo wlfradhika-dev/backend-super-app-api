@@ -1,0 +1,294 @@
+info:
+  name: Ride details
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/courier/ride-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_category_id": 4,
+        "ride_id": "01fee6cb-f846-46db-96e4-e5579a65cb9b"
+      }
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride details
+    request:
+      url: "{{transport_url}}/api/driver/courier/ride-details"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "service_category_id": 4,
+            "ride_id": "{{RIDE_ID}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 09:23:33 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_details": {
+                  "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+                  "user_id": "0c7f4dfd-ea4e-4cc9-8c79-0313aa15ccfc",
+                  "additional_remark": "",
+                  "user_fcm_token": "123456",
+                  "booking_no": "27382197",
+                  "service_category_id": 4,
+                  "user_profile_image": "",
+                  "user_name": "Rahul",
+                  "ride_type": 0,
+                  "rating": 0,
+                  "contact_number": "+919999999999",
+                  "address_list": [
+                      {
+                          "address": "123 Sender Street, City",
+                          "address_lat": "23.0225",
+                          "address_long": "72.5714"
+                      },
+                      {
+                          "address": "456 Recipient Road, City",
+                          "address_lat": "23.03",
+                          "address_long": "72.58"
+                      }
+                  ],
+                  "sos_contact_list": [],
+                  "ride_pause_start_id": 1,
+                  "driver_start_time": null,
+                  "driver_pause_time": null,
+                  "total_pause_start_time": "",
+                  "total_pause_start_amount": 0,
+                  "admin_ride_pause_start_charge": 60,
+                  "pickup_datetime": "2026-03-10T11:18:28.000000Z",
+                  "cancel_by": "user",
+                  "service_date_time": "2026-03-10 11:18:28",
+                  "total_amount": 4205,
+                  "payment_type": 1,
+                  "ride_status": 4,
+                  "promocode_discount": 0,
+                  "promocode_name": "",
+                  "surcharge_cost": 0,
+                  "toll_charge": 0,
+                  "otp": "",
+                  "waiting_charge": 60,
+                  "driver_arrive_time": "",
+                  "driver_waiting_minutes": 0,
+                  "driver_waiting_time": "",
+                  "other_contact_number": null,
+                  "ride_chat_number": "27382197-0629d870-1041-446a-a1f2-85d6a3ffd598"
+              },
+              "courier_details": {
+                  "house_name": "Villa 12",
+                  "recipient_name": "Jane Recipient",
+                  "recipient_landmark": "Opposite Park",
+                  "sender_contact_number": "+919876543210",
+                  "recipient_contact_number": "+919876543211",
+                  "weight_start_limit": 0,
+                  "weight_close_limit": 0,
+                  "receiver_otp": "",
+                  "category_name": "Courier Service",
+                  "sender_name": "John Sender",
+                  "sender_landmark": "Near Main Gate",
+                  "estimate_price": 150,
+                  "goods_height": 0,
+                  "goods_width": 0,
+                  "goods_weight": 0,
+                  "description": "",
+                  "delivery_instruction": "Handle with care"
+              },
+              "is_toll_charge": 1
+          }
+
+docs: |+
+  ## Ride details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "service_category_id": 4,
+    "ride_id": "{{RIDE_ID}}"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_details": {
+          "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+          "user_id": "0c7f4dfd-ea4e-4cc9-8c79-0313aa15ccfc",
+          "additional_remark": "",
+          "user_fcm_token": "123456",
+          "booking_no": "27382197",
+          "service_category_id": 4,
+          "user_profile_image": "",
+          "user_name": "Rahul",
+          "ride_type": 0,
+          "rating": 0,
+          "contact_number": "+919999999999",
+          "address_list": [
+              {
+                  "address": "123 Sender Street, City",
+                  "address_lat": "23.0225",
+                  "address_long": "72.5714"
+              },
+              {
+                  "address": "456 Recipient Road, City",
+                  "address_lat": "23.03",
+                  "address_long": "72.58"
+              }
+          ],
+          "sos_contact_list": [],
+          "ride_pause_start_id": 1,
+          "driver_start_time": null,
+          "driver_pause_time": null,
+          "total_pause_start_time": "",
+          "total_pause_start_amount": 0,
+          "admin_ride_pause_start_charge": 60,
+          "pickup_datetime": "2026-03-10T11:18:28.000000Z",
+          "cancel_by": "user",
+          "service_date_time": "2026-03-10 11:18:28",
+          "total_amount": 4205,
+          "payment_type": 1,
+          "ride_status": 4,
+          "promocode_discount": 0,
+          "promocode_name": "",
+          "surcharge_cost": 0,
+          "toll_charge": 0,
+          "otp": "",
+          "waiting_charge": 60,
+          "driver_arrive_time": "",
+          "driver_waiting_minutes": 0,
+          "driver_waiting_time": "",
+          "other_contact_number": null,
+          "ride_chat_number": "27382197-0629d870-1041-446a-a1f2-85d6a3ffd598"
+      },
+      "courier_details": {
+          "house_name": "Villa 12",
+          "recipient_name": "Jane Recipient",
+          "recipient_landmark": "Opposite Park",
+          "sender_contact_number": "+919876543210",
+          "recipient_contact_number": "+919876543211",
+          "weight_start_limit": 0,
+          "weight_close_limit": 0,
+          "receiver_otp": "",
+          "category_name": "Courier Service",
+          "sender_name": "John Sender",
+          "sender_landmark": "Near Main Gate",
+          "estimate_price": 150,
+          "goods_height": 0,
+          "goods_width": 0,
+          "goods_weight": 0,
+          "description": "",
+          "delivery_instruction": "Handle with care"
+      },
+      "is_toll_charge": 1
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

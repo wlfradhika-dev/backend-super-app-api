@@ -1,0 +1,196 @@
+info:
+  name: Search Store
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/grocery-flow/customer/search-store"
+  body:
+    type: multipart-form
+    data:
+      - name: lat
+        type: text
+        value: "22.3158003"
+      - name: long
+        type: text
+        value: "70.7650816"
+      - name: service_category_id
+        type: text
+        value: "9"
+      - name: search
+        type: text
+        value: Grocery
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Search Store
+    request:
+      url: "{{delivery_url}}/api/grocery-flow/customer/search-store"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: lat
+            type: text
+            value: "22.3158003"
+          - name: long
+            type: text
+            value: "70.7650816"
+          - name: service_category_id
+            type: text
+            value: "9"
+          - name: search
+            type: text
+            value: Grocery
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 13:18:22 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "no_of_store": 1,
+              "store_list": [
+                  {
+                      "store_id": "e2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+                      "store_name": "Store Grocery Testing",
+                      "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+                      "store_products": "Wafers",
+                      "service_category_id": 9,
+                      "service_category_name": "Grocery Delivery",
+                      "service_category_icon": "http://localhost/storage/img/service-category/123456789.png",
+                      "average_ratings": 4.6,
+                      "offer": "Get 5%  off on orders above $10",
+                      "order_delivery_time": 30,
+                      "order_min_amount": 20,
+                      "store_status": 1,
+                      "offer_type": 2,
+                      "offer_min_amount": 10,
+                      "offer_amount": 5,
+                      "no_of_ratings": 0,
+                      "distance": "0.2394870618187738",
+                      "is_fav_store": 0,
+                      "is_subcat_flow": 1
+                  }
+              ]
+          }
+
+docs: |+
+  ## Search Store
+
+  Returns search results for the given query across available records.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `lat` | string | Yes | Lat |
+  | `long` | string | Yes | Long |
+  | `service_category_id` | string | Yes | Service category id |
+  | `search` | string | Yes | Search |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "no_of_store": 1,
+      "store_list": [
+          {
+              "store_id": "e2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "store_name": "Store Grocery Testing",
+              "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+              "store_products": "Wafers",
+              "service_category_id": 9,
+              "service_category_name": "Grocery Delivery",
+              "service_category_icon": "http://localhost/storage/img/service-category/123456789.png",
+              "average_ratings": 4.6,
+              "offer": "Get 5%  off on orders above $10",
+              "order_delivery_time": 30,
+              "order_min_amount": 20,
+              "store_status": 1,
+              "offer_type": 2,
+              "offer_min_amount": 10,
+              "offer_amount": 5,
+              "no_of_ratings": 0,
+              "distance": "0.2394870618187738",
+              "is_fav_store": 0,
+              "is_subcat_flow": 1
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The lat field is required."
+  }
+  ```
+

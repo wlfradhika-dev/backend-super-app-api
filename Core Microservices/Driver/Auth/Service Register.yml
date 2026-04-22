@@ -1,0 +1,216 @@
+info:
+  name: Service Register
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/service-register"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "2"
+      - name: current_lat
+        type: text
+        value: "22.3158003"
+      - name: current_long
+        type: text
+        value: "70.7650816"
+      - name: vehicle_type_id
+        type: text
+        value: 019d7092-d2d0-7011-ac9c-8306bc596f77
+      - name: manufacture_name
+        type: text
+        value: hundai
+      - name: model_name
+        type: text
+        value: verna
+      - name: model_year
+        type: text
+        value: "2013"
+      - name: vehicle_plat_no
+        type: text
+        value: "2618"
+      - name: no_of_seat
+        type: text
+        value: "5"
+      - name: handicap_accessibility
+        type: text
+        value: "1"
+      - name: child_seat_accessibility
+        type: text
+        value: "1"
+      - name: sub_service_list
+        type: text
+        value: 3,5,6,7
+      - name: extra_service_list
+        type: text
+        value: '{"taxi_ride": 1,"store_delivery": 1,"courier_service": 1}'
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Service Register
+    request:
+      url: "{{core_url}}/api/driver/service-register"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "2"
+          - name: current_lat
+            type: text
+            value: "22.3158003"
+          - name: current_long
+            type: text
+            value: "70.7650816"
+          - name: vehicle_type_id
+            type: text
+            value: 019d7092-d2d0-7011-ac9c-8306bb6fce8a
+          - name: manufacture_name
+            type: text
+            value: hundai
+          - name: model_name
+            type: text
+            value: verna
+          - name: model_year
+            type: text
+            value: "2013"
+          - name: vehicle_plat_no
+            type: text
+            value: "2618"
+          - name: no_of_seat
+            type: text
+            value: "5"
+          - name: handicap_accessibility
+            type: text
+            value: "1"
+          - name: child_seat_accessibility
+            type: text
+            value: "1"
+          - name: sub_service_list
+            type: text
+            value: 3,5,6,7
+          - name: extra_service_list
+            type: text
+            value: '{"bike_ride": 1,"store_delivery": 1,"courier_service": 1}'
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Sat, 11 Apr 2026 07:22:05 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "259"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ZA1BC478YNsQ0exyw1YzMcb24kw48TdmfSvDvl28qOGmA3ieJGDXbXMvLUS3ungeCwM2RVDhJWOWL6K84AZKA6hObTZD7a0S0nU6wOsOHxH42HPjkYVLs9YIJNivq4do5v2esI%2FSEF%2B9jrqVw1X1U0YHvYZxu3A%2FPAw%3D"}]}'
+        - name: cf-ray
+          value: 9ea83cf50cc2a9ef-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "driver_service_id": "019d7b6b-5573-729a-b3c4-d31a885996f8",
+              "service_status": 5,
+              "driver_current_status": 1,
+              "service_category_id": "2",
+              "driver_service": "Intercity,Taxi Bidding,Taxi Pool,Bike Rental,Store Delivery",
+              "vehicle_type_icon": "233100820250801.png",
+              "vehicle_type_name": "SUV"
+          }
+
+docs: |+
+  ## Service Register
+
+  Registers the driver for a specific service category, associating them with the selected service type.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | Service category id |
+  | `current_lat` | string | Yes | Current lat |
+  | `current_long` | string | Yes | Current long |
+  | `vehicle_type_id` | string | Yes | Vehicle type id |
+  | `manufacture_name` | string | Yes | Manufacture name |
+  | `model_name` | string | Yes | Model name |
+  | `model_year` | string | Yes | Model year |
+  | `vehicle_plat_no` | string | Yes | Vehicle plat no |
+  | `no_of_seat` | string | Yes | No of seat |
+  | `handicap_accessibility` | string | Yes | Handicap accessibility |
+  | `child_seat_accessibility` | string | Yes | Child seat accessibility |
+  | `sub_service_list` | string | Yes | Sub service list |
+  | `extra_service_list` | string | Yes | Extra service list |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "driver_service_id": "49458a1b-21dd-47e4-9e65-3119e748fd56",
+      "service_status": 0,
+      "driver_current_status": 1,
+      "service_category_id": "2",
+      "driver_service": "Taxi Bidding,Taxi Pool",
+      "vehicle_type_icon": "258200720241007.png",
+      "vehicle_type_name": "SUV"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+

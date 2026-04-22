@@ -1,0 +1,713 @@
+info:
+  name: Time Slot List
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/customer/time-slot-list"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "provider_id": "{{provider_id}}",
+          "select_date": "2026-03-11",
+          "service_type": 1
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Time Slot List
+    request:
+      url: "{{on_deman_url}}/api/customer/on-demand/time-slot-list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer <USER_ACCESS_TOKEN>
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "provider_id": "{{provider_id}}",
+              "select_date": "2026-03-11"
+          }
+          //run at 16:49
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 11:19:31 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_time_list": [
+                  {
+                      "start_time": "00:00:00",
+                      "end_time": "01:00:00",
+                      "display_start_time": "12:00 AM",
+                      "display_end_time": "01:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "01:00:00",
+                      "end_time": "02:00:00",
+                      "display_start_time": "01:00 AM",
+                      "display_end_time": "02:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "02:00:00",
+                      "end_time": "03:00:00",
+                      "display_start_time": "02:00 AM",
+                      "display_end_time": "03:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "03:00:00",
+                      "end_time": "04:00:00",
+                      "display_start_time": "03:00 AM",
+                      "display_end_time": "04:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "04:00:00",
+                      "end_time": "05:00:00",
+                      "display_start_time": "04:00 AM",
+                      "display_end_time": "05:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "05:00:00",
+                      "end_time": "06:00:00",
+                      "display_start_time": "05:00 AM",
+                      "display_end_time": "06:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "06:00:00",
+                      "end_time": "07:00:00",
+                      "display_start_time": "06:00 AM",
+                      "display_end_time": "07:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "07:00:00",
+                      "end_time": "08:00:00",
+                      "display_start_time": "07:00 AM",
+                      "display_end_time": "08:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "08:00:00",
+                      "end_time": "09:00:00",
+                      "display_start_time": "08:00 AM",
+                      "display_end_time": "09:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "09:00:00",
+                      "end_time": "10:00:00",
+                      "display_start_time": "09:00 AM",
+                      "display_end_time": "10:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "10:00:00",
+                      "end_time": "11:00:00",
+                      "display_start_time": "10:00 AM",
+                      "display_end_time": "11:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "11:00:00",
+                      "end_time": "12:00:00",
+                      "display_start_time": "11:00 AM",
+                      "display_end_time": "12:00 PM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "12:00:00",
+                      "end_time": "13:00:00",
+                      "display_start_time": "12:00 PM",
+                      "display_end_time": "01:00 PM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "13:00:00",
+                      "end_time": "14:00:00",
+                      "display_start_time": "01:00 PM",
+                      "display_end_time": "02:00 PM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "14:00:00",
+                      "end_time": "15:00:00",
+                      "display_start_time": "02:00 PM",
+                      "display_end_time": "03:00 PM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "15:00:00",
+                      "end_time": "16:00:00",
+                      "display_start_time": "03:00 PM",
+                      "display_end_time": "04:00 PM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "16:00:00",
+                      "end_time": "17:00:00",
+                      "display_start_time": "04:00 PM",
+                      "display_end_time": "05:00 PM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "17:00:00",
+                      "end_time": "18:00:00",
+                      "display_start_time": "05:00 PM",
+                      "display_end_time": "06:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "18:00:00",
+                      "end_time": "19:00:00",
+                      "display_start_time": "06:00 PM",
+                      "display_end_time": "07:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "19:00:00",
+                      "end_time": "20:00:00",
+                      "display_start_time": "07:00 PM",
+                      "display_end_time": "08:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "20:00:00",
+                      "end_time": "21:00:00",
+                      "display_start_time": "08:00 PM",
+                      "display_end_time": "09:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "21:00:00",
+                      "end_time": "22:00:00",
+                      "display_start_time": "09:00 PM",
+                      "display_end_time": "10:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "22:00:00",
+                      "end_time": "23:00:00",
+                      "display_start_time": "10:00 PM",
+                      "display_end_time": "11:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "23:00:00",
+                      "end_time": "24:00:00",
+                      "display_start_time": "11:00 PM",
+                      "display_end_time": "12:00 AM",
+                      "disabled": 1
+                  }
+              ]
+          }
+  - name: Time Slot List (different time zone(Africa/Accra))
+    request:
+      url: "{{on_deman_url}}/api/customer/on-demand/time-slot-list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer <USER_ACCESS_TOKEN>
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "provider_id": "{{provider_id}}",
+              "select_date": "2026-03-11"
+          }
+          //run at 16:49
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 11:26:37 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_time_list": [
+                  {
+                      "start_time": "00:00:00",
+                      "end_time": "01:00:00",
+                      "display_start_time": "12:00 AM",
+                      "display_end_time": "01:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "01:00:00",
+                      "end_time": "02:00:00",
+                      "display_start_time": "01:00 AM",
+                      "display_end_time": "02:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "02:00:00",
+                      "end_time": "03:00:00",
+                      "display_start_time": "02:00 AM",
+                      "display_end_time": "03:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "03:00:00",
+                      "end_time": "04:00:00",
+                      "display_start_time": "03:00 AM",
+                      "display_end_time": "04:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "04:00:00",
+                      "end_time": "05:00:00",
+                      "display_start_time": "04:00 AM",
+                      "display_end_time": "05:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "05:00:00",
+                      "end_time": "06:00:00",
+                      "display_start_time": "05:00 AM",
+                      "display_end_time": "06:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "06:00:00",
+                      "end_time": "07:00:00",
+                      "display_start_time": "06:00 AM",
+                      "display_end_time": "07:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "07:00:00",
+                      "end_time": "08:00:00",
+                      "display_start_time": "07:00 AM",
+                      "display_end_time": "08:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "08:00:00",
+                      "end_time": "09:00:00",
+                      "display_start_time": "08:00 AM",
+                      "display_end_time": "09:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "09:00:00",
+                      "end_time": "10:00:00",
+                      "display_start_time": "09:00 AM",
+                      "display_end_time": "10:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "10:00:00",
+                      "end_time": "11:00:00",
+                      "display_start_time": "10:00 AM",
+                      "display_end_time": "11:00 AM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "11:00:00",
+                      "end_time": "12:00:00",
+                      "display_start_time": "11:00 AM",
+                      "display_end_time": "12:00 PM",
+                      "disabled": 1
+                  },
+                  {
+                      "start_time": "12:00:00",
+                      "end_time": "13:00:00",
+                      "display_start_time": "12:00 PM",
+                      "display_end_time": "01:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "13:00:00",
+                      "end_time": "14:00:00",
+                      "display_start_time": "01:00 PM",
+                      "display_end_time": "02:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "14:00:00",
+                      "end_time": "15:00:00",
+                      "display_start_time": "02:00 PM",
+                      "display_end_time": "03:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "15:00:00",
+                      "end_time": "16:00:00",
+                      "display_start_time": "03:00 PM",
+                      "display_end_time": "04:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "16:00:00",
+                      "end_time": "17:00:00",
+                      "display_start_time": "04:00 PM",
+                      "display_end_time": "05:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "17:00:00",
+                      "end_time": "18:00:00",
+                      "display_start_time": "05:00 PM",
+                      "display_end_time": "06:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "18:00:00",
+                      "end_time": "19:00:00",
+                      "display_start_time": "06:00 PM",
+                      "display_end_time": "07:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "19:00:00",
+                      "end_time": "20:00:00",
+                      "display_start_time": "07:00 PM",
+                      "display_end_time": "08:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "20:00:00",
+                      "end_time": "21:00:00",
+                      "display_start_time": "08:00 PM",
+                      "display_end_time": "09:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "21:00:00",
+                      "end_time": "22:00:00",
+                      "display_start_time": "09:00 PM",
+                      "display_end_time": "10:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "22:00:00",
+                      "end_time": "23:00:00",
+                      "display_start_time": "10:00 PM",
+                      "display_end_time": "11:00 PM",
+                      "disabled": 0
+                  },
+                  {
+                      "start_time": "23:00:00",
+                      "end_time": "24:00:00",
+                      "display_start_time": "11:00 PM",
+                      "display_end_time": "12:00 AM",
+                      "disabled": 1
+                  }
+              ]
+          }
+
+docs: |+
+  ## Time Slot List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "provider_id": "{{provider_id}}",
+      "select_date": "2026-03-11",
+      "service_type": 1
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_time_list": [
+          {
+              "start_time": "00:00:00",
+              "end_time": "01:00:00",
+              "display_start_time": "12:00 AM",
+              "display_end_time": "01:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "01:00:00",
+              "end_time": "02:00:00",
+              "display_start_time": "01:00 AM",
+              "display_end_time": "02:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "02:00:00",
+              "end_time": "03:00:00",
+              "display_start_time": "02:00 AM",
+              "display_end_time": "03:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "03:00:00",
+              "end_time": "04:00:00",
+              "display_start_time": "03:00 AM",
+              "display_end_time": "04:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "04:00:00",
+              "end_time": "05:00:00",
+              "display_start_time": "04:00 AM",
+              "display_end_time": "05:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "05:00:00",
+              "end_time": "06:00:00",
+              "display_start_time": "05:00 AM",
+              "display_end_time": "06:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "06:00:00",
+              "end_time": "07:00:00",
+              "display_start_time": "06:00 AM",
+              "display_end_time": "07:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "07:00:00",
+              "end_time": "08:00:00",
+              "display_start_time": "07:00 AM",
+              "display_end_time": "08:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "08:00:00",
+              "end_time": "09:00:00",
+              "display_start_time": "08:00 AM",
+              "display_end_time": "09:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "09:00:00",
+              "end_time": "10:00:00",
+              "display_start_time": "09:00 AM",
+              "display_end_time": "10:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "10:00:00",
+              "end_time": "11:00:00",
+              "display_start_time": "10:00 AM",
+              "display_end_time": "11:00 AM",
+              "disabled": 1
+          },
+          {
+              "start_time": "11:00:00",
+              "end_time": "12:00:00",
+              "display_start_time": "11:00 AM",
+              "display_end_time": "12:00 PM",
+              "disabled": 1
+          },
+          {
+              "start_time": "12:00:00",
+              "end_time": "13:00:00",
+              "display_start_time": "12:00 PM",
+              "display_end_time": "01:00 PM",
+              "disabled": 1
+          },
+          {
+              "start_time": "13:00:00",
+              "end_time": "14:00:00",
+              "display_start_time": "01:00 PM",
+              "display_end_time": "02:00 PM",
+              "disabled": 1
+          },
+          {
+              "start_time": "14:00:00",
+              "end_time": "15:00:00",
+              "display_start_time": "02:00 PM",
+              "display_end_time": "03:00 PM",
+              "disabled": 1
+          },
+          {
+              "start_time": "15:00:00",
+              "end_time": "16:00:00",
+              "display_start_time": "03:00 PM",
+              "display_end_time": "04:00 PM",
+              "disabled": 1
+          },
+          {
+              "start_time": "16:00:00",
+              "end_time": "17:00:00",
+              "display_start_time": "04:00 PM",
+              "display_end_time": "05:00 PM",
+              "disabled": 1
+          },
+          {
+              "start_time": "17:00:00",
+              "end_time": "18:00:00",
+              "display_start_time": "05:00 PM",
+              "display_end_time": "06:00 PM",
+              "disabled": 0
+          },
+          {
+              "start_time": "18:00:00",
+              "end_time": "19:00:00",
+              "display_start_time": "06:00 PM",
+              "display_end_time": "07:00 PM",
+              "disabled": 0
+          },
+          {
+              "start_time": "19:00:00",
+              "end_time": "20:00:00",
+              "display_start_time": "07:00 PM",
+              "display_end_time": "08:00 PM",
+              "disabled": 0
+          },
+          {
+              "start_time": "20:00:00",
+              "end_time": "21:00:00",
+              "display_start_time": "08:00 PM",
+              "display_end_time": "09:00 PM",
+              "disabled": 0
+          },
+          {
+              "start_time": "21:00:00",
+              "end_time": "22:00:00",
+              "display_start_time": "09:00 PM",
+              "display_end_time": "10:00 PM",
+              "disabled": 0
+          },
+          {
+              "start_time": "22:00:00",
+              "end_time": "23:00:00",
+              "display_start_time": "10:00 PM",
+              "display_end_time": "11:00 PM",
+              "disabled": 0
+          },
+          {
+              "start_time": "23:00:00",
+              "end_time": "24:00:00",
+              "display_start_time": "11:00 PM",
+              "display_end_time": "12:00 AM",
+              "disabled": 1
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

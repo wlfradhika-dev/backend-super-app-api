@@ -1,0 +1,176 @@
+info:
+  name: OnDemand History
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/report-issue/on-demand-history"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: timezone
+        type: text
+        value: Asia/Kolkata
+      - name: filter_type
+        type: text
+        value: "0"
+        description: " 0 = all, 1 = today, 2 = last 7 days, 3 = last 30 days, 4 = this year, 5 = upcoming order, 6 = last 365 days"
+      - name: service_category
+        type: text
+        value: ""
+      - name: status
+        type: text
+        value: ""
+        description: 1 = un-resolved, 2 = resolved
+      - name: per_page
+        type: text
+        value: "10"
+      - name: page
+        type: text
+        value: "1"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: OnDemand History
+    request:
+      url: "{{core_url}}/api/customer/report-issue/on-demand-history"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: timezone
+            type: text
+            value: Asia/Kolkata
+          - name: filter_type
+            type: text
+            value: "0"
+            description: " 0 = all, 1 = today, 2 = last 7 days, 3 = last 30 days, 4 = this year, 5 = upcoming order, 6 = last 365 days"
+          - name: service_category
+            type: text
+            value: ""
+          - name: status
+            type: text
+            value: ""
+            description: 1 = un-resolved, 2 = resolved
+          - name: per_page
+            type: text
+            value: "10"
+          - name: page
+            type: text
+            value: "1"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 11:03:44 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 0,
+              "report_issue_history": []//response will be same as transport history
+          }
+
+docs: |+
+  ## OnDemand History
+
+  Handles report issues and frequently asked questions for user support.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `timezone` | string | Yes | Timezone |
+  | `filter_type` | string | Yes |  0 = all, 1 = today, 2 = last 7 days, 3 = last 30 days, 4 = this year, 5 = upcoming order, 6 = last 365 days |
+  | `service_category` | string | Yes | Service category |
+  | `status` | string | Yes | 1 = un-resolved, 2 = resolved |
+  | `per_page` | string | Yes | Per page |
+  | `page` | string | Yes | Page |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 0,
+      "report_issue_history": []//response will be same as transport history
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The timezone field is required."
+  }
+  ```
+

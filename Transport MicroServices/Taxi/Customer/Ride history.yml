@@ -1,0 +1,213 @@
+info:
+  name: Ride history
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/taxi/transport/ride-history"
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "2"
+        description: "service category id "
+      - name: filter_type
+        type: text
+        value: "4"
+        description: "1:Today, 2: 7 Days, 3: 15 Days, 4: This Month, 5: This year, 6: Last Year, 7: Upcomming Order"
+      - name: timezone
+        type: text
+        value: Asia/Kolkata
+        description: For Timezone
+      - name: service_category
+        type: text
+        value: ""
+        description: For screen type is optional field
+      - name: order_status
+        type: text
+        value: ""
+        description: For screen type 1 then ride no required
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride history
+    request:
+      url: "{{transport_url}}/api/customer/taxi/transport/ride-history"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: user_id
+            type: text
+            value: "{{user_id}}"
+            description: For User Id
+          - name: service_category_id
+            type: text
+            value: "2"
+            description: "service category id "
+          - name: filter_type
+            type: text
+            value: "4"
+            description: "1:Today, 2: 7 Days, 3: 15 Days, 4: This Month, 5: This year, 6: Last Year, 7: Upcomming Order"
+          - name: timezone
+            type: text
+            value: Asia/Kolkata
+            description: For Timezone
+          - name: service_category
+            type: text
+            value: ""
+            description: For screen type is optional field
+          - name: order_status
+            type: text
+            value: ""
+            description: For screen type 1 then ride no required
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Feb 2026 04:49:35 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 1,
+              "rides": [
+                  {
+                      "ride_id": "e96b9c62-3c53-41c7-bdcf-a8d0cd99a370",
+                      "sub_ride_id": 0,
+                      "booking_no": "93475493",
+                      "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type227210720241007.png",
+                      "category_name": "Sedan",
+                      "service_category_id": 2,
+                      "service_cat_name": "Taxi Ride",
+                      "ride_status": 4,
+                      "total_pay": 980,
+                      "pickup_date": "09 Feb, 2026",
+                      "pickup_time": "01:36 PM",
+                      "service_date_time": "2026-02-09 13:36:15",
+                      "schedule_order_date_time": "2026-02-09 13:36:15",
+                      "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                      "destination_address": "7QPF+F2 Rajkot,Gujarat",
+                      "ride_flow_type": 1,
+                      "is_rebook": 1
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride history
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | service category id  |
+  | `filter_type` | string | Yes | 1:Today, 2: 7 Days, 3: 15 Days, 4: This Month, 5: This year, 6: Last Year, 7: Upcomming Order |
+  | `timezone` | string | Yes | For Timezone |
+  | `service_category` | string | No | For screen type is optional field |
+  | `order_status` | string | Yes | For screen type 1 then ride no required |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 1,
+      "rides": [
+          {
+              "ride_id": "e96b9c62-3c53-41c7-bdcf-a8d0cd99a370",
+              "sub_ride_id": 0,
+              "booking_no": "93475493",
+              "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type227210720241007.png",
+              "category_name": "Sedan",
+              "service_category_id": 2,
+              "service_cat_name": "Taxi Ride",
+              "ride_status": 4,
+              "total_pay": 980,
+              "pickup_date": "09 Feb, 2026",
+              "pickup_time": "01:36 PM",
+              "service_date_time": "2026-02-09 13:36:15",
+              "schedule_order_date_time": "2026-02-09 13:36:15",
+              "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+              "destination_address": "7QPF+F2 Rajkot,Gujarat",
+              "ride_flow_type": 1,
+              "is_rebook": 1
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+

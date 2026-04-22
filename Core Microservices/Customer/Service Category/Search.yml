@@ -1,0 +1,169 @@
+info:
+  name: Search
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/search-service-category"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: search_text
+        type: text
+        value: Taxi
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Search
+    request:
+      url: "{{core_url}}/api/customer/search-service-category"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: search_text
+            type: text
+            value: Taxi
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 10:24:34 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "services": [
+                  {
+                      "service_category_id": 2,
+                      "category_type": 1,
+                      "service_category_name": "Taxi Ride",
+                      "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11350720242806.png"
+                  },
+                  {
+                      "service_category_id": 5,
+                      "category_type": 1,
+                      "service_category_name": "Taxi Bidding",
+                      "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11354920242806.png"
+                  },
+                  {
+                      "service_category_id": 6,
+                      "category_type": 1,
+                      "service_category_name": "Taxi Pool",
+                      "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11360920242806.png"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Search
+
+  Returns search results for the given query across available records.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `search_text` | string | Yes | Search text |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "services": [
+          {
+              "service_category_id": 2,
+              "category_type": 1,
+              "service_category_name": "Taxi Ride",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11350720242806.png"
+          },
+          {
+              "service_category_id": 5,
+              "category_type": 1,
+              "service_category_name": "Taxi Bidding",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11354920242806.png"
+          },
+          {
+              "service_category_id": 6,
+              "category_type": 1,
+              "service_category_name": "Taxi Pool",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11360920242806.png"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The search text field is required."
+  }
+  ```
+

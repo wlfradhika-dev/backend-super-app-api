@@ -1,0 +1,285 @@
+info:
+  name: Ride History
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/transport/taxi-pool/ride-history"
+  body:
+    type: multipart-form
+    data:
+      - name: timezone
+        type: text
+        value: Asia/Kolkata
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride History
+    request:
+      url: "{{transport_url}}/api/customer/transport/taxi-pool/ride-history"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: timezone
+            type: text
+            value: Asia/Kolkata
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 17 Feb 2026 11:45:19 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 4,
+              "rides": [
+                  {
+                      "ride_id": "e9205e23-8eeb-418b-a5a1-15440e765854",
+                      "sub_ride_id": 0,
+                      "booking_no": "98478986",
+                      "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 6,
+                      "service_cat_name": "Taxi Pool",
+                      "ride_status": 4,
+                      "total_pay": 210,
+                      "pickup_date": "17 Feb, 2026",
+                      "pickup_time": "10:27 AM",
+                      "service_date_time": "2026-02-17 10:28:46",
+                      "schedule_order_date_time": "2026-02-17 10:27:36",
+                      "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                      "destination_address": "7QPF+F2 Rajkot,Gujarat",
+                      "ride_flow_type": 1,
+                      "is_rebook": 1
+                  },
+                  {
+                      "ride_id": "9054dbd2-27b6-47f5-9390-0e60900de492",
+                      "sub_ride_id": 0,
+                      "booking_no": "82153707",
+                      "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 6,
+                      "service_cat_name": "Taxi Pool",
+                      "ride_status": 1,
+                      "total_pay": 210,
+                      "pickup_date": "17 Feb, 2026",
+                      "pickup_time": "10:21 AM",
+                      "service_date_time": "2026-02-17 10:21:43",
+                      "schedule_order_date_time": "2026-02-17 10:21:19",
+                      "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                      "destination_address": "7QPF+F2 Rajkot,Gujarat",
+                      "ride_flow_type": 1,
+                      "is_rebook": 0
+                  },
+                  {
+                      "ride_id": "3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438",
+                      "sub_ride_id": 0,
+                      "booking_no": "91127468",
+                      "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 6,
+                      "service_cat_name": "Taxi Pool",
+                      "ride_status": 6,
+                      "total_pay": 220,
+                      "pickup_date": "17 Feb, 2026",
+                      "pickup_time": "10:17 AM",
+                      "service_date_time": "2026-02-17 10:18:11",
+                      "schedule_order_date_time": "2026-02-17 10:17:46",
+                      "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                      "destination_address": "7QPF+F2 Rajkot,Gujarat",
+                      "ride_flow_type": 1,
+                      "is_rebook": 0
+                  },
+                  {
+                      "ride_id": "65617e4a-56fb-469a-bd9f-bb4f59463eca",
+                      "sub_ride_id": 0,
+                      "booking_no": "82040634",
+                      "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 6,
+                      "service_cat_name": "Taxi Pool",
+                      "ride_status": 9,
+                      "total_pay": 210,
+                      "pickup_date": "16 Feb, 2026",
+                      "pickup_time": "12:11 PM",
+                      "service_date_time": "2026-02-17 05:08:28",
+                      "schedule_order_date_time": "2026-02-16 12:11:25",
+                      "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+                      "destination_address": "7QPF+F2 Rajkot,Gujarat",
+                      "ride_flow_type": 1,
+                      "is_rebook": 1
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride History
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `timezone` | string | Yes | Timezone |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 4,
+      "rides": [
+          {
+              "ride_id": "e9205e23-8eeb-418b-a5a1-15440e765854",
+              "sub_ride_id": 0,
+              "booking_no": "98478986",
+              "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 6,
+              "service_cat_name": "Taxi Pool",
+              "ride_status": 4,
+              "total_pay": 210,
+              "pickup_date": "17 Feb, 2026",
+              "pickup_time": "10:27 AM",
+              "service_date_time": "2026-02-17 10:28:46",
+              "schedule_order_date_time": "2026-02-17 10:27:36",
+              "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+              "destination_address": "7QPF+F2 Rajkot,Gujarat",
+              "ride_flow_type": 1,
+              "is_rebook": 1
+          },
+          {
+              "ride_id": "9054dbd2-27b6-47f5-9390-0e60900de492",
+              "sub_ride_id": 0,
+              "booking_no": "82153707",
+              "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 6,
+              "service_cat_name": "Taxi Pool",
+              "ride_status": 1,
+              "total_pay": 210,
+              "pickup_date": "17 Feb, 2026",
+              "pickup_time": "10:21 AM",
+              "service_date_time": "2026-02-17 10:21:43",
+              "schedule_order_date_time": "2026-02-17 10:21:19",
+              "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+              "destination_address": "7QPF+F2 Rajkot,Gujarat",
+              "ride_flow_type": 1,
+              "is_rebook": 0
+          },
+          {
+              "ride_id": "3ce7b834-cfd6-43dd-b8b3-16bc3ccfb438",
+              "sub_ride_id": 0,
+              "booking_no": "91127468",
+              "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 6,
+              "service_cat_name": "Taxi Pool",
+              "ride_status": 6,
+              "total_pay": 220,
+              "pickup_date": "17 Feb, 2026",
+              "pickup_time": "10:17 AM",
+              "service_date_time": "2026-02-17 10:18:11",
+              "schedule_order_date_time": "2026-02-17 10:17:46",
+              "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+              "destination_address": "7QPF+F2 Rajkot,Gujarat",
+              "ride_flow_type": 1,
+              "is_rebook": 0
+          },
+          {
+              "ride_id": "65617e4a-56fb-469a-bd9f-bb4f59463eca",
+              "sub_ride_id": 0,
+              "booking_no": "82040634",
+              "category_icon": "http://127.0.0.1:8001/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 6,
+              "service_cat_name": "Taxi Pool",
+              "ride_status": 9,
+              "total_pay": 210,
+              "pickup_date": "16 Feb, 2026",
+              "pickup_time": "12:11 PM",
+              "service_date_time": "2026-02-17 05:08:28",
+              "schedule_order_date_time": "2026-02-16 12:11:25",
+              "pickup_address": "8Q89+83F, 150 Feet Ring Rd, Shastri Nagar, Dharam Nagar,Rajkot,Gujarat",
+              "destination_address": "7QPF+F2 Rajkot,Gujarat",
+              "ride_flow_type": 1,
+              "is_rebook": 1
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The timezone field is required."
+  }
+  ```
+

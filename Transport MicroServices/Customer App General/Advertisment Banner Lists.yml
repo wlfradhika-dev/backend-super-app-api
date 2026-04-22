@@ -1,0 +1,153 @@
+info:
+  name: Advertisment Banner Lists
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/advertisement-banner-list"
+  body:
+    type: multipart-form
+    data:
+      - name: lat
+        type: text
+        value: ""
+        description: null value accpeted otherwise string
+      - name: long
+        type: text
+        value: ""
+        description: null value accpeted otherwise string
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Advertisment Banner Lists
+    request:
+      url: "{{transport_url}}/api/customer/advertisement-banner-list"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: lat
+            type: text
+            value: ""
+            description: null value accpeted otherwise string
+          - name: long
+            type: text
+            value: ""
+            description: null value accpeted otherwise string
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 05:36:05 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "advertisement_banner": [
+                  {
+                      "advertise_url": "https://example.com/offers/first-ride-discount",
+                      "advertise_banner_image": "http://127.0.0.1:8001/storage/img/advertisement-banner/offer_banner_01.jpg"
+                  },
+                  {
+                      "advertise_url": "https://example.com/offers/weekend-special",
+                      "advertise_banner_image": "http://127.0.0.1:8001/storage/img/advertisement-banner/offer_banner_02.jpg"
+                  },
+                  {
+                      "advertise_url": "https://example.com/offers/referral-program",
+                      "advertise_banner_image": "http://127.0.0.1:8001/storage/img/advertisement-banner/offer_banner_03.jpg"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Advertisment Banner Lists
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `lat` | string | No | null value accpeted otherwise string |
+  | `long` | string | No | null value accpeted otherwise string |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "advertisement_banner": [
+          {
+              "advertise_url": "https://example.com/offers/first-ride-discount",
+              "advertise_banner_image": "http://127.0.0.1:8001/storage/img/advertisement-banner/offer_banner_01.jpg"
+          },
+          {
+              "advertise_url": "https://example.com/offers/weekend-special",
+              "advertise_banner_image": "http://127.0.0.1:8001/storage/img/advertisement-banner/offer_banner_02.jpg"
+          },
+          {
+              "advertise_url": "https://example.com/offers/referral-program",
+              "advertise_banner_image": "http://127.0.0.1:8001/storage/img/advertisement-banner/offer_banner_03.jpg"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

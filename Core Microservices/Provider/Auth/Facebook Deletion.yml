@@ -1,0 +1,38 @@
+info:
+  name: Facebook Deletion
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/facebook-delete"
+  headers:
+    - name: Accept
+      value: application/json
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ## Facebook Deletion
+
+  Handles the Facebook data deletion callback. Facebook calls this URL when a user requests their data to be deleted from your platform.
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200
+  }
+  ```
+

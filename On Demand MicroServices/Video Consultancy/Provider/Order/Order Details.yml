@@ -1,0 +1,400 @@
+info:
+  name: Order Details
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/video-consultancy/orders/order-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "order_id": "{{order_uuid}}"
+      }
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Order Details response
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/orders/order-details"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: json
+        data: |-
+          {
+              "order_id": "{{order_uuid}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 05:47:24 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "2237f5b6-0f3f-4985-b73a-00fa8df303bf",
+              "order_no": "10000001",
+              "additional_remark": "",
+              "order_type": 1,
+              "order_status": 7,
+              "order_cancel_by": "",
+              "order_cancel_reason": "",
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "provider_rating_status": 0,
+              "payment_type": 1,
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "http://localhost:8004/storage/img/service-category/video-consultation.png",
+              "service_cat_id": 14,
+              "category_type": 6,
+              "schedule_order_date": "2026-03-13",
+              "schedule_order_time": "10:00:00 - 11:00:00",
+              "service_date_time": "2026-03-12 05:34:14",
+              "pickup_address": "",
+              "pickup_lat_long": "",
+              "destination_address": "Online Video Call",
+              "destination_lat_long": null,
+              "flat_no": "",
+              "landmark": "",
+              "customer_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "customer_fcm_token": "",
+              "customer_name": "Yash",
+              "customer_contact_no": "+914021",
+              "customer_profile_image": "",
+              "item_total": 50,
+              "sub_total": 50,
+              "tax": 5,
+              "extra_amount": 0,
+              "description": "",
+              "refer_discount": 0,
+              "discount": 0,
+              "tip": 0,
+              "promocode_name": "",
+              "promo_code_discount": 0,
+              "provider_pay_settle_status": 0,
+              "total_pay": 55,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0,
+              "select_provider_location": 0,
+              "admin_video_call_time_limit": 30,
+              "order_used_video_call_time_limit": 10,
+              "order_chat_number": "10000001_2237f5b6-0f3f-4985-b73a-00fa8df303bf",
+              "package_list": [
+                  {
+                      "category_name": "General Consultation",
+                      "packages": [
+                          {
+                              "package_name": "Basic Consultation",
+                              "num_of_items": 1,
+                              "price_for_one": 50,
+                              "total_single_package_price": 50,
+                              "sub_category_name": "General Consultation"
+                          }
+                      ]
+                  }
+              ],
+              "invoice_download_link": ""
+          }
+  - name: Order Details
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/orders/order-details"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: json
+        data: |-
+          {
+              "order_id": "{{order_uuid}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 13 Mar 2026 04:46:10 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "30d3eb79-dcee-488e-8331-5396ff40a09f",
+              "order_no": "20000005",
+              "additional_remark": "",
+              "order_type": 0,
+              "order_status": 9,
+              "order_cancel_by": "",
+              "order_cancel_reason": "",
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "provider_rating_status": 0,
+              "payment_type": 1,
+              "service_cat_name": "Video Consultation",
+              "service_category_image": "http://localhost:8004/storage/img/service-category/video-consultation.png",
+              "service_cat_id": 14,
+              "category_type": 6,
+              "schedule_order_date": "2026-03-12",
+              "schedule_order_time": "05:38:42 - 06:38:42",
+              "service_date_time": "2026-03-12 06:38:42",
+              "pickup_address": "",
+              "pickup_lat_long": "",
+              "destination_address": null,
+              "destination_lat_long": null,
+              "flat_no": "",
+              "landmark": "",
+              "customer_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+              "customer_fcm_token": "test-user-device-token-123",
+              "customer_name": "Yash",
+              "customer_contact_no": "+914021",
+              "customer_profile_image": "",
+              "item_total": 100,
+              "sub_total": 100,
+              "tax": 10,
+              "extra_amount": 0,
+              "description": "",
+              "refer_discount": 0,
+              "discount": 0,
+              "tip": 0,
+              "promocode_name": "",
+              "promo_code_discount": 0,
+              "provider_pay_settle_status": 0,
+              "total_pay": 110,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0,
+              "select_provider_location": 0,
+              "admin_video_call_time_limit": 0,
+              "order_used_video_call_time_limit": 0,
+              "order_chat_number": "20000005_30d3eb79-dcee-488e-8331-5396ff40a09f",
+              "package_list": [
+                  {
+                      "category_name": "General",
+                      "packages": [
+                          {
+                              "package_name": "Basic Consultation",
+                              "num_of_items": 1,
+                              "price_for_one": 100,
+                              "total_single_package_price": 100,
+                              "sub_category_name": "General"
+                          }
+                      ]
+                  }
+              ],
+              "invoice_download_link": "http://localhost:8004/provider-on-demand-invoice-download/30d3eb79-dcee-488e-8331-5396ff40a09f/provider/c8cba12a-1775-44f2-8f97-24c7e79faaf2"
+          }
+
+docs: |+
+  ## Order Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "order_id": "{{order_uuid}}"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "2237f5b6-0f3f-4985-b73a-00fa8df303bf",
+      "order_no": "10000001",
+      "additional_remark": "",
+      "order_type": 1,
+      "order_status": 7,
+      "order_cancel_by": "",
+      "order_cancel_reason": "",
+      "order_payment_type": 1,
+      "order_payment_status": 0,
+      "provider_rating_status": 0,
+      "payment_type": 1,
+      "service_cat_name": "Video Consultation",
+      "service_category_image": "http://localhost:8004/storage/img/service-category/video-consultation.png",
+      "service_cat_id": 14,
+      "category_type": 6,
+      "schedule_order_date": "2026-03-13",
+      "schedule_order_time": "10:00:00 - 11:00:00",
+      "service_date_time": "2026-03-12 05:34:14",
+      "pickup_address": "",
+      "pickup_lat_long": "",
+      "destination_address": "Online Video Call",
+      "destination_lat_long": null,
+      "flat_no": "",
+      "landmark": "",
+      "customer_id": "a615bfa9-e9fb-4775-b40d-d0c244367502",
+      "customer_fcm_token": "",
+      "customer_name": "Yash",
+      "customer_contact_no": "+914021",
+      "customer_profile_image": "",
+      "item_total": 50,
+      "sub_total": 50,
+      "tax": 5,
+      "extra_amount": 0,
+      "description": "",
+      "refer_discount": 0,
+      "discount": 0,
+      "tip": 0,
+      "promocode_name": "",
+      "promo_code_discount": 0,
+      "provider_pay_settle_status": 0,
+      "total_pay": 55,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0,
+      "select_provider_location": 0,
+      "admin_video_call_time_limit": 30,
+      "order_used_video_call_time_limit": 10,
+      "order_chat_number": "10000001_2237f5b6-0f3f-4985-b73a-00fa8df303bf",
+      "package_list": [
+          {
+              "category_name": "General Consultation",
+              "packages": [
+                  {
+                      "package_name": "Basic Consultation",
+                      "num_of_items": 1,
+                      "price_for_one": 50,
+                      "total_single_package_price": 50,
+                      "sub_category_name": "General Consultation"
+                  }
+              ]
+          }
+      ],
+      "invoice_download_link": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

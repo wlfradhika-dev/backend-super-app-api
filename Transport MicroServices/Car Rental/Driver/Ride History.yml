@@ -1,0 +1,281 @@
+info:
+  name: Ride History
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/car-rental/ride-history"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+    - name: Authorization
+      value: Bearer 12|LSSoK14UJlI5nu2yxn3MqY1Yz6qrw1qa2cboIWC0e58a0b98
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+          "service_category_id": 8,
+          "timezone": "Asia/Kolkata"
+        }
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride History
+    request:
+      url: "{{transport_url}}/api/driver/car-rental/ride-history"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer 12|LSSoK14UJlI5nu2yxn3MqY1Yz6qrw1qa2cboIWC0e58a0b98
+          disabled: true
+      body:
+        type: json
+        data: |-
+          {
+              "service_category_id": 8,
+              "timezone": "Asia/Kolkata"
+            }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 10 Mar 2026 12:33:53 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 3,
+              "total_revenues": 0,
+              "completed_ride": 0,
+              "total_ride": 3,
+              "cancelled_ride": 0,
+              "ride_history": [
+                  {
+                      "ride_id": "7d56bc4b-a540-4fc1-ae88-10a7c530e011",
+                      "driver_pay_settle_status": 0,
+                      "service_category_id": 8,
+                      "service_category_name": "Food Delivery",
+                      "service_category_icon": "http://localhost:8002/storage/img/service-category/food-delivery.png",
+                      "vehicle_type_name": "SUV",
+                      "vehicle_type_icon_name": "",
+                      "ride_status": 11,
+                      "ride_date_time": "2026-03-07 10:00:00",
+                      "ride_amount": "0.00",
+                      "ride_date": "07 Mar, 2026",
+                      "ride_time": "10:00",
+                      "service_date_time": "2026-03-10 09:19:59",
+                      "schedule_service_date_time": "2026-03-07 10:00:00",
+                      "total_km": 15,
+                      "rating": 0,
+                      "ride_no": "20261183"
+                  },
+                  {
+                      "ride_id": "9aa72b68-2979-4e4a-9302-1101dbde1fa4",
+                      "driver_pay_settle_status": 0,
+                      "service_category_id": 8,
+                      "service_category_name": "Food Delivery",
+                      "service_category_icon": "http://localhost:8002/storage/img/service-category/food-delivery.png",
+                      "vehicle_type_name": "SUV",
+                      "vehicle_type_icon_name": "",
+                      "ride_status": 11,
+                      "ride_date_time": "2026-03-07 10:00:00",
+                      "ride_amount": "0.00",
+                      "ride_date": "07 Mar, 2026",
+                      "ride_time": "10:00",
+                      "service_date_time": "2026-03-10 09:19:24",
+                      "schedule_service_date_time": "2026-03-07 10:00:00",
+                      "total_km": 15,
+                      "rating": 0,
+                      "ride_no": "56846323"
+                  },
+                  {
+                      "ride_id": "b28b3ccf-5a42-4c41-98eb-af75700d69c9",
+                      "driver_pay_settle_status": 0,
+                      "service_category_id": 8,
+                      "service_category_name": "Food Delivery",
+                      "service_category_icon": "http://localhost:8002/storage/img/service-category/food-delivery.png",
+                      "vehicle_type_name": "SUV",
+                      "vehicle_type_icon_name": "",
+                      "ride_status": 7,
+                      "ride_date_time": "2026-03-07 10:00:00",
+                      "ride_amount": "0.00",
+                      "ride_date": "07 Mar, 2026",
+                      "ride_time": "10:00",
+                      "service_date_time": "2026-03-10 10:02:53",
+                      "schedule_service_date_time": "2026-03-07 10:00:00",
+                      "total_km": 15,
+                      "rating": 0,
+                      "ride_no": "90973080"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride History
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "service_category_id": 8,
+      "timezone": "Asia/Kolkata"
+    }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 3,
+      "total_revenues": 0,
+      "completed_ride": 0,
+      "total_ride": 3,
+      "cancelled_ride": 0,
+      "ride_history": [
+          {
+              "ride_id": "7d56bc4b-a540-4fc1-ae88-10a7c530e011",
+              "driver_pay_settle_status": 0,
+              "service_category_id": 8,
+              "service_category_name": "Food Delivery",
+              "service_category_icon": "http://localhost:8002/storage/img/service-category/food-delivery.png",
+              "vehicle_type_name": "SUV",
+              "vehicle_type_icon_name": "",
+              "ride_status": 11,
+              "ride_date_time": "2026-03-07 10:00:00",
+              "ride_amount": "0.00",
+              "ride_date": "07 Mar, 2026",
+              "ride_time": "10:00",
+              "service_date_time": "2026-03-10 09:19:59",
+              "schedule_service_date_time": "2026-03-07 10:00:00",
+              "total_km": 15,
+              "rating": 0,
+              "ride_no": "20261183"
+          },
+          {
+              "ride_id": "9aa72b68-2979-4e4a-9302-1101dbde1fa4",
+              "driver_pay_settle_status": 0,
+              "service_category_id": 8,
+              "service_category_name": "Food Delivery",
+              "service_category_icon": "http://localhost:8002/storage/img/service-category/food-delivery.png",
+              "vehicle_type_name": "SUV",
+              "vehicle_type_icon_name": "",
+              "ride_status": 11,
+              "ride_date_time": "2026-03-07 10:00:00",
+              "ride_amount": "0.00",
+              "ride_date": "07 Mar, 2026",
+              "ride_time": "10:00",
+              "service_date_time": "2026-03-10 09:19:24",
+              "schedule_service_date_time": "2026-03-07 10:00:00",
+              "total_km": 15,
+              "rating": 0,
+              "ride_no": "56846323"
+          },
+          {
+              "ride_id": "b28b3ccf-5a42-4c41-98eb-af75700d69c9",
+              "driver_pay_settle_status": 0,
+              "service_category_id": 8,
+              "service_category_name": "Food Delivery",
+              "service_category_icon": "http://localhost:8002/storage/img/service-category/food-delivery.png",
+              "vehicle_type_name": "SUV",
+              "vehicle_type_icon_name": "",
+              "ride_status": 7,
+              "ride_date_time": "2026-03-07 10:00:00",
+              "ride_amount": "0.00",
+              "ride_date": "07 Mar, 2026",
+              "ride_time": "10:00",
+              "service_date_time": "2026-03-10 10:02:53",
+              "schedule_service_date_time": "2026-03-07 10:00:00",
+              "total_km": 15,
+              "rating": 0,
+              "ride_no": "90973080"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

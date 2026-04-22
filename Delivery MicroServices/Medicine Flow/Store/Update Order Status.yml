@@ -1,0 +1,757 @@
+info:
+  name: Update Order Status
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/medicine-flow/store/update-order-status"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: "{{ordr_id}}"
+        description: order id
+      - name: update_status
+        type: text
+        value: "2"
+        description: 2 = approved,3 = rejected,5 = start-process, 8 = on-going, 9 = completd
+      - name: rejected_reason
+        type: text
+        value: rejected reason
+        description: required_if:update_status = 3
+  auth:
+    type: bearer
+    token: "{{store_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success complete with taken away order
+    request:
+      url: "{{delivery_url}}/api/medicine-flow/store/update-order-status"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "order_id": "0c68bb08-89d3-4441-881c-1eaa119ab5fb",
+              "update_status": 9
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 07:13:09 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "pending_orders": [
+                  {
+                      "order_id": "0bd4ee9e-7dbc-4cf5-b7ee-b11916133fe5",
+                      "order_no": "62814697",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-23 12:10:11",
+                      "schedule_order_date": "Mon 23 Feb, 2026",
+                      "schedule_order_time": "12:10 PM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "8aaefd06-cc46-44e4-aee2-cad39e654816",
+                      "order_no": "77295688",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:05:34",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:05 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "fac7fc8e-b63c-42a8-9e26-54b32d295f82",
+                      "order_no": "51420753",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:06:23",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:06 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "fe385f2c-e5e4-465e-82bb-fb0ab65ab3f2",
+                      "order_no": "82695394",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:06:25",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:06 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "f5008c33-34b6-488f-ad99-a9bfe17834d1",
+                      "order_no": "79596408",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-24 05:57:54",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:57 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "864b7127-ca09-4113-b083-965d09983e3d",
+                      "order_no": "89688374",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-24 05:59:38",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:59 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  }
+              ],
+              "accepted_orders": [
+                  {
+                      "order_id": "933582a5-8bab-4907-8e95-de81437a898f",
+                      "order_no": "41283108",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 2,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-23 12:00:50",
+                      "schedule_order_date": "Mon 23 Feb, 2026",
+                      "schedule_order_time": "12:00 PM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  }
+              ],
+              "processing_order": [],
+              "dispatched_order": [],
+              "service_category_name": "Medicine Delivery",
+              "is_subscription": 1,
+              "cash_out_status": 1,
+              "current_status": 1,
+              "store_name": "Store Testing",
+              "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+              "server_time_zone": "UTC"
+          }
+  - name: Rejected by Store
+    request:
+      url: "{{delivery_url}}/api/medicine-flow/store/update-order-status"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: a56f8396-c13c-45d1-b284-e52a25675ef0
+          - name: update_status
+            type: text
+            value: "3"
+          - name: rejected_reason
+            type: text
+            value: rejected reason
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 07:15:09 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "pending_orders": [
+                  {
+                      "order_id": "0bd4ee9e-7dbc-4cf5-b7ee-b11916133fe5",
+                      "order_no": "62814697",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-23 12:10:11",
+                      "schedule_order_date": "Mon 23 Feb, 2026",
+                      "schedule_order_time": "12:10 PM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "8aaefd06-cc46-44e4-aee2-cad39e654816",
+                      "order_no": "77295688",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:05:34",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:05 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "fac7fc8e-b63c-42a8-9e26-54b32d295f82",
+                      "order_no": "51420753",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:06:23",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:06 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "fe385f2c-e5e4-465e-82bb-fb0ab65ab3f2",
+                      "order_no": "82695394",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:06:25",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:06 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "f5008c33-34b6-488f-ad99-a9bfe17834d1",
+                      "order_no": "79596408",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-24 05:57:54",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:57 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "864b7127-ca09-4113-b083-965d09983e3d",
+                      "order_no": "89688374",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-24 05:59:38",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:59 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  }
+              ],
+              "accepted_orders": [
+                  {
+                      "order_id": "933582a5-8bab-4907-8e95-de81437a898f",
+                      "order_no": "41283108",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 2,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-23 12:00:50",
+                      "schedule_order_date": "Mon 23 Feb, 2026",
+                      "schedule_order_time": "12:00 PM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  }
+              ],
+              "processing_order": [],
+              "dispatched_order": [],
+              "service_category_name": "Medicine Delivery",
+              "is_subscription": 1,
+              "cash_out_status": 1,
+              "current_status": 1,
+              "store_name": "Store Testing",
+              "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+              "server_time_zone": "UTC"
+          }
+  - name: Normal Order Proccessing
+    request:
+      url: "{{delivery_url}}/api/medicine-flow/store/update-order-status"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: b335c9b3-e8b7-4a63-b0ac-c763dd35383c
+          - name: update_status
+            type: text
+            value: "5"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 07:16:55 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "pending_orders": [
+                  {
+                      "order_id": "0bd4ee9e-7dbc-4cf5-b7ee-b11916133fe5",
+                      "order_no": "62814697",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-23 12:10:11",
+                      "schedule_order_date": "Mon 23 Feb, 2026",
+                      "schedule_order_time": "12:10 PM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "8aaefd06-cc46-44e4-aee2-cad39e654816",
+                      "order_no": "77295688",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:05:34",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:05 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "fac7fc8e-b63c-42a8-9e26-54b32d295f82",
+                      "order_no": "51420753",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:06:23",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:06 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "fe385f2c-e5e4-465e-82bb-fb0ab65ab3f2",
+                      "order_no": "82695394",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "46.20",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Cheese Burger x 3",
+                      "schedule_order_date_time": "2026-02-24 05:06:25",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:06 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "f5008c33-34b6-488f-ad99-a9bfe17834d1",
+                      "order_no": "79596408",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-24 05:57:54",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:57 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  },
+                  {
+                      "order_id": "864b7127-ca09-4113-b083-965d09983e3d",
+                      "order_no": "89688374",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 1,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-24 05:59:38",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "05:59 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  }
+              ],
+              "accepted_orders": [
+                  {
+                      "order_id": "933582a5-8bab-4907-8e95-de81437a898f",
+                      "order_no": "41283108",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 2,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-23 12:00:50",
+                      "schedule_order_date": "Mon 23 Feb, 2026",
+                      "schedule_order_time": "12:00 PM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  }
+              ],
+              "processing_order": [
+                  {
+                      "order_id": "b335c9b3-e8b7-4a63-b0ac-c763dd35383c",
+                      "order_no": "67757351",
+                      "customer_name": "Wlf Karan",
+                      "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+                      "total_amount": "34.80",
+                      "order_status": 5,
+                      "order_type": 0,
+                      "order_product_list": "Veg Sandwich x 3",
+                      "schedule_order_date_time": "2026-02-24 07:15:35",
+                      "schedule_order_date": "Tue 24 Feb, 2026",
+                      "schedule_order_time": "07:15 AM",
+                      "payment_type": 1,
+                      "user_taken_type": 1
+                  }
+              ],
+              "dispatched_order": [],
+              "service_category_name": "Medicine Delivery",
+              "is_subscription": 1,
+              "cash_out_status": 1,
+              "current_status": 1,
+              "store_name": "Store Testing",
+              "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+              "server_time_zone": "UTC"
+          }
+
+docs: |+
+  ## Update Order Status
+
+  Creates a new record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+  | `update_status` | string | Yes | Update status |
+  | `rejected_reason` | string | Yes | Rejected reason |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "pending_orders": [
+          {
+              "order_id": "0bd4ee9e-7dbc-4cf5-b7ee-b11916133fe5",
+              "order_no": "62814697",
+              "customer_name": "Wlf Karan",
+              "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "total_amount": "34.80",
+              "order_status": 1,
+              "order_type": 0,
+              "order_product_list": "Veg Sandwich x 3",
+              "schedule_order_date_time": "2026-02-23 12:10:11",
+              "schedule_order_date": "Mon 23 Feb, 2026",
+              "schedule_order_time": "12:10 PM",
+              "payment_type": 1,
+              "user_taken_type": 1
+          },
+          {
+              "order_id": "8aaefd06-cc46-44e4-aee2-cad39e654816",
+              "order_no": "77295688",
+              "customer_name": "Wlf Karan",
+              "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "total_amount": "46.20",
+              "order_status": 1,
+              "order_type": 0,
+              "order_product_list": "Cheese Burger x 3",
+              "schedule_order_date_time": "2026-02-24 05:05:34",
+              "schedule_order_date": "Tue 24 Feb, 2026",
+              "schedule_order_time": "05:05 AM",
+              "payment_type": 1,
+              "user_taken_type": 1
+          },
+          {
+              "order_id": "fac7fc8e-b63c-42a8-9e26-54b32d295f82",
+              "order_no": "51420753",
+              "customer_name": "Wlf Karan",
+              "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "total_amount": "46.20",
+              "order_status": 1,
+              "order_type": 0,
+              "order_product_list": "Cheese Burger x 3",
+              "schedule_order_date_time": "2026-02-24 05:06:23",
+              "schedule_order_date": "Tue 24 Feb, 2026",
+              "schedule_order_time": "05:06 AM",
+              "payment_type": 1,
+              "user_taken_type": 1
+          },
+          {
+              "order_id": "fe385f2c-e5e4-465e-82bb-fb0ab65ab3f2",
+              "order_no": "82695394",
+              "customer_name": "Wlf Karan",
+              "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "total_amount": "46.20",
+              "order_status": 1,
+              "order_type": 0,
+              "order_product_list": "Cheese Burger x 3",
+              "schedule_order_date_time": "2026-02-24 05:06:25",
+              "schedule_order_date": "Tue 24 Feb, 2026",
+              "schedule_order_time": "05:06 AM",
+              "payment_type": 1,
+              "user_taken_type": 1
+          },
+          {
+              "order_id": "f5008c33-34b6-488f-ad99-a9bfe17834d1",
+              "order_no": "79596408",
+              "customer_name": "Wlf Karan",
+              "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "total_amount": "34.80",
+              "order_status": 1,
+              "order_type": 0,
+              "order_product_list": "Veg Sandwich x 3",
+              "schedule_order_date_time": "2026-02-24 05:57:54",
+              "schedule_order_date": "Tue 24 Feb, 2026",
+              "schedule_order_time": "05:57 AM",
+              "payment_type": 1,
+              "user_taken_type": 1
+          },
+          {
+              "order_id": "864b7127-ca09-4113-b083-965d09983e3d",
+              "order_no": "89688374",
+              "customer_name": "Wlf Karan",
+              "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "total_amount": "34.80",
+              "order_status": 1,
+              "order_type": 0,
+              "order_product_list": "Veg Sandwich x 3",
+              "schedule_order_date_time": "2026-02-24 05:59:38",
+              "schedule_order_date": "Tue 24 Feb, 2026",
+              "schedule_order_time": "05:59 AM",
+              "payment_type": 1,
+              "user_taken_type": 1
+          }
+      ],
+      "accepted_orders": [
+          {
+              "order_id": "933582a5-8bab-4907-8e95-de81437a898f",
+              "order_no": "41283108",
+              "customer_name": "Wlf Karan",
+              "delivery_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "total_amount": "34.80",
+              "order_status": 2,
+              "order_type": 0,
+              "order_product_list": "Veg Sandwich x 3",
+              "schedule_order_date_time": "2026-02-23 12:00:50",
+              "schedule_order_date": "Mon 23 Feb, 2026",
+              "schedule_order_time": "12:00 PM",
+              "payment_type": 1,
+              "user_taken_type": 1
+          }
+      ],
+      "processing_order": [],
+      "dispatched_order": [],
+      "service_category_name": "Medicine Delivery",
+      "is_subscription": 1,
+      "cash_out_status": 1,
+      "current_status": 1,
+      "store_name": "Store Testing",
+      "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+      "server_time_zone": "UTC"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

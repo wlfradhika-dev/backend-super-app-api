@@ -1,0 +1,353 @@
+info:
+  name: order-history
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/on-demand/orders/order-history"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+      disabled: true
+    - name: Authorization
+      value: Bearer {{BEARER_TOKEN}}
+      disabled: true
+  body:
+    type: multipart-form
+    data:
+      - name: timezone
+        type: text
+        value: "Asia/Kolkata "
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success-response
+    request:
+      url: http://localhost:8004/api/provider/on-demand/orders/order-history
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+          disabled: true
+        - name: Authorization
+          value: Bearer {{BEARER_TOKEN}}
+          disabled: true
+      body:
+        type: multipart-form
+        data:
+          - name: timezone
+            type: text
+            value: Asia/Kolkata
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 6,
+              "pending_payments": 137,
+              "pending_order": 2,
+              "completed_order": 4,
+              "canceled_order": 0,
+              "order_history": [
+                  {
+                      "order_id": "75954685-d4b1-4126-855e-ce3e27720139",
+                      "order_no": "49395879",
+                      "customer_name": "Rahul",
+                      "total_amount": 35.5,
+                      "service_category_id": 13,
+                      "service_cat_name": "Dog walking",
+                      "category_type": 4,
+                      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+                      "schedule_order_date": "2026-03-13",
+                      "schedule_order_time": "11:00:00 - 12:00:00",
+                      "provider_pay_settle_status": 0,
+                      "order_package_list": "Basic Grooming x 1",
+                      "order_status": 9,
+                      "select_provider_location": 0,
+                      "user_rating": 4.5
+                  },
+                  {
+                      "order_id": "b767faa7-a965-43ac-9c6b-c674baa0f75b",
+                      "order_no": "58022134",
+                      "customer_name": "Rahul",
+                      "total_amount": 35.5,
+                      "service_category_id": 13,
+                      "service_cat_name": "Dog walking",
+                      "category_type": 4,
+                      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+                      "schedule_order_date": "2026-03-13",
+                      "schedule_order_time": "11:00:00 - 12:00:00",
+                      "provider_pay_settle_status": 0,
+                      "order_package_list": "Basic Grooming x 1",
+                      "order_status": 9,
+                      "select_provider_location": 0,
+                      "user_rating": 0
+                  },
+                  {
+                      "order_id": "b1579a9b-a946-49ea-8195-05f6893691b5",
+                      "order_no": "49012319",
+                      "customer_name": "Rahul",
+                      "total_amount": 40.5,
+                      "service_category_id": 13,
+                      "service_cat_name": "Dog walking",
+                      "category_type": 4,
+                      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+                      "schedule_order_date": "2026-03-13",
+                      "schedule_order_time": "11:00:00 - 12:00:00",
+                      "provider_pay_settle_status": 0,
+                      "order_package_list": "Basic Grooming x 1",
+                      "order_status": 9,
+                      "select_provider_location": 0,
+                      "user_rating": 0
+                  },
+                  {
+                      "order_id": "f7b9fddb-3260-43da-bfde-590278bcfd56",
+                      "order_no": "50774803",
+                      "customer_name": "Rahul",
+                      "total_amount": 25.5,
+                      "service_category_id": 13,
+                      "service_cat_name": "Dog walking",
+                      "category_type": 4,
+                      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+                      "schedule_order_date": "2026-03-12",
+                      "schedule_order_time": "20:00:00 - 21:00:00",
+                      "provider_pay_settle_status": 0,
+                      "order_package_list": "Basic Grooming x 1",
+                      "order_status": 9,
+                      "select_provider_location": 0,
+                      "user_rating": 0
+                  },
+                  {
+                      "order_id": "ee4160bf-8782-43e0-ac5c-119bde241965",
+                      "order_no": "37346532",
+                      "customer_name": "Rahul",
+                      "total_amount": 25.5,
+                      "service_category_id": 13,
+                      "service_cat_name": "Dog walking",
+                      "category_type": 4,
+                      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+                      "schedule_order_date": "2026-03-12",
+                      "schedule_order_time": "19:00:00 - 20:00:00",
+                      "provider_pay_settle_status": 0,
+                      "order_package_list": "Basic Grooming x 1",
+                      "order_status": 1,
+                      "select_provider_location": 0,
+                      "user_rating": 0
+                  },
+                  {
+                      "order_id": "42de0253-a536-42d4-b825-091b87466cec",
+                      "order_no": "20213966",
+                      "customer_name": "Rahul",
+                      "total_amount": 25.5,
+                      "service_category_id": 13,
+                      "service_cat_name": "Dog walking",
+                      "category_type": 4,
+                      "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+                      "schedule_order_date": "2026-03-12",
+                      "schedule_order_time": "19:00:00 - 20:00:00",
+                      "provider_pay_settle_status": 0,
+                      "order_package_list": "Basic Grooming x 1",
+                      "order_status": 2,
+                      "select_provider_location": 0,
+                      "user_rating": 0
+                  }
+              ]
+          }
+
+docs: |+
+  ## order-history
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `timezone` | string | Yes | Timezone |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 6,
+      "pending_payments": 137,
+      "pending_order": 2,
+      "completed_order": 4,
+      "canceled_order": 0,
+      "order_history": [
+          {
+              "order_id": "75954685-d4b1-4126-855e-ce3e27720139",
+              "order_no": "49395879",
+              "customer_name": "Rahul",
+              "total_amount": 35.5,
+              "service_category_id": 13,
+              "service_cat_name": "Dog walking",
+              "category_type": 4,
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "schedule_order_date": "2026-03-13",
+              "schedule_order_time": "11:00:00 - 12:00:00",
+              "provider_pay_settle_status": 0,
+              "order_package_list": "Basic Grooming x 1",
+              "order_status": 9,
+              "select_provider_location": 0,
+              "user_rating": 4.5
+          },
+          {
+              "order_id": "b767faa7-a965-43ac-9c6b-c674baa0f75b",
+              "order_no": "58022134",
+              "customer_name": "Rahul",
+              "total_amount": 35.5,
+              "service_category_id": 13,
+              "service_cat_name": "Dog walking",
+              "category_type": 4,
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "schedule_order_date": "2026-03-13",
+              "schedule_order_time": "11:00:00 - 12:00:00",
+              "provider_pay_settle_status": 0,
+              "order_package_list": "Basic Grooming x 1",
+              "order_status": 9,
+              "select_provider_location": 0,
+              "user_rating": 0
+          },
+          {
+              "order_id": "b1579a9b-a946-49ea-8195-05f6893691b5",
+              "order_no": "49012319",
+              "customer_name": "Rahul",
+              "total_amount": 40.5,
+              "service_category_id": 13,
+              "service_cat_name": "Dog walking",
+              "category_type": 4,
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "schedule_order_date": "2026-03-13",
+              "schedule_order_time": "11:00:00 - 12:00:00",
+              "provider_pay_settle_status": 0,
+              "order_package_list": "Basic Grooming x 1",
+              "order_status": 9,
+              "select_provider_location": 0,
+              "user_rating": 0
+          },
+          {
+              "order_id": "f7b9fddb-3260-43da-bfde-590278bcfd56",
+              "order_no": "50774803",
+              "customer_name": "Rahul",
+              "total_amount": 25.5,
+              "service_category_id": 13,
+              "service_cat_name": "Dog walking",
+              "category_type": 4,
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "schedule_order_date": "2026-03-12",
+              "schedule_order_time": "20:00:00 - 21:00:00",
+              "provider_pay_settle_status": 0,
+              "order_package_list": "Basic Grooming x 1",
+              "order_status": 9,
+              "select_provider_location": 0,
+              "user_rating": 0
+          },
+          {
+              "order_id": "ee4160bf-8782-43e0-ac5c-119bde241965",
+              "order_no": "37346532",
+              "customer_name": "Rahul",
+              "total_amount": 25.5,
+              "service_category_id": 13,
+              "service_cat_name": "Dog walking",
+              "category_type": 4,
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "schedule_order_date": "2026-03-12",
+              "schedule_order_time": "19:00:00 - 20:00:00",
+              "provider_pay_settle_status": 0,
+              "order_package_list": "Basic Grooming x 1",
+              "order_status": 1,
+              "select_provider_location": 0,
+              "user_rating": 0
+          },
+          {
+              "order_id": "42de0253-a536-42d4-b825-091b87466cec",
+              "order_no": "20213966",
+              "customer_name": "Rahul",
+              "total_amount": 25.5,
+              "service_category_id": 13,
+              "service_cat_name": "Dog walking",
+              "category_type": 4,
+              "category_icon": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "schedule_order_date": "2026-03-12",
+              "schedule_order_time": "19:00:00 - 20:00:00",
+              "provider_pay_settle_status": 0,
+              "order_package_list": "Basic Grooming x 1",
+              "order_status": 2,
+              "select_provider_location": 0,
+              "user_rating": 0
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The timezone field is required."
+  }
+  ```
+

@@ -1,0 +1,431 @@
+info:
+  name: Service Register
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/provider-service-register-step"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: step
+        type: text
+        value: "4"
+        description: 0,1,2,3,4
+      - name: landmark
+        type: text
+        value: rajkot
+        description: nullable
+        disabled: true
+      - name: address
+        type: text
+        value: shital park
+        description: requried for step 1
+        disabled: true
+      - name: lat
+        type: text
+        value: "22.31572603394304"
+        description: requried for step 1
+        disabled: true
+      - name: long
+        type: text
+        value: "70.7674083384962"
+        description: requried for step 1
+        disabled: true
+      - name: service_radius
+        type: text
+        value: "80"
+        description: requried for step 1
+        disabled: true
+      - name: service_category_id
+        type: text
+        value: "13"
+        description: requried for step 2,3,4
+      - name: service_sub_category_id
+        type: text
+        value: 60029379-b361-47da-9fa6-a9016af922d1
+        description: requried for step 3
+        disabled: true
+      - name: package_description
+        type: text
+        value: Best Training center
+        description: requried for step 3
+        disabled: true
+      - name: package_price
+        type: text
+        value: "100"
+        description: requried for step 3
+        disabled: true
+      - name: package_name
+        type: text
+        value: Labra Dog Training
+        description: "requried for step 3 & when category_type 3 & 4 "
+      - name: max_book_quantity
+        type: text
+        value: "10"
+        description: "requried for step 3 & when category_type 3 & 4 "
+      - name: document_id
+        type: text
+        value: 576c90cf-40d0-40ae-a34c-068e0091554d
+        description: requried for step 4
+      - name: is_update
+        type: text
+        value: "0"
+        description: requried for step 4 & should be 0 or 1
+      - name: document_file
+        type: file
+        value:
+          - /home/viral-agravat/Downloads/Project Notes/United super app/images/Gemini_Generated_Image_qk9t2zqk9t2zqk9t.png
+        description: requried for step 4 & when is_update = 0
+      - name: expire_date
+        type: text
+        value: 30-12-2026
+        disabled: true
+      - name: category_type
+        type: text
+        value: ""
+        description: nullable
+        disabled: true
+      - name: select_country_code
+        type: text
+        value: ""
+        description: nullable
+        disabled: true
+      - name: contact_number
+        type: text
+        value: ""
+        description: nullable
+        disabled: true
+      - name: email
+        type: text
+        value: ""
+        description: nullable
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Service Register
+    request:
+      url: "{{core_url}}/api/provider/provider-service-register-step"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: step
+            type: text
+            value: "4"
+            description: 0,1,2,3,4
+          - name: landmark
+            type: text
+            value: rajkot
+            description: nullable
+          - name: address
+            type: text
+            value: shital park
+            description: requried for step 1
+          - name: lat
+            type: text
+            value: "22.31572603394304"
+            description: requried for step 1
+          - name: long
+            type: text
+            value: "70.7674083384962"
+            description: requried for step 1
+          - name: service_radius
+            type: text
+            value: "80"
+            description: requried for step 1
+          - name: service_category_id
+            type: text
+            value: "14"
+            description: requried for step 2,3,4
+          - name: service_sub_category_id
+            type: text
+            value: 019d7093-786a-73a3-a9dd-538319103122
+            description: requried for step 3
+          - name: package_description
+            type: text
+            value: Best Training center
+            description: requried for step 3
+          - name: package_price
+            type: text
+            value: "100"
+            description: requried for step 3
+          - name: package_name
+            type: text
+            value: Tarot reading
+            description: "requried for step 3 & when category_type 3 & 4 "
+          - name: max_book_quantity
+            type: text
+            value: "10"
+            description: "requried for step 3 & when category_type 3 & 4 "
+          - name: document_id
+            type: text
+            value: 019d7093-7855-733b-ab2a-6926db545afc
+            description: requried for step 4
+          - name: is_update
+            type: text
+            value: "1"
+            description: requried for step 4 & should be 0 or 1
+          - name: document_file
+            type: file
+            value:
+              - /Users/vishaldamasiya/Desktop/SS/1-1.png
+            description: requried for step 4 & when is_update = 0
+          - name: expire_date
+            type: text
+            value: 30-12-2026
+          - name: category_type
+            type: text
+            value: ""
+            description: nullable
+          - name: select_country_code
+            type: text
+            value: ""
+            description: nullable
+          - name: contact_number
+            type: text
+            value: ""
+            description: nullable
+          - name: email
+            type: text
+            value: ""
+            description: nullable
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Mon, 13 Apr 2026 06:06:20 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "809"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=w3rIlGthSiXttWYUEwPr%2F3FRX8GDQTKezWnPa8LdW3Y76r3TWQJSNopBAHsSdsqNrIv%2Fs4V%2FNG5Kql%2BmkrLCm4yenAVzsJQilImjn%2FoHeOg164nUnkBaV01K6538VO9akjea08iL0KNbM9MYoU4ezxcoKSU5GSP5U8k%3D"}]}'
+        - name: cf-ray
+          value: 9eb848c16d48ffa1-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "completed_step": 4,
+              "landmark": "rajkot",
+              "address": "shital park",
+              "lat": "22.31572603394304",
+              "long": "70.7674083384962",
+              "service_radius": 80,
+              "service_category_list": [
+                  {
+                      "service_cat_id": 13,
+                      "category_type": 4,
+                      "icon_name": "10060120251301.png",
+                      "service_category_name": "Dog walking",
+                      "selected_service_category": 0,
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/10060120251301.png"
+                  },
+                  {
+                      "service_cat_id": 14,
+                      "category_type": 6,
+                      "icon_name": "10112520251301.png",
+                      "service_category_name": "Astrology",
+                      "selected_service_category": 1,
+                      "icon_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/service-category/10112520251301.png"
+                  }
+              ],
+              "service_sub_category_list": [
+                  {
+                      "service_sub_cat_id": "019d7093-786a-73a3-a9dd-5383182b2f31",
+                      "service_sub_category_name": "Numerology",
+                      "selected_service_sub_category": 0
+                  },
+                  {
+                      "service_sub_cat_id": "019d7093-786a-73a3-a9dd-5383185347a7",
+                      "service_sub_category_name": "Palmistry",
+                      "selected_service_sub_category": 0
+                  },
+                  {
+                      "service_sub_cat_id": "019d7093-786a-73a3-a9dd-5383188d01ef",
+                      "service_sub_category_name": "Psychic",
+                      "selected_service_sub_category": 0
+                  },
+                  {
+                      "service_sub_cat_id": "019d7093-786a-73a3-a9dd-538319103122",
+                      "service_sub_category_name": "Tarot reading",
+                      "selected_service_sub_category": 1
+                  },
+                  {
+                      "service_sub_cat_id": "019d7093-786a-73a3-a9dd-538319ec80fa",
+                      "service_sub_category_name": "Horary Astrology",
+                      "selected_service_sub_category": 0
+                  }
+              ],
+              "package_name": "Tarot reading",
+              "description": "Best Training center",
+              "price": 100,
+              "max_book_quantity": 10,
+              "required_document_lists": {
+                  "provider_service_id": "019d8564-dff0-70e1-ae5f-5ce02f9a940f",
+                  "service_cat_id": 14,
+                  "service_cat_name": "Astrology",
+                  "all_document_uploaded": 0,
+                  "document_list": [
+                      {
+                          "document_id": "019d7093-7855-733b-ab2a-6926dd4785b8",
+                          "document_name": "Medical License",
+                          "document_file": "",
+                          "document_status": 4,
+                          "is_expiry": 1,
+                          "expire_date": ""
+                      }
+                  ]
+              },
+              "email": "videoprovider@gmail.com",
+              "contact_number": "5199",
+              "country_code": "+1"
+          }
+
+docs: |+
+  ## Service Register
+
+  Registers the driver for a specific service category, associating them with the selected service type.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `step` | string | Yes | 0,1,2,3,4 |
+  | `landmark` | string | No | nullable |
+  | `address` | string | Yes | requried for step 1 |
+  | `lat` | string | Yes | requried for step 1 |
+  | `long` | string | Yes | requried for step 1 |
+  | `service_radius` | string | Yes | requried for step 1 |
+  | `service_category_id` | string | Yes | requried for step 2,3,4 |
+  | `service_sub_category_id` | string | Yes | requried for step 3 |
+  | `package_description` | string | Yes | requried for step 3 |
+  | `package_price` | string | Yes | requried for step 3 |
+  | `package_name` | string | Yes | requried for step 3 & when category_type 3 & 4  |
+  | `max_book_quantity` | string | Yes | requried for step 3 & when category_type 3 & 4  |
+  | `document_id` | string | Yes | requried for step 4 |
+  | `is_update` | string | Yes | requried for step 4 & should be 0 or 1 |
+  | `document_file` | string | Yes | requried for step 4 & when is_update = 0 |
+  | `expire_date` | string | Yes | Expire date |
+  | `category_type` | string | No | nullable |
+  | `select_country_code` | string | No | nullable |
+  | `contact_number` | string | No | nullable |
+  | `email` | string | No | nullable |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "completed_step": 5,
+      "landmark": "rajkot",
+      "address": "shital park",
+      "lat": "123456",
+      "long": "123456",
+      "service_radius": 5,
+      "service_category_list": [
+          {
+              "service_cat_id": 13,
+              "category_type": 4,
+              "icon_name": "10060120251301.png",
+              "service_category_name": "Dog walking",
+              "selected_service_category": 1,
+              "icon_image": "http://127.0.0.1:8000/storage/img/service-category/10060120251301.png"
+          }
+      ],
+      "service_sub_category_list": [
+          {
+              "service_sub_cat_id": "50029379-b361-47da-9fa6-a9016af922d1",
+              "service_sub_category_name": "Dog Walking",
+              "selected_service_sub_category": 0
+          },
+          {
+              "service_sub_cat_id": "60029379-b361-47da-9fa6-a9016af922d1",
+              "service_sub_category_name": "Dog Training",
+              "selected_service_sub_category": 1
+          }
+      ],
+      "package_name": "Labra Dog Training",
+      "description": "Best Training center",
+      "price": 100,
+      "max_book_quantity": 10,
+      "required_document_lists": {
+          "provider_service_id": "576c90cf-40d8-40ae-a34c-068e0091554d",
+          "service_cat_id": 13,
+          "service_cat_name": "Dog walking",
+          "all_document_uploaded": 1,
+          "document_list": [
+              {
+                  "document_id": "576c90cf-40d0-40ae-a34c-068e0091554d",
+                  "document_name": "ID Card",
+                  "document_file": "http://127.0.0.1:8000/storage/img/on-demand-provider-documents/VTns9rxh0SJ8b4AB.jpg",
+                  "document_status": 1,
+                  "is_expiry": 1,
+                  "expire_date": "30/12/2026"
+              }
+          ]
+      },
+      "email": "rahul@gmail.comm",
+      "contact_number": "123",
+      "country_code": "+1"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The step field is required."
+  }
+  ```
+

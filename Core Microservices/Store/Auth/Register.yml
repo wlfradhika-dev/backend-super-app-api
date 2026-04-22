@@ -1,0 +1,186 @@
+info:
+  name: Register
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/store/register"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: contact_number
+        type: text
+        value: "7099"
+      - name: select_country_code
+        type: text
+        value: "+1"
+      - name: full_name
+        type: text
+        value: Store Testing
+      - name: email
+        type: text
+        value: store@gmail.comm
+  auth:
+    type: bearer
+    token: "{{store_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("store_token", response.token);
+        //     pm.collectionVariables.set("store_id", response.store_id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Register
+    request:
+      url: "{{core_url}}/api/store/register"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: contact_number
+            type: text
+            value: "1234"
+          - name: select_country_code
+            type: text
+            value: "+1"
+          - name: full_name
+            type: text
+            value: rahul
+          - name: email
+            type: text
+            value: rahul@gmail.comm
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 06 Feb 2026 11:15:47 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "store_id": "9b6b2b51-c889-44b4-b26a-fa5d87059ff3",
+              "contact_number": "12345",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "select_language": "en",
+              "unique_id": "f029a7c6-7c6c-438e-a846-9cbea942bfde",
+              "token": "24|2Sb7tGPtnoZT4xpW06MORD6xuTLp5VueEOw4qMKrcf675bec",
+              "server_time_zone": "UTC",
+              "store_service_id": 0,
+              "service_status": 4,
+              "service_message": "<div style='padding: 0px 50px;' xmlns='http://www.w3.org/1999/html'>\n                                <pre style='font-family: &quot;Courier New&quot;; font-size: 9pt;'>\n                                    Thank you for signing up!\n                                <br />\n                                Please complete your registration by going to <a href='http://127.0.0.1:8000'>http://127.0.0.1:8000</a>\n                                <br />\n                                Enter Service Type, Store Details, Upload Required Documents and add your Product Lists.  Upon completion of entries, your application will be reviewed for approval.\n                                <br />\n                                Any questions, email us at  <a href='mailto:whitelabelfox@gmail.com'>whitelabelfox@gmail.com</a>\n                                </span>\n                                </pre>\n                            </div>",
+              "service_category_name": "",
+              "service_current_status": 0,
+              "store_name": "",
+              "store_provider_name": "Rahul",
+              "provider_profile_image": null,
+              "store_banner": "",
+              "email": "rahul@gmail.comm"
+          }
+
+docs: |+
+  ## Register
+
+  Creates a new user account with the provided details and sends an OTP for contact verification.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `contact_number` | string | Yes | Contact number |
+  | `select_country_code` | string | Yes | Select country code |
+  | `full_name` | string | Yes | Full name |
+  | `email` | string | Yes | Email |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "is_register": 1,
+      "store_id": "9b6b2b51-c889-44b4-b26a-fa5d87059ff3",
+      "contact_number": "12345",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "select_language": "en",
+      "unique_id": "f029a7c6-7c6c-438e-a846-9cbea942bfde",
+      "token": "24|2Sb7tGPtnoZT4xpW06MORD6xuTLp5VueEOw4qMKrcf675bec",
+      "server_time_zone": "UTC",
+      "store_service_id": 0,
+      "service_status": 4,
+      "service_message": "<div style='padding: 0px 50px;' xmlns='http://www.w3.org/1999/html'>\n                                <pre style='font-family: &quot;Courier New&quot;; font-size: 9pt;'>\n                                    Thank you for signing up!\n                                <br />\n                                Please complete your registration by going to <a href='http://127.0.0.1:8000'>http://127.0.0.1:8000</a>\n                                <br />\n                                Enter Service Type, Store Details, Upload Required Documents and add your Product Lists.  Upon completion of entries, your application will be reviewed for approval.\n                                <br />\n                                Any questions, email us at  <a href='mailto:whitelabelfox@gmail.com'>whitelabelfox@gmail.com</a>\n                                </span>\n                                </pre>\n                            </div>",
+      "service_category_name": "",
+      "service_current_status": 0,
+      "store_name": "",
+      "store_provider_name": "Rahul",
+      "provider_profile_image": null,
+      "store_banner": "",
+      "email": "rahul@gmail.comm"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The contact number field is required."
+  }
+  ```
+

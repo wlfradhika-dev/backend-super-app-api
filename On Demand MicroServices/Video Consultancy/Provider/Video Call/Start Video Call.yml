@@ -1,0 +1,260 @@
+info:
+  name: Start Video Call
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/video-consultancy/start-video-call"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: receiver_id
+        type: text
+        value: "{{user_id}}"
+      - name: call_type
+        type: text
+        value: "1"
+      - name: service_category_id
+        type: text
+        value: "{{service_category_id}}"
+      - name: order_id
+        type: text
+        value: "{{order_id}}"
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success response
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/start-video-call"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: multipart-form
+        data:
+          - name: receiver_id
+            type: text
+            value: "{{user_id}}"
+          - name: call_type
+            type: text
+            value: "1"
+          - name: service_category_id
+            type: text
+            value: "{{service_category_id}}"
+          - name: order_id
+            type: text
+            value: e8d91855-e313-49bc-927b-252e446c9f83
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 07:07:42 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzMyOTkyNjIsIm5iZiI6MTc3MzI5OTI2MiwiZXhwIjoxNzczMzAyODYyLCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6ImQ1MGEzMzI2LWE3NWItNDdhMy05OWI2LTc0ODkyMmNiZDJmYSIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoibW9jay1yb29tLTM0ODcyZTMyLTRiMTktNDE5Yi04ZmJlLWJmN2FlMzliOTk3YiIsInVzZXJfaWQiOiJwcm92aWRlci1jOGNiYTEyYS0xNzc1LTQ0ZjItOGY5Ny0yNGM3ZTc5ZmFhZjIifQ.Yuk0GkK5Rjyher8Wht00kK3TRg74m8tKc6pIufWxlhA",
+              "room_id": "mock-room-34872e32-4b19-419b-8fbe-bf7ae39b997b",
+              "order_admin_video_call_time_limit": 60,
+              "order_used_video_call_time_limit": 20,
+              "admin_daily_user_video_call_time_limit": 120,
+              "daily_user_video_call_time_limit": 10,
+              "over_all_call_limit": 40
+          }
+  - name: Limit exceed
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/start-video-call"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+      body:
+        type: multipart-form
+        data:
+          - name: receiver_id
+            type: text
+            value: "{{user_id}}"
+          - name: call_type
+            type: text
+            value: "1"
+          - name: service_category_id
+            type: text
+            value: "{{service_category_id}}"
+          - name: order_id
+            type: text
+            value: "{{order_id}}"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 07:10:24 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": false,
+              "message": "Order video call time limit has been exceeded.",
+              "message_code": 344,
+              "status_code": 0,
+              "https_status_code": 200,
+              "errors": "Failed"
+          }
+
+docs: |+
+  ## Start Video Call
+
+  Initiates or manages an audio/video call session using the 100ms platform.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `receiver_id` | string | Yes | Receiver id |
+  | `call_type` | string | Yes | Call type |
+  | `service_category_id` | string | Yes | Service category id |
+  | `order_id` | string | Yes | Order id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzMyOTkyNjIsIm5iZiI6MTc3MzI5OTI2MiwiZXhwIjoxNzczMzAyODYyLCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6ImQ1MGEzMzI2LWE3NWItNDdhMy05OWI2LTc0ODkyMmNiZDJmYSIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoibW9jay1yb29tLTM0ODcyZTMyLTRiMTktNDE5Yi04ZmJlLWJmN2FlMzliOTk3YiIsInVzZXJfaWQiOiJwcm92aWRlci1jOGNiYTEyYS0xNzc1LTQ0ZjItOGY5Ny0yNGM3ZTc5ZmFhZjIifQ.Yuk0GkK5Rjyher8Wht00kK3TRg74m8tKc6pIufWxlhA",
+      "room_id": "mock-room-34872e32-4b19-419b-8fbe-bf7ae39b997b",
+      "order_admin_video_call_time_limit": 60,
+      "order_used_video_call_time_limit": 20,
+      "admin_daily_user_video_call_time_limit": 120,
+      "daily_user_video_call_time_limit": 10,
+      "over_all_call_limit": 40
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The receiver id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

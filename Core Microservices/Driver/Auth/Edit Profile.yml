@@ -1,0 +1,205 @@
+info:
+  name: Edit Profile
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/edit-profile"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: full_name
+        type: text
+        value: cruiser
+      - name: email
+        type: text
+        value: cruiser@gmail.com
+      - name: contact_number
+        type: text
+        value: "9099"
+      - name: select_country_code
+        type: text
+        value: "+1"
+      - name: gender
+        type: text
+        value: "1"
+      - name: profile_image
+        type: file
+        value:
+          - /Users/vishaldamasiya/Desktop/SS/1-1.png
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Edit Profile
+    request:
+      url: "{{core_url}}/api/driver/edit-profile"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: full_name
+            type: text
+            value: cruiser
+          - name: email
+            type: text
+            value: cruiser@gmail.com
+          - name: contact_number
+            type: text
+            value: "9099"
+          - name: select_country_code
+            type: text
+            value: "+1"
+          - name: gender
+            type: text
+            value: "1"
+          - name: profile_image
+            type: file
+            value:
+              - /Users/vishaldamasiya/Desktop/SS/1-1.png
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Fri, 10 Apr 2026 07:24:33 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "268"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=zfplB1kotO6kVX867n9OP9fBqCnBkfk2CIlLGtzNUFgfOgMk7e4wBerv9M3%2BN73YcFc9dxOhgCcsgC2FKhKWaXki7DC6T%2FExqOtc8FVUJT3Rn%2FiwGquBhwDwoLowNEMXnwX7hchoJc7hcxviVzD1PpEV8mmXAZWZajc%3D"}]}'
+        - name: cf-ray
+          value: 9ea003321e32419e-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "driver_name": "Cruiser",
+              "profile_image": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/core/img/profile-images/driver/s9p0maEUhhnv9Y55.jpg",
+              "gender": 1,
+              "contact_number": "9099",
+              "select_country_code": "+1",
+              "email": "cruiser@gmail.com"
+          }
+
+docs: |+
+  ## Edit Profile
+
+  Updates the profile information of the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `full_name` | string | Yes | Full name |
+  | `email` | string | Yes | Email |
+  | `contact_number` | string | Yes | Contact number |
+  | `select_country_code` | string | Yes | Select country code |
+  | `gender` | string | Yes | Gender |
+  | `profile_image` | string | Yes | Profile image |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "driver_name": "Cruiser",
+      "profile_image": "http://127.0.0.1:8000/storage/img/profile-images/driver/AEwNldRqKNAIPB4Z.jpg",
+      "gender": 1,
+      "contact_number": "9099",
+      "select_country_code": "+1",
+      "email": "cruiser@gmail.comm"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The full name field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

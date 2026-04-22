@@ -1,0 +1,228 @@
+info:
+  name: Re Order
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/grocery-flow/customer/re-order"
+  headers:
+    - name: Authorization
+      value: Bearer YOUR_TOKEN
+      disabled: true
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: 3af38c94-810c-4ee4-b948-e970c8ee72ce
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Re Order
+    request:
+      url: "{{delivery_url}}/api/grocery-flow/customer/re-order"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_TOKEN
+          disabled: true
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: 3af38c94-810c-4ee4-b948-e970c8ee72ce
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 13:05:58 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "reorder_id": "3af38c94-810c-4ee4-b948-e970c8ee72ce",
+              "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+              "service_category_id": 8,
+              "service_category_name": "Food Delivery",
+              "service_category_icon": "http://localhost/storage/img/service-category/food-delivery.png",
+              "store_name": "Store Testing",
+              "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+              "store_status": 1,
+              "average_rating": 4.6,
+              "product_category": "Fast Food,Banana Wafers",
+              "description": "Seeded store for store-list API testing.",
+              "delivery_time": 30,
+              "order_min_amount": 20,
+              "offer": "Get 5%  off on orders above $10",
+              "offer_min_amount": 10,
+              "offer_amount": 5,
+              "offer_type": 2,
+              "is_fav_store": 1,
+              "taken_away_type": 2,
+              "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "latitude": "22.31572603394304",
+              "longitude": "70.7674083384962",
+              "packaging_charges": 2,
+              "order_detail": [
+                  {
+                      "product_id": "f3e1944d-5f7a-474e-b53c-ad87cf7cd001",
+                      "product_name": "Banana Wafers",
+                      "product_amount": 12,
+                      "product_total_amount": 36,
+                      "discount_amount": 0,
+                      "offer_discount": 0,
+                      "product_food_type": 1,
+                      "product_quantity": 3,
+                      "product_size_ids": 0
+                  }
+              ]
+          }
+
+docs: |+
+  ## Re Order
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "reorder_id": "3af38c94-810c-4ee4-b948-e970c8ee72ce",
+      "store_id": "f2a6f62e-3bf9-4f12-9f0f-fb553d5b5d01",
+      "service_category_id": 8,
+      "service_category_name": "Food Delivery",
+      "service_category_icon": "http://localhost/storage/img/service-category/food-delivery.png",
+      "store_name": "Store Testing",
+      "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+      "store_status": 1,
+      "average_rating": 4.6,
+      "product_category": "Fast Food,Banana Wafers",
+      "description": "Seeded store for store-list API testing.",
+      "delivery_time": 30,
+      "order_min_amount": 20,
+      "offer": "Get 5%  off on orders above $10",
+      "offer_min_amount": 10,
+      "offer_amount": 5,
+      "offer_type": 2,
+      "is_fav_store": 1,
+      "taken_away_type": 2,
+      "address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "latitude": "22.31572603394304",
+      "longitude": "70.7674083384962",
+      "packaging_charges": 2,
+      "order_detail": [
+          {
+              "product_id": "f3e1944d-5f7a-474e-b53c-ad87cf7cd001",
+              "product_name": "Banana Wafers",
+              "product_amount": 12,
+              "product_total_amount": 36,
+              "discount_amount": 0,
+              "offer_discount": 0,
+              "product_food_type": 1,
+              "product_quantity": 3,
+              "product_size_ids": 0
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

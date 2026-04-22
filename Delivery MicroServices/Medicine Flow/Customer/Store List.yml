@@ -1,0 +1,266 @@
+info:
+  name: Store List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/medicine-flow/customer/store-list"
+  headers:
+    - name: Authorization
+      value: Bearer YOUR_TOKEN
+      disabled: true
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: lat
+        type: text
+        value: "22.3158003"
+        description: Latitude
+      - name: long
+        type: text
+        value: "70.7650816"
+        description: Longitude
+      - name: service_category_id
+        type: text
+        value: "12"
+        description: service_category:id medicine-flow = 12
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Store List
+    request:
+      url: "{{delivery_url}}/api/medicine-flow/customer/store-list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_TOKEN
+          disabled: true
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: lat
+            type: text
+            value: "22.3158003"
+          - name: long
+            type: text
+            value: "70.7650816"
+          - name: service_category_id
+            type: text
+            value: "11"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 09:46:22 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "display_title_name": "Near By Store ",
+              "no_of_store": 1,
+              "store_list": [
+                  {
+                      "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+                      "store_name": "Medicine Store",
+                      "store_banner": "http://localhost/storage/img/store-images/medicine-store.jpg",
+                      "store_products": "Tablet,Pain Killers",
+                      "service_category_id": 11,
+                      "service_category_name": "Medicine Delivery",
+                      "service_category_icon": "http://localhost/storage/img/service-category/medicine-delivery.png",
+                      "average_ratings": 4.6,
+                      "offer": "Get 5%  off on orders above $10",
+                      "order_delivery_time": 30,
+                      "order_min_amount": 20,
+                      "is_offer": 1,
+                      "offer_type": 2,
+                      "offer_min_amount": 10,
+                      "offer_amount": 5,
+                      "no_of_ratings": 1,
+                      "distance": "0.2394870618187738",
+                      "is_fav_store": 0,
+                      "is_subcat_flow": 3
+                  }
+              ],
+              "service_slider_data": [
+                  {
+                      "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+                      "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+                      "service_category_id": 11,
+                      "store_name": "Medicine Store",
+                      "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+                  },
+                  {
+                      "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+                      "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+                      "service_category_id": 11,
+                      "store_name": "Medicine Store",
+                      "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+                  },
+                  {
+                      "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+                      "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+                      "service_category_id": 11,
+                      "store_name": "Medicine Store",
+                      "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+                  },
+                  {
+                      "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+                      "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+                      "service_category_id": 11,
+                      "store_name": "Medicine Store",
+                      "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Store List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `lat` | string | Yes | Lat |
+  | `long` | string | Yes | Long |
+  | `service_category_id` | string | Yes | Service category id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "display_title_name": "Near By Store ",
+      "no_of_store": 1,
+      "store_list": [
+          {
+              "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+              "store_name": "Medicine Store",
+              "store_banner": "http://localhost/storage/img/store-images/medicine-store.jpg",
+              "store_products": "Tablet,Pain Killers",
+              "service_category_id": 11,
+              "service_category_name": "Medicine Delivery",
+              "service_category_icon": "http://localhost/storage/img/service-category/medicine-delivery.png",
+              "average_ratings": 4.6,
+              "offer": "Get 5%  off on orders above $10",
+              "order_delivery_time": 30,
+              "order_min_amount": 20,
+              "is_offer": 1,
+              "offer_type": 2,
+              "offer_min_amount": 10,
+              "offer_amount": 5,
+              "no_of_ratings": 1,
+              "distance": "0.2394870618187738",
+              "is_fav_store": 0,
+              "is_subcat_flow": 3
+          }
+      ],
+      "service_slider_data": [
+          {
+              "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+              "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+              "service_category_id": 11,
+              "store_name": "Medicine Store",
+              "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+          },
+          {
+              "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+              "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+              "service_category_id": 11,
+              "store_name": "Medicine Store",
+              "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+          },
+          {
+              "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+              "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+              "service_category_id": 11,
+              "store_name": "Medicine Store",
+              "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+          },
+          {
+              "id": "a2b11360-8a86-5f0d-ad7d-6848f4c81201",
+              "store_id": "a2b6f62e-3bf9-5f02-9f0f-fb553d5b5d02",
+              "service_category_id": 11,
+              "store_name": "Medicine Store",
+              "banner_image": "http://localhost/storage/img/service-slider-banner/f1bfb042-dcec-4d93-bb41-8ad12d285575"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The lat field is required."
+  }
+  ```
+

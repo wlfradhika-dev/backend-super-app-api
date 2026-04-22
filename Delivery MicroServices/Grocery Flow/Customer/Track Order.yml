@@ -1,0 +1,234 @@
+info:
+  name: Track Order
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/grocery-flow/customer/track-order"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: 3af38c94-810c-4ee4-b948-e970c8ee72ce
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Track Order
+    request:
+      url: "{{delivery_url}}/api/grocery-flow/customer/track-order"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_id
+            type: text
+            value: 3af38c94-810c-4ee4-b948-e970c8ee72ce
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 13:02:17 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "3af38c94-810c-4ee4-b948-e970c8ee72ce",
+              "order_no": "31943874",
+              "otp": "783221",
+              "cancel_charge": 0,
+              "cancel_by": "",
+              "cancel_reason": "",
+              "order_time": "Mon 23 Feb, 12:53PM",
+              "total_items": 1,
+              "total_pay": 48.01,
+              "service_category_id": 8,
+              "store_id": "922aad62-9460-4b34-be03-7e131fa81aaa",
+              "store_image": "http://localhost/storage/img/profile-images/store/11360920242806.png",
+              "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+              "store_ratting": 4.6,
+              "store_contact_number": "+17099",
+              "store_name": "Store Testing",
+              "pickup_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "pickup_lat_long": "22.31572603394304,70.7674083384962",
+              "destination_address": "Shital park",
+              "destination_lat_long": "123455,123445",
+              "service_date_time": "2026-02-23 12:53:13",
+              "schedule_order_date_time": "2026-02-23 12:53:13",
+              "delivery_people_name": "",
+              "driver_contact_number": "",
+              "driver_selected_service_string": "",
+              "driver_id": 0,
+              "driver_fcm_token": "",
+              "driver_image": "",
+              "driver_rating": 0,
+              "order_current_status": 1,
+              "user_taken_type": 1,
+              "order_cancel_reject_title": "",
+              "order_status_list": [
+                  {
+                      "order_status": 1,
+                      "update_status_time": "12:53 PM",
+                      "update_status_date_time": "2026-02-23 12:53:13"
+                  }
+              ],
+              "review_count": 1,
+              "driver_review_count": 0,
+              "order_chat_number": "31943874-3af38c94-810c-4ee4-b948-e970c8ee72ce"
+          }
+
+docs: |+
+  ## Track Order
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "3af38c94-810c-4ee4-b948-e970c8ee72ce",
+      "order_no": "31943874",
+      "otp": "783221",
+      "cancel_charge": 0,
+      "cancel_by": "",
+      "cancel_reason": "",
+      "order_time": "Mon 23 Feb, 12:53PM",
+      "total_items": 1,
+      "total_pay": 48.01,
+      "service_category_id": 8,
+      "store_id": "922aad62-9460-4b34-be03-7e131fa81aaa",
+      "store_image": "http://localhost/storage/img/profile-images/store/11360920242806.png",
+      "store_banner": "http://localhost/storage/img/store-images/store-test.jpg",
+      "store_ratting": 4.6,
+      "store_contact_number": "+17099",
+      "store_name": "Store Testing",
+      "pickup_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "pickup_lat_long": "22.31572603394304,70.7674083384962",
+      "destination_address": "Shital park",
+      "destination_lat_long": "123455,123445",
+      "service_date_time": "2026-02-23 12:53:13",
+      "schedule_order_date_time": "2026-02-23 12:53:13",
+      "delivery_people_name": "",
+      "driver_contact_number": "",
+      "driver_selected_service_string": "",
+      "driver_id": 0,
+      "driver_fcm_token": "",
+      "driver_image": "",
+      "driver_rating": 0,
+      "order_current_status": 1,
+      "user_taken_type": 1,
+      "order_cancel_reject_title": "",
+      "order_status_list": [
+          {
+              "order_status": 1,
+              "update_status_time": "12:53 PM",
+              "update_status_date_time": "2026-02-23 12:53:13"
+          }
+      ],
+      "review_count": 1,
+      "driver_review_count": 0,
+      "order_chat_number": "31943874-3af38c94-810c-4ee4-b948-e970c8ee72ce"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

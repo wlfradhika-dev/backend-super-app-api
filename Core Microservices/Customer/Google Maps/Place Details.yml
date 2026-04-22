@@ -1,0 +1,244 @@
+info:
+  name: Place Details
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/google-place-detail"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: session-id
+      value: "123"
+  body:
+    type: multipart-form
+    data:
+      - name: place_id
+        type: text
+        value: ChIJD98cx4rJWTkRO62Tvs8V3XY
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Place Details
+    request:
+      url: "{{core_url}}/api/customer/google-place-detail"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: session-id
+          value: "123"
+      body:
+        type: multipart-form
+        data:
+          - name: place_id
+            type: text
+            value: ChIJD98cx4rJWTkRO62Tvs8V3XY
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 09:22:50 GMT
+        - name: Content-Type
+          value: application/json
+        - name: X-RateLimit-Limit
+          value: "150"
+        - name: X-RateLimit-Remaining
+          value: "147"
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "formattedAddress": "Rajkot, Gujarat, India",
+              "addressComponents": [
+                  {
+                      "longText": "Rajkot",
+                      "shortText": "Rajkot",
+                      "types": [
+                          "locality",
+                          "political"
+                      ],
+                      "languageCode": "en"
+                  },
+                  {
+                      "longText": "Rajkot",
+                      "shortText": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ],
+                      "languageCode": "en"
+                  },
+                  {
+                      "longText": "Gujarat",
+                      "shortText": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ],
+                      "languageCode": "en"
+                  },
+                  {
+                      "longText": "India",
+                      "shortText": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ],
+                      "languageCode": "en"
+                  }
+              ],
+              "location": {
+                  "latitude": 22.3038945,
+                  "longitude": 70.80215989999999
+              },
+              "displayName": {
+                  "text": "Rajkot",
+                  "languageCode": "en"
+              }
+          }
+
+docs: |+
+  ## Place Details
+
+  Returns detailed information about a place using its Google Places ID.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `place_id` | string | Yes | Place id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "formattedAddress": "Rajkot, Gujarat, India",
+      "addressComponents": [
+          {
+              "longText": "Rajkot",
+              "shortText": "Rajkot",
+              "types": [
+                  "locality",
+                  "political"
+              ],
+              "languageCode": "en"
+          },
+          {
+              "longText": "Rajkot",
+              "shortText": "Rajkot",
+              "types": [
+                  "administrative_area_level_3",
+                  "political"
+              ],
+              "languageCode": "en"
+          },
+          {
+              "longText": "Gujarat",
+              "shortText": "GJ",
+              "types": [
+                  "administrative_area_level_1",
+                  "political"
+              ],
+              "languageCode": "en"
+          },
+          {
+              "longText": "India",
+              "shortText": "IN",
+              "types": [
+                  "country",
+                  "political"
+              ],
+              "languageCode": "en"
+          }
+      ],
+      "location": {
+          "latitude": 22.3038945,
+          "longitude": 70.80215989999999
+      },
+      "displayName": {
+          "text": "Rajkot",
+          "languageCode": "en"
+      }
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The place id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

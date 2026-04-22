@@ -1,0 +1,223 @@
+info:
+  name: Home
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/home"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: select-ip-address
+      value: 49.36.10.11
+    - name: select-time-zone
+      value: Asia/Kolkata
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "2"
+      - name: current_lat
+        type: text
+        value: "23.0225"
+      - name: current_long
+        type: text
+        value: "72.5714"
+      - name: app_version
+        type: text
+        value: 2.7.1
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Home
+    request:
+      url: "{{transport_url}}/api/driver/home"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: select-ip-address
+          value: 49.36.10.11
+        - name: select-time-zone
+          value: Asia/Kolkata
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "2"
+          - name: current_lat
+            type: text
+            value: "23.0225"
+          - name: current_long
+            type: text
+            value: "72.5714"
+          - name: app_version
+            type: text
+            value: 2.7.1
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Sat, 11 Apr 2026 09:12:11 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "493"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Bna146pB0QlKRE0vpSYUocgVf84gRsup8xq%2FgwzxuMr6uGJcAJoyyQaP3xqvJhu01993bS7qEnhd%2BUxjfPXE4%2FLu%2B%2BQD0wCftIV%2BjIOzXDIDpU8bz9wusfSUBWw4Y4LMaSZijIUc5YGOW5A5QRKsX%2BuNqXRLqLaf5HLwJtme1A%3D%3D"}]}'
+        - name: cf-ray
+          value: 9ea8de3dbab7a7b7-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "service_category_id": 2,
+              "driver_id": "019d7b68-7e87-7146-8e8d-3562abbc691c",
+              "driver_name": "John",
+              "driver_profile": "",
+              "is_valid_amount": "You need atleast $50 to receive rides",
+              "driver_current_status": 0,
+              "driver_service": "Courier Delivery, Store Delivery, Rental service",
+              "vehicle_type_icon": "https://white-label-fox-assets-bucket.s3.ap-south-1.amazonaws.com/fox-jek-v3/transport/img/service-category/transport-service-type/233100820250801.png",
+              "vehicle_type_name": "SUV",
+              "today_order": 0,
+              "today_earning": 0,
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "is_subscription": 1,
+              "cash_out_status": 1,
+              "expired_document_message": "",
+              "is_document_expired": 0,
+              "is_transport_pause_start_module_enable": 1,
+              "is_private_driver": 0
+          }
+
+docs: |+
+  ## Home
+
+  Returns the homepage data including available services, banners, and promotional content.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | Service category id |
+  | `current_lat` | string | Yes | Current lat |
+  | `current_long` | string | Yes | Current long |
+  | `app_version` | string | Yes | App version |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "service_category_id": 1,
+      "driver_id": "5248abed-e65e-4bc3-8e06-18149da89f81",
+      "driver_name": "Cruiser",
+      "driver_profile": "",
+      "is_valid_amount": "You need atleast $50 to receive rides",
+      "driver_current_status": 0,
+      "driver_service": "",
+      "vehicle_type_icon": "",
+      "vehicle_type_name": "",
+      "today_order": 0,
+      "today_earning": 0,
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "is_subscription": 1,
+      "cash_out_status": 1,
+      "expired_document_message": "",
+      "is_document_expired": 0,
+      "is_transport_pause_start_module_enable": 1,
+      "is_private_driver": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

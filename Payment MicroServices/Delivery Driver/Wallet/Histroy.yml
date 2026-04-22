@@ -1,0 +1,311 @@
+info:
+  name: Histroy
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/delivery-driver/wallet/history"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Authorization
+      value: Bearer {{driver_token}}
+  body:
+    type: multipart-form
+    data:
+      - name: order_by
+        type: text
+        value: "0"
+      - name: service_category
+        type: text
+        value: ""
+      - name: date_filter
+        type: text
+        value: "0"
+      - name: page
+        type: text
+        value: "1"
+      - name: per_page
+        type: text
+        value: "10"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success response
+    request:
+      url: "{{payment_url}}/api/delivery-driver/wallet/history"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer {{driver_token}}
+      body:
+        type: multipart-form
+        data:
+          - name: order_by
+            type: text
+            value: "0"
+          - name: service_category
+            type: text
+            value: ""
+          - name: date_filter
+            type: text
+            value: "0"
+          - name: page
+            type: text
+            value: "1"
+          - name: per_page
+            type: text
+            value: "10"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Mar 2026 04:01:20 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "wallet_transaction_list": [
+                  {
+                      "id": "eba396a4-6e89-4ca4-9cc4-115634ce083d",
+                      "amount": 100,
+                      "transaction_type": 1,
+                      "title": "Credit by yash",
+                      "remaining_balance": 550,
+                      "date_time": "2026-03-13 12:22:22"
+                  },
+                  {
+                      "id": "d6aa3ec7-1b3f-47cb-bd07-478c2cde3efe",
+                      "amount": 50,
+                      "transaction_type": 2,
+                      "title": "Credit by ",
+                      "remaining_balance": 450,
+                      "date_time": "2026-03-13 11:53:53"
+                  },
+                  {
+                      "id": "a382c01f-bf27-4c9d-bfd2-ba8860ae4117",
+                      "amount": 100,
+                      "transaction_type": 1,
+                      "title": "Credit by yash",
+                      "remaining_balance": 650,
+                      "date_time": "2026-03-13 12:32:13"
+                  },
+                  {
+                      "id": "a2f76034-74a6-40b4-8074-504efd830f36",
+                      "amount": 100,
+                      "transaction_type": 1,
+                      "title": "Credit by yash",
+                      "remaining_balance": 650,
+                      "date_time": "2026-03-13 12:24:04"
+                  },
+                  {
+                      "id": "9fa33fbb-4ae4-4d3c-8f4e-0b90e1ef0903",
+                      "amount": 100,
+                      "transaction_type": 1,
+                      "title": "Credit by yash",
+                      "remaining_balance": 550,
+                      "date_time": "2026-03-13 12:17:49"
+                  },
+                  {
+                      "id": "753f0e54-65b5-4fe0-a623-7054d34b767c",
+                      "amount": 500,
+                      "transaction_type": 1,
+                      "title": "Topup by Admin Admin",
+                      "remaining_balance": 500,
+                      "date_time": "2026-03-13 11:51:50"
+                  },
+                  {
+                      "id": "738ee44d-e24c-4321-95a1-fffa4ab61c13",
+                      "amount": 100,
+                      "transaction_type": 1,
+                      "title": "Credit by yash",
+                      "remaining_balance": 650,
+                      "date_time": "2026-03-13 12:23:44"
+                  },
+                  {
+                      "id": "106911a7-85bf-4fdb-9f83-d8b404753f74",
+                      "amount": 100,
+                      "transaction_type": 1,
+                      "title": "Credit by yash",
+                      "remaining_balance": 650,
+                      "date_time": "2026-03-14 04:01:14"
+                  }
+              ],
+              "current_page": 1,
+              "last_page": 1,
+              "total_rec": 8
+          }
+
+docs: |+
+  ## Histroy
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_by` | string | Yes | Order by |
+  | `service_category` | string | Yes | Service category |
+  | `date_filter` | string | Yes | Date filter |
+  | `page` | string | Yes | Page |
+  | `per_page` | string | Yes | Per page |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "wallet_transaction_list": [
+          {
+              "id": "eba396a4-6e89-4ca4-9cc4-115634ce083d",
+              "amount": 100,
+              "transaction_type": 1,
+              "title": "Credit by yash",
+              "remaining_balance": 550,
+              "date_time": "2026-03-13 12:22:22"
+          },
+          {
+              "id": "d6aa3ec7-1b3f-47cb-bd07-478c2cde3efe",
+              "amount": 50,
+              "transaction_type": 2,
+              "title": "Credit by ",
+              "remaining_balance": 450,
+              "date_time": "2026-03-13 11:53:53"
+          },
+          {
+              "id": "a382c01f-bf27-4c9d-bfd2-ba8860ae4117",
+              "amount": 100,
+              "transaction_type": 1,
+              "title": "Credit by yash",
+              "remaining_balance": 650,
+              "date_time": "2026-03-13 12:32:13"
+          },
+          {
+              "id": "a2f76034-74a6-40b4-8074-504efd830f36",
+              "amount": 100,
+              "transaction_type": 1,
+              "title": "Credit by yash",
+              "remaining_balance": 650,
+              "date_time": "2026-03-13 12:24:04"
+          },
+          {
+              "id": "9fa33fbb-4ae4-4d3c-8f4e-0b90e1ef0903",
+              "amount": 100,
+              "transaction_type": 1,
+              "title": "Credit by yash",
+              "remaining_balance": 550,
+              "date_time": "2026-03-13 12:17:49"
+          },
+          {
+              "id": "753f0e54-65b5-4fe0-a623-7054d34b767c",
+              "amount": 500,
+              "transaction_type": 1,
+              "title": "Topup by Admin Admin",
+              "remaining_balance": 500,
+              "date_time": "2026-03-13 11:51:50"
+          },
+          {
+              "id": "738ee44d-e24c-4321-95a1-fffa4ab61c13",
+              "amount": 100,
+              "transaction_type": 1,
+              "title": "Credit by yash",
+              "remaining_balance": 650,
+              "date_time": "2026-03-13 12:23:44"
+          },
+          {
+              "id": "106911a7-85bf-4fdb-9f83-d8b404753f74",
+              "amount": 100,
+              "transaction_type": 1,
+              "title": "Credit by yash",
+              "remaining_balance": 650,
+              "date_time": "2026-03-14 04:01:14"
+          }
+      ],
+      "current_page": 1,
+      "last_page": 1,
+      "total_rec": 8
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order by field is required."
+  }
+  ```
+

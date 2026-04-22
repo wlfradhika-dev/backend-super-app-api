@@ -1,0 +1,189 @@
+info:
+  name: Provider List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/customer/video-consultancy/provider-list"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "service_category_id": 13,
+          "sub_category_id": "{{sub_category_uuid}}",
+          "lat": "23.0225",
+          "long": "72.5714"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Provider List
+    request:
+      url: "{{on_deman_url}}/api/customer/video-consultancy/provider-list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "service_category_id": 13,
+              "sub_category_id": "{{sub_category_uuid}}",
+              "lat": "23.0225",
+              "long": "72.5714"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Mar 2026 09:03:42 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_list": [
+                  {
+                      "provider_id": "adb97f58-cb8a-4e4a-9535-b87edac62a10",
+                      "provider_name": "Provider",
+                      "provider_profile_image": "http://localhost:8004/storage/img/profile-images/provider/jila.png",
+                      "provider_gender": 0,
+                      "average_rating": 0,
+                      "num_of_rating": 0,
+                      "no_of_ratings": 0,
+                      "distance": "4291.90",
+                      "total_completed_order": 0,
+                      "is_allowed_provider_location": 0,
+                      "package_list": [
+                          {
+                              "package_name": "Dog fish dance",
+                              "package_price": 100
+                          }
+                      ]
+                  }
+              ]
+          }
+
+docs: |+
+  ## Provider List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "service_category_id": 13,
+      "sub_category_id": "{{sub_category_uuid}}",
+      "lat": "23.0225",
+      "long": "72.5714"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_list": [
+          {
+              "provider_id": "adb97f58-cb8a-4e4a-9535-b87edac62a10",
+              "provider_name": "Provider",
+              "provider_profile_image": "http://localhost:8004/storage/img/profile-images/provider/jila.png",
+              "provider_gender": 0,
+              "average_rating": 0,
+              "num_of_rating": 0,
+              "no_of_ratings": 0,
+              "distance": "4291.90",
+              "total_completed_order": 0,
+              "is_allowed_provider_location": 0,
+              "package_list": [
+                  {
+                      "package_name": "Dog fish dance",
+                      "package_price": 100
+                  }
+              ]
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

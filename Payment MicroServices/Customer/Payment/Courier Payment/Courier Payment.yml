@@ -1,0 +1,350 @@
+info:
+  name: Courier Payment
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8006/api/customer/courier-payment
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: edffebc6-b8a6-401d-827e-1b25c176bab3
+        description: (For Courier Ride id)
+      - name: service_category_id
+        type: text
+        value: "4"
+        description: (For Service Category id (4 = Courier Services )
+      - name: payment_type
+        type: text
+        value: "3"
+        description: For(Payment Type = 1 = Cash , 2 = Card ,3 = Wallet)
+      - name: card_id
+        type: text
+        value: 09ae7659-7599-4ee2-93da-e91feb2b4549
+        description: if (Payment Type = 2 then Card_id Required)
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Courier Payment (Cash)
+    request:
+      url: http://localhost:8006/api/customer/courier-payment
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer 67|LxdTkVcaOHU45sCWY2DTpS2HC5Ynr8C4gjNNWIF2635b45ec
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: edffebc6-b8a6-401d-827e-1b25c176bab3
+            description: (For Courier Ride id)
+          - name: service_category_id
+            type: text
+            value: "4"
+            description: (For Service Category id (4 = Courier Services )
+          - name: payment_type
+            type: text
+            value: "1"
+            description: For(Payment Type = 1 = Cash , 2 = Card ,3 = Wallet)
+          - name: card_id
+            type: text
+            value: 09ae7659-7599-4ee2-93da-e91feb2b4549
+            description: if (Payment Type = 2 then Card_id Required)
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Mar 2026 08:53:22 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "edffebc6-b8a6-401d-827e-1b25c176bab3",
+              "ride_no": "10000007",
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": ""
+          }
+  - name: Courier Payment (Card)
+    request:
+      url: http://localhost:8006/api/customer/courier-payment
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer 67|LxdTkVcaOHU45sCWY2DTpS2HC5Ynr8C4gjNNWIF2635b45ec
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: edffebc6-b8a6-401d-827e-1b25c176bab3
+            description: (For Courier Ride id)
+          - name: service_category_id
+            type: text
+            value: "4"
+            description: (For Service Category id (4 = Courier Services )
+          - name: payment_type
+            type: text
+            value: "2"
+            description: For(Payment Type = 1 = Cash , 2 = Card ,3 = Wallet)
+          - name: card_id
+            type: text
+            value: 09ae7659-7599-4ee2-93da-e91feb2b4549
+            description: if (Payment Type = 2 then Card_id Required)
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Mar 2026 08:55:34 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "edffebc6-b8a6-401d-827e-1b25c176bab3",
+              "ride_no": "10000007",
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": ""
+          }
+  - name: Courier Payment (Wallet)
+    request:
+      url: http://localhost:8006/api/customer/courier-payment
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer 67|LxdTkVcaOHU45sCWY2DTpS2HC5Ynr8C4gjNNWIF2635b45ec
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: edffebc6-b8a6-401d-827e-1b25c176bab3
+            description: (For Courier Ride id)
+          - name: service_category_id
+            type: text
+            value: "4"
+            description: (For Service Category id (4 = Courier Services )
+          - name: payment_type
+            type: text
+            value: "3"
+            description: For(Payment Type = 1 = Cash , 2 = Card ,3 = Wallet)
+          - name: card_id
+            type: text
+            value: 09ae7659-7599-4ee2-93da-e91feb2b4549
+            description: if (Payment Type = 2 then Card_id Required)
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Mar 2026 08:55:57 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "edffebc6-b8a6-401d-827e-1b25c176bab3",
+              "ride_no": "10000007",
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": ""
+          }
+
+docs: |+
+  ## Courier Payment
+
+  Processes the payment for the specified order or service.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | (For Courier Ride id) |
+  | `service_category_id` | string | Yes | (For Service Category id (4 = Courier Services ) |
+  | `payment_type` | string | Yes | For(Payment Type = 1 = Cash , 2 = Card ,3 = Wallet) |
+  | `card_id` | string | Yes | if (Payment Type = 2 then Card_id Required) |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_id": "edffebc6-b8a6-401d-827e-1b25c176bab3",
+      "ride_no": "10000007",
+      "redirect_url": "",
+      "success_url": "",
+      "failed_url": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

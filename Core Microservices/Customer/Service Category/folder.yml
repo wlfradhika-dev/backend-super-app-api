@@ -1,0 +1,7 @@
+info:
+  name: Service Category
+  type: folder
+  seq: 11
+
+request:
+  auth: inherit

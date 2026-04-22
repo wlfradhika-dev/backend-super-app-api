@@ -1,0 +1,155 @@
+info:
+  name: Cancel Ride
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/taxi/transport/cancel-ride"
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: e96b9c62-3c53-41c7-bdcf-a8d0cd99a370
+        description: For Ride Id
+      - name: reason
+        type: text
+        value: Testing
+        description: Here Enter Text
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Cancel-Ride
+    request:
+      url: "{{transport_url}}/api/customer/taxi/transport/cancel-ride"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: user_id
+            type: text
+            value: "{{user_id}}"
+            description: For User Id
+          - name: ride_id
+            type: text
+            value: e96b9c62-3c53-41c7-bdcf-a8d0cd99a370
+            description: For Ride Id
+          - name: reason
+            type: text
+            value: Testing
+            description: Here Enter Text
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 10 Feb 2026 14:27:31 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_id": "e96b9c62-3c53-41c7-bdcf-a8d0cd99a370",
+              "sub_ride_id": null
+          }
+
+docs: |+
+  ## Cancel Ride
+
+  Cancels the specified record or ongoing process.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | For Ride Id |
+  | `reason` | string | Yes | Here Enter Text |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_id": "e96b9c62-3c53-41c7-bdcf-a8d0cd99a370",
+      "sub_ride_id": null
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

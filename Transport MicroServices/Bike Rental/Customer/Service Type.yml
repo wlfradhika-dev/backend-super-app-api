@@ -1,0 +1,313 @@
+info:
+  name: Service Type
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/bike-rental/transport/service-type"
+  headers:
+    - name: Authorization
+      value: Bearer 3|3hXKAJbE8Jv91iCOGKaDvzFY145fbN56Vnkdau2Gefceca70
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+    - name: session-id
+      value: test-session-1
+  body:
+    type: json
+    data: |-
+      {
+          "address_list": [
+            {"address_lat": 22.319033, "address_long": 70.767158, "time": "2026-03-09 11:00:00"},
+            {"address_lat": 22.320100, "address_long": 70.768200, "time": "2026-03-09 11:30:00"}
+          ],
+          "current_lat": 22.319033,
+          "current_long": 70.767158,
+          "total_km": 2.5,
+          "service_category_id": 7,
+          "is_loyalty_discount": 0
+        }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Service Type
+    request:
+      url: http://127.0.0.1:8002/api/customer/bike-rental/transport/service-type
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer 3|3hXKAJbE8Jv91iCOGKaDvzFY145fbN56Vnkdau2Gefceca70
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: session-id
+          value: test-session-1
+      body:
+        type: json
+        data: |-
+          {
+              "address_list": [
+                {"address_lat": 22.319033, "address_long": 70.767158, "time": "2026-03-09 11:00:00"},
+                {"address_lat": 22.320100, "address_long": 70.768200, "time": "2026-03-09 11:30:00"}
+              ],
+              "current_lat": 22.319033,
+              "current_long": 70.767158,
+              "total_km": 2.5,
+              "is_loyalty_discount": 0
+            }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 09 Mar 2026 12:35:00 GMT
+        - name: X-RateLimit-Limit
+          value: "150"
+        - name: X-RateLimit-Remaining
+          value: "145"
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "arrived_time": "12:35 PM",
+              "total_duration": 16,
+              "promo_message_code": 0,
+              "promo_code_message": "",
+              "service_type": [
+                  {
+                      "id": "e42bdbd6-03da-4f37-bd27-0c7163ddcf6f",
+                      "service_name": "Scooter",
+                      "image": "http://localhost:8002/storage/img/service-category/transport-service-type/135330520242707.png",
+                      "service_status": 0,
+                      "arrived_time": "12:35 PM",
+                      "ride_amount": 50,
+                      "total_duration": 0,
+                      "discount_on_amount": 50,
+                      "is_loyalty_point_apply": "",
+                      "total_loyalty_points": 0,
+                      "redeem_loyalty_points": 0,
+                      "loyalty_discount_amount": 0
+                  },
+                  {
+                      "id": "18091cc1-989f-4fe7-bb10-178297c35157",
+                      "service_name": "Street",
+                      "image": "http://localhost:8002/storage/img/service-category/transport-service-type/110340520242707.png",
+                      "service_status": 1,
+                      "arrived_time": "12:35 PM",
+                      "ride_amount": 60,
+                      "total_duration": 0,
+                      "discount_on_amount": 60,
+                      "is_loyalty_point_apply": "",
+                      "total_loyalty_points": 0,
+                      "redeem_loyalty_points": 0,
+                      "loyalty_discount_amount": 0
+                  },
+                  {
+                      "id": "498601f1-cc0a-4368-b3e0-10dc50c1804c",
+                      "service_name": "Cruiser",
+                      "image": "http://localhost:8002/storage/img/service-category/transport-service-type/100340520242707.png",
+                      "service_status": 1,
+                      "arrived_time": "12:35 PM",
+                      "ride_amount": 80,
+                      "total_duration": 16,
+                      "discount_on_amount": 80,
+                      "is_loyalty_point_apply": "",
+                      "total_loyalty_points": 0,
+                      "redeem_loyalty_points": 0,
+                      "loyalty_discount_amount": 0
+                  },
+                  {
+                      "id": "e41790d9-625f-4b94-afa7-27c8f867ee6a",
+                      "service_name": "Sports",
+                      "image": "http://localhost:8002/storage/img/service-category/transport-service-type/144330520242707.png",
+                      "service_status": 1,
+                      "arrived_time": "12:35 PM",
+                      "ride_amount": 100,
+                      "total_duration": 38,
+                      "discount_on_amount": 100,
+                      "is_loyalty_point_apply": "",
+                      "total_loyalty_points": 0,
+                      "redeem_loyalty_points": 0,
+                      "loyalty_discount_amount": 0
+                  }
+              ],
+              "is_loyalty_points_module": 0
+          }
+
+docs: |+
+  ## Service Type
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "address_list": [
+        {"address_lat": 22.319033, "address_long": 70.767158, "time": "2026-03-09 11:00:00"},
+        {"address_lat": 22.320100, "address_long": 70.768200, "time": "2026-03-09 11:30:00"}
+      ],
+      "current_lat": 22.319033,
+      "current_long": 70.767158,
+      "total_km": 2.5,
+      "is_loyalty_discount": 0
+    }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "arrived_time": "12:35 PM",
+      "total_duration": 16,
+      "promo_message_code": 0,
+      "promo_code_message": "",
+      "service_type": [
+          {
+              "id": "e42bdbd6-03da-4f37-bd27-0c7163ddcf6f",
+              "service_name": "Scooter",
+              "image": "http://localhost:8002/storage/img/service-category/transport-service-type/135330520242707.png",
+              "service_status": 0,
+              "arrived_time": "12:35 PM",
+              "ride_amount": 50,
+              "total_duration": 0,
+              "discount_on_amount": 50,
+              "is_loyalty_point_apply": "",
+              "total_loyalty_points": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          },
+          {
+              "id": "18091cc1-989f-4fe7-bb10-178297c35157",
+              "service_name": "Street",
+              "image": "http://localhost:8002/storage/img/service-category/transport-service-type/110340520242707.png",
+              "service_status": 1,
+              "arrived_time": "12:35 PM",
+              "ride_amount": 60,
+              "total_duration": 0,
+              "discount_on_amount": 60,
+              "is_loyalty_point_apply": "",
+              "total_loyalty_points": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          },
+          {
+              "id": "498601f1-cc0a-4368-b3e0-10dc50c1804c",
+              "service_name": "Cruiser",
+              "image": "http://localhost:8002/storage/img/service-category/transport-service-type/100340520242707.png",
+              "service_status": 1,
+              "arrived_time": "12:35 PM",
+              "ride_amount": 80,
+              "total_duration": 16,
+              "discount_on_amount": 80,
+              "is_loyalty_point_apply": "",
+              "total_loyalty_points": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          },
+          {
+              "id": "e41790d9-625f-4b94-afa7-27c8f867ee6a",
+              "service_name": "Sports",
+              "image": "http://localhost:8002/storage/img/service-category/transport-service-type/144330520242707.png",
+              "service_status": 1,
+              "arrived_time": "12:35 PM",
+              "ride_amount": 100,
+              "total_duration": 38,
+              "discount_on_amount": 100,
+              "is_loyalty_point_apply": "",
+              "total_loyalty_points": 0,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0
+          }
+      ],
+      "is_loyalty_points_module": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

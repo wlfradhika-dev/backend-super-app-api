@@ -1,0 +1,138 @@
+info:
+  name: App Versions
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/app-version-check"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: authorization
+      value: "{{customToken}}"
+  body:
+    type: multipart-form
+    data:
+      - name: login_device
+        type: text
+        value: "1"
+        description: 1 :Android,2:ios,3:flutter android,4:flutter ios
+      - name: device_token
+        type: text
+        value: "123456"
+        description: device token of the user or guest user
+      - name: user_id
+        type: text
+        value: ""
+        description: optional
+      - name: ""
+        type: text
+        value: ""
+        disabled: true
+  auth: inherit
+
+runtime:
+  variables:
+    - name: customToken
+      value: 20QW9KZ0X5FJx7M8vHhR4B2kYcL1U3D6GmTSAEnpPjCwqfVNiq1WfL6Y4CScUeF23
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("token", response.token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: App Versions
+    request:
+      url: "{{core_url}}/api/customer/app-version-check"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: "{{customToken}}"
+      body:
+        type: multipart-form
+        data:
+          - name: login_device
+            type: text
+            value: "1"
+            description: 1 :Android,2:ios,3:flutter android,4:flutter ios
+          - name: device_token
+            type: text
+            value: "123456"
+            description: device token of the user or guest user
+          - name: user_id
+            type: text
+            value: ""
+            description: optional
+          - name: ""
+            type: text
+            value: ""
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Thu, 09 Apr 2026 06:15:15 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "271"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=48%2F8jgPsPsumK4F0D5QSteIka3eKIZusRchNrBI63po%2BFbMtIsTN6yEJBUXnTJh3LWhhcDKFH9YdZZaJ%2BxWBwJZ%2BBC%2FhNTx576WsR87kBDP8atLJ7rUpYWSNPnkZgh1vFRT0i9F0FLjoKi22o88B38wEBVQMnaNNQIU%3D"}]}'
+        - name: cf-ray
+          value: 9e97604ff906bdd5-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "app_version": "1.0",
+              "token": "51|7FpZBEJNr1gzEZGBzPcjjCcGcX4ZbIJGmOf0UO6E063c6530",
+              "is_forcefully_update": 0,
+              "is_google_login": 1,
+              "is_facebook_login": 1,
+              "is_apple_login": 1,
+              "is_toll_charge": 1,
+              "is_transport_destination_later_module_enable": 1,
+              "is_transport_waiting_module_enable": 1,
+              "is_transport_pause_start_module_enable": 1
+          }
+
+docs: This api is to check app versions for forcefully update and also here we are checking the base token and then returing the guest sanctum token for further apis

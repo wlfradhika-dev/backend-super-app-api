@@ -1,0 +1,271 @@
+info:
+  name: List For filters
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/get-service-category"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: service_type
+        type: text
+        value: "6"
+        description: 1 transport, 2 delivery, 3 on-demand, 4 Courier, 5 transport, 6 video
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: List For filters
+    request:
+      url: "{{core_url}}/api/customer/get-service-category"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: service_type
+            type: text
+            value: "6"
+            description: 1 transport, 2 delivery, 3 on-demand, 4 Courier, 5 transport, 6 video
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Thu, 09 Apr 2026 09:21:13 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "521"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=lLmxLeE7h8HDtLxpuHeuzPvWRz226yAaO8jmu32GOIZyHm%2Bi6QZJvjmHeWwdh4q4zQrpLiBu2nPn8pOPMim0q1LZf%2Ff9Rbp7Uf8cxeuEAfUpv8G8hOUJQFBH6ca86zP%2BApGve3vnTA986AQEBiU62ErSdQmtoGaEazI%3D"}]}'
+        - name: cf-ray
+          value: 9e9870bdbfc8e624-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "services": [
+                  {
+                      "service_category_id": 1,
+                      "category_type": 1,
+                      "service_category_name": "Bike Ride",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/11345620242806.png"
+                  },
+                  {
+                      "service_category_id": 9,
+                      "category_type": 2,
+                      "service_category_name": "Food Delivery",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/food-delivery.png"
+                  },
+                  {
+                      "service_category_id": 13,
+                      "category_type": 4,
+                      "service_category_name": "Dog walking",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/10060120251301.png"
+                  },
+                  {
+                      "service_category_id": 14,
+                      "category_type": 6,
+                      "service_category_name": "Astrology",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/10112520251301.png"
+                  },
+                  {
+                      "service_category_id": 10,
+                      "category_type": 2,
+                      "service_category_name": "Grocery Delivery",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/grocery-delivery.png"
+                  },
+                  {
+                      "service_category_id": 2,
+                      "category_type": 1,
+                      "service_category_name": "Taxi Ride",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/11350720242806.png"
+                  },
+                  {
+                      "service_category_id": 3,
+                      "category_type": 1,
+                      "service_category_name": "Intercity",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/11353120242806.png"
+                  },
+                  {
+                      "service_category_id": 11,
+                      "category_type": 2,
+                      "service_category_name": "Flower Delivery",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/flower-delivery.png"
+                  },
+                  {
+                      "service_category_id": 4,
+                      "category_type": 5,
+                      "service_category_name": "Courier Service",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/05111220242712.png"
+                  },
+                  {
+                      "service_category_id": 12,
+                      "category_type": 2,
+                      "service_category_name": "Medicine Delivery",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/medicine-delivery.png"
+                  },
+                  {
+                      "service_category_id": 5,
+                      "category_type": 1,
+                      "service_category_name": "Taxi Bidding",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/11354920242806.png"
+                  },
+                  {
+                      "service_category_id": 6,
+                      "category_type": 1,
+                      "service_category_name": "Taxi Pool",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/11360920242806.png"
+                  },
+                  {
+                      "service_category_id": 7,
+                      "category_type": 1,
+                      "service_category_name": "Bike Rental",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/11362120242806.png"
+                  },
+                  {
+                      "service_category_id": 8,
+                      "category_type": 1,
+                      "service_category_name": "Car Rental",
+                      "service_category_icon": "https://staging-fox-jek-core.startuptrinity.com/storage/img/service-category/11362120242806.png"
+                  }
+              ]
+          }
+
+docs: |+
+  ## List For filters
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_type` | string | Yes | Service type |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "services": [
+          {
+              "service_category_id": 1,
+              "category_type": 1,
+              "service_category_name": "Bike Ride",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11345620242806.png"
+          },
+          {
+              "service_category_id": 2,
+              "category_type": 1,
+              "service_category_name": "Taxi Ride",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11350720242806.png"
+          },
+          {
+              "service_category_id": 3,
+              "category_type": 1,
+              "service_category_name": "Intercity",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11353120242806.png"
+          },
+          {
+              "service_category_id": 5,
+              "category_type": 1,
+              "service_category_name": "Taxi Bidding",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11354920242806.png"
+          },
+          {
+              "service_category_id": 6,
+              "category_type": 1,
+              "service_category_name": "Taxi Pool",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11360920242806.png"
+          },
+          {
+              "service_category_id": 32,
+              "category_type": 1,
+              "service_category_name": "Car Rental",
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/11362120242806.png"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service type field is required."
+  }
+  ```
+

@@ -1,0 +1,236 @@
+info:
+  name: Ride Details
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/car-rental/ride-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+    - name: Authorization
+      value: Bearer 12|LSSoK14UJlI5nu2yxn3MqY1Yz6qrw1qa2cboIWC0e58a0b98
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+          "service_category_id": 8,
+          "ride_id": "b71e19db-40b3-4f22-a17c-97ffd93fdd55"
+        }
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride Details
+    request:
+      url: "{{transport_url}}/api/driver/car-rental/ride-details"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer 12|LSSoK14UJlI5nu2yxn3MqY1Yz6qrw1qa2cboIWC0e58a0b98
+          disabled: true
+      body:
+        type: json
+        data: |-
+          {
+              "service_category_id": 8,
+              "ride_id": "b28b3ccf-5a42-4c41-98eb-af75700d69c9"
+            }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 10 Mar 2026 12:16:03 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "ride_details": {
+                  "ride_id": "b28b3ccf-5a42-4c41-98eb-af75700d69c9",
+                  "user_id": "dc477e3d-c8c7-40e2-8c7e-a4d00b453457",
+                  "user_fcm_token": "123456",
+                  "booking_no": "90973080",
+                  "service_category_id": 8,
+                  "user_profile_image": "",
+                  "user_name": "Charlie",
+                  "rating": 0,
+                  "contact_number": "+11030",
+                  "address_list": [
+                      {
+                          "address": "Bus Stop, 150 Feet Ring Rd, near Sheetalpark, Sheetal Park, Manharpura 1, Madhapar, Rajkot, Gujarat 360006",
+                          "address_lat": "22.3189",
+                          "address_long": "70.7673"
+                      },
+                      {
+                          "address": "7QPC+GR2, 150 Feet Ring Rd, Rajkot, Gujarat 360005",
+                          "address_lat": "22.2863",
+                          "address_long": "70.772"
+                      }
+                  ],
+                  "sos_contact_list": [],
+                  "flat_no": "",
+                  "landmark": "",
+                  "pickup_date_time": "2026-03-07T10:00:00.000000Z",
+                  "cancel_by": "",
+                  "service_date_time": "2026-03-10 10:02:53",
+                  "total_amount": 0,
+                  "payment_type": 1,
+                  "ride_status": 7,
+                  "promocode_discount": 0,
+                  "promocode_name": "",
+                  "otp": "",
+                  "ride_chat_number": "90973080-b28b3ccf-5a42-4c41-98eb-af75700d69c9"
+              },
+              "is_toll_charge": 1
+          }
+
+docs: |+
+  ## Ride Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "service_category_id": 8,
+      "ride_id": "b28b3ccf-5a42-4c41-98eb-af75700d69c9"
+    }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "ride_details": {
+          "ride_id": "b28b3ccf-5a42-4c41-98eb-af75700d69c9",
+          "user_id": "dc477e3d-c8c7-40e2-8c7e-a4d00b453457",
+          "user_fcm_token": "123456",
+          "booking_no": "90973080",
+          "service_category_id": 8,
+          "user_profile_image": "",
+          "user_name": "Charlie",
+          "rating": 0,
+          "contact_number": "+11030",
+          "address_list": [
+              {
+                  "address": "Bus Stop, 150 Feet Ring Rd, near Sheetalpark, Sheetal Park, Manharpura 1, Madhapar, Rajkot, Gujarat 360006",
+                  "address_lat": "22.3189",
+                  "address_long": "70.7673"
+              },
+              {
+                  "address": "7QPC+GR2, 150 Feet Ring Rd, Rajkot, Gujarat 360005",
+                  "address_lat": "22.2863",
+                  "address_long": "70.772"
+              }
+          ],
+          "sos_contact_list": [],
+          "flat_no": "",
+          "landmark": "",
+          "pickup_date_time": "2026-03-07T10:00:00.000000Z",
+          "cancel_by": "",
+          "service_date_time": "2026-03-10 10:02:53",
+          "total_amount": 0,
+          "payment_type": 1,
+          "ride_status": 7,
+          "promocode_discount": 0,
+          "promocode_name": "",
+          "otp": "",
+          "ride_chat_number": "90973080-b28b3ccf-5a42-4c41-98eb-af75700d69c9"
+      },
+      "is_toll_charge": 1
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,148 @@
+info:
+  name: list
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/on-demand/packages/list"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "provider_service_id": "{{PROVIDER_SERVICE_UUID}}"
+      }
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success-response
+    request:
+      url: "{{on_deman_url}}/api/provider/on-demand/packages/list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "provider_service_id": "{{PROVIDER_SERVICE_UUID}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "package_list": [
+                  {
+                      "category_id": "1fe9c174-809f-418d-a45c-164ea016107a",
+                      "category_name": "Pet Grooming",
+                      "packages": [
+                          {
+                              "package_id": "faabc6b4-4c16-49e4-94a7-2b2d39972b2e",
+                              "package_name": "Basic Grooming",
+                              "package_description": "Full body grooming service",
+                              "package_max_book_quantity": 5,
+                              "package_price": 25.5,
+                              "package_status": 1
+                          }
+                      ]
+                  }
+              ]
+          }
+
+docs: |+
+  ## list
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "provider_service_id": "{{PROVIDER_SERVICE_UUID}}"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "package_list": [
+          {
+              "category_id": "1fe9c174-809f-418d-a45c-164ea016107a",
+              "category_name": "Pet Grooming",
+              "packages": [
+                  {
+                      "package_id": "faabc6b4-4c16-49e4-94a7-2b2d39972b2e",
+                      "package_name": "Basic Grooming",
+                      "package_description": "Full body grooming service",
+                      "package_max_book_quantity": 5,
+                      "package_price": 25.5,
+                      "package_status": 1
+                  }
+              ]
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

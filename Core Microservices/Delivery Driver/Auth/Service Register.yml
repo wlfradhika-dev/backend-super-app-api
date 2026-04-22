@@ -1,0 +1,169 @@
+info:
+  name: Service Register
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{core_url}}/api/delivery-driver/service-register"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "1"
+      - name: current_lat
+        type: text
+        value: "123456"
+      - name: current_long
+        type: text
+        value: "123456"
+      - name: vehicle_type_id
+        type: text
+        value: 019d7092-3813-7205-9a24-500b55abcff1
+      - name: manufacture_name
+        type: text
+        value: honda
+      - name: model_name
+        type: text
+        value: activa
+      - name: model_year
+        type: text
+        value: "2013"
+      - name: vehicle_plat_no
+        type: text
+        value: "2618"
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Service Register
+    request:
+      url: "{{core_url}}/api/delivery-driver/service-register"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "1"
+          - name: current_lat
+            type: text
+            value: "123456"
+          - name: current_long
+            type: text
+            value: "123456"
+          - name: vehicle_type_id
+            type: text
+            value: 57606fa1-2a02-4180-b333-7af71140b791
+          - name: manufacture_name
+            type: text
+            value: honda
+          - name: model_name
+            type: text
+            value: activa
+          - name: model_year
+            type: text
+            value: "2013"
+          - name: vehicle_plat_no
+            type: text
+            value: "2618"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 08:55:02 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "driver_service_id": "5483ee84-f5c7-4abd-8b91-25fbf47c1f13",
+              "service_status": 0,
+              "driver_current_status": 1,
+              "service_category_id": "1",
+              "driver_service": ",Store Delivery",
+              "vehicle_type_icon": "123.jpg",
+              "vehicle_type_name": "Bike"
+          }
+
+docs: |+
+  ## Service Register
+
+  Registers the driver for a specific service category, associating them with the selected service type.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | Service category id |
+  | `current_lat` | string | Yes | Current lat |
+  | `current_long` | string | Yes | Current long |
+  | `vehicle_type_id` | string | Yes | Vehicle type id |
+  | `manufacture_name` | string | Yes | Manufacture name |
+  | `model_name` | string | Yes | Model name |
+  | `model_year` | string | Yes | Model year |
+  | `vehicle_plat_no` | string | Yes | Vehicle plat no |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "driver_service_id": "5483ee84-f5c7-4abd-8b91-25fbf47c1f13",
+      "service_status": 0,
+      "driver_current_status": 1,
+      "service_category_id": "1",
+      "driver_service": ",Store Delivery",
+      "vehicle_type_icon": "123.jpg",
+      "vehicle_type_name": "Bike"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+

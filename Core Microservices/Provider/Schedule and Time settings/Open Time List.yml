@@ -1,0 +1,481 @@
+info:
+  name: Open Time List
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/provider/open-time-list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: day
+        type: text
+        value: MON
+        description: MON,TUE,WED,THU,FRI,SAT,SUN
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Open Time List
+    request:
+      url: "{{core_url}}/api/provider/open-time-list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: day
+            type: text
+            value: MON
+            description: MON,TUE,WED,THU,FRI,SAT,SUN
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 25 Feb 2026 10:25:01 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "day": "MON",
+              "display_day": "MON",
+              "open_close_time_list": [
+                  {
+                      "start_time": "00:00:00",
+                      "end_time": "01:00:00",
+                      "display_start_time": "12:00 AM",
+                      "display_end_time": "01:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "01:00:00",
+                      "end_time": "02:00:00",
+                      "display_start_time": "01:00 AM",
+                      "display_end_time": "02:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "02:00:00",
+                      "end_time": "03:00:00",
+                      "display_start_time": "02:00 AM",
+                      "display_end_time": "03:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "03:00:00",
+                      "end_time": "04:00:00",
+                      "display_start_time": "03:00 AM",
+                      "display_end_time": "04:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "04:00:00",
+                      "end_time": "05:00:00",
+                      "display_start_time": "04:00 AM",
+                      "display_end_time": "05:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "05:00:00",
+                      "end_time": "06:00:00",
+                      "display_start_time": "05:00 AM",
+                      "display_end_time": "06:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "06:00:00",
+                      "end_time": "07:00:00",
+                      "display_start_time": "06:00 AM",
+                      "display_end_time": "07:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "07:00:00",
+                      "end_time": "08:00:00",
+                      "display_start_time": "07:00 AM",
+                      "display_end_time": "08:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "08:00:00",
+                      "end_time": "09:00:00",
+                      "display_start_time": "08:00 AM",
+                      "display_end_time": "09:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "09:00:00",
+                      "end_time": "10:00:00",
+                      "display_start_time": "09:00 AM",
+                      "display_end_time": "10:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "10:00:00",
+                      "end_time": "11:00:00",
+                      "display_start_time": "10:00 AM",
+                      "display_end_time": "11:00 AM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "11:00:00",
+                      "end_time": "12:00:00",
+                      "display_start_time": "11:00 AM",
+                      "display_end_time": "12:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "12:00:00",
+                      "end_time": "13:00:00",
+                      "display_start_time": "12:00 PM",
+                      "display_end_time": "01:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "13:00:00",
+                      "end_time": "14:00:00",
+                      "display_start_time": "01:00 PM",
+                      "display_end_time": "02:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "14:00:00",
+                      "end_time": "15:00:00",
+                      "display_start_time": "02:00 PM",
+                      "display_end_time": "03:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "15:00:00",
+                      "end_time": "16:00:00",
+                      "display_start_time": "03:00 PM",
+                      "display_end_time": "04:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "16:00:00",
+                      "end_time": "17:00:00",
+                      "display_start_time": "04:00 PM",
+                      "display_end_time": "05:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "17:00:00",
+                      "end_time": "18:00:00",
+                      "display_start_time": "05:00 PM",
+                      "display_end_time": "06:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "18:00:00",
+                      "end_time": "19:00:00",
+                      "display_start_time": "06:00 PM",
+                      "display_end_time": "07:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "19:00:00",
+                      "end_time": "20:00:00",
+                      "display_start_time": "07:00 PM",
+                      "display_end_time": "08:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "20:00:00",
+                      "end_time": "21:00:00",
+                      "display_start_time": "08:00 PM",
+                      "display_end_time": "09:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "21:00:00",
+                      "end_time": "22:00:00",
+                      "display_start_time": "09:00 PM",
+                      "display_end_time": "10:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "22:00:00",
+                      "end_time": "23:00:00",
+                      "display_start_time": "10:00 PM",
+                      "display_end_time": "11:00 PM",
+                      "selected": 0
+                  },
+                  {
+                      "start_time": "23:00:00",
+                      "end_time": "24:00:00",
+                      "display_start_time": "11:00 PM",
+                      "display_end_time": "12:00 AM",
+                      "selected": 0
+                  }
+              ],
+              "service_time_status": 1,
+              "all_day_open_time": "09:00:00",
+              "all_day_close_time": "18:00:00"
+          }
+
+docs: |+
+  ## Open Time List
+
+  Manages the provider's work schedule, open hours, and availability status.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `day` | string | Yes | MON,TUE,WED,THU,FRI,SAT,SUN |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "day": "MON",
+      "display_day": "MON",
+      "open_close_time_list": [
+          {
+              "start_time": "00:00:00",
+              "end_time": "01:00:00",
+              "display_start_time": "12:00 AM",
+              "display_end_time": "01:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "01:00:00",
+              "end_time": "02:00:00",
+              "display_start_time": "01:00 AM",
+              "display_end_time": "02:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "02:00:00",
+              "end_time": "03:00:00",
+              "display_start_time": "02:00 AM",
+              "display_end_time": "03:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "03:00:00",
+              "end_time": "04:00:00",
+              "display_start_time": "03:00 AM",
+              "display_end_time": "04:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "04:00:00",
+              "end_time": "05:00:00",
+              "display_start_time": "04:00 AM",
+              "display_end_time": "05:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "05:00:00",
+              "end_time": "06:00:00",
+              "display_start_time": "05:00 AM",
+              "display_end_time": "06:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "06:00:00",
+              "end_time": "07:00:00",
+              "display_start_time": "06:00 AM",
+              "display_end_time": "07:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "07:00:00",
+              "end_time": "08:00:00",
+              "display_start_time": "07:00 AM",
+              "display_end_time": "08:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "08:00:00",
+              "end_time": "09:00:00",
+              "display_start_time": "08:00 AM",
+              "display_end_time": "09:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "09:00:00",
+              "end_time": "10:00:00",
+              "display_start_time": "09:00 AM",
+              "display_end_time": "10:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "10:00:00",
+              "end_time": "11:00:00",
+              "display_start_time": "10:00 AM",
+              "display_end_time": "11:00 AM",
+              "selected": 0
+          },
+          {
+              "start_time": "11:00:00",
+              "end_time": "12:00:00",
+              "display_start_time": "11:00 AM",
+              "display_end_time": "12:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "12:00:00",
+              "end_time": "13:00:00",
+              "display_start_time": "12:00 PM",
+              "display_end_time": "01:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "13:00:00",
+              "end_time": "14:00:00",
+              "display_start_time": "01:00 PM",
+              "display_end_time": "02:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "14:00:00",
+              "end_time": "15:00:00",
+              "display_start_time": "02:00 PM",
+              "display_end_time": "03:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "15:00:00",
+              "end_time": "16:00:00",
+              "display_start_time": "03:00 PM",
+              "display_end_time": "04:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "16:00:00",
+              "end_time": "17:00:00",
+              "display_start_time": "04:00 PM",
+              "display_end_time": "05:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "17:00:00",
+              "end_time": "18:00:00",
+              "display_start_time": "05:00 PM",
+              "display_end_time": "06:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "18:00:00",
+              "end_time": "19:00:00",
+              "display_start_time": "06:00 PM",
+              "display_end_time": "07:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "19:00:00",
+              "end_time": "20:00:00",
+              "display_start_time": "07:00 PM",
+              "display_end_time": "08:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "20:00:00",
+              "end_time": "21:00:00",
+              "display_start_time": "08:00 PM",
+              "display_end_time": "09:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "21:00:00",
+              "end_time": "22:00:00",
+              "display_start_time": "09:00 PM",
+              "display_end_time": "10:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "22:00:00",
+              "end_time": "23:00:00",
+              "display_start_time": "10:00 PM",
+              "display_end_time": "11:00 PM",
+              "selected": 0
+          },
+          {
+              "start_time": "23:00:00",
+              "end_time": "24:00:00",
+              "display_start_time": "11:00 PM",
+              "display_end_time": "12:00 AM",
+              "selected": 0
+          }
+      ],
+      "service_time_status": 1,
+      "all_day_open_time": "09:00:00",
+      "all_day_close_time": "18:00:00"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The day field is required."
+  }
+  ```
+

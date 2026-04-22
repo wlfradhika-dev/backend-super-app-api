@@ -1,0 +1,7 @@
+info:
+  name: on-demand
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit

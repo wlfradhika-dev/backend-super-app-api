@@ -1,0 +1,308 @@
+info:
+  name: Login
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/login"
+  headers:
+    - name: Accept
+      value: application/json
+      description: Ensures the API returns a JSON response
+    - name: select-time-zone
+      value: Asia/Kolkata
+      description: Customer's local timezone in IANA format (e.g. Asia/Kolkata, America/New_York)
+    - name: select-ip-address
+      value: 103.138.233.214
+      description: Customer's IP address used for geo-detection and location-based services
+  body:
+    type: multipart-form
+    data:
+      - name: login_type
+        type: text
+        value: email
+        description: "Login strategy. Allowed values: 'email', 'google', 'facebook', 'apple'"
+      - name: device_token
+        type: text
+        value: "123456"
+        description: FCM (Android) or APNs (iOS) push notification token of the customer's device
+      - name: select_language
+        type: text
+        value: en
+        description: Preferred language code for the session (e.g. en, ar)
+      - name: select_currency
+        type: text
+        value: $
+        description: Preferred currency symbol for the session (e.g. $, INR)
+      - name: login_device
+        type: text
+        value: "1"
+        description: "Device platform: 1 = Flutter Android, 2 = Flutter iOS"
+      - name: contact_number
+        type: text
+        value: "5555"
+        description: Customer's phone number. Required when login_type is 'email'
+      - name: select_country_code
+        type: text
+        value: "+91"
+        description: International dial code (e.g. +91, +1). Required when login_type is 'email'
+      - name: login_id
+        type: text
+        value: ""
+        description: Unique user ID from the social provider (Google/Facebook/Apple). Required when login_type is 'google', 'facebook', or 'apple'
+        disabled: true
+      - name: full_name
+        type: text
+        value: ""
+        description: Customer's full name from the social provider. Required when login_type is 'google', 'facebook', or 'apple'
+        disabled: true
+      - name: profile_image
+        type: text
+        value: ""
+        description: Profile picture URL from the social provider. Optional / nullable
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("token", response.token);
+        //     pm.collectionVariables.set("user_id", response.user_id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Login
+    request:
+      url: "{{core_url}}/api/customer/login"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+          description: Ensures the API returns a JSON response
+        - name: select-time-zone
+          value: Asia/Kolkata
+          description: Customer's local timezone in IANA format (e.g. Asia/Kolkata, America/New_York)
+        - name: select-ip-address
+          value: 103.138.233.214
+          description: Customer's IP address used for geo-detection and location-based services
+      body:
+        type: multipart-form
+        data:
+          - name: login_type
+            type: text
+            value: email
+            description: "Login strategy. Allowed values: 'email', 'google', 'facebook', 'apple'"
+          - name: device_token
+            type: text
+            value: "123456"
+            description: FCM (Android) or APNs (iOS) push notification token of the customer's device
+          - name: select_language
+            type: text
+            value: en
+            description: Preferred language code for the session (e.g. en, ar)
+          - name: select_currency
+            type: text
+            value: $
+            description: Preferred currency symbol for the session (e.g. $, INR)
+          - name: login_device
+            type: text
+            value: "1"
+            description: "Device platform: 1 = Flutter Android, 2 = Flutter iOS"
+          - name: contact_number
+            type: text
+            value: "5555"
+            description: Customer's phone number. Required when login_type is 'email'
+          - name: select_country_code
+            type: text
+            value: "+91"
+            description: International dial code (e.g. +91, +1). Required when login_type is 'email'
+          - name: login_id
+            type: text
+            value: ""
+            description: Unique user ID from the social provider (Google/Facebook/Apple). Required when login_type is 'google', 'facebook', or 'apple'
+            disabled: true
+          - name: full_name
+            type: text
+            value: ""
+            description: Customer's full name from the social provider. Required when login_type is 'google', 'facebook', or 'apple'
+            disabled: true
+          - name: profile_image
+            type: text
+            value: ""
+            description: Profile picture URL from the social provider. Optional / nullable
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Thu, 09 Apr 2026 06:15:30 GMT
+        - name: Content-Type
+          value: application/json
+        - name: content-length
+          value: "424"
+        - name: nel
+          value: '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+        - name: cache-control
+          value: no-cache, private
+        - name: access-control-allow-origin
+          value: "*"
+        - name: server
+          value: cloudflare
+        - name: content-encoding
+          value: br
+        - name: cf-cache-status
+          value: DYNAMIC
+        - name: vary
+          value: accept-encoding
+        - name: report-to
+          value: '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=u%2B6Fx4DfHOkn9yh7KqM5JFQRHvzy9JN5HHHS1aAnYdfrp0HM1KemYtg0qbB5sujG%2Fd5w1yO%2F38DV7hEfWcBR3WQTqtW8RbWG%2FhgUrKZyLlOx6T55kaIMryq8A%2BrL5DJpPlXZ20HiuPD3fvR8KYVclbtzvZLYA%2B0NT1w%3D"}]}'
+        - name: cf-ray
+          value: 9e9760afeab8bdd5-BOM
+        - name: alt-svc
+          value: h3=":443"; ma=86400
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 1,
+              "user_id": "019d70a5-ce8f-73be-8307-8120db6f99d2",
+              "contact_number": "5555",
+              "select_country_code": "+91",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "currency_code": "USD",
+              "select_language": "en",
+              "unique_id": "019d70a5-ce90-71fd-838e-3cfd94d1afc7",
+              "token": "52|PcRzaGb3SIMNZlDkaQNHpTadGnQO5CbpISt8gAFC340c434f",
+              "user_name": "Vishal",
+              "email": "vishal@gmail.com",
+              "referral_code": "FF9BRWY",
+              "gender": "0",
+              "profile_image": null,
+              "emergency_contact": "",
+              "emergency_country_code": "",
+              "server_time_zone": "UTC"
+          }
+
+docs: |-
+  ## Customer Login
+
+  Authenticates a customer and returns a Bearer token along with the customer profile. Supports multiple login strategies: **email/phone**, **Google**, **Facebook**, and **Apple**.
+
+  On first social login, a new customer account is automatically created.
+
+  The returned Bearer token is auto-saved to the `{{token}}` collection variable via the test script and must be passed in the `Authorization` header for all subsequent authenticated requests.
+
+  ---
+
+  ### Authentication
+
+  No authentication required. This is a public endpoint.
+
+  ---
+
+  ### Headers
+
+  | Key | Required | Description |
+  | --- | --- | --- |
+  | `Accept` | Yes | Must be `application/json` |
+  | `select-time-zone` | Yes | Customer's local timezone in IANA format (e.g. `Asia/Kolkata`, `America/New_York`) |
+  | `select-ip-address` | Yes | Customer's IP address used for geo-detection and location-based services |
+
+  ---
+
+  ### Request Body (`multipart/form-data`)
+
+  | Field | Type | Required | Description |
+  | --- | --- | --- | --- |
+  | `login_type` | string | Yes | Login strategy. Allowed values: `email`, `google`, `facebook`, `apple` |
+  | `device_token` | string | Yes | FCM (Android) or APNs (iOS) push notification token for the device |
+  | `select_language` | string | Yes | Preferred language code for the session (e.g. `en`, `ar`) |
+  | `select_currency` | string | Yes | Preferred currency symbol for the session (e.g. `$`, `₹`) |
+  | `login_device` | integer | Yes | Device platform: `1` = Flutter Android, `2` = Flutter iOS |
+  | `contact_number` | string | Conditional | Customer's phone number. **Required when** **`login_type`** **\=** **`email`** |
+  | `select_country_code` | string | Conditional | International dial code (e.g. `+91`, `+1`). **Required when** **`login_type`** **\=** **`email`** |
+  | `login_id` | string | Conditional | Unique user ID from the social provider. **Required when** **`login_type`** **\=** **`google`****,** **`facebook`****, or** **`apple`** |
+  | `full_name` | string | Conditional | Customer's full name from the social provider. **Required when** **`login_type`** **\=** **`google`****,** **`facebook`****, or** **`apple`** |
+  | `profile_image` | string | No | Profile picture URL from the social provider. Nullable |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ``` json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "status": 1,
+      "is_register": 0,
+      "user_id": "d0c7e7d8-cd62-46c8-8c90-e394b84b58ef",
+      "contact_number": "123",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "currency_code": "USD",
+      "select_language": "en",
+      "unique_id": "d52e3fd7-2e35-43bd-8001-d378794f8ce7",
+      "token": "9|PhlQpL52so5srGjUl8Htg769U59ai2VKVZOv5qIvfc86ec56"
+  }
+
+   ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ``` json
+  {
+      "status": 0,
+      "message": "The login type field is required."
+  }
+
+   ```
+
+  **403 Forbidden — Account Blocked**
+
+  ``` json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+
+   ```

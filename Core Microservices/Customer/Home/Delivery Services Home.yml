@@ -1,0 +1,230 @@
+info:
+  name: Delivery Services Home
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/delivery-services-home"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: app_version
+        type: text
+        value: 1.0.0
+      - name: current_lat
+        type: text
+        value: "23.0225"
+      - name: current_long
+        type: text
+        value: "72.5714"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Delivery Services Home
+    request:
+      url: "{{core_url}}/api/customer/delivery-services-home"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: app_version
+            type: text
+            value: 1.0.0
+          - name: current_lat
+            type: text
+            value: "23.0225"
+          - name: current_long
+            type: text
+            value: "72.5714"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 25 Feb 2026 12:27:18 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "services": [
+                  {
+                      "service_category_id": 8,
+                      "category_type": 2,
+                      "is_sub_cat_flow": 0,
+                      "service_category_name": "Food Delivery",
+                      "ride_flow_type": 1,
+                      "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/food-delivery.png"
+                  },
+                  {
+                      "service_category_id": 9,
+                      "category_type": 2,
+                      "is_sub_cat_flow": 1,
+                      "service_category_name": "Grocery Delivery",
+                      "ride_flow_type": 1,
+                      "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/grocery-delivery.png"
+                  },
+                  {
+                      "service_category_id": 10,
+                      "category_type": 2,
+                      "is_sub_cat_flow": 2,
+                      "service_category_name": "Flower Delivery",
+                      "ride_flow_type": 1,
+                      "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/flower-delivery.png"
+                  },
+                  {
+                      "service_category_id": 11,
+                      "category_type": 2,
+                      "is_sub_cat_flow": 3,
+                      "service_category_name": "Medicine Delivery",
+                      "ride_flow_type": 1,
+                      "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/medicine-delivery.png"
+                  }
+              ],
+              "home_slider": [],
+              "total_ongoing_order": 0,
+              "total_unread_message": 0
+          }
+
+docs: |+
+  ## Delivery Services Home
+
+  Returns the homepage data including available services, banners, and promotional content.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `app_version` | string | Yes | App version |
+  | `current_lat` | string | Yes | Current lat |
+  | `current_long` | string | Yes | Current long |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "services": [
+          {
+              "service_category_id": 8,
+              "category_type": 2,
+              "is_sub_cat_flow": 0,
+              "service_category_name": "Food Delivery",
+              "ride_flow_type": 1,
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/food-delivery.png"
+          },
+          {
+              "service_category_id": 9,
+              "category_type": 2,
+              "is_sub_cat_flow": 1,
+              "service_category_name": "Grocery Delivery",
+              "ride_flow_type": 1,
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/grocery-delivery.png"
+          },
+          {
+              "service_category_id": 10,
+              "category_type": 2,
+              "is_sub_cat_flow": 2,
+              "service_category_name": "Flower Delivery",
+              "ride_flow_type": 1,
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/flower-delivery.png"
+          },
+          {
+              "service_category_id": 11,
+              "category_type": 2,
+              "is_sub_cat_flow": 3,
+              "service_category_name": "Medicine Delivery",
+              "ride_flow_type": 1,
+              "service_category_icon": "http://127.0.0.1:8000/storage/img/service-category/medicine-delivery.png"
+          }
+      ],
+      "home_slider": [],
+      "total_ongoing_order": 0,
+      "total_unread_message": 0
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The app version field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,121 @@
+info:
+  name: App Versions
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{core_url}}/api/driver/app-version-check"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: authorization
+      value: "{{customToken}}"
+      description: custome token which you get in app boostrap api
+  body:
+    type: multipart-form
+    data:
+      - name: login_device
+        type: text
+        value: "1"
+        description: 1 :Android,2:ios,3:flutter android,4:flutter ios
+      - name: device_token
+        type: text
+        value: "123456"
+        description: device token of the user or guest user
+      - name: driver_id
+        type: text
+        value: ""
+        description: optional
+      - name: ""
+        type: text
+        value: ""
+        disabled: true
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("driver_token", response.token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: App Versions
+    request:
+      url: "{{core_url}}/api/driver/app-version-check"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: authorization
+          value: "{{customToken}}"
+          description: custome token which you get in app boostrap api
+      body:
+        type: multipart-form
+        data:
+          - name: login_device
+            type: text
+            value: "1"
+            description: 1 :Android,2:ios,3:flutter android,4:flutter ios
+          - name: device_token
+            type: text
+            value: "123456"
+            description: device token of the user or guest user
+          - name: driver_id
+            type: text
+            value: ""
+            description: optional
+          - name: ""
+            type: text
+            value: ""
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 02 Feb 2026 09:05:32 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "app_version": "1.0",
+              "token": "21|reKexPzYpVEwEctiKVNhW9kPmc8MCrXjKKLCFeOJad53166a",
+              "is_forcefully_update": 0,
+              "is_google_login": 1,
+              "is_facebook_login": 1,
+              "is_apple_login": 1,
+              "is_toll_charge": 1,
+              "is_transport_pause_start_module_enable": 1
+          }
+
+docs: This api is to check app versions for forcefully update and also here we are checking the base token and then returing the guest sanctum token for further apis

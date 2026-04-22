@@ -1,0 +1,221 @@
+info:
+  name: Ride History
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/taxi-bidding/ride-history"
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "5"
+        description: "service category id "
+      - name: filter_type
+        type: text
+        value: "4"
+        description: "1:Today, 2: 7 Days, 3: 15 Days, 4: This Month, 5: This year, 6: Last Year, 7: Upcomming Order"
+      - name: timezone
+        type: text
+        value: Asia/Kolkata
+        description: For Timezone
+      - name: service_category
+        type: text
+        value: ""
+        description: For screen type is optional field
+      - name: order_status
+        type: text
+        value: ""
+        description: For screen type 1 then ride no required
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride History
+    request:
+      url: "{{transport_url}}/api/driver/taxibidding/ride-history"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "5"
+            description: "service category id "
+          - name: filter_type
+            type: text
+            value: "4"
+            description: "1:Today, 2: 7 Days, 3: 15 Days, 4: This Month, 5: This year, 6: Last Year, 7: Upcomming Order"
+          - name: timezone
+            type: text
+            value: Asia/Kolkata
+            description: For Timezone
+          - name: service_category
+            type: text
+            value: ""
+            description: For screen type is optional field
+          - name: order_status
+            type: text
+            value: ""
+            description: For screen type 1 then ride no required
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 04:57:53 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 1,
+              "total_revenues": 0,
+              "completed_ride": 0,
+              "total_ride": 1,
+              "cancelled_ride": 0,
+              "ride_history": [
+                  {
+                      "ride_id": "64b87d99-3b97-4b17-b4d0-3c7c4d60efb8",
+                      "driver_pay_settle_status": 0,
+                      "service_category_id": 5,
+                      "service_category_name": "Taxi Bidding",
+                      "service_category_icon": "http://127.0.0.1:8001/storage/img/service-category/11354920242806.png",
+                      "vehicle_type_name": "SUV",
+                      "vehicle_type_icon_name": null,
+                      "ride_status": 1,
+                      "ride_date_time": "2026-02-17 12:51:25",
+                      "ride_amount": "500.00",
+                      "ride_flow_type": 2,
+                      "ride_type": 0,
+                      "ride_date": "17 Feb, 2026",
+                      "ride_time": "12:51",
+                      "service_date_time": "2026-02-17 12:51:25",
+                      "schedule_service_date_time": "2026-02-17 12:51:25",
+                      "total_distance": "10",
+                      "rating": 0,
+                      "ride_no": "33528534"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride History
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | service category id  |
+  | `filter_type` | string | Yes | 1:Today, 2: 7 Days, 3: 15 Days, 4: This Month, 5: This year, 6: Last Year, 7: Upcomming Order |
+  | `timezone` | string | Yes | For Timezone |
+  | `service_category` | string | No | For screen type is optional field |
+  | `order_status` | string | Yes | For screen type 1 then ride no required |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 1,
+      "total_revenues": 0,
+      "completed_ride": 0,
+      "total_ride": 1,
+      "cancelled_ride": 0,
+      "ride_history": [
+          {
+              "ride_id": "64b87d99-3b97-4b17-b4d0-3c7c4d60efb8",
+              "driver_pay_settle_status": 0,
+              "service_category_id": 5,
+              "service_category_name": "Taxi Bidding",
+              "service_category_icon": "http://127.0.0.1:8001/storage/img/service-category/11354920242806.png",
+              "vehicle_type_name": "SUV",
+              "vehicle_type_icon_name": null,
+              "ride_status": 1,
+              "ride_date_time": "2026-02-17 12:51:25",
+              "ride_amount": "500.00",
+              "ride_flow_type": 2,
+              "ride_type": 0,
+              "ride_date": "17 Feb, 2026",
+              "ride_time": "12:51",
+              "service_date_time": "2026-02-17 12:51:25",
+              "schedule_service_date_time": "2026-02-17 12:51:25",
+              "total_distance": "10",
+              "rating": 0,
+              "ride_no": "33528534"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+

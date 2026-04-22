@@ -1,0 +1,261 @@
+info:
+  name: order-detail
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/on-demand/orders/order-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+      disabled: true
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: b767faa7-a965-43ac-9c6b-c674baa0f75b
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success-response
+    request:
+      url: http://localhost:8004/api/provider/on-demand/orders/order-details
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "order_id": "{{ORDER_UUID}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "b1579a9b-a946-49ea-8195-05f6893691b5",
+              "order_no": "49012319",
+              "additional_remark": "Test booking",
+              "order_type": 0,
+              "order_status": 9,
+              "order_cancel_by": "",
+              "order_cancel_reason": "",
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "provider_rating_status": 0,
+              "payment_type": 1,
+              "service_cat_name": "Dog walking",
+              "service_category_image": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+              "service_cat_id": 13,
+              "category_type": 4,
+              "schedule_order_date": "2026-03-13",
+              "schedule_order_time": "11:00:00 - 12:00:00",
+              "service_date_time": "2026-03-13 04:31:37",
+              "pickup_address": "shital park",
+              "pickup_lat_long": "22.31572603394304,70.7674083384962",
+              "destination_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+              "destination_lat_long": "22.31572603394304,70.7674083384962",
+              "flat_no": "2b",
+              "landmark": "rajkot",
+              "customer_id": "d68c8eec-320d-4ab8-902a-8a527d7b047e",
+              "customer_fcm_token": "123456",
+              "customer_name": "Rahul",
+              "customer_contact_no": "+919999999999",
+              "customer_profile_image": "",
+              "item_total": 25.5,
+              "sub_total": 40.5,
+              "tax": 0,
+              "extra_amount": 15,
+              "description": "Additional cleaning supplies required",
+              "refer_discount": 0,
+              "discount": 0,
+              "tip": 0,
+              "promocode_name": "",
+              "promo_code_discount": 0,
+              "provider_pay_settle_status": 0,
+              "total_pay": 40.5,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0,
+              "select_provider_location": 0,
+              "admin_video_call_time_limit": 0,
+              "order_used_video_call_time_limit": 0,
+              "order_chat_number": "49012319_b1579a9b-a946-49ea-8195-05f6893691b5",
+              "package_list": [
+                  {
+                      "category_name": "Pet Daycare",
+                      "packages": [
+                          {
+                              "package_name": "Basic Grooming",
+                              "num_of_items": 1,
+                              "price_for_one": 25.5,
+                              "total_single_package_price": 25.5,
+                              "sub_category_name": "Pet Daycare"
+                          }
+                      ]
+                  }
+              ],
+              "invoice_download_link": "http://localhost:8004/provider-on-demand-invoice-download/b1579a9b-a946-49ea-8195-05f6893691b5/provider/80e42040-a9df-4d89-af4e-ec0f49a15180"
+          }
+
+docs: |+
+  ## order-detail
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "b1579a9b-a946-49ea-8195-05f6893691b5",
+      "order_no": "49012319",
+      "additional_remark": "Test booking",
+      "order_type": 0,
+      "order_status": 9,
+      "order_cancel_by": "",
+      "order_cancel_reason": "",
+      "order_payment_type": 1,
+      "order_payment_status": 0,
+      "provider_rating_status": 0,
+      "payment_type": 1,
+      "service_cat_name": "Dog walking",
+      "service_category_image": "http://localhost:8004/storage/img/service-category/10060120251301.png",
+      "service_cat_id": 13,
+      "category_type": 4,
+      "schedule_order_date": "2026-03-13",
+      "schedule_order_time": "11:00:00 - 12:00:00",
+      "service_date_time": "2026-03-13 04:31:37",
+      "pickup_address": "shital park",
+      "pickup_lat_long": "22.31572603394304,70.7674083384962",
+      "destination_address": "The Spire 2, BRTS, 150 Feet Ring Rd, nr. Shital Park, Shastri Nagar, Dharam Nagar, Rajkot",
+      "destination_lat_long": "22.31572603394304,70.7674083384962",
+      "flat_no": "2b",
+      "landmark": "rajkot",
+      "customer_id": "d68c8eec-320d-4ab8-902a-8a527d7b047e",
+      "customer_fcm_token": "123456",
+      "customer_name": "Rahul",
+      "customer_contact_no": "+919999999999",
+      "customer_profile_image": "",
+      "item_total": 25.5,
+      "sub_total": 40.5,
+      "tax": 0,
+      "extra_amount": 15,
+      "description": "Additional cleaning supplies required",
+      "refer_discount": 0,
+      "discount": 0,
+      "tip": 0,
+      "promocode_name": "",
+      "promo_code_discount": 0,
+      "provider_pay_settle_status": 0,
+      "total_pay": 40.5,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0,
+      "select_provider_location": 0,
+      "admin_video_call_time_limit": 0,
+      "order_used_video_call_time_limit": 0,
+      "order_chat_number": "49012319_b1579a9b-a946-49ea-8195-05f6893691b5",
+      "package_list": [
+          {
+              "category_name": "Pet Daycare",
+              "packages": [
+                  {
+                      "package_name": "Basic Grooming",
+                      "num_of_items": 1,
+                      "price_for_one": 25.5,
+                      "total_single_package_price": 25.5,
+                      "sub_category_name": "Pet Daycare"
+                  }
+              ]
+          }
+      ],
+      "invoice_download_link": "http://localhost:8004/provider-on-demand-invoice-download/b1579a9b-a946-49ea-8195-05f6893691b5/provider/80e42040-a9df-4d89-af4e-ec0f49a15180"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,203 @@
+info:
+  name: Get Nearest Driver Position
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/bike-rental/transport/get-nearest-driver-position"
+  headers:
+    - name: Authorization
+      value: Bearer 3|3hXKAJbE8Jv91iCOGKaDvzFY145fbN56Vnkdau2Gefceca70
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "service_category_id":7,
+          "current_lat":22.319033,
+          "current_long":70.767158
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Get Nearest Driver Position
+    request:
+      url: "{{transport_url}}/api/customer/bike-rental/transport/get-nearest-driver-position"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer 3|3hXKAJbE8Jv91iCOGKaDvzFY145fbN56Vnkdau2Gefceca70
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "service_category_id":7,
+              "current_lat":22.319033,
+              "current_long":70.767158
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 09 Mar 2026 12:20:01 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "active_driver_lat_long": [
+                  {
+                      "driver_id": "97796779-7371-40f3-a810-ca68ae594f05",
+                      "current_lat": "22.320100",
+                      "current_long": "70.768200",
+                      "service_id": 1,
+                      "name": "DemoDriver2",
+                      "distance": "0.1598910254249523",
+                      "avatar_url": null
+                  },
+                  {
+                      "driver_id": "c6140d16-3b70-4fe7-bb28-169404d10a36",
+                      "current_lat": "22.321500",
+                      "current_long": "70.769500",
+                      "service_id": 1,
+                      "name": "DemoDriver3",
+                      "distance": "0.3650840538423604",
+                      "avatar_url": null
+                  }
+              ]
+          }
+
+docs: |+
+  ## Get Nearest Driver Position
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "service_category_id":7,
+      "current_lat":22.319033,
+      "current_long":70.767158
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "active_driver_lat_long": [
+          {
+              "driver_id": "97796779-7371-40f3-a810-ca68ae594f05",
+              "current_lat": "22.320100",
+              "current_long": "70.768200",
+              "service_id": 1,
+              "name": "DemoDriver2",
+              "distance": "0.1598910254249523",
+              "avatar_url": null
+          },
+          {
+              "driver_id": "c6140d16-3b70-4fe7-bb28-169404d10a36",
+              "current_lat": "22.321500",
+              "current_long": "70.769500",
+              "service_id": 1,
+              "name": "DemoDriver3",
+              "distance": "0.3650840538423604",
+              "avatar_url": null
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

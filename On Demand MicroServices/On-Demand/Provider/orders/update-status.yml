@@ -1,0 +1,307 @@
+info:
+  name: update-status
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/on-demand/orders/update-status"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+      disabled: true
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: "{{ORDER_UUID}}"
+      - name: update_status
+        type: text
+        value: "9"
+      - name: extra_amount
+        type: text
+        value: "0"
+        description: require if update_status = 9
+      - name: description
+        type: text
+        value: extra amount
+        description: require if extra amount > 0
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success-response
+    request:
+      url: http://localhost:8004/api/provider/on-demand/orders/update-status
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{BEARER_TOKEN}}
+      body:
+        type: json
+        data: |-
+          {
+            "order_id": "{{ORDER_UUID}}",
+            "update_status": 2
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_status": 2
+          }
+  - name: accept-response
+    request:
+      url: http://localhost:8004/api/provider/on-demand/orders/update-status
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{BEARER_TOKEN}}
+      body:
+        type: json
+        data: |-
+          {
+            "order_id": "{{ORDER_UUID}}",
+            "update_status": 2
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_status": 2
+          }
+  - name: arrived-response
+    request:
+      url: http://localhost:8004/api/provider/on-demand/orders/update-status
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{BEARER_TOKEN}}
+      body:
+        type: json
+        data: |-
+          {
+            "order_id": "{{ORDER_UUID}}",
+            "update_status": 7
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_status": 7
+          }
+  - name: processing-response
+    request:
+      url: http://localhost:8004/api/provider/on-demand/orders/update-status
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{BEARER_TOKEN}}
+      body:
+        type: json
+        data: |-
+          {
+            "order_id": "{{ORDER_UUID}}",
+            "update_status": 8
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_status": 8
+          }
+  - name: Complete-response
+    request:
+      url: http://localhost:8004/api/provider/on-demand/orders/update-status
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{BEARER_TOKEN}}
+      body:
+        type: json
+        data: |-
+          {
+            "order_id": "{{ORDER_UUID}}",
+            "update_status": 9,
+            "extra_amount": 0,
+            "description": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_status": 9
+          }
+
+docs: |+
+  ## update-status
+
+  Updates an existing record with the provided details.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+  | `update_status` | string | Yes | Update status |
+  | `extra_amount` | string | Yes | require if update_status = 9 |
+  | `description` | string | Yes | require if extra amount > 0 |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_status": 2
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

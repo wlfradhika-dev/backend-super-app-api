@@ -1,0 +1,579 @@
+info:
+  name: Lists
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/delivery-driver/document/list"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: service_category_id
+        type: text
+        value: "2"
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Without Category
+    request:
+      url: "{{core_url}}/api/driver/document/list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_DRIVER_ACCESS_TOKEN
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "2"
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 13:19:25 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "required_document_list": [
+                  {
+                      "service_cat_id": 1,
+                      "service_cat_name": "Bike Ride",
+                      "document_list": [
+                          {
+                              "document_id": "4fe5c488-2c56-4b22-b55f-5c574bdec5f0",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "e1ca560a-bfbf-41f8-81d6-33706d991afd",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  },
+                  {
+                      "service_cat_id": 2,
+                      "service_cat_name": "Taxi Ride",
+                      "document_list": [
+                          {
+                              "document_id": "5a2d09c0-bd7c-4112-86dd-6c6947ba3094",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "025d7a51-a4af-4cc0-ab74-f050560a4ba9",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  },
+                  {
+                      "service_cat_id": 3,
+                      "service_cat_name": "Intercity",
+                      "document_list": [
+                          {
+                              "document_id": "3b24ef62-7445-4495-bb9b-b1b5da44331a",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "f56039cd-6aa2-42ad-a725-182786b14479",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  },
+                  {
+                      "service_cat_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "document_list": [
+                          {
+                              "document_id": "f0f7e048-5066-47af-b662-d18abf31c12b",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "188e73f8-1c46-46c8-ba87-8dfbecf5fcbc",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  },
+                  {
+                      "service_cat_id": 5,
+                      "service_cat_name": "Taxi Bidding",
+                      "document_list": [
+                          {
+                              "document_id": "3eafa800-b715-4224-9a3b-29e315a7fbbe",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "841afa62-d610-43c7-970a-dc5ae34b0905",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  },
+                  {
+                      "service_cat_id": 6,
+                      "service_cat_name": "Taxi Pool",
+                      "document_list": [
+                          {
+                              "document_id": "67748255-1305-43c9-a6ce-ec3dde8027d4",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "01aeb682-899b-4262-9b4d-3adaf6f6ceb2",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  },
+                  {
+                      "service_cat_id": 7,
+                      "service_cat_name": "Car Rental",
+                      "document_list": [
+                          {
+                              "document_id": "ef2ea947-322e-450c-af1d-24834efe7a65",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "a913ccc3-b801-42f2-ba4f-576fb81e0390",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  }
+              ]
+          }
+  - name: Bike Category
+    request:
+      url: "{{core_url}}/api/driver/document/list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_DRIVER_ACCESS_TOKEN
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "1"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 13:17:42 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "required_document_list": [
+                  {
+                      "service_cat_id": 1,
+                      "service_cat_name": "Bike Ride",
+                      "document_list": [
+                          {
+                              "document_id": "4fe5c488-2c56-4b22-b55f-5c574bdec5f0",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "e1ca560a-bfbf-41f8-81d6-33706d991afd",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  }
+              ]
+          }
+  - name: Taxi Category
+    request:
+      url: "{{core_url}}/api/driver/document/list"
+      method: POST
+      headers:
+        - name: Authorization
+          value: Bearer YOUR_DRIVER_ACCESS_TOKEN
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: service_category_id
+            type: text
+            value: "2"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 13:18:52 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "required_document_list": [
+                  {
+                      "service_cat_id": 2,
+                      "service_cat_name": "Taxi Ride",
+                      "document_list": [
+                          {
+                              "document_id": "5a2d09c0-bd7c-4112-86dd-6c6947ba3094",
+                              "document_name": "Driving License",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          },
+                          {
+                              "document_id": "025d7a51-a4af-4cc0-ab74-f050560a4ba9",
+                              "document_name": "Vehicle Registration Certificate",
+                              "document_file_url": "",
+                              "document_status": 4,
+                              "is_expiry": 1,
+                              "expire_date": ""
+                          }
+                      ]
+                  }
+              ]
+          }
+
+docs: |+
+  ## Lists
+
+  Handles document upload and management for the user's verification requirements.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `service_category_id` | string | Yes | Service category id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "required_document_list": [
+          {
+              "service_cat_id": 1,
+              "service_cat_name": "Bike Ride",
+              "document_list": [
+                  {
+                      "document_id": "4fe5c488-2c56-4b22-b55f-5c574bdec5f0",
+                      "document_name": "Driving License",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  },
+                  {
+                      "document_id": "e1ca560a-bfbf-41f8-81d6-33706d991afd",
+                      "document_name": "Vehicle Registration Certificate",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  }
+              ]
+          },
+          {
+              "service_cat_id": 2,
+              "service_cat_name": "Taxi Ride",
+              "document_list": [
+                  {
+                      "document_id": "5a2d09c0-bd7c-4112-86dd-6c6947ba3094",
+                      "document_name": "Driving License",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  },
+                  {
+                      "document_id": "025d7a51-a4af-4cc0-ab74-f050560a4ba9",
+                      "document_name": "Vehicle Registration Certificate",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  }
+              ]
+          },
+          {
+              "service_cat_id": 3,
+              "service_cat_name": "Intercity",
+              "document_list": [
+                  {
+                      "document_id": "3b24ef62-7445-4495-bb9b-b1b5da44331a",
+                      "document_name": "Driving License",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  },
+                  {
+                      "document_id": "f56039cd-6aa2-42ad-a725-182786b14479",
+                      "document_name": "Vehicle Registration Certificate",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  }
+              ]
+          },
+          {
+              "service_cat_id": 4,
+              "service_cat_name": "Courier Service",
+              "document_list": [
+                  {
+                      "document_id": "f0f7e048-5066-47af-b662-d18abf31c12b",
+                      "document_name": "Driving License",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  },
+                  {
+                      "document_id": "188e73f8-1c46-46c8-ba87-8dfbecf5fcbc",
+                      "document_name": "Vehicle Registration Certificate",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  }
+              ]
+          },
+          {
+              "service_cat_id": 5,
+              "service_cat_name": "Taxi Bidding",
+              "document_list": [
+                  {
+                      "document_id": "3eafa800-b715-4224-9a3b-29e315a7fbbe",
+                      "document_name": "Driving License",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  },
+                  {
+                      "document_id": "841afa62-d610-43c7-970a-dc5ae34b0905",
+                      "document_name": "Vehicle Registration Certificate",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  }
+              ]
+          },
+          {
+              "service_cat_id": 6,
+              "service_cat_name": "Taxi Pool",
+              "document_list": [
+                  {
+                      "document_id": "67748255-1305-43c9-a6ce-ec3dde8027d4",
+                      "document_name": "Driving License",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  },
+                  {
+                      "document_id": "01aeb682-899b-4262-9b4d-3adaf6f6ceb2",
+                      "document_name": "Vehicle Registration Certificate",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  }
+              ]
+          },
+          {
+              "service_cat_id": 7,
+              "service_cat_name": "Car Rental",
+              "document_list": [
+                  {
+                      "document_id": "ef2ea947-322e-450c-af1d-24834efe7a65",
+                      "document_name": "Driving License",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  },
+                  {
+                      "document_id": "a913ccc3-b801-42f2-ba4f-576fb81e0390",
+                      "document_name": "Vehicle Registration Certificate",
+                      "document_file_url": "",
+                      "document_status": 4,
+                      "is_expiry": 1,
+                      "expire_date": ""
+                  }
+              ]
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The service category id field is required."
+  }
+  ```
+

@@ -1,0 +1,168 @@
+info:
+  name: Ride Feedback
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/taxi-pool/ride-feedback"
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride Feedback
+    request:
+      url: "{{transport_url}}/api/driver/taxi-pool/ride-feedback"
+      method: POST
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8001
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.2.26
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 07:49:12 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 1,
+              "feedback_list": [
+                  {
+                      "rating_id": "6de0a376-1db8-43f6-a556-1abe5b33cfad",
+                      "service_cat_id": 6,
+                      "ride_id": "dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b",
+                      "user_name": "Dk",
+                      "user_profile_image": "",
+                      "rating": 5,
+                      "comment": "",
+                      "service_category_name": "Taxi Pool",
+                      "datetime": "2026-02-17 12:05:15",
+                      "dt": "2026-02-17 12:05:15"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride Feedback
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | Ride id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 1,
+      "feedback_list": [
+          {
+              "rating_id": "6de0a376-1db8-43f6-a556-1abe5b33cfad",
+              "service_cat_id": 6,
+              "ride_id": "dd0c5cfd-60a4-41ac-9ad7-7b94c8edd26b",
+              "user_name": "Dk",
+              "user_profile_image": "",
+              "rating": 5,
+              "comment": "",
+              "service_category_name": "Taxi Pool",
+              "datetime": "2026-02-17 12:05:15",
+              "dt": "2026-02-17 12:05:15"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

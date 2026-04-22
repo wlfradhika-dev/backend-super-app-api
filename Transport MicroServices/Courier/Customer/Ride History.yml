@@ -1,0 +1,499 @@
+info:
+  name: Ride History
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/customer/transport/courier/ride-history"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_category_id": 4,
+        "timezone": "Asia/Kolkata",
+        "filter_type": 0,
+        "ride_status": "0,9"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Ride History
+    request:
+      url: "{{transport_url}}/api/customer/transport/courier/ride-history"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "service_category_id": 4,
+            "timezone": "Asia/Kolkata",
+            "filter_type":0
+          //   "ride_status":"1,2,3"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 06:18:39 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 3,
+              "total": 24,
+              "rides": [
+                  {
+                      "ride_id": "a3251f0d-8b5f-499b-b9f9-90133241d6a8",
+                      "booking_no": "86957484",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 3805,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-10 11:40:21",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "1607e91a-57d1-4d82-8aa4-347ba8a4bad9",
+                      "booking_no": "62106778",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 3805,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-10 11:46:06",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "995afefc-f043-4476-8da9-02118026a699",
+                      "booking_no": "85816799",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 4,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 03:44:09",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "cc4a5713-d392-40d7-a1a8-1bf38dc1861d",
+                      "booking_no": "79402766",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 04:02:52",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "471bad2a-37a2-4974-bf90-95957569dbe3",
+                      "booking_no": "97906317",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 04:10:48",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "a98b2ab3-fdb4-4a9b-86b6-6927ef842fbe",
+                      "booking_no": "92034738",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 04:16:45",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "d4e99ccd-2fac-472e-856c-47c02d8103a6",
+                      "booking_no": "44209427",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 04:18:25",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "16ccbb70-7751-4fb1-a36c-6ad1d7436562",
+                      "booking_no": "50418367",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 04:20:49",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "55a55b2e-7708-490f-9fb1-291a31bdb739",
+                      "booking_no": "33778480",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 05:15:24",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  },
+                  {
+                      "ride_id": "d71e66fc-822f-47b8-a699-c1561d1182e0",
+                      "booking_no": "76623044",
+                      "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+                      "category_name": "Suv",
+                      "service_category_id": 4,
+                      "service_cat_name": "Courier Service",
+                      "ride_status": 0,
+                      "total_pay": 4185.5,
+                      "pickup_date": "15 Mar, 2026",
+                      "pickup_time": "02:00 PM",
+                      "service_date_time": "2026-03-11 04:28:53",
+                      "schedule_order_date_time": "2026-03-15 14:00:00",
+                      "pickup_address": "Scheduled Pickup",
+                      "destination_address": "Scheduled Drop",
+                      "ride_flow_type": 1
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride History
+
+  Returns the historical records for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+    "service_category_id": 4,
+    "timezone": "Asia/Kolkata",
+    "filter_type": 0,
+    "ride_status": "0,9"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 3,
+      "total": 24,
+      "rides": [
+          {
+              "ride_id": "a3251f0d-8b5f-499b-b9f9-90133241d6a8",
+              "booking_no": "86957484",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 3805,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-10 11:40:21",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "1607e91a-57d1-4d82-8aa4-347ba8a4bad9",
+              "booking_no": "62106778",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 3805,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-10 11:46:06",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "995afefc-f043-4476-8da9-02118026a699",
+              "booking_no": "85816799",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 4,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 03:44:09",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "cc4a5713-d392-40d7-a1a8-1bf38dc1861d",
+              "booking_no": "79402766",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 04:02:52",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "471bad2a-37a2-4974-bf90-95957569dbe3",
+              "booking_no": "97906317",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 04:10:48",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "a98b2ab3-fdb4-4a9b-86b6-6927ef842fbe",
+              "booking_no": "92034738",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 04:16:45",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "d4e99ccd-2fac-472e-856c-47c02d8103a6",
+              "booking_no": "44209427",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 04:18:25",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "16ccbb70-7751-4fb1-a36c-6ad1d7436562",
+              "booking_no": "50418367",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 04:20:49",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "55a55b2e-7708-490f-9fb1-291a31bdb739",
+              "booking_no": "33778480",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 05:15:24",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          },
+          {
+              "ride_id": "d71e66fc-822f-47b8-a699-c1561d1182e0",
+              "booking_no": "76623044",
+              "category_icon": "http://127.0.0.1:8002/img/service-category/transport-service-type258200720241007.png",
+              "category_name": "Suv",
+              "service_category_id": 4,
+              "service_cat_name": "Courier Service",
+              "ride_status": 0,
+              "total_pay": 4185.5,
+              "pickup_date": "15 Mar, 2026",
+              "pickup_time": "02:00 PM",
+              "service_date_time": "2026-03-11 04:28:53",
+              "schedule_order_date_time": "2026-03-15 14:00:00",
+              "pickup_address": "Scheduled Pickup",
+              "destination_address": "Scheduled Drop",
+              "ride_flow_type": 1
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

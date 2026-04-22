@@ -1,0 +1,280 @@
+info:
+  name: Login
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/delivery-driver/login"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: select-time-zone
+      value: Asia/Kolkata
+    - name: select-ip-address
+      value: 103.138.233.214
+  body:
+    type: multipart-form
+    data:
+      - name: login_type
+        type: text
+        value: email
+        description: "'facebook', 'google', 'email', 'apple'"
+      - name: device_token
+        type: text
+        value: "123456"
+      - name: select_language
+        type: text
+        value: en
+      - name: select_currency
+        type: text
+        value: $
+      - name: login_device
+        type: text
+        value: "1"
+        description: 1:Flutter-Android, 2:Flutter-Ios
+      - name: contact_number
+        type: text
+        value: "6099"
+        description: required if email login
+      - name: select_country_code
+        type: text
+        value: "+1"
+        description: required if email login
+      - name: login_id
+        type: text
+        value: '""'
+        description: required if google, apple, facebook login
+      - name: full_name
+        type: text
+        value: '""'
+        description: required if google, apple, facebook login
+      - name: profile_image
+        type: text
+        value: ""
+        description: nullable
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to collection variable
+        //     pm.collectionVariables.set("driver_token", response.token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Login
+    request:
+      url: "{{core_url}}/api/delivery-driver/login"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: select-time-zone
+          value: Asia/Kolkata
+        - name: select-ip-address
+          value: 103.138.233.214
+      body:
+        type: multipart-form
+        data:
+          - name: login_type
+            type: text
+            value: email
+            description: "'facebook', 'google', 'email', 'apple'"
+          - name: device_token
+            type: text
+            value: "123456"
+          - name: select_language
+            type: text
+            value: en
+          - name: select_currency
+            type: text
+            value: $
+          - name: login_device
+            type: text
+            value: "1"
+            description: 1:Flutter-Android, 2:Flutter-Ios
+          - name: contact_number
+            type: text
+            value: "12345"
+            description: required if email login
+          - name: select_country_code
+            type: text
+            value: "+1"
+            description: required if email login
+          - name: login_id
+            type: text
+            value: '""'
+            description: required if google, apple, facebook login
+          - name: full_name
+            type: text
+            value: '""'
+            description: required if google, apple, facebook login
+          - name: profile_image
+            type: text
+            value: ""
+            description: nullable
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 07:45:10 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "is_register": 0,
+              "driver_id": "7fd08baf-2c21-4574-a134-ca27fd0c3a8a",
+              "contact_number": "12345",
+              "select_country_code": "+1",
+              "login_type": "email",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "select_currency": "$",
+              "currency_code": "USD",
+              "select_language": "en",
+              "unique_id": "db948527-6532-420c-af54-34ff44a6b4f0",
+              "gender": "",
+              "driver_name": "",
+              "email": "",
+              "profile_image": null,
+              "server_time_zone": "UTC",
+              "token": "38|rtkdYo4CEizs7X1BcIG0wLcP5eKbx2Qo9C3HwexW64ea480e",
+              "driver_service_id": 0,
+              "service_status": 4,
+              "service_category_id": 0,
+              "driver_current_status": 0,
+              "driver_service": "",
+              "vehicle_type_icon": "",
+              "vehicle_type_name": "",
+              "vehicle_company": "",
+              "plat_no": "",
+              "model_year": "",
+              "model_name": "",
+              "vehicle_color": "",
+              "service_type_id": 0,
+              "is_ride_service": 0
+          }
+
+docs: |+
+  ## Login
+
+  Authenticates the user with the provided credentials and returns a bearer token for subsequent requests.
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `login_type` | string | Yes | 'facebook', 'google', 'email', 'apple' |
+  | `device_token` | string | Yes | Device token |
+  | `select_language` | string | Yes | Select language |
+  | `select_currency` | string | Yes | Select currency |
+  | `login_device` | string | Yes | 1:Flutter-Android, 2:Flutter-Ios |
+  | `contact_number` | string | Yes | required if email login |
+  | `select_country_code` | string | Yes | required if email login |
+  | `login_id` | string | Yes | required if google, apple, facebook login |
+  | `full_name` | string | Yes | required if google, apple, facebook login |
+  | `profile_image` | string | No | nullable |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "is_register": 0,
+      "driver_id": "7fd08baf-2c21-4574-a134-ca27fd0c3a8a",
+      "contact_number": "12345",
+      "select_country_code": "+1",
+      "login_type": "email",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "select_currency": "$",
+      "currency_code": "USD",
+      "select_language": "en",
+      "unique_id": "db948527-6532-420c-af54-34ff44a6b4f0",
+      "gender": "",
+      "driver_name": "",
+      "email": "",
+      "profile_image": null,
+      "server_time_zone": "UTC",
+      "token": "38|rtkdYo4CEizs7X1BcIG0wLcP5eKbx2Qo9C3HwexW64ea480e",
+      "driver_service_id": 0,
+      "service_status": 4,
+      "service_category_id": 0,
+      "driver_current_status": 0,
+      "driver_service": "",
+      "vehicle_type_icon": "",
+      "vehicle_type_name": "",
+      "vehicle_company": "",
+      "plat_no": "",
+      "model_year": "",
+      "model_name": "",
+      "vehicle_color": "",
+      "service_type_id": 0,
+      "is_ride_service": 0
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The login type field is required."
+  }
+  ```
+
+  **403 Forbidden — Account Blocked**
+
+  ```json
+  {
+      "success": false,
+      "message": "Your account is blocked and not authorized to use application!",
+      "message_code": 3,
+      "status_code": 3,
+      "https_status_code": 403,
+      "errors": "Failed"
+  }
+  ```
+

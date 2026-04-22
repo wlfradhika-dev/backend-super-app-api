@@ -1,0 +1,1412 @@
+info:
+  name: Google Map
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/google-map"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: url
+        type: text
+        value: https://maps.googleapis.com/maps/api/geocode/json?latlng=22.3039,70.8022&key=
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Google Map
+    request:
+      url: "{{core_url}}/api/customer/google-map"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: url
+            type: text
+            value: https://maps.googleapis.com/maps/api/geocode/json?latlng=22.3039,70.8022&key=
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 09:15:30 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "plus_code": {
+                  "compound_code": "8R32+HV4 Rajkot, Gujarat, India",
+                  "global_code": "7JJG8R32+HV4"
+              },
+              "results": [
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "High Court Road",
+                              "short_name": "GJ SH 25",
+                              "types": [
+                                  "route"
+                              ]
+                          },
+                          {
+                              "long_name": "Sadar",
+                              "short_name": "Sadar",
+                              "types": [
+                                  "political",
+                                  "sublocality",
+                                  "sublocality_level_1"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "locality",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_3",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "360001",
+                              "short_name": "360001",
+                              "types": [
+                                  "postal_code"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "High Ct Rd, Sadar, Rajkot, Gujarat 360001, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 22.3042894,
+                                  "lng": 70.8037203
+                              },
+                              "southwest": {
+                                  "lat": 22.3038692,
+                                  "lng": 70.8021925
+                              }
+                          },
+                          "location": {
+                              "lat": 22.3040996,
+                              "lng": 70.80295
+                          },
+                          "location_type": "GEOMETRIC_CENTER",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 22.3054282802915,
+                                  "lng": 70.80430538029151
+                              },
+                              "southwest": {
+                                  "lat": 22.30273031970849,
+                                  "lng": 70.80160741970849
+                              }
+                          }
+                      },
+                      "place_id": "ChIJo_FXYvjJWTkRwGUSd1AyeEs",
+                      "types": [
+                          "route"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "8R32+HV",
+                              "short_name": "8R32+HV",
+                              "types": [
+                                  "plus_code"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "locality",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_3",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "8R32+HV Rajkot, Gujarat, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 22.304,
+                                  "lng": 70.80225
+                              },
+                              "southwest": {
+                                  "lat": 22.303875,
+                                  "lng": 70.802125
+                              }
+                          },
+                          "location": {
+                              "lat": 22.3039,
+                              "lng": 70.8022
+                          },
+                          "location_type": "GEOMETRIC_CENTER",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 22.3052864802915,
+                                  "lng": 70.80353648029151
+                              },
+                              "southwest": {
+                                  "lat": 22.30258851970849,
+                                  "lng": 70.8008385197085
+                              }
+                          }
+                      },
+                      "place_id": "GhIJIEHxY8xNNkARejarPlezUUA",
+                      "plus_code": {
+                          "compound_code": "8R32+HV Rajkot, Gujarat, India",
+                          "global_code": "7JJG8R32+HV"
+                      },
+                      "types": [
+                          "plus_code"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "Sadar",
+                              "short_name": "Sadar",
+                              "types": [
+                                  "political",
+                                  "sublocality",
+                                  "sublocality_level_1"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "locality",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_3",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "360001",
+                              "short_name": "360001",
+                              "types": [
+                                  "postal_code"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "Sadar, Rajkot, Gujarat 360001, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 22.308685,
+                                  "lng": 70.80222499999999
+                              },
+                              "southwest": {
+                                  "lat": 22.295075,
+                                  "lng": 70.785631
+                              }
+                          },
+                          "location": {
+                              "lat": 22.2996286,
+                              "lng": 70.79712959999999
+                          },
+                          "location_type": "APPROXIMATE",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 22.308685,
+                                  "lng": 70.80222499999999
+                              },
+                              "southwest": {
+                                  "lat": 22.295075,
+                                  "lng": 70.785631
+                              }
+                          }
+                      },
+                      "place_id": "ChIJqV6ACfbJWTkR0y_093sMHqw",
+                      "types": [
+                          "political",
+                          "sublocality",
+                          "sublocality_level_1"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "360001",
+                              "short_name": "360001",
+                              "types": [
+                                  "postal_code"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "locality",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_3",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "Rajkot, Gujarat 360001, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 22.344578,
+                                  "lng": 70.81723699999999
+                              },
+                              "southwest": {
+                                  "lat": 22.275869,
+                                  "lng": 70.772759
+                              }
+                          },
+                          "location": {
+                              "lat": 22.2964051,
+                              "lng": 70.79415639999999
+                          },
+                          "location_type": "APPROXIMATE",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 22.344578,
+                                  "lng": 70.81723699999999
+                              },
+                              "southwest": {
+                                  "lat": 22.275869,
+                                  "lng": 70.772759
+                              }
+                          }
+                      },
+                      "place_id": "ChIJu1zTffHJWTkRWOHL3_CZEjI",
+                      "types": [
+                          "postal_code"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "locality",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_3",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "Rajkot, Gujarat, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 22.3534892,
+                                  "lng": 70.9481892
+                              },
+                              "southwest": {
+                                  "lat": 22.1934847,
+                                  "lng": 70.69440349999999
+                              }
+                          },
+                          "location": {
+                              "lat": 22.3038945,
+                              "lng": 70.80215989999999
+                          },
+                          "location_type": "APPROXIMATE",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 22.3534892,
+                                  "lng": 70.9481892
+                              },
+                              "southwest": {
+                                  "lat": 22.1934847,
+                                  "lng": 70.69440349999999
+                              }
+                          }
+                      },
+                      "place_id": "ChIJD98cx4rJWTkRO62Tvs8V3XY",
+                      "types": [
+                          "locality",
+                          "political"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_4",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_3",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "Rajkot, Gujarat, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 22.5012794,
+                                  "lng": 71.099431
+                              },
+                              "southwest": {
+                                  "lat": 22.0467932,
+                                  "lng": 70.68332629999999
+                              }
+                          },
+                          "location": {
+                              "lat": 22.2930337,
+                              "lng": 70.8023324
+                          },
+                          "location_type": "APPROXIMATE",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 22.5012794,
+                                  "lng": 71.099431
+                              },
+                              "southwest": {
+                                  "lat": 22.0467932,
+                                  "lng": 70.68332629999999
+                              }
+                          }
+                      },
+                      "place_id": "ChIJi1-3d2S0WTkRENt6sy_luow",
+                      "types": [
+                          "administrative_area_level_4",
+                          "political"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "Rajkot",
+                              "short_name": "Rajkot",
+                              "types": [
+                                  "administrative_area_level_3",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "Rajkot, Gujarat, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 22.6133218,
+                                  "lng": 71.5091846
+                              },
+                              "southwest": {
+                                  "lat": 21.5258359,
+                                  "lng": 70.02965859999999
+                              }
+                          },
+                          "location": {
+                              "lat": 22.1096716,
+                              "lng": 70.7168469
+                          },
+                          "location_type": "APPROXIMATE",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 22.6133218,
+                                  "lng": 71.5091846
+                              },
+                              "southwest": {
+                                  "lat": 21.5258359,
+                                  "lng": 70.02965859999999
+                              }
+                          }
+                      },
+                      "place_id": "ChIJ7cCSM3PKWTkRwiBgzA1vD50",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "Gujarat",
+                              "short_name": "GJ",
+                              "types": [
+                                  "administrative_area_level_1",
+                                  "political"
+                              ]
+                          },
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "Gujarat, India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 24.7125362,
+                                  "lng": 74.4764324
+                              },
+                              "southwest": {
+                                  "lat": 20.1192289,
+                                  "lng": 68.17751179999999
+                              }
+                          },
+                          "location": {
+                              "lat": 22.6708317,
+                              "lng": 71.5723953
+                          },
+                          "location_type": "APPROXIMATE",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 24.7125362,
+                                  "lng": 74.4764324
+                              },
+                              "southwest": {
+                                  "lat": 20.1192289,
+                                  "lng": 68.17751179999999
+                              }
+                          }
+                      },
+                      "place_id": "ChIJlfcOXx8FWTkRLlJU7YfYG4Y",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "address_components": [
+                          {
+                              "long_name": "India",
+                              "short_name": "IN",
+                              "types": [
+                                  "country",
+                                  "political"
+                              ]
+                          }
+                      ],
+                      "formatted_address": "India",
+                      "geometry": {
+                          "bounds": {
+                              "northeast": {
+                                  "lat": 35.6733149,
+                                  "lng": 97.39535869999999
+                              },
+                              "southwest": {
+                                  "lat": 6.4626999,
+                                  "lng": 68.1097
+                              }
+                          },
+                          "location": {
+                              "lat": 20.593684,
+                              "lng": 78.96288
+                          },
+                          "location_type": "APPROXIMATE",
+                          "viewport": {
+                              "northeast": {
+                                  "lat": 35.6733149,
+                                  "lng": 97.39535869999999
+                              },
+                              "southwest": {
+                                  "lat": 6.4626999,
+                                  "lng": 68.1097
+                              }
+                          }
+                      },
+                      "place_id": "ChIJkbeSa_BfYzARphNChaFPjNc",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "status": "OK"
+          }
+
+docs: |+
+  ## Google Map
+
+  Generates a Google Maps URL for the given location or route.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `url` | string | Yes | Url |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "plus_code": {
+          "compound_code": "8R32+HV4 Rajkot, Gujarat, India",
+          "global_code": "7JJG8R32+HV4"
+      },
+      "results": [
+          {
+              "address_components": [
+                  {
+                      "long_name": "High Court Road",
+                      "short_name": "GJ SH 25",
+                      "types": [
+                          "route"
+                      ]
+                  },
+                  {
+                      "long_name": "Sadar",
+                      "short_name": "Sadar",
+                      "types": [
+                          "political",
+                          "sublocality",
+                          "sublocality_level_1"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "locality",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "360001",
+                      "short_name": "360001",
+                      "types": [
+                          "postal_code"
+                      ]
+                  }
+              ],
+              "formatted_address": "High Ct Rd, Sadar, Rajkot, Gujarat 360001, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 22.3042894,
+                          "lng": 70.8037203
+                      },
+                      "southwest": {
+                          "lat": 22.3038692,
+                          "lng": 70.8021925
+                      }
+                  },
+                  "location": {
+                      "lat": 22.3040996,
+                      "lng": 70.80295
+                  },
+                  "location_type": "GEOMETRIC_CENTER",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 22.3054282802915,
+                          "lng": 70.80430538029151
+                      },
+                      "southwest": {
+                          "lat": 22.30273031970849,
+                          "lng": 70.80160741970849
+                      }
+                  }
+              },
+              "place_id": "ChIJo_FXYvjJWTkRwGUSd1AyeEs",
+              "types": [
+                  "route"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "8R32+HV",
+                      "short_name": "8R32+HV",
+                      "types": [
+                          "plus_code"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "locality",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "formatted_address": "8R32+HV Rajkot, Gujarat, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 22.304,
+                          "lng": 70.80225
+                      },
+                      "southwest": {
+                          "lat": 22.303875,
+                          "lng": 70.802125
+                      }
+                  },
+                  "location": {
+                      "lat": 22.3039,
+                      "lng": 70.8022
+                  },
+                  "location_type": "GEOMETRIC_CENTER",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 22.3052864802915,
+                          "lng": 70.80353648029151
+                      },
+                      "southwest": {
+                          "lat": 22.30258851970849,
+                          "lng": 70.8008385197085
+                      }
+                  }
+              },
+              "place_id": "GhIJIEHxY8xNNkARejarPlezUUA",
+              "plus_code": {
+                  "compound_code": "8R32+HV Rajkot, Gujarat, India",
+                  "global_code": "7JJG8R32+HV"
+              },
+              "types": [
+                  "plus_code"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "Sadar",
+                      "short_name": "Sadar",
+                      "types": [
+                          "political",
+                          "sublocality",
+                          "sublocality_level_1"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "locality",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "360001",
+                      "short_name": "360001",
+                      "types": [
+                          "postal_code"
+                      ]
+                  }
+              ],
+              "formatted_address": "Sadar, Rajkot, Gujarat 360001, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 22.308685,
+                          "lng": 70.80222499999999
+                      },
+                      "southwest": {
+                          "lat": 22.295075,
+                          "lng": 70.785631
+                      }
+                  },
+                  "location": {
+                      "lat": 22.2996286,
+                      "lng": 70.79712959999999
+                  },
+                  "location_type": "APPROXIMATE",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 22.308685,
+                          "lng": 70.80222499999999
+                      },
+                      "southwest": {
+                          "lat": 22.295075,
+                          "lng": 70.785631
+                      }
+                  }
+              },
+              "place_id": "ChIJqV6ACfbJWTkR0y_093sMHqw",
+              "types": [
+                  "political",
+                  "sublocality",
+                  "sublocality_level_1"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "360001",
+                      "short_name": "360001",
+                      "types": [
+                          "postal_code"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "locality",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "formatted_address": "Rajkot, Gujarat 360001, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 22.344578,
+                          "lng": 70.81723699999999
+                      },
+                      "southwest": {
+                          "lat": 22.275869,
+                          "lng": 70.772759
+                      }
+                  },
+                  "location": {
+                      "lat": 22.2964051,
+                      "lng": 70.79415639999999
+                  },
+                  "location_type": "APPROXIMATE",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 22.344578,
+                          "lng": 70.81723699999999
+                      },
+                      "southwest": {
+                          "lat": 22.275869,
+                          "lng": 70.772759
+                      }
+                  }
+              },
+              "place_id": "ChIJu1zTffHJWTkRWOHL3_CZEjI",
+              "types": [
+                  "postal_code"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "locality",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "formatted_address": "Rajkot, Gujarat, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 22.3534892,
+                          "lng": 70.9481892
+                      },
+                      "southwest": {
+                          "lat": 22.1934847,
+                          "lng": 70.69440349999999
+                      }
+                  },
+                  "location": {
+                      "lat": 22.3038945,
+                      "lng": 70.80215989999999
+                  },
+                  "location_type": "APPROXIMATE",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 22.3534892,
+                          "lng": 70.9481892
+                      },
+                      "southwest": {
+                          "lat": 22.1934847,
+                          "lng": 70.69440349999999
+                      }
+                  }
+              },
+              "place_id": "ChIJD98cx4rJWTkRO62Tvs8V3XY",
+              "types": [
+                  "locality",
+                  "political"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_4",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "formatted_address": "Rajkot, Gujarat, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 22.5012794,
+                          "lng": 71.099431
+                      },
+                      "southwest": {
+                          "lat": 22.0467932,
+                          "lng": 70.68332629999999
+                      }
+                  },
+                  "location": {
+                      "lat": 22.2930337,
+                      "lng": 70.8023324
+                  },
+                  "location_type": "APPROXIMATE",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 22.5012794,
+                          "lng": 71.099431
+                      },
+                      "southwest": {
+                          "lat": 22.0467932,
+                          "lng": 70.68332629999999
+                      }
+                  }
+              },
+              "place_id": "ChIJi1-3d2S0WTkRENt6sy_luow",
+              "types": [
+                  "administrative_area_level_4",
+                  "political"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "Rajkot",
+                      "short_name": "Rajkot",
+                      "types": [
+                          "administrative_area_level_3",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "formatted_address": "Rajkot, Gujarat, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 22.6133218,
+                          "lng": 71.5091846
+                      },
+                      "southwest": {
+                          "lat": 21.5258359,
+                          "lng": 70.02965859999999
+                      }
+                  },
+                  "location": {
+                      "lat": 22.1096716,
+                      "lng": 70.7168469
+                  },
+                  "location_type": "APPROXIMATE",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 22.6133218,
+                          "lng": 71.5091846
+                      },
+                      "southwest": {
+                          "lat": 21.5258359,
+                          "lng": 70.02965859999999
+                      }
+                  }
+              },
+              "place_id": "ChIJ7cCSM3PKWTkRwiBgzA1vD50",
+              "types": [
+                  "administrative_area_level_3",
+                  "political"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "Gujarat",
+                      "short_name": "GJ",
+                      "types": [
+                          "administrative_area_level_1",
+                          "political"
+                      ]
+                  },
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "formatted_address": "Gujarat, India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 24.7125362,
+                          "lng": 74.4764324
+                      },
+                      "southwest": {
+                          "lat": 20.1192289,
+                          "lng": 68.17751179999999
+                      }
+                  },
+                  "location": {
+                      "lat": 22.6708317,
+                      "lng": 71.5723953
+                  },
+                  "location_type": "APPROXIMATE",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 24.7125362,
+                          "lng": 74.4764324
+                      },
+                      "southwest": {
+                          "lat": 20.1192289,
+                          "lng": 68.17751179999999
+                      }
+                  }
+              },
+              "place_id": "ChIJlfcOXx8FWTkRLlJU7YfYG4Y",
+              "types": [
+                  "administrative_area_level_1",
+                  "political"
+              ]
+          },
+          {
+              "address_components": [
+                  {
+                      "long_name": "India",
+                      "short_name": "IN",
+                      "types": [
+                          "country",
+                          "political"
+                      ]
+                  }
+              ],
+              "formatted_address": "India",
+              "geometry": {
+                  "bounds": {
+                      "northeast": {
+                          "lat": 35.6733149,
+                          "lng": 97.39535869999999
+                      },
+                      "southwest": {
+                          "lat": 6.4626999,
+                          "lng": 68.1097
+                      }
+                  },
+                  "location": {
+                      "lat": 20.593684,
+                      "lng": 78.96288
+                  },
+                  "location_type": "APPROXIMATE",
+                  "viewport": {
+                      "northeast": {
+                          "lat": 35.6733149,
+                          "lng": 97.39535869999999
+                      },
+                      "southwest": {
+                          "lat": 6.4626999,
+                          "lng": 68.1097
+                      }
+                  }
+              },
+              "place_id": "ChIJkbeSa_BfYzARphNChaFPjNc",
+              "types": [
+                  "country",
+                  "political"
+              ]
+          }
+      ],
+      "status": "OK"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The url field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

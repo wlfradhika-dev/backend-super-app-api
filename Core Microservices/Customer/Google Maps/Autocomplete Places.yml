@@ -1,0 +1,494 @@
+info:
+  name: Autocomplete Places
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/google-autocomplete-places"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: session-id
+      value: "123"
+  body:
+    type: multipart-form
+    data:
+      - name: input
+        type: text
+        value: Rajkot
+      - name: latitude
+        type: text
+        value: "28.6139"
+      - name: longitude
+        type: text
+        value: "77.2090"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Autocomplete Places
+    request:
+      url: "{{core_url}}/api/customer/google-autocomplete-places"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: session-id
+          value: "123"
+      body:
+        type: multipart-form
+        data:
+          - name: input
+            type: text
+            value: Rajkot
+          - name: latitude
+            type: text
+            value: "28.6139"
+          - name: longitude
+            type: text
+            value: "77.2090"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 18 Feb 2026 09:22:24 GMT
+        - name: Content-Type
+          value: application/json
+        - name: X-RateLimit-Limit
+          value: "150"
+        - name: X-RateLimit-Remaining
+          value: "148"
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "suggestions": [
+                  {
+                      "placePrediction": {
+                          "place": "places/ChIJD98cx4rJWTkRO62Tvs8V3XY",
+                          "placeId": "ChIJD98cx4rJWTkRO62Tvs8V3XY",
+                          "text": {
+                              "text": "Rajkot, Gujarat, India",
+                              "matches": [
+                                  {
+                                      "endOffset": 6
+                                  }
+                              ]
+                          },
+                          "structuredFormat": {
+                              "mainText": {
+                                  "text": "Rajkot",
+                                  "matches": [
+                                      {
+                                          "endOffset": 6
+                                      }
+                                  ]
+                              },
+                              "secondaryText": {
+                                  "text": "Gujarat, India"
+                              }
+                          },
+                          "types": [
+                              "political",
+                              "geocode",
+                              "locality"
+                          ]
+                      }
+                  },
+                  {
+                      "placePrediction": {
+                          "place": "places/ChIJIauMHCCvWTkR0-Ub7IUuUP4",
+                          "placeId": "ChIJIauMHCCvWTkR0-Ub7IUuUP4",
+                          "text": {
+                              "text": "Rajkot International Airport, Hirasar, Garida, Gujarat, India",
+                              "matches": [
+                                  {
+                                      "endOffset": 6
+                                  }
+                              ]
+                          },
+                          "structuredFormat": {
+                              "mainText": {
+                                  "text": "Rajkot International Airport",
+                                  "matches": [
+                                      {
+                                          "endOffset": 6
+                                      }
+                                  ]
+                              },
+                              "secondaryText": {
+                                  "text": "Hirasar, Garida, Gujarat, India"
+                              }
+                          },
+                          "types": [
+                              "international_airport",
+                              "point_of_interest",
+                              "transportation_service",
+                              "airport",
+                              "establishment"
+                          ]
+                      }
+                  },
+                  {
+                      "placePrediction": {
+                          "place": "places/ChIJ_TKc-sj9bjkRcHek16VwIIY",
+                          "placeId": "ChIJ_TKc-sj9bjkRcHek16VwIIY",
+                          "text": {
+                              "text": "Rajkot, Rajasthan, India",
+                              "matches": [
+                                  {
+                                      "endOffset": 6
+                                  }
+                              ]
+                          },
+                          "structuredFormat": {
+                              "mainText": {
+                                  "text": "Rajkot",
+                                  "matches": [
+                                      {
+                                          "endOffset": 6
+                                      }
+                                  ]
+                              },
+                              "secondaryText": {
+                                  "text": "Rajasthan, India"
+                              }
+                          },
+                          "types": [
+                              "political",
+                              "geocode",
+                              "locality"
+                          ]
+                      }
+                  },
+                  {
+                      "placePrediction": {
+                          "place": "places/ChIJx4cGKMSqdTkRGlxVsuStk0Y",
+                          "placeId": "ChIJx4cGKMSqdTkRGlxVsuStk0Y",
+                          "text": {
+                              "text": "Rajkot, Uttar Pradesh, India",
+                              "matches": [
+                                  {
+                                      "endOffset": 6
+                                  }
+                              ]
+                          },
+                          "structuredFormat": {
+                              "mainText": {
+                                  "text": "Rajkot",
+                                  "matches": [
+                                      {
+                                          "endOffset": 6
+                                      }
+                                  ]
+                              },
+                              "secondaryText": {
+                                  "text": "Uttar Pradesh, India"
+                              }
+                          },
+                          "types": [
+                              "political",
+                              "geocode",
+                              "locality"
+                          ]
+                      }
+                  },
+                  {
+                      "placePrediction": {
+                          "place": "places/ChIJzS4DKRvKWTkRrICQUeVeY1g",
+                          "placeId": "ChIJzS4DKRvKWTkRrICQUeVeY1g",
+                          "text": {
+                              "text": "Rajkot Central Bus Station - Bus port, Dhebar Road, Raghuveer Para, Lohana Para, Rajkot, Gujarat, India",
+                              "matches": [
+                                  {
+                                      "endOffset": 6
+                                  }
+                              ]
+                          },
+                          "structuredFormat": {
+                              "mainText": {
+                                  "text": "Rajkot Central Bus Station - Bus port",
+                                  "matches": [
+                                      {
+                                          "endOffset": 6
+                                      }
+                                  ]
+                              },
+                              "secondaryText": {
+                                  "text": "Dhebar Road, Raghuveer Para, Lohana Para, Rajkot, Gujarat, India"
+                              }
+                          },
+                          "types": [
+                              "transportation_service",
+                              "establishment",
+                              "transit_depot",
+                              "point_of_interest"
+                          ]
+                      }
+                  }
+              ]
+          }
+
+docs: |+
+  ## Autocomplete Places
+
+  Returns a list of place suggestions based on the provided search query using Google Places Autocomplete.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `input` | string | Yes | Input |
+  | `latitude` | string | Yes | Latitude |
+  | `longitude` | string | Yes | Longitude |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "suggestions": [
+          {
+              "placePrediction": {
+                  "place": "places/ChIJD98cx4rJWTkRO62Tvs8V3XY",
+                  "placeId": "ChIJD98cx4rJWTkRO62Tvs8V3XY",
+                  "text": {
+                      "text": "Rajkot, Gujarat, India",
+                      "matches": [
+                          {
+                              "endOffset": 6
+                          }
+                      ]
+                  },
+                  "structuredFormat": {
+                      "mainText": {
+                          "text": "Rajkot",
+                          "matches": [
+                              {
+                                  "endOffset": 6
+                              }
+                          ]
+                      },
+                      "secondaryText": {
+                          "text": "Gujarat, India"
+                      }
+                  },
+                  "types": [
+                      "political",
+                      "geocode",
+                      "locality"
+                  ]
+              }
+          },
+          {
+              "placePrediction": {
+                  "place": "places/ChIJIauMHCCvWTkR0-Ub7IUuUP4",
+                  "placeId": "ChIJIauMHCCvWTkR0-Ub7IUuUP4",
+                  "text": {
+                      "text": "Rajkot International Airport, Hirasar, Garida, Gujarat, India",
+                      "matches": [
+                          {
+                              "endOffset": 6
+                          }
+                      ]
+                  },
+                  "structuredFormat": {
+                      "mainText": {
+                          "text": "Rajkot International Airport",
+                          "matches": [
+                              {
+                                  "endOffset": 6
+                              }
+                          ]
+                      },
+                      "secondaryText": {
+                          "text": "Hirasar, Garida, Gujarat, India"
+                      }
+                  },
+                  "types": [
+                      "international_airport",
+                      "point_of_interest",
+                      "transportation_service",
+                      "airport",
+                      "establishment"
+                  ]
+              }
+          },
+          {
+              "placePrediction": {
+                  "place": "places/ChIJ_TKc-sj9bjkRcHek16VwIIY",
+                  "placeId": "ChIJ_TKc-sj9bjkRcHek16VwIIY",
+                  "text": {
+                      "text": "Rajkot, Rajasthan, India",
+                      "matches": [
+                          {
+                              "endOffset": 6
+                          }
+                      ]
+                  },
+                  "structuredFormat": {
+                      "mainText": {
+                          "text": "Rajkot",
+                          "matches": [
+                              {
+                                  "endOffset": 6
+                              }
+                          ]
+                      },
+                      "secondaryText": {
+                          "text": "Rajasthan, India"
+                      }
+                  },
+                  "types": [
+                      "political",
+                      "geocode",
+                      "locality"
+                  ]
+              }
+          },
+          {
+              "placePrediction": {
+                  "place": "places/ChIJx4cGKMSqdTkRGlxVsuStk0Y",
+                  "placeId": "ChIJx4cGKMSqdTkRGlxVsuStk0Y",
+                  "text": {
+                      "text": "Rajkot, Uttar Pradesh, India",
+                      "matches": [
+                          {
+                              "endOffset": 6
+                          }
+                      ]
+                  },
+                  "structuredFormat": {
+                      "mainText": {
+                          "text": "Rajkot",
+                          "matches": [
+                              {
+                                  "endOffset": 6
+                              }
+                          ]
+                      },
+                      "secondaryText": {
+                          "text": "Uttar Pradesh, India"
+                      }
+                  },
+                  "types": [
+                      "political",
+                      "geocode",
+                      "locality"
+                  ]
+              }
+          },
+          {
+              "placePrediction": {
+                  "place": "places/ChIJzS4DKRvKWTkRrICQUeVeY1g",
+                  "placeId": "ChIJzS4DKRvKWTkRrICQUeVeY1g",
+                  "text": {
+                      "text": "Rajkot Central Bus Station - Bus port, Dhebar Road, Raghuveer Para, Lohana Para, Rajkot, Gujarat, India",
+                      "matches": [
+                          {
+                              "endOffset": 6
+                          }
+                      ]
+                  },
+                  "structuredFormat": {
+                      "mainText": {
+                          "text": "Rajkot Central Bus Station - Bus port",
+                          "matches": [
+                              {
+                                  "endOffset": 6
+                              }
+                          ]
+                      },
+                      "secondaryText": {
+                          "text": "Dhebar Road, Raghuveer Para, Lohana Para, Rajkot, Gujarat, India"
+                      }
+                  },
+                  "types": [
+                      "transportation_service",
+                      "establishment",
+                      "transit_depot",
+                      "point_of_interest"
+                  ]
+              }
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The input field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

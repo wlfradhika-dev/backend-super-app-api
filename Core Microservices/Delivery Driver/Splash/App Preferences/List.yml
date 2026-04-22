@@ -1,0 +1,395 @@
+info:
+  name: List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{core_url}}/api/delivery-driver/app-preferences/list"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: List
+    request:
+      url: "{{core_url}}/api/delivery-driver/app-preferences/list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 07:46:44 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "language_list": [
+                  {
+                      "language_id": 0,
+                      "language_name": "English",
+                      "language_code": "en"
+                  },
+                  {
+                      "language_id": "48d234b3-cb6d-4ee7-8f08-3e410d3df240",
+                      "language_name": "中国人",
+                      "language_code": "zh"
+                  },
+                  {
+                      "language_id": "50a33f9d-0627-4856-b9a8-30550a15c115",
+                      "language_name": "ไทย",
+                      "language_code": "th"
+                  },
+                  {
+                      "language_id": "51432448-5bc9-4dc2-b09e-477ddb50024c",
+                      "language_name": "Italian",
+                      "language_code": "it"
+                  },
+                  {
+                      "language_id": "6ce2ac41-5ab5-4256-bf14-f326a93d16b9",
+                      "language_name": "日本語",
+                      "language_code": "ja"
+                  },
+                  {
+                      "language_id": "82847841-fc96-4da9-a36b-71cd34253289",
+                      "language_name": "Tiếng Việt",
+                      "language_code": "vi"
+                  },
+                  {
+                      "language_id": "82f20073-401d-4e9a-871d-f2c0c2813987",
+                      "language_name": "Bahasa Melayu",
+                      "language_code": "ms"
+                  },
+                  {
+                      "language_id": "8c5c5016-9e7d-47c6-823e-4e30dd132f57",
+                      "language_name": "Français",
+                      "language_code": "fr"
+                  },
+                  {
+                      "language_id": "9cadd998-b20c-44cf-a534-4861986f81ac",
+                      "language_name": "עִברִית",
+                      "language_code": "he"
+                  },
+                  {
+                      "language_id": "a158945c-a228-486b-ad30-afef17271d66",
+                      "language_name": "Deutsch",
+                      "language_code": "de"
+                  },
+                  {
+                      "language_id": "a8959721-2316-426c-acf7-bc2384cf7d31",
+                      "language_name": "አማርኛ",
+                      "language_code": "am"
+                  },
+                  {
+                      "language_id": "af4d479e-c6c9-40f5-b628-1d1db55fc7a2",
+                      "language_name": "Português",
+                      "language_code": "pt"
+                  },
+                  {
+                      "language_id": "b289814b-0bc6-4d54-966d-ba55b75b57ee",
+                      "language_name": "Indonesia",
+                      "language_code": "id"
+                  },
+                  {
+                      "language_id": "b2dadaa2-e647-4b62-8c37-a87327b0e4e3",
+                      "language_name": "Española",
+                      "language_code": "es"
+                  },
+                  {
+                      "language_id": "c0e612a8-2b7e-4741-88c8-f5bcbc72057c",
+                      "language_name": "Русский",
+                      "language_code": "ru"
+                  },
+                  {
+                      "language_id": "d28b82c3-6cb5-43b8-b669-0bb869acc113",
+                      "language_name": "kiswahili",
+                      "language_code": "sw"
+                  },
+                  {
+                      "language_id": "e67d8587-a47f-42a7-b799-228aa7c78451",
+                      "language_name": "عربي",
+                      "language_code": "ar"
+                  },
+                  {
+                      "language_id": "f9b97456-1d1c-4c7c-8f80-f2143ab10bfa",
+                      "language_name": "ភាសាខ្មែរ",
+                      "language_code": "km"
+                  },
+                  {
+                      "language_id": "fe921d59-8fd9-4cdf-99e2-17f7b9cd5bcc",
+                      "language_name": "한국인",
+                      "language_code": "ko"
+                  },
+                  {
+                      "language_id": "ffa555a8-4783-4143-b7e4-d6b860b8a47d",
+                      "language_name": "Filipino",
+                      "language_code": "fil"
+                  }
+              ],
+              "currency_list": [
+                  {
+                      "currency_id": "3ae4c6b2-58ea-4269-8fa9-b09462a57252",
+                      "currency_name": "CNH",
+                      "currency_symbol": "CN¥"
+                  },
+                  {
+                      "currency_id": "3f630f01-f539-494b-87e2-33ac7d248586",
+                      "currency_name": "EUR",
+                      "currency_symbol": "€"
+                  },
+                  {
+                      "currency_id": "53978b7d-5511-4f91-8921-8902c17464da",
+                      "currency_name": "HKD",
+                      "currency_symbol": "HK$"
+                  },
+                  {
+                      "currency_id": "579c5a8b-431f-4fb6-bcfc-a0919a84ade8",
+                      "currency_name": "ILS",
+                      "currency_symbol": "₪"
+                  },
+                  {
+                      "currency_id": "6e71df35-cf52-4bec-8afa-355bd43b5a84",
+                      "currency_name": "JPY",
+                      "currency_symbol": "¥"
+                  },
+                  {
+                      "currency_id": "927e9fc8-a0ec-4519-871c-cb666fc0ff8f",
+                      "currency_name": "INR",
+                      "currency_symbol": "₹"
+                  },
+                  {
+                      "currency_id": "b6033e7d-93ec-4573-b967-55974e3a498a",
+                      "currency_name": "USD",
+                      "currency_symbol": "$"
+                  },
+                  {
+                      "currency_id": "c24e230b-7a1a-486c-84e2-52701c363053",
+                      "currency_name": "CHF",
+                      "currency_symbol": "₣"
+                  },
+                  {
+                      "currency_id": "d931930f-37a0-4712-8b3a-982b243acab7",
+                      "currency_name": "CAD",
+                      "currency_symbol": "C$"
+                  },
+                  {
+                      "currency_id": "e83c9c4b-baf8-476d-a60a-45a2b8210cf4",
+                      "currency_name": "GBP",
+                      "currency_symbol": "£"
+                  },
+                  {
+                      "currency_id": "fad69f19-4d71-42b0-86f6-6c902b221087",
+                      "currency_name": "AUD",
+                      "currency_symbol": "A$"
+                  }
+              ]
+          }
+
+docs: |+
+  ## List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "language_list": [
+          {
+              "language_id": 0,
+              "language_name": "English",
+              "language_code": "en"
+          },
+          {
+              "language_id": "48d234b3-cb6d-4ee7-8f08-3e410d3df240",
+              "language_name": "中国人",
+              "language_code": "zh"
+          },
+          {
+              "language_id": "50a33f9d-0627-4856-b9a8-30550a15c115",
+              "language_name": "ไทย",
+              "language_code": "th"
+          },
+          {
+              "language_id": "51432448-5bc9-4dc2-b09e-477ddb50024c",
+              "language_name": "Italian",
+              "language_code": "it"
+          },
+          {
+              "language_id": "6ce2ac41-5ab5-4256-bf14-f326a93d16b9",
+              "language_name": "日本語",
+              "language_code": "ja"
+          },
+          {
+              "language_id": "82847841-fc96-4da9-a36b-71cd34253289",
+              "language_name": "Tiếng Việt",
+              "language_code": "vi"
+          },
+          {
+              "language_id": "82f20073-401d-4e9a-871d-f2c0c2813987",
+              "language_name": "Bahasa Melayu",
+              "language_code": "ms"
+          },
+          {
+              "language_id": "8c5c5016-9e7d-47c6-823e-4e30dd132f57",
+              "language_name": "Français",
+              "language_code": "fr"
+          },
+          {
+              "language_id": "9cadd998-b20c-44cf-a534-4861986f81ac",
+              "language_name": "עִברִית",
+              "language_code": "he"
+          },
+          {
+              "language_id": "a158945c-a228-486b-ad30-afef17271d66",
+              "language_name": "Deutsch",
+              "language_code": "de"
+          },
+          {
+              "language_id": "a8959721-2316-426c-acf7-bc2384cf7d31",
+              "language_name": "አማርኛ",
+              "language_code": "am"
+          },
+          {
+              "language_id": "af4d479e-c6c9-40f5-b628-1d1db55fc7a2",
+              "language_name": "Português",
+              "language_code": "pt"
+          },
+          {
+              "language_id": "b289814b-0bc6-4d54-966d-ba55b75b57ee",
+              "language_name": "Indonesia",
+              "language_code": "id"
+          },
+          {
+              "language_id": "b2dadaa2-e647-4b62-8c37-a87327b0e4e3",
+              "language_name": "Española",
+              "language_code": "es"
+          },
+          {
+              "language_id": "c0e612a8-2b7e-4741-88c8-f5bcbc72057c",
+              "language_name": "Русский",
+              "language_code": "ru"
+          },
+          {
+              "language_id": "d28b82c3-6cb5-43b8-b669-0bb869acc113",
+              "language_name": "kiswahili",
+              "language_code": "sw"
+          },
+          {
+              "language_id": "e67d8587-a47f-42a7-b799-228aa7c78451",
+              "language_name": "عربي",
+              "language_code": "ar"
+          },
+          {
+              "language_id": "f9b97456-1d1c-4c7c-8f80-f2143ab10bfa",
+              "language_name": "ភាសាខ្មែរ",
+              "language_code": "km"
+          },
+          {
+              "language_id": "fe921d59-8fd9-4cdf-99e2-17f7b9cd5bcc",
+              "language_name": "한국인",
+              "language_code": "ko"
+          },
+          {
+              "language_id": "ffa555a8-4783-4143-b7e4-d6b860b8a47d",
+              "language_name": "Filipino",
+              "language_code": "fil"
+          }
+      ],
+      "currency_list": [
+          {
+              "currency_id": "3ae4c6b2-58ea-4269-8fa9-b09462a57252",
+              "currency_name": "CNH",
+              "currency_symbol": "CN¥"
+          },
+          {
+              "currency_id": "3f630f01-f539-494b-87e2-33ac7d248586",
+              "currency_name": "EUR",
+              "currency_symbol": "€"
+          },
+          {
+              "currency_id": "53978b7d-5511-4f91-8921-8902c17464da",
+              "currency_name": "HKD",
+              "currency_symbol": "HK$"
+          },
+          {
+              "currency_id": "579c5a8b-431f-4fb6-bcfc-a0919a84ade8",
+              "currency_name": "ILS",
+              "currency_symbol": "₪"
+          },
+          {
+              "currency_id": "6e71df35-cf52-4bec-8afa-355bd43b5a84",
+              "currency_name": "JPY",
+              "currency_symbol": "¥"
+          },
+          {
+              "currency_id": "927e9fc8-a0ec-4519-871c-cb666fc0ff8f",
+              "currency_name": "INR",
+              "currency_symbol": "₹"
+          },
+          {
+              "currency_id": "b6033e7d-93ec-4573-b967-55974e3a498a",
+              "currency_name": "USD",
+              "currency_symbol": "$"
+          },
+          {
+              "currency_id": "c24e230b-7a1a-486c-84e2-52701c363053",
+              "currency_name": "CHF",
+              "currency_symbol": "₣"
+          },
+          {
+              "currency_id": "d931930f-37a0-4712-8b3a-982b243acab7",
+              "currency_name": "CAD",
+              "currency_symbol": "C$"
+          },
+          {
+              "currency_id": "e83c9c4b-baf8-476d-a60a-45a2b8210cf4",
+              "currency_name": "GBP",
+              "currency_symbol": "£"
+          },
+          {
+              "currency_id": "fad69f19-4d71-42b0-86f6-6c902b221087",
+              "currency_name": "AUD",
+              "currency_symbol": "A$"
+          }
+      ]
+  }
+  ```
+

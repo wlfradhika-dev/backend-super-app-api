@@ -1,0 +1,237 @@
+info:
+  name: order payment
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/customer/on-demand/order-payment"
+  headers:
+    - name: Accept
+      value: application/json
+      disabled: true
+    - name: Content-Type
+      value: application/json
+      disabled: true
+  body:
+    type: multipart-form
+    data:
+      - name: order_id
+        type: text
+        value: "{{ON_DEMAND_ORDER_UUID}}"
+      - name: payment_type
+        type: text
+        value: "2"
+      - name: card_id
+        type: text
+        value: 42071056-cb1f-4a70-9eb5-e530fdf49325
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: cash-payment
+    request:
+      url: "{{payment_url}}/api/customer/on-demand/order-payment"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "order_id": "{{ON_DEMAND_ORDER_UUID}}",
+              "payment_type": 1
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "b767faa7-a965-43ac-9c6b-c674baa0f75b",
+              "order_no": "58022134",
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": ""
+          }
+  - name: card-payment
+    request:
+      url: "{{payment_url}}/api/customer/on-demand/order-payment"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "order_id": "{{ON_DEMAND_ORDER_UUID}}",
+              "payment_type": 2,
+              "card_id": "42071056-cb1f-4a70-9eb5-e530fdf49325"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "b767faa7-a965-43ac-9c6b-c674baa0f75b",
+              "order_no": "58022134",
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": ""
+          }
+  - name: wallet-payment
+    request:
+      url: "{{payment_url}}/api/customer/on-demand/order-payment"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "order_id": "{{ON_DEMAND_ORDER_UUID}}",
+              "payment_type": 3,
+              "card_id": "42071056-cb1f-4a70-9eb5-e530fdf49325"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: cache-control
+          value: no-cache, private
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "b767faa7-a965-43ac-9c6b-c674baa0f75b",
+              "order_no": "58022134",
+              "redirect_url": "",
+              "success_url": "",
+              "failed_url": ""
+          }
+
+docs: |+
+  ## order payment
+
+  Processes the payment for the specified order or service.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_id` | string | Yes | Order id |
+  | `payment_type` | string | Yes | Payment type |
+  | `card_id` | string | Yes | Card id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "b767faa7-a965-43ac-9c6b-c674baa0f75b",
+      "order_no": "58022134",
+      "redirect_url": "",
+      "success_url": "",
+      "failed_url": ""
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

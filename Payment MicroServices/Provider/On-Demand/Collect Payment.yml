@@ -1,0 +1,225 @@
+info:
+  name: Collect Payment
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{payment_url}}/api/provider/on-demand-orders/collect-payment"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: '{"order_id":"{{ORDER_UUID}}"}'
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Collect Payment
+    request:
+      url: "{{payment_url}}/api/provider/on-demand-orders/collect-payment"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: '{"order_id":"{{ORDER_UUID}}"}'
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 13 Mar 2026 11:59:56 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success.",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_name": "Monica",
+              "provider_status": 1,
+              "provider_profile_image": "",
+              "provider_service_radius": "30 km",
+              "cash_payment": 1,
+              "card_payment": 1,
+              "wallet_payment": 1,
+              "provider_services_list": "Dog walking",
+              "current_status": 1,
+              "pending_orders": [],
+              "accepted_orders": [],
+              "processing_order": [],
+              "completed_order": [
+                  {
+                      "order_id": "4f254147-27ee-4a53-9bf2-d2ecf36f1e6e",
+                      "user_id": "dc477e3d-c8c7-40e2-8c7e-a4d00b453457",
+                      "order_no": "66709073",
+                      "service_cat_id": 13,
+                      "order_payment_type": 1,
+                      "order_payment_status": 1,
+                      "order_package_list": "Labra Dog Training x 1",
+                      "order_type": 0,
+                      "service_date_time": "2026-03-13T11:00:00.000000Z",
+                      "schedule_order_date": "2026-03-13",
+                      "total_pay": 100,
+                      "lat_long": "22.3189,70.7673",
+                      "order_status": 9,
+                      "user_name": "Charlie",
+                      "customer_profile_image": "",
+                      "service_cat_name": "Dog walking",
+                      "service_category_image": "10060120251301.png",
+                      "service_category_type": 4,
+                      "schedule_order_time": "11:00:00 - 12:00:00"
+                  }
+              ],
+              "is_subscription": 1,
+              "cash_out_status": 1,
+              "is_document_expired": null,
+              "is_document_pending": null,
+              "document_message": null
+          }
+
+docs: |+
+  ## Collect Payment
+
+  Processes the payment for the specified order or service.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {"order_id":"{{ORDER_UUID}}"}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success.",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_name": "Monica",
+      "provider_status": 1,
+      "provider_profile_image": "",
+      "provider_service_radius": "30 km",
+      "cash_payment": 1,
+      "card_payment": 1,
+      "wallet_payment": 1,
+      "provider_services_list": "Dog walking",
+      "current_status": 1,
+      "pending_orders": [],
+      "accepted_orders": [],
+      "processing_order": [],
+      "completed_order": [
+          {
+              "order_id": "4f254147-27ee-4a53-9bf2-d2ecf36f1e6e",
+              "user_id": "dc477e3d-c8c7-40e2-8c7e-a4d00b453457",
+              "order_no": "66709073",
+              "service_cat_id": 13,
+              "order_payment_type": 1,
+              "order_payment_status": 1,
+              "order_package_list": "Labra Dog Training x 1",
+              "order_type": 0,
+              "service_date_time": "2026-03-13T11:00:00.000000Z",
+              "schedule_order_date": "2026-03-13",
+              "total_pay": 100,
+              "lat_long": "22.3189,70.7673",
+              "order_status": 9,
+              "user_name": "Charlie",
+              "customer_profile_image": "",
+              "service_cat_name": "Dog walking",
+              "service_category_image": "10060120251301.png",
+              "service_category_type": 4,
+              "schedule_order_time": "11:00:00 - 12:00:00"
+          }
+      ],
+      "is_subscription": 1,
+      "cash_out_status": 1,
+      "is_document_expired": null,
+      "is_document_pending": null,
+      "document_message": null
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

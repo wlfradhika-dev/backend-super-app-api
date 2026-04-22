@@ -1,0 +1,89 @@
+info:
+  name: App Boostrap
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/delivery-driver/app-bootstrap"
+  headers:
+    - name: Accept
+      value: application/json
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Parse JSON response
+        const response = res.getBody();
+        // Check token exists
+        if (response.token) {
+            // Save token to environment variable
+            bru.setEnvVar("driver_token", response.token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: App Boostrap
+    request:
+      url: "{{core_url}}/api/delivery-driver/app-bootstrap"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Mon, 23 Feb 2026 07:43:34 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "token": "12F5TEh3XiBkX7HcWvR2YB6eScUeFaR4m8YqG1XW9P6C5D7B2n0LZfHvHUK3AET27"
+          }
+
+docs: |+
+  ## App Boostrap
+
+  Returns initial configuration data required at app launch including settings, feature flags, and environment info.
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "token": "12F5TEh3XiBkX7HcWvR2YB6eScUeFaR4m8YqG1XW9P6C5D7B2n0LZfHvHUK3AET27"
+  }
+  ```
+

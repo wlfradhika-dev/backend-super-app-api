@@ -1,0 +1,207 @@
+info:
+  name: Get Transaction history
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/loyalty-point/points-transaction"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: order_by
+        type: text
+        value: "0"
+        description: //0,1,2 same as foxjek
+      - name: filter_type
+        type: text
+        value: "0"
+        description: //0,1,2,3,4,5 same as foxjek
+      - name: service_category
+        type: text
+        value: 2,3
+        description: nullable
+        disabled: true
+      - name: page
+        type: text
+        value: "10"
+        description: nullable
+        disabled: true
+      - name: per_page
+        type: text
+        value: "1"
+        description: nullable
+        disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Get Transaction history
+    request:
+      url: "{{core_url}}/api/customer/loyalty-point/points-transaction"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: order_by
+            type: text
+            value: "0"
+            description: //0,1,2 same as foxjek
+          - name: filter_type
+            type: text
+            value: "0"
+            description: //0,1,2,3,4,5 same as foxjek
+          - name: service_category
+            type: text
+            value: 2,3
+            description: nullable
+            disabled: true
+          - name: page
+            type: text
+            value: "10"
+            description: nullable
+            disabled: true
+          - name: per_page
+            type: text
+            value: "1"
+            description: nullable
+            disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.3.14
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 12 Feb 2026 12:05:15 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "transactions_points": [
+                  {
+                      "id": "acb95ac2-3283-431e-8228-7dfa6ef7d5c9",
+                      "amount": 200,
+                      "transaction_type": 1,
+                      "service_category_id": 2,
+                      "service_category_name": "Taxi Ride",
+                      "service_category_image": "http://127.0.0.1:8000/storage/img/service-category/11350720242806.png",
+                      "order_no": "1234567",
+                      "note": "Earned loyalty reward points",
+                      "remaining_points": 200,
+                      "date_time": "2025-01-07T05:41:42.000000Z"
+                  }
+              ],
+              "current_page": 1,
+              "last_page": 1,
+              "total_rec": 1
+          }
+
+docs: |+
+  ## Get Transaction history
+
+  Returns the paginated loyalty points transaction history for the authenticated user.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `order_by` | string | Yes | //0,1,2 same as foxjek |
+  | `filter_type` | string | Yes | //0,1,2,3,4,5 same as foxjek |
+  | `service_category` | string | No | nullable |
+  | `page` | string | No | nullable |
+  | `per_page` | string | No | nullable |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "transactions_points": [
+          {
+              "id": "acb95ac2-3283-431e-8228-7dfa6ef7d5c9",
+              "amount": 200,
+              "transaction_type": 1,
+              "service_category_id": 2,
+              "service_category_name": "Taxi Ride",
+              "service_category_image": "http://127.0.0.1:8000/storage/img/service-category/11350720242806.png",
+              "order_no": "1234567",
+              "note": "Earned loyalty reward points",
+              "remaining_points": 200,
+              "date_time": "2025-01-07T05:41:42.000000Z"
+          }
+      ],
+      "current_page": 1,
+      "last_page": 1,
+      "total_rec": 1
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The order by field is required."
+  }
+  ```
+

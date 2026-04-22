@@ -1,0 +1,183 @@
+info:
+  name: Ride feedback
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{transport_url}}/api/driver/courier/ride-feedback"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "service_category_id": 4,
+          "ride_id": "01fee6cb-f846-46db-96e4-e5579a65cb9b"
+        }
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: New Request
+    request:
+      url: "{{transport_url}}/api/driver/courier/ride-feedback"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 09:44:04 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Please Try Again",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "current_page": 1,
+              "last_page": 1,
+              "total": 1,
+              "feedback_list": [
+                  {
+                      "rating_id": "ba11498c-70d8-4f83-acaf-771ce277c54e",
+                      "service_cat_id": 4,
+                      "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+                      "user_name": "Rahul",
+                      "user_profile_image": "",
+                      "rating": 5,
+                      "comment": "Excellent courier service, very careful with package",
+                      "service_category_name": "Courier Service",
+                      "datetime": "2026-03-11 07:31:37",
+                      "dt": "2026-03-11 07:31:37"
+                  }
+              ]
+          }
+
+docs: |+
+  ## Ride feedback
+
+  Performs the requested operation and returns the result.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Please Try Again",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "current_page": 1,
+      "last_page": 1,
+      "total": 1,
+      "feedback_list": [
+          {
+              "rating_id": "ba11498c-70d8-4f83-acaf-771ce277c54e",
+              "service_cat_id": 4,
+              "ride_id": "0629d870-1041-446a-a1f2-85d6a3ffd598",
+              "user_name": "Rahul",
+              "user_profile_image": "",
+              "rating": 5,
+              "comment": "Excellent courier service, very careful with package",
+              "service_category_name": "Courier Service",
+              "datetime": "2026-03-11 07:31:37",
+              "dt": "2026-03-11 07:31:37"
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

@@ -1,0 +1,199 @@
+info:
+  name: Provider Service List
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/provider/video-consultancy/service/provider-service-list"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{provider_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: service-list-empty
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/service/provider-service-list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer {{provider_token}}
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Wed, 11 Mar 2026 11:53:21 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_service_list": []
+          }
+  - name: Provider Service List
+    request:
+      url: "{{on_deman_url}}/api/provider/video-consultancy/service/provider-service-list"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Sat, 14 Mar 2026 06:35:31 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "provider_service_list": [
+                  {
+                      "provider_service_id": "230ed3e4-d2c2-4931-b2ba-a028f99f87e7",
+                      "provider_service_name": "Video Consultation",
+                      "provider_service_status": 1,
+                      "provider_service_current_status": 0,
+                      "service_category_id": 14,
+                      "category_type": 6,
+                      "provider_doc_status": 1,
+                      "provider_service_gallery": []
+                  },
+                  {
+                      "provider_service_id": "500ac502-f1de-4911-a034-e2970f983b05",
+                      "provider_service_name": "Legal Consultation",
+                      "provider_service_status": 1,
+                      "provider_service_current_status": 0,
+                      "service_category_id": 16,
+                      "category_type": 6,
+                      "provider_doc_status": 0,
+                      "provider_service_gallery": []
+                  },
+                  {
+                      "provider_service_id": "7f4a650f-8c79-4e1a-a31a-6bda6b2f0ddb",
+                      "provider_service_name": "Online Tutoring",
+                      "provider_service_status": 1,
+                      "provider_service_current_status": 1,
+                      "service_category_id": 15,
+                      "category_type": 6,
+                      "provider_doc_status": 1,
+                      "provider_service_gallery": []
+                  }
+              ]
+          }
+
+docs: |+
+  ## Provider Service List
+
+  Returns a paginated list of records matching the request criteria.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "provider_service_list": []
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+

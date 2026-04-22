@@ -1,0 +1,184 @@
+info:
+  name: Delivery Order Details
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{delivery_url}}/api/grocery-flow/delivery-driver/delivery-order-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Authorization
+      value: Bearer 42|GWKH1o07O5KLRRCtZPbVaMcVN6EQFETGboiWTcJM4211e53a
+      disabled: true
+  body:
+    type: multipart-form
+    data:
+      - name: ride_id
+        type: text
+        value: 392adf37-e972-4114-8bf7-eb17cf614f0f
+  auth:
+    type: bearer
+    token: "{{driver_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success
+    request:
+      url: "{{delivery_url}}/api/grocery-flow/delivery-driver/delivery-order-details"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Authorization
+          value: Bearer 42|GWKH1o07O5KLRRCtZPbVaMcVN6EQFETGboiWTcJM4211e53a
+          disabled: true
+      body:
+        type: multipart-form
+        data:
+          - name: ride_id
+            type: text
+            value: 392adf37-e972-4114-8bf7-eb17cf614f0f
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx/1.28.2
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Tue, 24 Feb 2026 06:06:14 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "booking_no": "47938961",
+              "order_date_time": "Mon 23 Feb, 2026",
+              "total_pay": 34.8,
+              "payment_type": 1,
+              "service_date_time": "2026-02-23 06:14:19",
+              "schedule_order_date_time": "2026-02-23T06:14:19.000000Z",
+              "store_name": "Store Testing",
+              "order_chat_number": "47938961-392adf37-e972-4114-8bf7-eb17cf614f0f",
+              "product_details": [
+                  {
+                      "product_name": "Veg Sandwich",
+                      "num_of_items": 3,
+                      "product_price_for_one": 8,
+                      "total_product_amount": 24
+                  }
+              ]
+          }
+
+docs: |+
+  ## Delivery Order Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `ride_id` | string | Yes | Ride id |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "booking_no": "47938961",
+      "order_date_time": "Mon 23 Feb, 2026",
+      "total_pay": 34.8,
+      "payment_type": 1,
+      "service_date_time": "2026-02-23 06:14:19",
+      "schedule_order_date_time": "2026-02-23T06:14:19.000000Z",
+      "store_name": "Store Testing",
+      "order_chat_number": "47938961-392adf37-e972-4114-8bf7-eb17cf614f0f",
+      "product_details": [
+          {
+              "product_name": "Veg Sandwich",
+              "num_of_items": 3,
+              "product_price_for_one": 8,
+              "total_product_amount": 24
+          }
+      ]
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The ride id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

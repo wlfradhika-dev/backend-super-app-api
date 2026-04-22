@@ -1,0 +1,271 @@
+info:
+  name: Order Details
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{on_deman_url}}/api/customer/video-consultancy/order-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "order_id": "{{order_uuid}}"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Order Details
+    request:
+      url: "{{on_deman_url}}/api/customer/video-consultancy/order-details"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+              "order_id": "{{order_uuid}}"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Server
+          value: nginx
+        - name: Content-Type
+          value: application/json
+        - name: Transfer-Encoding
+          value: chunked
+        - name: Connection
+          value: keep-alive
+        - name: Vary
+          value: Accept-Encoding
+        - name: X-Powered-By
+          value: PHP/8.3.30
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Fri, 13 Mar 2026 10:56:23 GMT
+        - name: Access-Control-Allow-Origin
+          value: "*"
+        - name: X-Frame-Options
+          value: SAMEORIGIN
+        - name: X-Content-Type-Options
+          value: nosniff
+        - name: X-XSS-Protection
+          value: 1; mode=block
+        - name: Referrer-Policy
+          value: strict-origin-when-cross-origin
+        - name: Content-Encoding
+          value: gzip
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "order_id": "814693b4-0aca-48b9-9317-37bc59843742",
+              "order_no": "36188353",
+              "service_cat_id": 14,
+              "category_type": 6,
+              "additional_remark": "",
+              "order_payment_type": 1,
+              "order_payment_status": 0,
+              "category_name": "Astrology",
+              "category_icon": "http://localhost:8004/storage/img/service-category/10112520251301.png",
+              "schedule_order_date": "2026-03-15",
+              "schedule_order_time": "10:00:00 - 11:00:00",
+              "provider_id": "c76db682-881b-4a7f-bf66-50657b307eca",
+              "provider_name": "Provider",
+              "provider_contact": "+1123456",
+              "distance": "",
+              "flat_no": "",
+              "landmark": "",
+              "provider_profile_image": "",
+              "provider_rating": 4.5,
+              "user_rating_status": 0,
+              "tax": 2.5,
+              "tip": 0,
+              "extra_amount": 0,
+              "description": "",
+              "item_total": 50,
+              "sub_total": 50,
+              "discount": 0,
+              "refer_discount": 0,
+              "total_pay": 52.5,
+              "redeem_loyalty_points": 0,
+              "loyalty_discount_amount": 0,
+              "delivery_address": "",
+              "cancel_by": "",
+              "cancel_reason": "",
+              "cancel_charge": 0,
+              "order_status": 4,
+              "promocode_name": "",
+              "promo_code_discount": 0,
+              "package_list": [
+                  {
+                      "sub_category_name": "Horary Astrology",
+                      "item_list": [
+                          {
+                              "num_of_items": 1,
+                              "package_name": "Horary Astrology - 30 min session",
+                              "sub_category_name": "Horary Astrology",
+                              "package_id": "8bf81717-8c62-4599-b1b8-0b33847193b6",
+                              "price_for_one": 50,
+                              "total_single_package_price": "50.00"
+                          }
+                      ]
+                  }
+              ],
+              "unavailable_packages": "",
+              "select_provider_location": 0,
+              "total_completed_order": 10,
+              "no_of_ratings": 0,
+              "address_type": 3,
+              "invoice_download_link": "http://localhost:8004/provider-video-consultancy-invoice-download/814693b4-0aca-48b9-9317-37bc59843742/user/fd7af929-fe2c-4e6a-a24e-79860d9be465"
+          }
+
+docs: |+
+  ## Order Details
+
+  Returns the detailed information of the specified record.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (JSON)
+
+  ```json
+  {
+      "order_id": "{{order_uuid}}"
+  }
+  ```
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "order_id": "814693b4-0aca-48b9-9317-37bc59843742",
+      "order_no": "36188353",
+      "service_cat_id": 14,
+      "category_type": 6,
+      "additional_remark": "",
+      "order_payment_type": 1,
+      "order_payment_status": 0,
+      "category_name": "Astrology",
+      "category_icon": "http://localhost:8004/storage/img/service-category/10112520251301.png",
+      "schedule_order_date": "2026-03-15",
+      "schedule_order_time": "10:00:00 - 11:00:00",
+      "provider_id": "c76db682-881b-4a7f-bf66-50657b307eca",
+      "provider_name": "Provider",
+      "provider_contact": "+1123456",
+      "distance": "",
+      "flat_no": "",
+      "landmark": "",
+      "provider_profile_image": "",
+      "provider_rating": 4.5,
+      "user_rating_status": 0,
+      "tax": 2.5,
+      "tip": 0,
+      "extra_amount": 0,
+      "description": "",
+      "item_total": 50,
+      "sub_total": 50,
+      "discount": 0,
+      "refer_discount": 0,
+      "total_pay": 52.5,
+      "redeem_loyalty_points": 0,
+      "loyalty_discount_amount": 0,
+      "delivery_address": "",
+      "cancel_by": "",
+      "cancel_reason": "",
+      "cancel_charge": 0,
+      "order_status": 4,
+      "promocode_name": "",
+      "promo_code_discount": 0,
+      "package_list": [
+          {
+              "sub_category_name": "Horary Astrology",
+              "item_list": [
+                  {
+                      "num_of_items": 1,
+                      "package_name": "Horary Astrology - 30 min session",
+                      "sub_category_name": "Horary Astrology",
+                      "package_id": "8bf81717-8c62-4599-b1b8-0b33847193b6",
+                      "price_for_one": 50,
+                      "total_single_package_price": "50.00"
+                  }
+              ]
+          }
+      ],
+      "unavailable_packages": "",
+      "select_provider_location": 0,
+      "total_completed_order": 10,
+      "no_of_ratings": 0,
+      "address_type": 3,
+      "invoice_download_link": "http://localhost:8004/provider-video-consultancy-invoice-download/814693b4-0aca-48b9-9317-37bc59843742/user/fd7af929-fe2c-4e6a-a24e-79860d9be465"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+

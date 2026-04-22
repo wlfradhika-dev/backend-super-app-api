@@ -1,0 +1,202 @@
+info:
+  name: Store Call
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{core_url}}/api/customer/ms-make-video-call-store"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: receiver_id
+        type: text
+        value: a08fc68a-7786-412c-b021-c56434279cb3
+      - name: call_type
+        type: text
+        value: "2"
+        description: "1: Audio, 2: Video"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Audio Call
+    request:
+      url: "{{core_url}}/api/customer/ms-make-video-call-store"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: receiver_id
+            type: text
+            value: a08fc68a-7786-412c-b021-c56434279cb3
+          - name: call_type
+            type: text
+            value: "1"
+            description: "1: Audio, 2: Video"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 26 Feb 2026 05:43:12 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzIwODQ1OTIsIm5iZiI6MTc3MjA4NDU5MiwiZXhwIjoxNzcyMDg4MTkyLCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6IjYzZjRhMmI3LWFlMWYtNGNlZC1hZmFkLThjZDI4M2JjODBhMCIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoiNjk5ZmRkNzBmMDg2NGM4NTFhMWJiYjk5IiwidXNlcl9pZCI6InVzZXItNjYzM2Y1MDktYzdlMi00MTAyLWFkZDAtZjQ0MDIyYWM1YTI5In0.G0xDPwynqV2NClNtp7NYoHbfMOkCuyMgDCI1dvI9iyQ",
+              "room_id": "699fdd70f0864c851a1bbb99"
+          }
+  - name: Video Call
+    request:
+      url: "{{core_url}}/api/customer/ms-make-video-call-store"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+      body:
+        type: multipart-form
+        data:
+          - name: receiver_id
+            type: text
+            value: a08fc68a-7786-412c-b021-c56434279cb3
+          - name: call_type
+            type: text
+            value: "2"
+            description: "1: Audio, 2: Video"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Host
+          value: 127.0.0.1:8000
+        - name: Connection
+          value: close
+        - name: X-Powered-By
+          value: PHP/8.5.2
+        - name: Cache-Control
+          value: no-cache, private
+        - name: Date
+          value: Thu, 26 Feb 2026 05:43:35 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+              "success": true,
+              "message": "Success",
+              "message_code": 1,
+              "status_code": 1,
+              "http_status_code": 200,
+              "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzIwODQ2MTUsIm5iZiI6MTc3MjA4NDYxNSwiZXhwIjoxNzcyMDg4MjE1LCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6ImZmMTYyY2Q2LTA3ZTktNDliOS05NmJlLWNmMmMxYjBiNGQ0YyIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tdmlkZW8iLCJyb29tX2lkIjoiNjk5ZmRkODdmMDg2NGM4NTFhMWJiYmEyIiwidXNlcl9pZCI6InVzZXItNjYzM2Y1MDktYzdlMi00MTAyLWFkZDAtZjQ0MDIyYWM1YTI5In0._lUf5orbi7iVkDjNEwAxGVzXMYivMGriuTnFcs0veUU",
+              "room_id": "699fdd87f0864c851a1bbba2"
+          }
+
+docs: |+
+  ## Store Call
+
+  Initiates or manages an audio/video call session using the 100ms platform.
+
+  ### Authentication
+
+  Requires a valid **Bearer Token** in the `Authorization` header.
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+  ---
+
+  ### Request Body (form-data)
+
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | `receiver_id` | string | Yes | Receiver id |
+  | `call_type` | string | Yes | 1: Audio, 2: Video |
+
+  ---
+
+  ### Responses
+
+  **200 OK — Success**
+
+  ```json
+  {
+      "success": true,
+      "message": "Success",
+      "message_code": 1,
+      "status_code": 1,
+      "http_status_code": 200,
+      "sender_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NzIwODQ1OTIsIm5iZiI6MTc3MjA4NDU5MiwiZXhwIjoxNzcyMDg4MTkyLCJhY2Nlc3Nfa2V5IjoiNjYzNWUxYjNhM2YxYzRjNjBmNDYzYzdkIiwidHlwZSI6ImFwcCIsImp0aSI6IjYzZjRhMmI3LWFlMWYtNGNlZC1hZmFkLThjZDI4M2JjODBhMCIsInZlcnNpb24iOjIsInJvbGUiOiJjdXN0b20tYXVkaW8iLCJyb29tX2lkIjoiNjk5ZmRkNzBmMDg2NGM4NTFhMWJiYjk5IiwidXNlcl9pZCI6InVzZXItNjYzM2Y1MDktYzdlMi00MTAyLWFkZDAtZjQ0MDIyYWM1YTI5In0.G0xDPwynqV2NClNtp7NYoHbfMOkCuyMgDCI1dvI9iyQ",
+      "room_id": "699fdd70f0864c851a1bbb99"
+  }
+  ```
+
+  **401 Unauthorized — App Access Denied**
+
+  ```json
+  {
+      "success": false,
+      "message": "App access denied",
+      "message_code": 2,
+      "status_code": 0,
+      "https_status_code": 401,
+      "errors": "Failed"
+  }
+  ```
+
+  **422 Unprocessable Entity — Validation Failed**
+
+  ```json
+  {
+      "status": 0,
+      "message": "The receiver id field is required."
+  }
+  ```
+
+  **404 Not Found — User Not Found**
+
+  ```json
+  {
+      "success": false,
+      "message": "App User Not Found",
+      "message_code": 5,
+      "status_code": 5,
+      "https_status_code": 404,
+      "errors": "Failed"
+  }
+  ```
+
