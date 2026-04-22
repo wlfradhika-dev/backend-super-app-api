@@ -10,7 +10,7 @@ http:
     - name: Accept
       value: application/json
     - name: authorization
-      value: "{{customToken}}"
+      value: 68sVAfdIEtAYjVOpyvsWxnPkNqkaHQCiukeTrEHAurNhzLZEnHvXKnrATMUJMsPkZgMbGE6693a4bfb8cb2de96d06913a24e01502TfyJehwMIcxYPpeRTxmUESMHNRWiWzdCVTFVaSUaRSZbFnocX49
   body:
     type: multipart-form
     data:
@@ -30,21 +30,34 @@ http:
         type: text
         value: ""
         disabled: true
-  auth: inherit
 
 runtime:
   variables:
-    - name: customToken
+    - name: Authorization
       value: 68sVAfdIEtAYjVOpyvsWxnPkNqkaHQCiukeTrEHAurNhzLZEnHvXKnrATMUJMsPkZgMbGE6693a4bfb8cb2de96d06913a24e01502TfyJehwMIcxYPpeRTxmUESMHNRWiWzdCVTFVaSUaRSZbFnocX49
   scripts:
     - type: after-response
       code: |-
-        // Parse JSON response
-        const response = res.getBody();
-        // Check token exists
-        if (response.token) {
-            // Save token to collection variable
-        //     pm.collectionVariables.set("token", response.token);
+        try {
+          const data = res.getBody();
+
+          let parsed = data;
+
+          if (typeof parsed === "string") {
+            parsed = JSON.parse(parsed);
+          }
+
+          console.log("FULL RESPONSE:", parsed);
+
+          if (parsed && parsed.token) {
+            bru.setVar("token", parsed.token);   // ✅ THIS IS THE FIX
+            console.log("Token saved:", parsed.token);
+          } else {
+            console.log("Token not found");
+          }
+
+        } catch (err) {
+          console.log("Script error:", err);
         }
 
 settings:

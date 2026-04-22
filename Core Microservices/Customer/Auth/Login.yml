@@ -9,13 +9,10 @@ http:
   headers:
     - name: Accept
       value: application/json
-      description: Ensures the API returns a JSON response
     - name: select-time-zone
       value: Asia/Kolkata
-      description: Customer's local timezone in IANA format (e.g. Asia/Kolkata, America/New_York)
     - name: select-ip-address
       value: 103.138.233.214
-      description: Customer's IP address used for geo-detection and location-based services
   body:
     type: multipart-form
     data:
@@ -70,13 +67,27 @@ runtime:
   scripts:
     - type: after-response
       code: |-
-        // Parse JSON response
-        const response = res.getBody();
-        // Check token exists
-        if (response.token) {
-            // Save token to collection variable
-        //     pm.collectionVariables.set("token", response.token);
-        //     pm.collectionVariables.set("user_id", response.user_id);
+        try {
+          const response = res.getBody();
+
+          let data = response;
+
+          if (typeof data === "string") {
+            data = JSON.parse(data);
+          }
+
+          if (data && data.token) {
+            bru.setVar("token", data.token);
+            console.log("Token updated from login:", data.token);
+          }
+
+          if (data && data.user_id) {
+            bru.setVar("user_id", data.user_id);
+            console.log("User ID saved:", data.user_id);
+          }
+
+        } catch (err) {
+          console.log("Script error:", err);
         }
 
 settings:
@@ -93,13 +104,10 @@ examples:
       headers:
         - name: Accept
           value: application/json
-          description: Ensures the API returns a JSON response
         - name: select-time-zone
           value: Asia/Kolkata
-          description: Customer's local timezone in IANA format (e.g. Asia/Kolkata, America/New_York)
         - name: select-ip-address
           value: 103.138.233.214
-          description: Customer's IP address used for geo-detection and location-based services
       body:
         type: multipart-form
         data:

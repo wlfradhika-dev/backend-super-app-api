@@ -14,7 +14,22 @@ http:
 runtime:
   scripts:
     - type: after-response
-      code: console.log(bru);
+      code: |-
+        try {
+          let data = bru.response.body;
+
+          if (typeof data === "string") {
+            data = JSON.parse(data);
+          }
+
+          if (data?.token) {
+            bru.setEnvVar("token", data.token);
+          } else {
+            console.log("Token not found");
+          }
+        } catch (err) {
+          console.log("Script error:", err);
+        }
 
 settings:
   encodeUrl: true

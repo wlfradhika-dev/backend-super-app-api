@@ -4,5 +4,3 @@ variables:
     value: https://staging-fox-jek-core.startuptrinity.com
   - name: auth_token
     value: 29F5TEh3XiBkX7HcWvR2YB6eScUeFaR4m8YqG1XW9P6C5D7B2n0LZfHvHUK3AET21
-  - name: token
-    value: ""

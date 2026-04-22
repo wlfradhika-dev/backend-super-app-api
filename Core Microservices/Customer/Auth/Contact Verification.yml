@@ -36,12 +36,19 @@ runtime:
   scripts:
     - type: after-response
       code: |-
-        // Parse JSON response
-        const response = res.getBody();
-        // Check token exists
-        if (response.token) {
-            // Save token to collection variable
-        //     pm.collectionVariables.set("token", response.token);
+        try {
+          let response = res.getBody();
+
+          if (typeof response === "string") {
+            response = JSON.parse(response);
+          }
+
+          if (response && response.token) {
+            bru.setVar("token", response.token);
+            console.log("Token saved:", response.token);
+          }
+        } catch (err) {
+          console.log("Script error:", err);
         }
 
 settings:
